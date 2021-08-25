@@ -1,0 +1,6 @@
+book_filename: "Practical_1"
+language:
+  ui:
+    chapter_name: "Part "
+delete_merged_file: true
+

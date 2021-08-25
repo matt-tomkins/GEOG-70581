@@ -1,0 +1,35 @@
+---
+title: "Hydrological analysis in R"
+author: "Matt-Tomkins"
+date: "25/08/2021"
+output: bookdown::gitbook
+site: bookdown::bookdown_site
+documentclass: book
+
+---
+
+# Introduction 
+
+Here be some text
+
+<!--chapter:end:index.Rmd-->
+
+# Objectives {#Introduction}
+
+This chapter is an overview of the methods that
+we propose to solve an **important problem**.
+
+<!--chapter:end:01-Introduction.Rmd-->
+
+# Literature  {#Literature}
+
+Here is a review of existing methods.
+
+<!--chapter:end:02-Literature.Rmd-->
+
+# Conclusions {#Conclusions}
+
+We have finished a nice book.
+
+<!--chapter:end:03-Conclusions.Rmd-->
+
