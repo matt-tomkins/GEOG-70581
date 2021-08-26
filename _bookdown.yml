@@ -2,6 +2,6 @@ book_filename: "Practical_1.Rmd"
 output_dir: "docs"
 language:
   ui:
-    chapter_name: "Part "
+    chapter_name: "Chapter "
 delete_merged_file: true
 

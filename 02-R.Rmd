@@ -1,0 +1,109 @@
+# A (brief) introduction to R  {#Intro_to_R}
+
+How to use R.
+
+## Why code?
+
+Reproducible, repeatable, modifiable
+
+## Here's how to use R 
+
+```{r}
+1 + 2
+```
+
+
+## Assigning variables
+```{r}
+# Assigns values to variables
+bob <- 1
+bill <- 2
+
+# Addition
+bob + bill
+# Multiplication
+bob * bill
+# Division
+bob / bill
+# Subtraction
+bob - bill
+```
+
+## Data types
+
+```{r}
+
+# Character
+a <- "Bob"
+
+# Numeric
+b <- 3.567
+
+# Integer
+c <- 3
+
+# Logical
+d <- TRUE
+
+```
+
+## Vectors
+
+```{r}
+
+# Creating a list of numbers
+ls <- c(1, 2, 3, 4, 5)
+ls
+
+# Creating a sequence
+sq <- seq(1,5,1)
+sq
+
+# Creating a repetitive list
+rp <- rep(10, 5)
+rp
+
+# Multiplying together
+ls * rp
+
+```
+
+## Loading data
+
+```{r}
+
+# Load data
+df <- read.csv("C:/Users/44797/Desktop/Repo/GEOG-70581/data/flow_data.csv")
+head(df)
+
+# What columns do we have
+colnames(df)
+
+# What data do they store?
+str(df)
+
+# We can access columns by using the $ operator
+
+# df$Date
+# df$Flow
+
+
+```
+
+This is a dataframe, containing two columns, in a similar format to something you may be familiar with in Excel. It has a column of dates and a column of river flow (measured in m^3 per second).
+
+We may want to index using `df[row.index, column.index]`
+
+```{r}
+
+# We can extract certain rows
+
+# Extract rows 1 to 4, all columns
+df[1:4,] 
+
+# Extract rows 1 to 4, just the second column
+df[1:4, 2]
+
+
+```
+
