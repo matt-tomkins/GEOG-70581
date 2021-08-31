@@ -1,48 +1,32 @@
 # Installation {#Installation}
 
-During this practical you will be using R and WhiteboxTools (Geospatial Analysis Tools), an open-source GIS software package for hydro-geomorphic applications. This programme has much of the functionality found in a standard GIS software package, but it has a number of useful features specific to hydrological analysis, and it is relatively easy to install, with small file sizes.
+During this practical you will be using [WhiteboxTools](https://jblindsay.github.io/wbt_book/intro.html), an open-source GIS software package for hydro-geomorphic applications. While it contains much of the functionality found in a standard GIS software package, it also includes novel functionality specific to hydrological analysis. The tools are also computationally efficient (i.e. fast!), taking advantage of parallel processing and other advancements in computing power. Finally, the tools are developed for cross-platform use, so can be accessed through code (e.g. R, Python) or other GUIs (e.g. QGIS, ArcGIS) if required. 
 
-![Test picture](images/logo.png)
-
-Whitebox can be freely installed on a personal computer (https://jblindsay.github.io/ghrg/Whitebox/) although this requires ~100 Mb of disk storage to install. In addition, as Whitebox utilises the Java platform, your computer will need to have the Java Runtime Environment (JRE) version 8.0 or higher installed and operating. You can check your Java version using command prompt (see below) and by typing “java -version”. If you JRE version is less than 8.0 (e.g. java version “1.6.0”), you can update it here: https://www.java.com/en/download/. 
+To run WhiteboxTools functions (**WBT**), we'll be using R as a front-end interface. This will allow us to access and run all of the relevant hydrological functions from WBT, while utilising the statistical and visualisation capabilities of R. 
 
 ## R
 
 To Install R:
 
-- Open an internet browser and go to www.r-project.org.
+- Open an internet browser and go to https://www.r-project.org/.
 - Click the "download R" link in the middle of the page under "Getting Started."
-- Select a CRAN location (a mirror site) and click the corresponding link.
-- Click on the "Download R for Windows" link.
-- Click on 'base' and then "Download R Version Number for Windows" (Current is 4.1.1)
-- Click on the file containing the latest version of R under "Files."
-- Save the .pkg file, double-click it to open, and follow the installation instructions.
-
-Now that R is installed, you need to download and install RStudio.
+- Select a CRAN location (a mirror site) and click the corresponding link e.g. the site provided by [Imperial College London](https://cran.ma.imperial.ac.uk/).
+- Click on the "Download R for Windows" link, or the relevant link for your operating system (macOS, Linux). 
+- Click on 'base' and then `Download R [Version Number] for Windows`. The current version is 4.1.1. 
+- Once downloaded, double click the application file (.exe) and follow the installation instructions.
 
 ## R Studio
 
+While R is now installed, it is good practice to use an integrated development environment (IDE) to access and run R functions. The most well known IDE for R is [RStudio](https://www.rstudio.com/), which includes a console, higher quality graphics, as well as tools for plotting, history, debugging and workspace management.
+
+**Note**: R may be used without RStudio, but RStudio cannot be used without R. 
+
 To Install RStudio:
 
-- Go to www.rstudio.com and click on the "Download RStudio" button.
-- Click on "Download RStudio Desktop."
-- Click on the version recommended for your system, save the .dmg file on your computer, double-click it to open, and then drag and drop it to your applications folder.
-
-## Whitebox Tools
-
-To Install WBT:
-
-
-## Using R packages
-
-Here's the packages we'll be using:
-
-- Raster
-- Sp
-- ggplot2
-- ...
-
+- Go to https://www.rstudio.com/products/rstudio/download/ and click on `Download RStudio for Windows`. Installers for macOS and other operating systems are available below.
+![](figures/Using-R/download_RStudio.png){width=50%}
+- Once downloaded, double click the application file (.exe) and follow the installation instructions.
 
 ## Course materials
 
-All the data required for this sets of practicals is available on Blackboard or can be downloaded here: 
+All the data required for this sets of practicals is available on Blackboard or can be downloaded [here](XXXX). 

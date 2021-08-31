@@ -1,0 +1,50 @@
+# Assessment {#Assessment}
+
+**Title:** Modelling River Hydrochemistry 
+
+**Word Limit:** 2000. The guidelines provided in the CO<sub>2</sub> flux practical, which outline what is and what is not included in the word count, as well penalties for exceeding the word count, also apply here. 
+
+**Format:** Report 
+
+**Structure:** Your report should be a coherent document, as opposed to a list of Q&As as with the CO<sub>2</sub> flux practical. Within this, how you structure the report is your decision. However, there are certain items that must be included in the main body of the report. These are the regression equations (and associated information i.e. significance values, R<sup>2</sup> etc) for all ten water quality indicators, and your three spatial predictions of river water quality. You can choose which three water quality indicators you focus on for the spatial predictions, but you should justify your choice in the report. 
+
+As well as these important items, the following points must be covered in the report: 
+
+1. What are the relationships between water quality and catchment characteristics? 
+
+2. Are there any consistent predictors of water quality? 
+
+3. How good are the regression models? 
+
+4. What sort of errors may occur during the derivation of catchment characteristics? 
+
+5. How could these errors be minimised?
+
+6. How could you validate the models? 
+
+7. Are there any patterns in modelled river water quality?
+
+8. Are your predictive maps of water quality useful?
+
+9. Are there any errors / limitations when constructing maps of this type? 
+
+10. How could you improve the spatial predictions? 
+
+Your report should not just be a reworked version of the practical instructions. In fact, there is no need to include a ‘methodology’ section at all, although you may wish to reflect on the methods used when considering the points above. You may find it useful to refer to the my learning essential resources on report writing ([https://www.library.manchester.ac.uk/using-the-library/students/training-and-skills-support/my-learning-essentials/online-resources/)
+
+In addition to the above, you must produce maps for each of the following files created during the practical exercise. These are listed using the file names used above, but check these carefully if you used a different naming format. These need to be included in an Appendix at the back of the report (ideally two images per page):
+
+- D8 specific contributing areas (SCA) – (“mersey_DEM_fill_D8_SCA”);
+- Watersheds in the Mersey Basin, derived from the 70 modified Environment Agency seed points – (“mersey_watersheds”);
+- Boolean (logical) raster of urban land cover – (“mersey_LC_Urban”);
+- Boolean (logical) raster of permeable HOST soil cover – (“mersey_HOST_Perm”);
+- Boolean (logical) raster of coal bedrock – (“mersey_bedrock_Coal”);
+- Slope map – (“mersey_DEM_fill_slope”);
+- Streams raster, created using the specific contributing area (SCA) and a channelization threshold of 10 (log-transformed) – (“mersey_Streams_SCA10”);
+- Masked sub-basins – (“mersey_subsbasin_mask”). 
+
+Presentation of Images: All maps should have a scale bar, north arrow and legend, all of which can be added in Whitebox under the Cartographic dropdown menu. Maps can be exported from Whitebox to image format (e.g. .png) using Export Map as Image.
+
+Referencing: The report should be fully referenced, using the Harvard style. You should not just adapt the text from the Rothwell paper, substituting key values for the data here. This will result in a high similarity index and you may face a penalty due to poor academic practice. You must write up the report in your own words, making sure you paraphrase the ideas of others, and reference fully throughout. 
+
+**Submission deadline**: XX/XX/XXXX, XX:XX

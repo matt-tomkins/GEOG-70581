@@ -7,24 +7,24 @@ documentclass: book
 ---
 # Introduction
 
-![](images/course-logo.png) 
-
-It should be evident from the lectures that digital elevation models (DEMs) have a great deal of potential for modelling surface water hydrology and related phenomena in drainage basins. Much of this work is based on the assumptions that (1) we can trace the path that water will take from any point in an elevation grid to a basin outlet, and (2) the discharge of water from a particular location is directly related to its catchment area. This is a fairly reasonable assumption in most drainage basins. 
+![](figures/course-logo.png) 
 
 ## Practical outline
 
-In this set of practicals, we'll be using [*R*](https://www.r-project.org/), [*RStudio*](https://www.rstudio.com/) and [*WhiteboxTools*](https://jblindsay.github.io/wbt_book/intro.html) to perform hydrological analysis. In [Chapters 2](#Installation) and [3](#R), we'll install and get to grips with the required programs. 
+In this set of practicals, we'll be using [R](https://www.r-project.org/), [RStudio](https://www.rstudio.com/) and [WhiteboxTools](https://jblindsay.github.io/wbt_book/intro.html) to perform hydrological analysis. 
 
-In [Practical 1](#FirstPractical), we'll introduce you to some of the key approaches, including DEM pre-processing, calculating flow parameters and comparing flow algorithms. 
+In [Chapters 2](#Installation) and [3](#R), we'll install and get to grips with the required programs. 
 
-In [Practical 2](#SecondPractical), we'll utilise these approaches to investigate the water quality of the Mersey Basin. This forms the basis for your [assessment](#Assessment). 
+In [Practical 1](#FirstPractical) (Chapters 4 - 6), which uses data for the **Eskdale** watershed, we'll introduce you to some of the key approaches, including DEM pre-processing, calculating flow parameters and comparing flow algorithms. 
 
-In this lab exercise, we will use a DEM of the Upper Eskdale watershed to model flow-related phenomena.
+In [Practical 2](#SecondPractical) (Chapters 7 - X),  we'll utilise these approaches to investigate the water quality of the **Mersey** Basin. This forms the basis for your [assessment](#Assessment). 
 
-![Upper Eskdale catchment](images/cover.png)
+## Objectives
 
-In this exercise you will gain experience in the following:
+After completing these practicals, you will:
 
-- DEM pre-processing; 
-- Calculating flow parameters: Pointers and contributing area;
-- Comparing flow algorithms. 
+- have gained experience with new tools (e.g. R, RStudio, WhiteboxTools);
+- become familiar with hydrological approaches used to simulate overland flow from digital elevation models (DEMs);
+- utilised statistical analysis to investigate the relationships between water quality indicators and catchment characteristics; 
+- improved your understanding of the hydrological processes influencing water quality.
+

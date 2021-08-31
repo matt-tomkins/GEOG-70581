@@ -1,0 +1,55 @@
+# Eskdale **2** - Set-up {#Eskdale_set_up}
+
+## Install programs
+
+If you haven't installed R and RStudio, please refer to the instructions [here](#Installation) before continuing. 
+
+## Download data {#download_data}
+
+The data for this practical can be downloaded [here](XXXX). 
+
+> Download the folder, save it to an appropriate location and extract the contents (unzip). 
+
+The directory structure is as follows:
+
+- Data 
+    - Practical_1
+    - Practical_2
+- Images 
+    - Practical_1
+    - Practical_2
+- Output
+    - Practical_1
+    - Practical_2
+    
+All the required data files for Practicals 1 and 2 are stored in the associated sub-directory within **Data**. 
+
+As we move through the practicals, we'll be creating a number of additional GIS files and we encourage you to save these within the corresponding sub-directory within **Output**. 
+
+Finally, maps and figures will be required for the assessment. These can be exported directly from R and stored in **Images**. 
+
+## Open RStudio
+
+> To begin, open RStudio. 
+
+
+## Initialise an R project
+
+To initialise a new R project:
+
+> Go to **File**, **New Project**, and select **Existing Directory**.
+> Using the Browse icon, set the project working directory to the folder **GEOG70581**, which you downloaded and unzipped [here](#download_data).
+> Select **Create new project**
+
+If this has been successful, your console should have been updated to include the path to your project working directory as follows:
+
+![](figures/Practical-1/Project_creation.png){width=50%}
+
+## Creating an R script
+
+To initialise a new R project:
+
+
+## Install required packages
+
+
