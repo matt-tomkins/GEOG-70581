@@ -15,13 +15,16 @@ loading-r
 variables
 variable-names
 variable-types
+data-structures
+vectors
+data-frames
 scripts
 comments
 packages
+data_loading
 whitebox-tools
 using-r-packages
 plots-files-and-packages
-vectors
 loading-data
 FirstPractical
 overview-1

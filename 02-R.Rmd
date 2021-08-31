@@ -132,7 +132,19 @@ result
 
 This is a relatively complicated mathematical formula! It uses a square root `sqrt()` and logarithm `log()` function, as well as multiplication `*` and powers `^`. We could replicate this result by substituting each value of **a** for 5 and each value of **b** for 10, but this would be time consuming and prone to error, and would be very frustrating if we wanted to re-calculate the result for `a = 6` and `b = 11`! Using variables allows us to use and modify values multiple times within the code. 
 
-In addition, using variables is important for [**repeatability**](#why_code).
+> Modify the code above to test for `a = 6` and `b = 11`. Compare your answer with a friend, colleague, peer, family member or Zoom companion. Did you get the same result?
+
+```{r, echo = FALSE, eval = FALSE}
+
+a <- 6
+b <- 11
+
+result <- (sqrt(a) + log(b))^a + 2*b
+result
+
+```
+
+Using variables is also important for [**repeatability**](#why_code).
 
 Let's say we want to calculate the sum of the squares from 1 to 5 i.e. $1^2 + 2^2 + 3^2 + 4^2 +5^2$. We could write this numerically in R as follows:
 
@@ -227,11 +239,127 @@ b + a
 
 ```
 
-## Scripts
+## Data structures
+
+In the previous examples, each variable has consisted of a **single** element. This could be a  name (`bill`), a decimal number (`3.567`), an integer (`3`), and so on. 
+
+However, R can store data in a range of different structures, many of which you will encounter as we progress through the course. 
+
+### Vectors
+
+One of the simplest structures is the **vector**, which contains multiple elements of the same type. These are typically created using the command `c()`:
+```{r}
+
+# Creating a vector (v) of the numbers 1 - 5
+v <- c(1, 2, 3, 4, 5)
+v
+
+```
+As a vector **must** have elements of the same type, R will try and coerce elements to the same type:
+
+```{r}
+
+# Creating a mixed vector (m) containing numeric (1,2), character ("Bill", "Ben") and logical elements (TRUE)
+m <- c(1, 2, "Bill", "Ben", TRUE)
+m
+
+```
+In the above example, the numeric and logical elements have been coerced to characters, as signified by these elements being enclosed by quotation marks `" "`. 
+
+We can also create vectors programmatically, rather than manually defining each element. For example, we can generate sequences using `seq()` or repetitive sequences using `rep()`:
+
+```{r}
+
+# Creating a sequence from 1 to 5, in increments of 1
+s <- seq(from = 1, to = 5, by = 1)
+s
+
+# Creating a vector of length 5, consisting of the value 10
+r <- rep(10, times = 5)
+r
+
+```
+
+### Data frames
+
+Other common R data structures include **matrices**, **lists** and **data frames**. The data frame is the most commonly used structure for tabular data and will be familiar to those of you with experience in Microsoft Excel. Here is an example data frame, which is created by combining existing vectors of the same length:
+
+```{r}
+
+# Create numeric, character and logical vectors
+name <- c("John", "Eric", "Michael", "Graham", "Terry", "Terry")
+height <- c(1.96, 1.85, 1.78, 1.88, 1.75, 1.73)
+nationality <- c("British", "British", "British", "British", "American", "British")
+bereft_of_life <- c(FALSE, FALSE, FALSE, TRUE, FALSE, TRUE)
+
+# Combines into a data frame
+df <- data.frame(name, height, nationality, bereft_of_life)
+df
+
+```
+
+> Run the above code in your R console
+
+We'll be working with data frames throughout the practicals, so it will be useful to know that we can access data frame elements in a variety of different ways. We can access individual columns of a data frame using the `$` operator, for example:
+
+```{r}
+
+# Extract the "name" column
+df$name
+
+```
+
+We can also extract using **indexing**, which requires us to provide the row and columns indexes in the following format: `df[row.index, column.index]`
+
+```{r}
+# Extract the element at row 3, column 4
+df[3,4]
+
+# Extract rows 1 to 4, all columns
+df[1:4,] 
+
+# Extract rows 1 to 4, just the second column
+df[1:4, 2]
+
+# Extracts all rows, the second and third columns
+df[,2:3]
+
+```
+
+We can also extract rows and columns based on the data frame values elements, for example using the `subset()` function. This can be used to select and exclude variables and observations as follows:
+
+```{r}
+# Extract data frame rows where height is more than or equal to (>=) 1.8 m. 
+subset(df, height >= 1.8) 
+
+# Extract data frames rows where nationality is not equal to (!=) American
+subset(df, nationality != "American")
+
+# Extract data frames rows where bereft_of_life is equal to (==) FALSE
+subset(df, bereft_of_life == FALSE)
+
+```
+
+> Using the above code as an example, extract all the rows where `name` is equal to Terry. Assign the result to a new variable. You can calculate the number of rows using the function `nrow()`. Did you get the following answer? 
+
+```{r, echo = FALSE}
+# Subsets based on the name Terry, counts the number of rows
+nrow(subset(df, name == "Terry"))
+
+
+```
+
+The sections above have given you a crash course in some of the fundamentals of R. Learning to code (or learning a new code syntax for those of your familiar with Python, MATLAB, Java, ...) is similar to learning a new language. **Don't worry** if it seems complicated! You can always refer back to these instructions if you get stuck, or ask for guidance.
+
+To finish this Chapter, we'll provide a brief overview of some other key skills, including writing [R scripts](#scripts), [loading data](#data_loading) and working with [packages](#packages). This is **not** an exhaustive list of R functions, and we'll cover other functionality in Practicals 1 and 2 (e.g. loading GIS raster and vector data, creating maps and figures, performing statistical tests). 
+
+The R functionality outlined here will cover all the steps required for the [assessment](#Assessment) and should equip you with the core skills required to progress further with R in the future
+
+## Scripts {#scripts}
 
 So far we've been typing commands into the **console**. This works as expected; we can print results, store variables in the **workspace** and create plots in the **plots** window. 
 
-However, it is often more convenient to store our code in a **script**, which is simply a file containing a set of commands and comments. For example, a single R script could contain commands to load data, perform statistical analysis, and output the results to a new file. This can be run in a single keystroke, which is much simpler than typing or copying and pasting each command in one after another.
+However, it is often more convenient to store our code in a **script**, which is simply a file containing a set of commands and comments. For example, a single R script could contain commands to load data, perform statistical analysis, and output the results to a new file. This can be run in a single keystroke, which is much simpler than typing each command in one after another.
 
 To create a new R script: 
 
@@ -247,12 +375,13 @@ To save the script:
 
 Scripts work identically to the console...
 
+### Comments
+
+## Loading packages {#packages}
+
+## Loading data {#data_loading}
 
 
-## Comments
-
-
-### Packages
 
 ## Whitebox Tools
 
@@ -288,26 +417,6 @@ plot(x)
 
 
 
-## Vectors
-
-```{r}
-
-# Creating a list of numbers
-ls <- c(1, 2, 3, 4, 5)
-ls
-
-# Creating a sequence
-sq <- seq(1,5,1)
-sq
-
-# Creating a repetitive list
-rp <- rep(10, 5)
-rp
-
-# Multiplying together
-ls * rp
-
-```
 
 ## Loading data
 
