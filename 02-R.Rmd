@@ -199,7 +199,7 @@ When defining a variable name, you can't use spaces or characters that are not a
 
 Other popular naming conventions include camelCase, UPPER_CASE or hyphen-case (among many others). Pick one and use it consistently. 
 
-### Variable types
+### Variable types {#variables_types}
 
 Each variable will have a particular **type**, which specifies what kind of a value it can hold. Whilst this is handled automatically for you by R, it is important that you understand what the different types are. Here are some common examples:
 
@@ -245,7 +245,7 @@ In the previous examples, each variable has consisted of a **single** element. T
 
 However, R can store data in a range of different structures, many of which you will encounter as we progress through the course. 
 
-### Vectors
+### Vectors {#vectors}
 
 One of the simplest structures is the **vector**, which contains multiple elements of the same type. These are typically created using the command `c()`:
 ```{r}
@@ -280,7 +280,7 @@ r
 
 ```
 
-### Data frames
+### Data frames 
 
 Other common R data structures include **matrices**, **lists** and **data frames**. The data frame is the most commonly used structure for tabular data and will be familiar to those of you with experience in Microsoft Excel. Here is an example data frame, which is created by combining existing vectors of the same length:
 
@@ -326,7 +326,7 @@ df[,2:3]
 
 ```
 
-We can also extract rows and columns based on the data frame values elements, for example using the `subset()` function. This can be used to select and exclude variables and observations as follows:
+We can also extract rows and columns based on the values within the data frame, for example using the `subset()` function. This can be used to select and exclude variables and observations as follows:
 
 ```{r}
 # Extract data frame rows where height is more than or equal to (>=) 1.8 m. 
@@ -351,21 +351,21 @@ nrow(subset(df, name == "Terry"))
 
 The sections above have given you a crash course in some of the fundamentals of R. Learning to code (or learning a new code syntax for those of your familiar with Python, MATLAB, Java, ...) is similar to learning a new language. **Don't worry** if it seems complicated! You can always refer back to these instructions if you get stuck, or ask for guidance.
 
-To finish this Chapter, we'll provide a brief overview of some other key skills, including writing [R scripts](#scripts), [loading data](#data_loading) and working with [packages](#packages). This is **not** an exhaustive list of R functions, and we'll cover other functionality in Practicals 1 and 2 (e.g. loading GIS raster and vector data, creating maps and figures, performing statistical tests). 
+To finish this Chapter, we'll provide a brief overview of some other key skills, including writing [R scripts](#scripts), [loading data](#data_loading) and [packages](#packages), and [plotting](#data_plotting). This is **not** an exhaustive list of R functions, and we'll cover other functionality in Practicals 1 and 2 (e.g. loading GIS raster and vector data, creating maps and figures, performing statistical tests). 
 
-The R functionality outlined here will cover all the steps required for the [assessment](#Assessment) and should equip you with the core skills required to progress further with R in the future
+However, the R functionality outlined here will cover all the steps required for the [assessment](#Assessment) and should equip you with the core skills required to progress further with R in the future.
 
 ## Scripts {#scripts}
 
 So far we've been typing commands into the **console**. This works as expected; we can print results, store variables in the **workspace** and create plots in the **plots** window. 
 
-However, it is often more convenient to store our code in a **script**, which is simply a file containing a set of commands and comments. For example, a single R script could contain commands to load data, perform statistical analysis, and output the results to a new file. This can be run in a single keystroke, which is much simpler than typing each command in one after another.
+However, it is often more convenient to store our code in a **script**, which is simply a file containing a set of commands and comments. For example, a single R script could contain commands to load data, perform statistical analysis, and output the results to a new file. This can be run in a single keystroke, which is much simpler than typing each command in one after another. 
 
 To create a new R script: 
 
 > Navigate to **File**, **New File** and **R Script**. 
 
-This should open a new window, with a new untitled R script:
+This should open a new window, with an  untitled R script:
 
 ![](figures/Using-R/Creating_R_Script.png){width=50%}
 
@@ -373,90 +373,345 @@ To save the script:
 
 > Navigate to **File** and **Save As**, and save it in the GEOG70581 folder with an appropriate name (e.g. `learning_R`)
 
-Scripts work identically to the console...
+One of the easiest ways to run an **entire** script is to use `Ctrl + Shift + Enter`. 
+
+> Copy and paste the following code into your new script and run. The correct answer is `11.18034`. 
+
+```{r, eval = FALSE}
+
+# Length of sides a and b
+a <- 5
+b <- 10
+
+# Length of side c (Pythagoras)
+c <- sqrt(a^2 + b^2)
+c
+
+```
+
+However, you can also run aspects of a script by clicking on the individual line you want to run and using `Ctrl + Enter`. The same command applies if you highlight (select) multiple lines of code. 
 
 ### Comments
 
+When writing code, it is good practice to include **comments** which describe what the code does. As your code becomes more complex and as times passes, it is very easy to forget what your code does! Commenting your code is especially important if your code is being used by other people or even by yourself weeks/months/years in the future; save yourself time and effort by describing your code fully as you write it. 
+
+Comments can be written in R using the `#` symbol. Any line of code which begins with `#` is ignored by R when the script is run and are used solely to improve the readability of the code. 
+
+To add a comment, insert the `#` symbol and write some text. 
+
+> Below is some uncommented code. Copy and paste into your script and add some comments to describe what is taking place. 
+
+```{r, eval = FALSE}
+
+a <- seq(10, 100, 10)
+b <- a/10
+c <- b*a
+plot(c, a)
+
+
+```
+ 
+> The above code is our first encounter with `plot()` which (as you may have guessed), is used to plot variables in base R [^1]. The new plot you've created should now appear in the **plots window** and should resemble the following figure. There are lots of more exciting ways to plot data in R, some of which are described [below](#data_plotting).
+
+[^1]: **Base R** is used to refer to the functions that are part of the core packages deployed with R, such as `plot()`, `sqrt()` or `seq()`. As we install and utilise user-created [packages](#packages), we are moving away from base R. 
+
+```{r, echo = FALSE}
+
+a <- seq(10, 100, 10)
+b <- a/10
+c <- b*a
+plot(c, a)
+
+
+```
+
+As a general rule, well-presented code would typically comprise: 
+
+- 1/3 code;
+- 1/3 empty space;
+- 1/3 comments.
+
+This is known as the **Rule of Thirds**. 
+
 ## Loading packages {#packages}
+
+Now that we have our script set up, one of the last things we need to understand is how to install and load packages in the R environment. 
+
+> To begin, remove all the previous code from your script `learning_R.R` and save.
+
+For the remainder of this chapter, we are going to use just one package as an example, but more will be required for Practicals 1 and 2, as detailed [here](Eskdale_set_up). 
+
+The package we are going to use is [ggplot2](https://ggplot2.tidyverse.org/), which is a widely used visualization package for R. If there's a figure, map or graphic you want to make, it's likely that **ggplot2** can do it for you.
+
+We can install the package using the helpfully named function `install.packages()` as follows:
+
+```{r, eval = FALSE}
+
+# Function to install packages. Name of package enclosed by quotation marks. 
+install.packages("ggplot2")
+
+```
+
+This function installs the package to your computer, but before we can use it, it needs to be activated within your current R session. This can be achieved by adding it to the `library()` as follows: 
+
+```{r, warning= FALSE, message = FALSE}
+
+# Function to add package to the library (no quotation marks)
+library(ggplot2)
+
+```
+
+> Copy and paste the two code snippets above into your script and run to install and load ggplot2. 
+
+This is the standard approach to installing and loading packages in R. However, one of the weaknesses of this approach is that R will try and install and load each package **every** time the script is run. This is unnecessary; the package is already loaded!  
+
+> Try to re-install ggplot2 using the code above. The following pop-up should appear:
+
+![](figures/Using-R/installing_packages.png){width=50%}
+
+> Press **No**. The following message will appear in the console: `Warning in install.packages : package ‘ggplot2’ is in use and will not be installed`
+
+We can address this issue by using a user-defined **function** to check whether a package is already installed. If it **is** installed, R will skip the installation. If it is **not** installed, R will install as normal. This function is similar to the functions we've been using before, such as `sqrt()` or `seq()`, which are available by default in base R; the difference is it's been written from scratch! 
+
+```{r, eval = FALSE, warning= FALSE, message = FALSE}
+
+# Function to check and install packages
+check.packages <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if (length(new.pkg)) 
+    install.packages(new.pkg, dependencies = TRUE)
+  sapply(pkg, require, character.only = TRUE)
+}
+
+# Checks and installs packages
+packages <- c("ggplot2")
+check.packages(packages)
+
+```
+
+> Copy and paste the above code at the **start** of your R run script, removing the previous `install.packages()` and `library()` commands. Re-run the code. 
+
+In future, you can add new packages by simply adding the package name to the `packages` **vector**. This works in exactly the same way as described [previously](#vectors), with the vector created using the `c()` command. For example, we could install packages as follows: `packages <- c("ggplot2", "dyplr", "raster", "sf")`. A full list of the available packages is [here](https://cran.r-project.org/) (>18,000 and counting...).
+
+Finally, packages should typically be installed and loaded at the **start** of any R script. If your code requires a package to run and it has not yet been installed, the code will fail. Installing and loading all the required packages at the start of the script avoids this problem. 
 
 ## Loading data {#data_loading}
 
+In the final two sections of this chapter, we will load some data from a external file and plot using ggplot2. 
+
+In the previous examples, we've been creating variables, vectors and data frames from scratch, but most data you will work with will be saved in another file format. This could be a comma-separated file (`.csv`), tab-delimited (`.txt`) or in an Excel format (`.xls`), or could be a spatial data type, such as a raster (`.tif`, `.asc`, `.img`) or vector (`.shp`). Being able to load and manipulate different data types is a key programming skill. 
+
+We'll use one of the most well-used formats as an example; the comma-separated file (.csv). This consists of rows and columns of data, where columns are delineated by commas. For example, here is an example of some comma-separated data:
+
+```{r, eval = FALSE, warning= FALSE, message = FALSE}
+
+name,age,height,year_of_birth,instrument
+stewart,69,1.87,1952,drums
+andy,78,1.70,1942,guitar
+gordon,69,1.81,1951,vocals
 
 
-## Whitebox Tools
+```
 
-To Install WBT:
+When read by R, it is interpreted as follows, splitting columns based on the occurrence of commas, and using the first row as column names:
 
+|   name  | age | height | year_of_birth | instrument |
+|:-------:|:---:|:------:|:-------------:|:----------:|
+| stewart | 69  | 1.87   | 1952          | drums      |
+| andy    | 78  | 1.70   | 1942          | guitar     |
+| gordon  | 69  | 1.81   | 1951          | vocals     |
 
-## Using R packages
+To load a `.csv` file into R, we can use the command `read.csv()`. The most basic way to load a file is to write the **absolute** file path. This is the location on your computer where the file is saved. For example, a file saved on your `C drive`, within your `Documents` folder, and within a folder called `Manchester` would be formatted as: `C:\Documents\Manchester`
 
-Here's the packages we'll be using:
+> To find this, navigate in your file explorer (e.g. Windows Explorer, finder on macOS) to the **data** sub-directory within GEOG70581:
 
-- Raster
-- Sp
-- ggplot2
-- ...
+![](figures/Using-R/file_paths.png)
 
+The file containing the data is called `flow_data.csv` and contains the average daily river flow (m<sup>3</sup> per second) from the [National River Flow Archive](https://nrfa.ceh.ac.uk/) and the [UK Centre for Ecology & Hydrology](https://www.ceh.ac.uk/). The data are from a monitoring station on the River Nevis ([#90003](https://nrfa.ceh.ac.uk/data/station/meanflow/90003)), which drains Ben Nevis, the highest mountain in the UK, and cover the period from the 1<sup>st</sup> October 1982 to the 30<sup>th</sup> September 2019.  
 
+The file path to your file might read as follows (if your name was Bill): `C:\Users\Bill\GEOG-70581\data\flow_data.csv`
 
-### Plots, files and packages 
+To load this file into R:
 
-This window provides access to plots created by the user, packages loaded to the environment, or files that are accessible in the working directory. 
-
-To demonstrate this, we'll generate some random data using the following code, which uses the [**rnorm** function](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html). This generates 100 values, normally distributed at 10 ± 2 (mean ± standard deviation).  
+> Copy and paste this file path into your script, enclosing the file path within quotation marks. **Importantly**, R uses forward slashes within file paths `/`, whereas the file path in your file explorer probably uses backslashes `\`, so these will need to be swapped.
 
 ```{r, eval = FALSE}
-x <- rnorm(100, mean =  10, sd = 2)
-plot(x)
-```
-
-> **Run** the above code. A new variable **x** should be stored in the environment, and a plot should have been generated in the plots window, resembling the following. **Note**: your output will differ from that shown below as the underlying data have been generated randomly. 
-
-![A random distribution generated using **rnorm**](figures/Practical-1/plotting.png)
-
-
-
-
-
-## Loading data
-
-```{r}
 
 # Load data
+df <- read.csv("C:/Users/Bill/Documents/GEOG-70581/data/flow_data.csv")
+
+```
+
+```{r, echo = FALSE}
+
+# Load data (actual file path)
 df <- read.csv("C:/Users/44797/Desktop/Repo/GEOG-70581/data/flow_data.csv")
-head(df)
-
-# What columns do we have
-colnames(df)
-
-# What data do they store?
-str(df)
-
-# We can access columns by using the $ operator
-
-# df$Date
-# df$Flow
 
 
 ```
 
-This is a dataframe, containing two columns, in a similar format to something you may be familiar with in Excel. It has a column of dates and a column of river flow (measured in m^3 per second).
+If this has worked successfully, a new variable `df` will have been loaded into the **workspace**:
 
-We may want to index using `df[row.index, column.index]`
+![](figures/Using-R/loading_data_from_csv.png)
+
+As you may have noticed, this is not the most elegant way to load data, as it requires us to copy, paste _**and**_ edit the full file path each time. This would quickly become tiring if we wanted to load multiple data sets. In Practical 1, we'll guide you through a solution using R **projects** and the [**here** package](#R_Projects) but as ever, it is important to understand the basics before moving on to more sophisticated solutions. 
+
+We can use a variety of commands to inspect this new data set, including:
+
+```{r, eval = FALSE}
+
+head(df)
+
+colnames(df)
+
+str(df)
+
+```
+
+> Run the above code. What do each of the commands do? `head()`, `colnames()`, `str()` What data **types** do we have in each column? See [here](#variables_types) for a reminder. What data **structure** are we working with? 
+
+As outlined previously, we can access individual columns of a data frame using the `$` operator and could start to do some simple analysis using base R functions, such as:
 
 ```{r}
 
-# We can extract certain rows
+# What is the average daily flow?
+mean(df$flow)
 
-# Extract rows 1 to 4, all columns
-df[1:4,] 
+# What is the maximum daily flow?
+max(df$flow)
 
-# Extract rows 1 to 4, just the second column
-df[1:4, 2]
-
+# What is the minimum daily flow?
+min(df$flow)
 
 ```
 
+As outlined previously, we can also subset our data based on the values within the data frame, based on columns names (`$`) or using indexing. To simplify our subsequent analysis, we're just going to work with data collected in 2019. 
+
+> The data frame rows which correspond to 2019 are from the 1<sup>st</sup> January [13242] to the 30<sup>th</sup> September [13514]. Extract these rows and all columns using indexing; see [here](#indexing) for a reminder if you get stuck. 
+
+```{r, echo = FALSE}
+# Extracts rows corresponding to 2019 using indexing
+df <- df[13242:13514,]
+```
+You may also have noticed from the `str()` command that our column of dates (day/month/year) were stored as **characters** e.g. `$ date: chr  "01/10/1982"`. Working with dates and times is a complicated task (see this [Tom Scott](https://www.youtube.com/watch?v=-5wpm-gesOY) video for a light introduction to the problem), so to simplify plotting, we'll convert these characters e.g. `"01/10/1982"` into a **date format**. This can be achieved using the following code, which overwrites the date column in the data frame: `df$date <-` and uses the function `as.Date()` to define a date format. In this case, our numbers are listed in day, month and then year, which is formatted in R as `"%d/%m/%Y"`:
+
+```{r}
+# Converts dates (in character format) to date format
+df$date <- as.Date(df$date, format =  "%d/%m/%Y")
+```
+
+> Once you've extracted the flow data from 2019, run the above code. 
+
+## Plotting {#data_plotting}
+
+In the final task, we're going to plot these data using ggplot2. One of the challenges of ggplot2 is its steep learning curve, but we'll walk through this example to show how we can progress from the raw data to high quality figures. These approaches will be useful for your assessment. 
+
+> To finish this chapter, copy and paste the following code elements into your R script in turn and run them. Make sure to *read* and *understand* what each step is doing.  
+
+To begin, we're going to create an empty ggplot canvas i.e. the blank canvas upon which we can add ggplot elements, such as axes, legends, data, scale bars etc.   
+
+```{r}
+# Initialising an empty canvas
+ggplot()
+```
+
+Next, we specify which data set we are going to plot. **Note**: ggplot2 works almost exclusively with **data frames**:
+
+```{r}
+# Which data frame do we want to use?
+ggplot(data = df)
+```
+
+With the data frame defined, we now need to specify which columns of date we wish to plot. The code below uses the function `mapping=aes()`to do so, where the date variable is assigned to the x-axis `x=date` and the flow rate variable is assigned to the y-axis `y=flow` using their column names:
+
+```{r}
+# Which data frame columns do we want to plot?
+ggplot(data = df, mapping=aes(x=date, y=flow))
+```
+
+However, our data are still not visible because we need to select a **geom** type, which is a complicated way of saying the type of geometric object we want to plot. We could plot our data as points, lines or polygons; we could choose a histogram, bar plot, or box and whiskers plot; there are [many](https://ggplot2.tidyverse.org/reference/) to choose from! In this example, we are going to plot our data as points, which is done using the `geom_point()` command. As you can see from the code below, the structure differs slightly from normal code, in that ggplot elements are separated by the `+` operator. This allows the users to create complex figures while maintaining easy-to-read code. 
+
+```{r}
+# What type of geom do we want?
+ggplot(data = df, mapping=aes(x=date, y=flow)) +
+  geom_point()
+```
+
+In the same way, we could also plot the same data as a line, using `geom_line()`. In this example, both **geoms** are using the same data frame as inputs `x=date, y=flow`:
+
+```{r}
+# Adding a line geom
+ggplot(data = df, mapping=aes(x=date, y=flow)) +
+  geom_point() +
+  geom_line()
+```
+
+The above code covers the basics of ggplot, but we can start to improve the design of our plots. For example, we can choose one of the available **themes**:
+
+```{r}
+# Switching to the classic theme
+ggplot(data = df, mapping=aes(x=date, y=flow)) +
+  geom_point() +
+  geom_line() +
+  theme_classic()
+```
+
+We can re-order our geoms to show the data points above the line, while adding some colour using [HEX codes](https://htmlcolorcodes.com/):
+
+```{r}
+# Re-ordering the geoms, adding some colour
+ggplot(data = df, mapping=aes(x=date, y=flow)) +
+  geom_line(colour = "#56ACFF") +
+  geom_point(colour = "#767676") +
+  theme_classic()
+```
+
+We can also change the aspect ratio to produce a square plot:
+
+```{r}
+# Changing the aspect ratio
+ggplot(data = df, mapping=aes(x=date, y=flow)) +
+  geom_line(colour = "#56ACFF") +
+  geom_point(colour = "#767676") +
+  theme_classic() +
+  theme(aspect.ratio = 1)
+```
+
+As a final step, we will probably want to export our figure so that it can be used elsewhere e.g. in a presentation or report or the [assessment](#Assessment). To do so, we simply assign our ggplot object to a variable using the assignment operator: `<-` as normal:
+
+```{r, eval = FALSE}
+# Assign our ggplot object to the variable "g"
+g <- ggplot(data = df, mapping=aes(x=date, y=flow)) +
+  geom_line(colour = "#56ACFF") +
+  geom_point(colour = "#767676") +
+  theme_classic() +
+  theme(aspect.ratio = 1)
+```
+
+Finally, we can save our ggplot object using the `ggsave()` function, as shown below. This takes in the name of the plot (`g`), as well as the intended name, extension and file path e.g. `"C:/Users/Bill/Documents/GEOG-70581/images/flow_data_2019.png"`. In this example, we are saving our output within the **images** sub-directory of GEOG-70581. We have also defined the name of the file `flow_data_2019` and specified its file type: `.png` (portable network graphics file). We can also modify other settings, such as the **dpi** which determines the plot resolution. A list of ggsave options can be found [here](https://ggplot2.tidyverse.org/reference/ggsave.html).
+
+```{r, eval = FALSE}
+# Saves to a png
+ggsave(plot = g, "C:/Users/Bill/Documents/GEOG-70581/images/flow_data_2019.png", dpi = 150)
+```
+
+```{r, echo = FALSE}
+# Assigning to a variable
+g <- ggplot(data = df, mapping=aes(x=date, y=flow)) +
+  geom_line(colour = "#56ACFF") +
+  geom_point(colour = "#767676") +
+  theme_classic() +
+  theme(aspect.ratio = 1)
+
+# Saves to a png using ggsave
+ggsave(plot = g, "C:/Users/44797/Desktop/Repo/GEOG-70581/images/flow_data_2019.png", dpi = 150)
+```
+
+> Run the above code to assign your plot to the variable `g` and export it to your images folder, **making sure** to update the file path! 
+
+We have now exported our plot and should be able to see it in the **images** sub-directory of GEOG-70581. **Importantly**, and for future plots, you don't need to run the commands in the sequence shown above e.g. first creating a canvas `ggplot()`, then defining a data frame `ggplot(data = df)`, and so on. This sequence was used to show you how we can add elements to the ggplot object, building from the blank canvas to exporting the final figure. 
+
+**Congratulations!** You have now completed Chapter 2: the not-so-brief introduction to R. While this may have been challenging, we have covered most of the core skills which you will need. You should now have an appreciation of the the different data types and structures that are available in R, experience running code in the console and within scripts, and the ability to install packages, load data and create plots. We'll use many of these techniques in Practicals 1 and 2. 
 
 
 

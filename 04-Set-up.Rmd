@@ -1,4 +1,4 @@
-# Eskdale **2** - Set-up {#Eskdale_set_up}
+# Eskdale II - Set-up {#Eskdale_set_up}
 
 ## Install programs
 
@@ -33,7 +33,7 @@ Finally, maps and figures will be required for the assessment. These can be expo
 > To begin, open RStudio. 
 
 
-## Initialise an R project
+## Initialise an R project {#R_Projects}
 
 To initialise a new R project:
 
@@ -51,5 +51,23 @@ To initialise a new R project:
 
 
 ## Install required packages
+
+Ggplot2, here
+
+
+
+
+Here's the packages we'll be using:
+
+- Raster
+- Sp
+- ggplot2
+- ...
+
+
+
+## Whitebox Tools
+
+To Install WBT:
 
 

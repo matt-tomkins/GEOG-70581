@@ -1,4 +1,4 @@
-# Eskdale **3** - Flow routing {#Eskdale_flow_algorithms}
+# Eskdale III - Flow routing {#Eskdale_flow_algorithms}
 
 ## DEM pre-processing: flow enforcement
 

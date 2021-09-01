@@ -14,7 +14,7 @@ dealing-with-errors
 loading-r
 variables
 variable-names
-variable-types
+variables_types
 data-structures
 vectors
 data-frames
@@ -22,10 +22,7 @@ scripts
 comments
 packages
 data_loading
-whitebox-tools
-using-r-packages
-plots-files-and-packages
-loading-data
+data_plotting
 FirstPractical
 overview-1
 intended-learning-outcomes
@@ -35,9 +32,10 @@ Eskdale_set_up
 install-programs
 download_data
 open-rstudio
-initialise-an-r-project
+R_Projects
 creating-an-r-script
 install-required-packages
+whitebox-tools
 Eskdale_flow_algorithms
 dem-pre-processing-flow-enforcement
 calculating-flow-parameters-pointers
