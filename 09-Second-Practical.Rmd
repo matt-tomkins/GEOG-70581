@@ -45,3 +45,12 @@ As well as the standard SEED PGT criteria, you will also be assessed on your abi
 
 The **word count** for this practical is 2,000.</div>
 
+For Practical 2, we are also going to use `data.table`, `forcats` and `dplyr` for data management, and `MASS` and `viridis` for analysis/visualisation respectively. 
+
+- forcats <- fct_collapse
+- viridis
+- data.table <- table
+- [units]
+- dplyr
+- MASS
+- [glmnet]

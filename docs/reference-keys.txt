@@ -17,7 +17,7 @@ variable-names
 variables_types
 data-structures
 vectors
-data-frames
+data_frames
 scripts
 comments
 packages
@@ -34,10 +34,11 @@ download_data
 open-rstudio
 R_Projects
 creating-an-r-script
-install-required-packages
-whitebox-tools
+install-whiteboxtools
+loading-packages
 Eskdale_flow_algorithms
 dem-pre-processing-flow-enforcement
+application
 calculating-flow-parameters-pointers
 comparing-flow-algorithms
 SecondPractical

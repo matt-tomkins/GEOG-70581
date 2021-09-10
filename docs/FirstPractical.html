@@ -119,6 +119,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 </head>
 
@@ -161,7 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data-structures"><i class="fa fa-check"></i><b>3.4</b> Data structures</a>
 <ul>
 <li class="chapter" data-level="3.4.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#vectors"><i class="fa fa-check"></i><b>3.4.1</b> Vectors</a></li>
-<li class="chapter" data-level="3.4.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data-frames"><i class="fa fa-check"></i><b>3.4.2</b> Data frames</a></li>
+<li class="chapter" data-level="3.4.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data_frames"><i class="fa fa-check"></i><b>3.4.2</b> Data frames</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="Intro_to_R.html"><a href="Intro_to_R.html#scripts"><i class="fa fa-check"></i><b>3.5</b> Scripts</a>
 <ul>
@@ -187,12 +209,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#open-rstudio"><i class="fa fa-check"></i><b>5.3</b> Open RStudio</a></li>
 <li class="chapter" data-level="5.4" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#R_Projects"><i class="fa fa-check"></i><b>5.4</b> Initialise an R project</a></li>
 <li class="chapter" data-level="5.5" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#creating-an-r-script"><i class="fa fa-check"></i><b>5.5</b> Creating an R script</a></li>
-<li class="chapter" data-level="5.6" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#install-required-packages"><i class="fa fa-check"></i><b>5.6</b> Install required packages</a></li>
-<li class="chapter" data-level="5.7" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#whitebox-tools"><i class="fa fa-check"></i><b>5.7</b> Whitebox Tools</a></li>
+<li class="chapter" data-level="5.6" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#install-whiteboxtools"><i class="fa fa-check"></i><b>5.6</b> Install WhiteboxTools</a></li>
+<li class="chapter" data-level="5.7" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#loading-packages"><i class="fa fa-check"></i><b>5.7</b> Loading packages</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html"><i class="fa fa-check"></i><b>6</b> Eskdale III - Flow routing</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#dem-pre-processing-flow-enforcement"><i class="fa fa-check"></i><b>6.1</b> DEM pre-processing: flow enforcement</a></li>
+<li class="chapter" data-level="6.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#dem-pre-processing-flow-enforcement"><i class="fa fa-check"></i><b>6.1</b> DEM pre-processing: flow enforcement</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#application"><i class="fa fa-check"></i><b>6.1.1</b> Application</a></li>
+</ul></li>
 <li class="chapter" data-level="6.2" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#calculating-flow-parameters-pointers"><i class="fa fa-check"></i><b>6.2</b> Calculating Flow Parameters: Pointers</a></li>
 <li class="chapter" data-level="6.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#comparing-flow-algorithms"><i class="fa fa-check"></i><b>6.3</b> Comparing flow algorithms</a></li>
 </ul></li>
@@ -230,7 +255,7 @@ Hydrological analysis in R
 <p>It should be evident from the lectures that digital elevation models (DEMs) have a great deal of potential for modelling surface water hydrology and related phenomena in drainage basins. Much of this work is based on the assumptions that (1) we can trace the path that water will take from any point in an elevation grid to a basin outlet, and (2) the discharge of water from a particular location is directly related to its catchment area. This is a fairly reasonable assumption in most drainage basins.</p>
 <div id="overview-1" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Overview</h2>
-<p>In this lab exercise, we will use a DEM of the Upper Eskdale watershed to model flow-related phenomena, and will have gained experience in:</p>
+<p>In this lab exercise, we will use a DEM of the Upper Eskdale catchment to model flow-related phenomena, and will have gained experience in:</p>
 <ul>
 <li>DEM pre-processing;</li>
 <li>Calculating flow parameters (e.g. pointers and contributing areas);</li>
@@ -242,16 +267,16 @@ Hydrological analysis in R
 </div>
 <div id="intended-learning-outcomes" class="section level3" number="4.1.1">
 <h3><span class="header-section-number">4.1.1</span> Intended learning outcomes</h3>
-<p>In <a href="Eskdale_set_up.html#Eskdale_set_up">Chapter 4</a>, we’ll download the data and install the required programs and packages, and will combine these in <a href="Eskdale_flow_algorithms.html#Eskdale_flow_algorithms">Chapter 5</a> to:</p>
+<p>In <a href="Eskdale_set_up.html#Eskdale_set_up">Chapter 5</a>, we’ll download the data and install the required programs and packages, and will combine these in <a href="Eskdale_flow_algorithms.html#Eskdale_flow_algorithms">Chapter 6</a> to:</p>
 <ul>
 <li>gain experience with <a href="https://jblindsay.github.io/wbt_book/intro.html">WhiteboxTools</a>, a specialist GIS specifically designed for digital terrain analysis (DTA);</li>
 <li>become familiar with some of the most commonly used flow algorithms used to simulate overland flow from digital elevation models (DEMs);</li>
-<li>considere the utility of DTA for routing applications;</li>
+<li>consider the utility of DTA for routing applications;</li>
 </ul>
 </div>
 <div id="assessment" class="section level3" number="4.1.2">
 <h3><span class="header-section-number">4.1.2</span> Assessment</h3>
-<p>This practical is formative and as such will not count towards your final mark for GEOG70581, but you are encouraged to complete the practical to the best of your ability, and to have one or more attempts at the formative quiz.</p>
+<p>This practical is formative and as such will not count towards your final mark for GEOGz70581, but you are encouraged to complete the practical to the best of your ability, and to have one or more attempts at the formative quiz.</p>
 </div>
 <div id="quiz" class="section level3" number="4.1.3">
 <h3><span class="header-section-number">4.1.3</span> Quiz</h3>

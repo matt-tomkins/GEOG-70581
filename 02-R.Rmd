@@ -63,11 +63,15 @@ Now that we understand what R is, why it's useful and what to do when something 
 
 The RStudio user-interface should resemble the following:
 
+<p align="center">
 ![](figures/Using-R/Opening_RStudio.png)
+</p>
 
 This contains the following primary windows, which are described below:
 
+<p align="center">
 ![](figures/Using-R/RStudio_elements.png){#workspace}
+</p>
 
 In the **console window**, commands can be typed and results returned. For example, typing the following command into the console:
 
@@ -108,7 +112,9 @@ b <- 3
 
 You should now see that under the [**Workspace window**](#workspace), the variable **b** has been added to the Environment tab: 
 
+<p align="center">
 ![](figures/Practical-1/RStudio_environment.png){width=50%}
+</p>
 
 The variable **b** can now be called again by the user. 
 
@@ -280,7 +286,7 @@ r
 
 ```
 
-### Data frames 
+### Data frames {#data_frames}
 
 Other common R data structures include **matrices**, **lists** and **data frames**. The data frame is the most commonly used structure for tabular data and will be familiar to those of you with experience in Microsoft Excel. Here is an example data frame, which is created by combining existing vectors of the same length:
 
@@ -367,7 +373,9 @@ To create a new R script:
 
 This should open a new window, with an  untitled R script:
 
+<p align="center">
 ![](figures/Using-R/Creating_R_Script.png){width=50%}
+</p>
 
 To save the script:
 
@@ -467,11 +475,12 @@ This is the standard approach to installing and loading packages in R. However, 
 
 > Try to re-install ggplot2 using the code above. The following pop-up should appear:
 
+<p align="center">
 ![](figures/Using-R/installing_packages.png){width=50%}
-
+</p>
 > Press **No**. The following message will appear in the console: `Warning in install.packages : package ‘ggplot2’ is in use and will not be installed`
 
-We can address this issue by using a user-defined **function** to check whether a package is already installed. If it **is** installed, R will skip the installation. If it is **not** installed, R will install as normal. This function is similar to the functions we've been using before, such as `sqrt()` or `seq()`, which are available by default in base R; the difference is it's been written from scratch! 
+We can address this issue by using a user-defined **function** (called `check.packages`) to check whether a package is already installed. If it **is** installed, R will skip the installation. If it is **not** installed, R will install as normal. This function is similar to the functions we've been using before, such as `sqrt()` or `seq()`, which are available by default in base R; the difference is it's been written from scratch! 
 
 ```{r, eval = FALSE, warning= FALSE, message = FALSE}
 
@@ -525,7 +534,9 @@ To load a `.csv` file into R, we can use the command `read.csv()`. The most basi
 
 > To find this, navigate in your file explorer (e.g. Windows Explorer, finder on macOS) to the **data** sub-directory within GEOG70581:
 
+<p align="center">
 ![](figures/Using-R/file_paths.png)
+</p>
 
 The file containing the data is called `flow_data.csv` and contains the average daily river flow (m<sup>3</sup> per second) from the [National River Flow Archive](https://nrfa.ceh.ac.uk/) and the [UK Centre for Ecology & Hydrology](https://www.ceh.ac.uk/). The data are from a monitoring station on the River Nevis ([#90003](https://nrfa.ceh.ac.uk/data/station/meanflow/90003)), which drains Ben Nevis, the highest mountain in the UK, and cover the period from the 1<sup>st</sup> October 1982 to the 30<sup>th</sup> September 2019.  
 
@@ -552,7 +563,9 @@ df <- read.csv("C:/Users/44797/Desktop/Repo/GEOG-70581/data/flow_data.csv")
 
 If this has worked successfully, a new variable `df` will have been loaded into the **workspace**:
 
+<p align="center">
 ![](figures/Using-R/loading_data_from_csv.png)
+</p>
 
 As you may have noticed, this is not the most elegant way to load data, as it requires us to copy, paste _**and**_ edit the full file path each time. This would quickly become tiring if we wanted to load multiple data sets. In Practical 1, we'll guide you through a solution using R **projects** and the [**here** package](#R_Projects) but as ever, it is important to understand the basics before moving on to more sophisticated solutions. 
 
@@ -587,7 +600,7 @@ min(df$flow)
 
 As outlined previously, we can also subset our data based on the values within the data frame, based on columns names (`$`) or using indexing. To simplify our subsequent analysis, we're just going to work with data collected in 2019. 
 
-> The data frame rows which correspond to 2019 are from the 1<sup>st</sup> January [13242] to the 30<sup>th</sup> September [13514]. Extract these rows and all columns using indexing; see [here](#indexing) for a reminder if you get stuck. 
+> The data frame rows which correspond to 2019 are from the 1<sup>st</sup> January [13242] to the 30<sup>th</sup> September [13514]. Extract these rows and all columns using indexing; see [here](#data_frames) for a reminder if you get stuck. 
 
 ```{r, echo = FALSE}
 # Extracts rows corresponding to 2019 using indexing
@@ -610,28 +623,28 @@ In the final task, we're going to plot these data using ggplot2. One of the chal
 
 To begin, we're going to create an empty ggplot canvas i.e. the blank canvas upon which we can add ggplot elements, such as axes, legends, data, scale bars etc.   
 
-```{r}
+```{r, fig.align="center"}
 # Initialising an empty canvas
 ggplot()
 ```
 
 Next, we specify which data set we are going to plot. **Note**: ggplot2 works almost exclusively with **data frames**:
 
-```{r}
+```{r, fig.align="center"}
 # Which data frame do we want to use?
 ggplot(data = df)
 ```
 
 With the data frame defined, we now need to specify which columns of date we wish to plot. The code below uses the function `mapping=aes()`to do so, where the date variable is assigned to the x-axis `x=date` and the flow rate variable is assigned to the y-axis `y=flow` using their column names:
 
-```{r}
+```{r, fig.align="center"}
 # Which data frame columns do we want to plot?
 ggplot(data = df, mapping=aes(x=date, y=flow))
 ```
 
 However, our data are still not visible because we need to select a **geom** type, which is a complicated way of saying the type of geometric object we want to plot. We could plot our data as points, lines or polygons; we could choose a histogram, bar plot, or box and whiskers plot; there are [many](https://ggplot2.tidyverse.org/reference/) to choose from! In this example, we are going to plot our data as points, which is done using the `geom_point()` command. As you can see from the code below, the structure differs slightly from normal code, in that ggplot elements are separated by the `+` operator. This allows the users to create complex figures while maintaining easy-to-read code. 
 
-```{r}
+```{r, fig.align="center"}
 # What type of geom do we want?
 ggplot(data = df, mapping=aes(x=date, y=flow)) +
   geom_point()
@@ -639,7 +652,7 @@ ggplot(data = df, mapping=aes(x=date, y=flow)) +
 
 In the same way, we could also plot the same data as a line, using `geom_line()`. In this example, both **geoms** are using the same data frame as inputs `x=date, y=flow`:
 
-```{r}
+```{r, fig.align="center"}
 # Adding a line geom
 ggplot(data = df, mapping=aes(x=date, y=flow)) +
   geom_point() +
@@ -648,7 +661,7 @@ ggplot(data = df, mapping=aes(x=date, y=flow)) +
 
 The above code covers the basics of ggplot, but we can start to improve the design of our plots. For example, we can choose one of the available **themes**:
 
-```{r}
+```{r, fig.align="center"}
 # Switching to the classic theme
 ggplot(data = df, mapping=aes(x=date, y=flow)) +
   geom_point() +
@@ -658,7 +671,7 @@ ggplot(data = df, mapping=aes(x=date, y=flow)) +
 
 We can re-order our geoms to show the data points above the line, while adding some colour using [HEX codes](https://htmlcolorcodes.com/):
 
-```{r}
+```{r, fig.align="center"}
 # Re-ordering the geoms, adding some colour
 ggplot(data = df, mapping=aes(x=date, y=flow)) +
   geom_line(colour = "#56ACFF") +
@@ -668,7 +681,7 @@ ggplot(data = df, mapping=aes(x=date, y=flow)) +
 
 We can also change the aspect ratio to produce a square plot:
 
-```{r}
+```{r, fig.align="center"}
 # Changing the aspect ratio
 ggplot(data = df, mapping=aes(x=date, y=flow)) +
   geom_line(colour = "#56ACFF") +
@@ -679,7 +692,7 @@ ggplot(data = df, mapping=aes(x=date, y=flow)) +
 
 As a final step, we will probably want to export our figure so that it can be used elsewhere e.g. in a presentation or report or the [assessment](#Assessment). To do so, we simply assign our ggplot object to a variable using the assignment operator: `<-` as normal:
 
-```{r, eval = FALSE}
+```{r, eval = FALSE, fig.align="center"}
 # Assign our ggplot object to the variable "g"
 g <- ggplot(data = df, mapping=aes(x=date, y=flow)) +
   geom_line(colour = "#56ACFF") +
@@ -690,12 +703,12 @@ g <- ggplot(data = df, mapping=aes(x=date, y=flow)) +
 
 Finally, we can save our ggplot object using the `ggsave()` function, as shown below. This takes in the name of the plot (`g`), as well as the intended name, extension and file path e.g. `"C:/Users/Bill/Documents/GEOG-70581/images/flow_data_2019.png"`. In this example, we are saving our output within the **images** sub-directory of GEOG-70581. We have also defined the name of the file `flow_data_2019` and specified its file type: `.png` (portable network graphics file). We can also modify other settings, such as the **dpi** which determines the plot resolution. A list of ggsave options can be found [here](https://ggplot2.tidyverse.org/reference/ggsave.html).
 
-```{r, eval = FALSE}
+```{r, eval = FALSE, fig.align="center"}
 # Saves to a png
 ggsave(plot = g, "C:/Users/Bill/Documents/GEOG-70581/images/flow_data_2019.png", dpi = 150)
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, fig.align="center"}
 # Assigning to a variable
 g <- ggplot(data = df, mapping=aes(x=date, y=flow)) +
   geom_line(colour = "#56ACFF") +
@@ -711,7 +724,7 @@ ggsave(plot = g, "C:/Users/44797/Desktop/Repo/GEOG-70581/images/flow_data_2019.p
 
 We have now exported our plot and should be able to see it in the **images** sub-directory of GEOG-70581. **Importantly**, and for future plots, you don't need to run the commands in the sequence shown above e.g. first creating a canvas `ggplot()`, then defining a data frame `ggplot(data = df)`, and so on. This sequence was used to show you how we can add elements to the ggplot object, building from the blank canvas to exporting the final figure. 
 
-**Congratulations!** You have now completed Chapter 2: the not-so-brief introduction to R. While this may have been challenging, we have covered most of the core skills which you will need. You should now have an appreciation of the the different data types and structures that are available in R, experience running code in the console and within scripts, and the ability to install packages, load data and create plots. We'll use many of these techniques in Practicals 1 and 2. 
+**Congratulations!** You have now completed Chapter 3: the not-so-brief introduction to R. While this may have been challenging, we have covered most of the core skills which you will need. You should now have an appreciation of the the different data types and structures that are available in R, experience running code in the console and within scripts, and the ability to install packages, load data and create plots. We'll use many of these techniques in Practicals 1 and 2. 
 
 
 

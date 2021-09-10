@@ -119,6 +119,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 </head>
 
@@ -161,7 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data-structures"><i class="fa fa-check"></i><b>3.4</b> Data structures</a>
 <ul>
 <li class="chapter" data-level="3.4.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#vectors"><i class="fa fa-check"></i><b>3.4.1</b> Vectors</a></li>
-<li class="chapter" data-level="3.4.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data-frames"><i class="fa fa-check"></i><b>3.4.2</b> Data frames</a></li>
+<li class="chapter" data-level="3.4.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data_frames"><i class="fa fa-check"></i><b>3.4.2</b> Data frames</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="Intro_to_R.html"><a href="Intro_to_R.html#scripts"><i class="fa fa-check"></i><b>3.5</b> Scripts</a>
 <ul>
@@ -187,12 +209,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#open-rstudio"><i class="fa fa-check"></i><b>5.3</b> Open RStudio</a></li>
 <li class="chapter" data-level="5.4" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#R_Projects"><i class="fa fa-check"></i><b>5.4</b> Initialise an R project</a></li>
 <li class="chapter" data-level="5.5" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#creating-an-r-script"><i class="fa fa-check"></i><b>5.5</b> Creating an R script</a></li>
-<li class="chapter" data-level="5.6" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#install-required-packages"><i class="fa fa-check"></i><b>5.6</b> Install required packages</a></li>
-<li class="chapter" data-level="5.7" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#whitebox-tools"><i class="fa fa-check"></i><b>5.7</b> Whitebox Tools</a></li>
+<li class="chapter" data-level="5.6" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#install-whiteboxtools"><i class="fa fa-check"></i><b>5.6</b> Install WhiteboxTools</a></li>
+<li class="chapter" data-level="5.7" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#loading-packages"><i class="fa fa-check"></i><b>5.7</b> Loading packages</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html"><i class="fa fa-check"></i><b>6</b> Eskdale III - Flow routing</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#dem-pre-processing-flow-enforcement"><i class="fa fa-check"></i><b>6.1</b> DEM pre-processing: flow enforcement</a></li>
+<li class="chapter" data-level="6.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#dem-pre-processing-flow-enforcement"><i class="fa fa-check"></i><b>6.1</b> DEM pre-processing: flow enforcement</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#application"><i class="fa fa-check"></i><b>6.1.1</b> Application</a></li>
+</ul></li>
 <li class="chapter" data-level="6.2" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#calculating-flow-parameters-pointers"><i class="fa fa-check"></i><b>6.2</b> Calculating Flow Parameters: Pointers</a></li>
 <li class="chapter" data-level="6.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#comparing-flow-algorithms"><i class="fa fa-check"></i><b>6.3</b> Comparing flow algorithms</a></li>
 </ul></li>
@@ -277,9 +302,13 @@ Hydrological analysis in R
 <p>Open RStudio.</p>
 </blockquote>
 <p>The RStudio user-interface should resemble the following:</p>
-<p><img src="figures/Using-R/Opening_RStudio.png" /></p>
+<p align="center">
+<img src="figures/Using-R/Opening_RStudio.png" />
+</p>
 <p>This contains the following primary windows, which are described below:</p>
-<p><img src="figures/Using-R/RStudio_elements.png" id="workspace" /></p>
+<p align="center">
+<img src="figures/Using-R/RStudio_elements.png" id="workspace" />
+</p>
 <p>In the <strong>console window</strong>, commands can be typed and results returned. For example, typing the following command into the console:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="Intro_to_R.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div>
 <p>produces:</p>
@@ -295,7 +324,7 @@ Hydrological analysis in R
 </div>
 <div id="variables" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Variables</h2>
-<p>One of the most important things to know about in R is the <strong>variable</strong> or <strong>object</strong>. In this set of practicals, we use the term “variable”, which is more common across different programming languages. Variables are containers that you can store values in, and then refer to again later.
+<p>One of the most important things to know about in R is the <strong>variable</strong> or <strong>object</strong>. In this set of practicals, we use the term “variable,” which is more common across different programming languages. Variables are containers that you can store values in, and then refer to again later.
 R creates variables for you automatically, so all that is required is to name it and then use the <strong>assignment operator</strong> <code>&lt;-</code> to assign a value to it.</p>
 <p>As a general rule (and because of complicated reasons), use <code>&lt;-</code> for assignment, as shown below, and <strong>don’t</strong> use <code>=</code>:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="Intro_to_R.html#cb9-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span></code></pre></div>
@@ -303,7 +332,9 @@ R creates variables for you automatically, so all that is required is to name it
 <p>Run the above code. This assigns the value of “3” to a variable named “b”:</p>
 </blockquote>
 <p>You should now see that under the <a href="Intro_to_R.html#workspace"><strong>Workspace window</strong></a>, the variable <strong>b</strong> has been added to the Environment tab:</p>
-<p><img src="figures/Practical-1/RStudio_environment.png" style="width:50.0%" /></p>
+<p align="center">
+<img src="figures/Practical-1/RStudio_environment.png" style="width:50.0%" />
+</p>
 <p>The variable <strong>b</strong> can now be called again by the user.</p>
 <blockquote>
 <p>Run the following in the console. Does it work as expected?</p>
@@ -408,7 +439,7 @@ R creates variables for you automatically, so all that is required is to name it
 <span id="cb28-3"><a href="Intro_to_R.html#cb28-3" aria-hidden="true" tabindex="-1"></a>r</span></code></pre></div>
 <pre><code>## [1] 10 10 10 10 10</code></pre>
 </div>
-<div id="data-frames" class="section level3" number="3.4.2">
+<div id="data_frames" class="section level3" number="3.4.2">
 <h3><span class="header-section-number">3.4.2</span> Data frames</h3>
 <p>Other common R data structures include <strong>matrices</strong>, <strong>lists</strong> and <strong>data frames</strong>. The data frame is the most commonly used structure for tabular data and will be familiar to those of you with experience in Microsoft Excel. Here is an example data frame, which is created by combining existing vectors of the same length:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="Intro_to_R.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create numeric, character and logical vectors</span></span>
@@ -497,7 +528,9 @@ R creates variables for you automatically, so all that is required is to name it
 <p>Navigate to <strong>File</strong>, <strong>New File</strong> and <strong>R Script</strong>.</p>
 </blockquote>
 <p>This should open a new window, with an untitled R script:</p>
-<p><img src="figures/Using-R/Creating_R_Script.png" style="width:50.0%" /></p>
+<p align="center">
+<img src="figures/Using-R/Creating_R_Script.png" style="width:50.0%" />
+</p>
 <p>To save the script:</p>
 <blockquote>
 <p>Navigate to <strong>File</strong> and <strong>Save As</strong>, and save it in the GEOG70581 folder with an appropriate name (e.g. <code>learning_R</code>)</p>
@@ -527,7 +560,7 @@ R creates variables for you automatically, so all that is required is to name it
 <span id="cb50-3"><a href="Intro_to_R.html#cb50-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> b<span class="sc">*</span>a</span>
 <span id="cb50-4"><a href="Intro_to_R.html#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c, a)</span></code></pre></div>
 <blockquote>
-<p>The above code is our first encounter with <code>plot()</code> which (as you may have guessed), is used to plot variables in base R <a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. The new plot you’ve created should now appear in the <strong>plots window</strong> and should resemble the following figure. There are lots of more exciting ways to plot data in R, some of which are described <a href="Intro_to_R.html#data_plotting">below</a>.</p>
+<p>The above code is our first encounter with <code>plot()</code> which (as you may have guessed), is used to plot variables in base R.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> The new plot you’ve created should now appear in the <strong>plots window</strong> and should resemble the following figure. There are lots of more exciting ways to plot data in R, some of which are described <a href="Intro_to_R.html#data_plotting">below</a>.</p>
 </blockquote>
 <p><img src="Practical_1_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 <p>As a general rule, well-presented code would typically comprise:</p>
@@ -560,11 +593,13 @@ R creates variables for you automatically, so all that is required is to name it
 <blockquote>
 <p>Try to re-install ggplot2 using the code above. The following pop-up should appear:</p>
 </blockquote>
-<p><img src="figures/Using-R/installing_packages.png" style="width:50.0%" /></p>
+<p align="center">
+<img src="figures/Using-R/installing_packages.png" style="width:50.0%" />
+</p>
 <blockquote>
 <p>Press <strong>No</strong>. The following message will appear in the console: <code>Warning in install.packages : package ‘ggplot2’ is in use and will not be installed</code></p>
 </blockquote>
-<p>We can address this issue by using a user-defined <strong>function</strong> to check whether a package is already installed. If it <strong>is</strong> installed, R will skip the installation. If it is <strong>not</strong> installed, R will install as normal. This function is similar to the functions we’ve been using before, such as <code>sqrt()</code> or <code>seq()</code>, which are available by default in base R; the difference is it’s been written from scratch!</p>
+<p>We can address this issue by using a user-defined <strong>function</strong> (called <code>check.packages</code>) to check whether a package is already installed. If it <strong>is</strong> installed, R will skip the installation. If it is <strong>not</strong> installed, R will install as normal. This function is similar to the functions we’ve been using before, such as <code>sqrt()</code> or <code>seq()</code>, which are available by default in base R; the difference is it’s been written from scratch!</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="Intro_to_R.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to check and install packages</span></span>
 <span id="cb53-2"><a href="Intro_to_R.html#cb53-2" aria-hidden="true" tabindex="-1"></a>check.packages <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg){</span>
 <span id="cb53-3"><a href="Intro_to_R.html#cb53-3" aria-hidden="true" tabindex="-1"></a>  new.pkg <span class="ot">&lt;-</span> pkg[<span class="sc">!</span>(pkg <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
@@ -630,7 +665,9 @@ R creates variables for you automatically, so all that is required is to name it
 <blockquote>
 <p>To find this, navigate in your file explorer (e.g. Windows Explorer, finder on macOS) to the <strong>data</strong> sub-directory within GEOG70581:</p>
 </blockquote>
-<p><img src="figures/Using-R/file_paths.png" /></p>
+<p align="center">
+<img src="figures/Using-R/file_paths.png" />
+</p>
 <p>The file containing the data is called <code>flow_data.csv</code> and contains the average daily river flow (m<sup>3</sup> per second) from the <a href="https://nrfa.ceh.ac.uk/">National River Flow Archive</a> and the <a href="https://www.ceh.ac.uk/">UK Centre for Ecology &amp; Hydrology</a>. The data are from a monitoring station on the River Nevis (<a href="https://nrfa.ceh.ac.uk/data/station/meanflow/90003">#90003</a>), which drains Ben Nevis, the highest mountain in the UK, and cover the period from the 1<sup>st</sup> October 1982 to the 30<sup>th</sup> September 2019.</p>
 <p>The file path to your file might read as follows (if your name was Bill): <code>C:\Users\Bill\GEOG-70581\data\flow_data.csv</code></p>
 <p>To load this file into R:</p>
@@ -640,7 +677,9 @@ R creates variables for you automatically, so all that is required is to name it
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="Intro_to_R.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data</span></span>
 <span id="cb55-2"><a href="Intro_to_R.html#cb55-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;C:/Users/Bill/Documents/GEOG-70581/data/flow_data.csv&quot;</span>)</span></code></pre></div>
 <p>If this has worked successfully, a new variable <code>df</code> will have been loaded into the <strong>workspace</strong>:</p>
-<p><img src="figures/Using-R/loading_data_from_csv.png" /></p>
+<p align="center">
+<img src="figures/Using-R/loading_data_from_csv.png" />
+</p>
 <p>As you may have noticed, this is not the most elegant way to load data, as it requires us to copy, paste <em><strong>and</strong></em> edit the full file path each time. This would quickly become tiring if we wanted to load multiple data sets. In Practical 1, we’ll guide you through a solution using R <strong>projects</strong> and the <a href="Eskdale_set_up.html#R_Projects"><strong>here</strong> package</a> but as ever, it is important to understand the basics before moving on to more sophisticated solutions.</p>
 <p>We can use a variety of commands to inspect this new data set, including:</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="Intro_to_R.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span>
@@ -663,7 +702,7 @@ R creates variables for you automatically, so all that is required is to name it
 <pre><code>## [1] 0.129</code></pre>
 <p>As outlined previously, we can also subset our data based on the values within the data frame, based on columns names (<code>$</code>) or using indexing. To simplify our subsequent analysis, we’re just going to work with data collected in 2019.</p>
 <blockquote>
-<p>The data frame rows which correspond to 2019 are from the 1<sup>st</sup> January [13242] to the 30<sup>th</sup> September [13514]. Extract these rows and all columns using indexing; see <a href="#indexing">here</a> for a reminder if you get stuck.</p>
+<p>The data frame rows which correspond to 2019 are from the 1<sup>st</sup> January [13242] to the 30<sup>th</sup> September [13514]. Extract these rows and all columns using indexing; see <a href="Intro_to_R.html#data_frames">here</a> for a reminder if you get stuck.</p>
 </blockquote>
 <p>You may also have noticed from the <code>str()</code> command that our column of dates (day/month/year) were stored as <strong>characters</strong> e.g. <code>$ date: chr  "01/10/1982"</code>. Working with dates and times is a complicated task (see this <a href="https://www.youtube.com/watch?v=-5wpm-gesOY">Tom Scott</a> video for a light introduction to the problem), so to simplify plotting, we’ll convert these characters e.g. <code>"01/10/1982"</code> into a <strong>date format</strong>. This can be achieved using the following code, which overwrites the date column in the data frame: <code>df$date &lt;-</code> and uses the function <code>as.Date()</code> to define a date format. In this case, our numbers are listed in day, month and then year, which is formatted in R as <code>"%d/%m/%Y"</code>:</p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="Intro_to_R.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Converts dates (in character format) to date format</span></span>
@@ -681,40 +720,40 @@ R creates variables for you automatically, so all that is required is to name it
 <p>To begin, we’re going to create an empty ggplot canvas i.e. the blank canvas upon which we can add ggplot elements, such as axes, legends, data, scale bars etc.</p>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="Intro_to_R.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialising an empty canvas</span></span>
 <span id="cb64-2"><a href="Intro_to_R.html#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()</span></code></pre></div>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-37-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Next, we specify which data set we are going to plot. <strong>Note</strong>: ggplot2 works almost exclusively with <strong>data frames</strong>:</p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="Intro_to_R.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Which data frame do we want to use?</span></span>
 <span id="cb65-2"><a href="Intro_to_R.html#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df)</span></code></pre></div>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-38-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>With the data frame defined, we now need to specify which columns of date we wish to plot. The code below uses the function <code>mapping=aes()</code>to do so, where the date variable is assigned to the x-axis <code>x=date</code> and the flow rate variable is assigned to the y-axis <code>y=flow</code> using their column names:</p>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="Intro_to_R.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Which data frame columns do we want to plot?</span></span>
 <span id="cb66-2"><a href="Intro_to_R.html#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>flow))</span></code></pre></div>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-39-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>However, our data are still not visible because we need to select a <strong>geom</strong> type, which is a complicated way of saying the type of geometric object we want to plot. We could plot our data as points, lines or polygons; we could choose a histogram, bar plot, or box and whiskers plot; there are <a href="https://ggplot2.tidyverse.org/reference/">many</a> to choose from! In this example, we are going to plot our data as points, which is done using the <code>geom_point()</code> command. As you can see from the code below, the structure differs slightly from normal code, in that ggplot elements are separated by the <code>+</code> operator. This allows the users to create complex figures while maintaining easy-to-read code.</p>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="Intro_to_R.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What type of geom do we want?</span></span>
 <span id="cb67-2"><a href="Intro_to_R.html#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>flow)) <span class="sc">+</span></span>
 <span id="cb67-3"><a href="Intro_to_R.html#cb67-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-40-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>In the same way, we could also plot the same data as a line, using <code>geom_line()</code>. In this example, both <strong>geoms</strong> are using the same data frame as inputs <code>x=date, y=flow</code>:</p>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="Intro_to_R.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding a line geom</span></span>
 <span id="cb68-2"><a href="Intro_to_R.html#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>flow)) <span class="sc">+</span></span>
 <span id="cb68-3"><a href="Intro_to_R.html#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb68-4"><a href="Intro_to_R.html#cb68-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-41-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The above code covers the basics of ggplot, but we can start to improve the design of our plots. For example, we can choose one of the available <strong>themes</strong>:</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="Intro_to_R.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Switching to the classic theme</span></span>
 <span id="cb69-2"><a href="Intro_to_R.html#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>flow)) <span class="sc">+</span></span>
 <span id="cb69-3"><a href="Intro_to_R.html#cb69-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb69-4"><a href="Intro_to_R.html#cb69-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
 <span id="cb69-5"><a href="Intro_to_R.html#cb69-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-42-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>We can re-order our geoms to show the data points above the line, while adding some colour using <a href="https://htmlcolorcodes.com/">HEX codes</a>:</p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="Intro_to_R.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Re-ordering the geoms, adding some colour</span></span>
 <span id="cb70-2"><a href="Intro_to_R.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>flow)) <span class="sc">+</span></span>
 <span id="cb70-3"><a href="Intro_to_R.html#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;#56ACFF&quot;</span>) <span class="sc">+</span></span>
 <span id="cb70-4"><a href="Intro_to_R.html#cb70-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;#767676&quot;</span>) <span class="sc">+</span></span>
 <span id="cb70-5"><a href="Intro_to_R.html#cb70-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-43-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>We can also change the aspect ratio to produce a square plot:</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="Intro_to_R.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Changing the aspect ratio</span></span>
 <span id="cb71-2"><a href="Intro_to_R.html#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>flow)) <span class="sc">+</span></span>
@@ -722,7 +761,7 @@ R creates variables for you automatically, so all that is required is to name it
 <span id="cb71-4"><a href="Intro_to_R.html#cb71-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;#767676&quot;</span>) <span class="sc">+</span></span>
 <span id="cb71-5"><a href="Intro_to_R.html#cb71-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
 <span id="cb71-6"><a href="Intro_to_R.html#cb71-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-44-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>As a final step, we will probably want to export our figure so that it can be used elsewhere e.g. in a presentation or report or the <a href="Assessment.html#Assessment">assessment</a>. To do so, we simply assign our ggplot object to a variable using the assignment operator: <code>&lt;-</code> as normal:</p>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="Intro_to_R.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign our ggplot object to the variable &quot;g&quot;</span></span>
 <span id="cb72-2"><a href="Intro_to_R.html#cb72-2" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>flow)) <span class="sc">+</span></span>
@@ -738,7 +777,7 @@ R creates variables for you automatically, so all that is required is to name it
 <p>Run the above code to assign your plot to the variable <code>g</code> and export it to your images folder, <strong>making sure</strong> to update the file path!</p>
 </blockquote>
 <p>We have now exported our plot and should be able to see it in the <strong>images</strong> sub-directory of GEOG-70581. <strong>Importantly</strong>, and for future plots, you don’t need to run the commands in the sequence shown above e.g. first creating a canvas <code>ggplot()</code>, then defining a data frame <code>ggplot(data = df)</code>, and so on. This sequence was used to show you how we can add elements to the ggplot object, building from the blank canvas to exporting the final figure.</p>
-<p><strong>Congratulations!</strong> You have now completed Chapter 2: the not-so-brief introduction to R. While this may have been challenging, we have covered most of the core skills which you will need. You should now have an appreciation of the the different data types and structures that are available in R, experience running code in the console and within scripts, and the ability to install packages, load data and create plots. We’ll use many of these techniques in Practicals 1 and 2.</p>
+<p><strong>Congratulations!</strong> You have now completed Chapter 3: the not-so-brief introduction to R. While this may have been challenging, we have covered most of the core skills which you will need. You should now have an appreciation of the the different data types and structures that are available in R, experience running code in the console and within scripts, and the ability to install packages, load data and create plots. We’ll use many of these techniques in Practicals 1 and 2.</p>
 
 </div>
 </div>

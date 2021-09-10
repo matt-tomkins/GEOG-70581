@@ -24,7 +24,10 @@ While R is now installed, it is good practice to use an integrated development e
 To Install RStudio:
 
 - Go to https://www.rstudio.com/products/rstudio/download/ and click on `Download RStudio for Windows`. Installers for macOS and other operating systems are available below.
+<p align="center">
 ![](figures/Using-R/download_RStudio.png){width=50%}
+</p>
+
 - Once downloaded, double click the application file (.exe) and follow the installation instructions.
 
 ## Course materials

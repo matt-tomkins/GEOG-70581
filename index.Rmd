@@ -3,6 +3,8 @@ title: <center> Hydrological analysis in R </center>
 output: bookdown::gitbook
 site: bookdown::bookdown_site
 documentclass: book
+bibliography: EMMR_Practicals.bib
+link-citations: true
 
 ---
 # Introduction

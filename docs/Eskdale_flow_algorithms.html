@@ -119,6 +119,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 </head>
 
@@ -161,7 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data-structures"><i class="fa fa-check"></i><b>3.4</b> Data structures</a>
 <ul>
 <li class="chapter" data-level="3.4.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#vectors"><i class="fa fa-check"></i><b>3.4.1</b> Vectors</a></li>
-<li class="chapter" data-level="3.4.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data-frames"><i class="fa fa-check"></i><b>3.4.2</b> Data frames</a></li>
+<li class="chapter" data-level="3.4.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data_frames"><i class="fa fa-check"></i><b>3.4.2</b> Data frames</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="Intro_to_R.html"><a href="Intro_to_R.html#scripts"><i class="fa fa-check"></i><b>3.5</b> Scripts</a>
 <ul>
@@ -187,12 +209,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#open-rstudio"><i class="fa fa-check"></i><b>5.3</b> Open RStudio</a></li>
 <li class="chapter" data-level="5.4" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#R_Projects"><i class="fa fa-check"></i><b>5.4</b> Initialise an R project</a></li>
 <li class="chapter" data-level="5.5" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#creating-an-r-script"><i class="fa fa-check"></i><b>5.5</b> Creating an R script</a></li>
-<li class="chapter" data-level="5.6" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#install-required-packages"><i class="fa fa-check"></i><b>5.6</b> Install required packages</a></li>
-<li class="chapter" data-level="5.7" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#whitebox-tools"><i class="fa fa-check"></i><b>5.7</b> Whitebox Tools</a></li>
+<li class="chapter" data-level="5.6" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#install-whiteboxtools"><i class="fa fa-check"></i><b>5.6</b> Install WhiteboxTools</a></li>
+<li class="chapter" data-level="5.7" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#loading-packages"><i class="fa fa-check"></i><b>5.7</b> Loading packages</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html"><i class="fa fa-check"></i><b>6</b> Eskdale III - Flow routing</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#dem-pre-processing-flow-enforcement"><i class="fa fa-check"></i><b>6.1</b> DEM pre-processing: flow enforcement</a></li>
+<li class="chapter" data-level="6.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#dem-pre-processing-flow-enforcement"><i class="fa fa-check"></i><b>6.1</b> DEM pre-processing: flow enforcement</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#application"><i class="fa fa-check"></i><b>6.1.1</b> Application</a></li>
+</ul></li>
 <li class="chapter" data-level="6.2" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#calculating-flow-parameters-pointers"><i class="fa fa-check"></i><b>6.2</b> Calculating Flow Parameters: Pointers</a></li>
 <li class="chapter" data-level="6.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#comparing-flow-algorithms"><i class="fa fa-check"></i><b>6.3</b> Comparing flow algorithms</a></li>
 </ul></li>
@@ -227,15 +252,104 @@ Hydrological analysis in R
             <section class="normal" id="section-">
 <div id="Eskdale_flow_algorithms" class="section level1" number="6">
 <h1><span class="header-section-number">Chapter 6</span> Eskdale III - Flow routing</h1>
+<p>Overland and near-surface water flow can be modelled using DEMs if we assume that surface topography is the sole factor which influences the distribution of water. One very simple model routes all water from a particular grid cell in a DEM to a single neighbouring cell (i.e. water is not partitioned between multiple neighbours). This ‘D8’ (8 direction) method sets the flow direction toward the lowest of the eight neighbouring cells, in relation to the centre cell.</p>
+<p align="center">
+<a name="Figure_1"></a><img src="figures/Practical-1/D8_Principle.png" style="width:50.0%" />
+</p>
+<p><strong>Figure 1: Schematic of the D8 method</strong>. The elevation value of the centre cell is 8 m (dark blue). Under atmospheric pressure, water flows to areas of lower elevation (&lt; 8 m; light blue) and does not flow to areas of higher elevation (&gt;8 m; grey). In this case, the D8 method would route all the water from the centre cell into the bottom left cell, as it has the lowest value (4 m).</p>
+<p>Using this method, water flow is allowed in one of eight possible directions (↑ ↗ → ↘ ↓ ↙ ← ↖), assuming that water will travel along the steepest downslope path. In turn, the method is sometimes referred to as the steepest descent method. Based on the <span class="math inline">\(3 * 3\)</span> cell neighbourhood shown in <a href="#Figure_1">Figure 1</a>, flow would be directed from the centre cell (8 m elevation) to the southwest cell (4 m elevation).</p>
 <div id="dem-pre-processing-flow-enforcement" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> DEM pre-processing: flow enforcement</h2>
+<p>One common issue encountered when performing hydrological analyses is the presence of sinks, which interrupt the drainage network. When sinks are encountered, flow direction is undefined when a grid cell, or group of grid cells, is lower than all neighbouring cells (see <a href="Figure_2">Figure 2</a>) When sinks are encountered, and when there are no downslope neighbours, all water that enters a cell is unable to escape. These features are referred to as pits if they are a single cell in size, and depressions if they consist of groups of cells.</p>
+<p align="center">
+<a name="Figure_2"></a><img src="figures/Practical-1/DEM_Sinks.png" style="width:50.0%" />
+</p>
+<p><strong>Figure 2: Schematic of a sink in a DEM</strong>. In this <span class="math inline">\(5 * 5\)</span> matrix, water is routed into the top right cell (9 m) and then is routed to the lowest elevation cell at each step (9 m → 8 m → 7 m → 6 m → 2 m) using the D8 method (blue cells). However, the drainage network is interrupted by a sink at the 2 m cell (orange), as all neighbouring cells are of higher elevation.</p>
+<p>Sinks can often be artefacts of the data and should be removed during DEM pre-processing. Pre-processing involves altering the elevations of the DEM in a way that enforces continuous flow-paths. However, it is important to realise that sometimes these ‘digital depressions’ reflect actual features in the landscape, and should be preserved during flow modelling. This is a particular issue for hydrological analysis of karst environments, where water can be routed into dolines and fractures. However, for our work, we will assume that all depressions in DEMs are artefacts and are justified in being removed.</p>
+<p>Several methods have been developed for removing depressions from DEMs. These methods vary greatly in terms of their sophistication and impact on the DEM. The two most common depression removal methods <a href="Figure_3">Figure 3</a> are:</p>
+<ul>
+<li>depression <strong>filling</strong>, which raises cells within a depression to the elevation of the outlet cell;</li>
+<li>depression <strong>breaching</strong>, which digs a trench from a depression’s bottom to some point downslope.</li>
+</ul>
+<p align="center">
+<a name="Figure_3"></a><img src="figures/Practical-1/DEM_Sinks_Fix.png" style="width:100.0%" />
+</p>
+<p><strong>Figure 3: Schematic of depression filling and breaching in a DEM</strong>. Using the same values from <a href="Figure_2">Figure 2</a>, original values are modified to allow water to escape the sink (orange). Depression filling has raised the value of the sink (2 m → 4 m), while depression breaching has lowered the value of a neighbouring cell (3 m → 1 m). In this simplified example, the outputs of these two distinct approaches are identical but care should be taken when working with real world data as they will often produce different results.</p>
+<p>Not all interruptions to flow routing are caused by depression cells. Often, DEMs contain extensive flat regions (areas of equal elevation). Flat areas interrupt flow routing in the same way as depressions. Cells within a flat region do not have downslope neighbours, and therefore, flow routing is impossible on flat sites without pre-processing. Correction of flow direction on flat sites typically involves finding an outlet cell, forcing flow from cells adjacent to the outlet to the outlet, and continuing backwards in an iterative manner (e.g., <span class="citation"><a href="#ref-jenson_extracting_1988" role="doc-biblioref">Jenson and Domingue</a> (<a href="#ref-jenson_extracting_1988" role="doc-biblioref">1988</a>)</span>).</p>
+<div id="application" class="section level3" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Application</h3>
+<p>The DEM we are working with is centred on the Upper Eskdale catchment; an upland valley which drains the highest mountain in England (Scafell Pike; 978 m), as shown below:</p>
+<p align="center">
+<a name="Figure_4"></a><img src="figures/Practical-1/Eskdale_image.png" style="width:100.0%" />
+</p>
+<p><strong>Figure 4: Upper Eskdale panorama</strong>, viewed from Harter Fell [Location: 54.386907, -3.205004, Elevation: 649 m]. The catchment ranges in elevation from 978 m (Scafell Pike) to ~160 m at the catchment outlet (white circle), and is ringed by numerous summits with elevations in excess of 800 m (white triangles). The catchment has an area of ~15.7 km<sup>2</sup> and all water which falls with the catchment ultimately drains to the Irish Sea via the River Esk.</p>
+<p>The DEM we are working with was downloaded from <a href="https://digimap.edina.ac.uk/">EDINA Digimap</a>, has a cell size of 10 m and uses the <strong>British National Grid</strong> (BNG), a <strong>projected</strong> coordinate Reference System [<a href="https://epsg.io/27700">EPSG:27700</a>].</p>
+<p>Unfortunately, we don’t have time in this course to delve into the exciting world of map projections, although these are covered excellently by Dr. Jonny Huck in the Semester 2 course <a href="https://www.manchester.ac.uk/study/masters/courses/list/07053/msc-geographical-information-science/course-details/GEOG71552#course-unit-details"><strong>Understanding GIS</strong></a>. However, it is important to know that different map projections have different uses and work more/less effectively in different spatial areas. As we are working within the UK, it makes sense to use a map projection which is tailored to the UK (e.g. BNG) as this minimises different types of map distortion (length, shape, area).</p>
+<p>When loaded into R using the <code>raster</code> package and plotted using <code>ggplot2</code> and <code>ggspatial</code>, our DEM can be visualised as follows, where the outlet point (white circle) and summits (black triangles) match those shown in <a href="Figure_4">Figure 4</a>.</p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-56-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>To accentuate areas of relief, the DEM has been combined with a semi-transparent <strong>hillshade</strong> layer, which is shown below:</p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-57-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>To evaluate the effects of depression <strong>breaching</strong> and <strong>filling</strong>, we’re going to</p>
+<p>DEM of the Upper Eskdale catchment</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="Eskdale_flow_algorithms.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sets file path for DEM</span></span>
+<span id="cb83-2"><a href="Eskdale_flow_algorithms.html#cb83-2" aria-hidden="true" tabindex="-1"></a>dem <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m.tif&quot;</span>)</span>
+<span id="cb83-3"><a href="Eskdale_flow_algorithms.html#cb83-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-4"><a href="Eskdale_flow_algorithms.html#cb83-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Breach and fills depressions</span></span>
+<span id="cb83-5"><a href="Eskdale_flow_algorithms.html#cb83-5" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_fill_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span>
+<span id="cb83-6"><a href="Eskdale_flow_algorithms.html#cb83-6" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_breach_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_breach.tif&quot;</span>))</span></code></pre></div>
+</div>
 </div>
 <div id="calculating-flow-parameters-pointers" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Calculating Flow Parameters: Pointers</h2>
 </div>
 <div id="comparing-flow-algorithms" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span> Comparing flow algorithms</h2>
+<p>#——————– Analysis ———————</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="Eskdale_flow_algorithms.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sets file path for DEM</span></span>
+<span id="cb84-2"><a href="Eskdale_flow_algorithms.html#cb84-2" aria-hidden="true" tabindex="-1"></a>dem <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m.tif&quot;</span>)</span>
+<span id="cb84-3"><a href="Eskdale_flow_algorithms.html#cb84-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-4"><a href="Eskdale_flow_algorithms.html#cb84-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Breach and fills depressions</span></span>
+<span id="cb84-5"><a href="Eskdale_flow_algorithms.html#cb84-5" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_fill_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span>
+<span id="cb84-6"><a href="Eskdale_flow_algorithms.html#cb84-6" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_breach_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_breach.tif&quot;</span>))</span>
+<span id="cb84-7"><a href="Eskdale_flow_algorithms.html#cb84-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-8"><a href="Eskdale_flow_algorithms.html#cb84-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculates D8 pointer</span></span>
+<span id="cb84-9"><a href="Eskdale_flow_algorithms.html#cb84-9" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_d8_pointer</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_breach.tif&quot;</span>), </span>
+<span id="cb84-10"><a href="Eskdale_flow_algorithms.html#cb84-10" aria-hidden="true" tabindex="-1"></a>               <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_D8_pointer.tif&quot;</span>))</span>
+<span id="cb84-11"><a href="Eskdale_flow_algorithms.html#cb84-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-12"><a href="Eskdale_flow_algorithms.html#cb84-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculates accumulation file</span></span>
+<span id="cb84-13"><a href="Eskdale_flow_algorithms.html#cb84-13" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_d8_flow_accumulation</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_breach.tif&quot;</span>), </span>
+<span id="cb84-14"><a href="Eskdale_flow_algorithms.html#cb84-14" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_flow_accumulation.tif&quot;</span>))</span>
+<span id="cb84-15"><a href="Eskdale_flow_algorithms.html#cb84-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-16"><a href="Eskdale_flow_algorithms.html#cb84-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Extracts streams, accumulation threshold of 500</span></span>
+<span id="cb84-17"><a href="Eskdale_flow_algorithms.html#cb84-17" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_extract_streams</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_flow_accumulation.tif&quot;</span>),</span>
+<span id="cb84-18"><a href="Eskdale_flow_algorithms.html#cb84-18" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_streams_act500.tif&quot;</span>), </span>
+<span id="cb84-19"><a href="Eskdale_flow_algorithms.html#cb84-19" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">500</span>)</span>
+<span id="cb84-20"><a href="Eskdale_flow_algorithms.html#cb84-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-21"><a href="Eskdale_flow_algorithms.html#cb84-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Snaps pour points to stream network, snap distance in map units (50 = 50 m)</span></span>
+<span id="cb84-22"><a href="Eskdale_flow_algorithms.html#cb84-22" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_jenson_snap_pour_points</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;pour_point.shp&quot;</span>),</span>
+<span id="cb84-23"><a href="Eskdale_flow_algorithms.html#cb84-23" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_streams_act500.tif&quot;</span>), </span>
+<span id="cb84-24"><a href="Eskdale_flow_algorithms.html#cb84-24" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_pour_point_snapped.shp&quot;</span>),</span>
+<span id="cb84-25"><a href="Eskdale_flow_algorithms.html#cb84-25" aria-hidden="true" tabindex="-1"></a>                            <span class="at">snap_dist =</span> <span class="dv">50</span>)</span>
+<span id="cb84-26"><a href="Eskdale_flow_algorithms.html#cb84-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-27"><a href="Eskdale_flow_algorithms.html#cb84-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Watershed from pour points</span></span>
+<span id="cb84-28"><a href="Eskdale_flow_algorithms.html#cb84-28" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_watershed</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_D8_pointer.tif&quot;</span>), </span>
+<span id="cb84-29"><a href="Eskdale_flow_algorithms.html#cb84-29" aria-hidden="true" tabindex="-1"></a>              <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_pour_point_snapped.shp&quot;</span>), </span>
+<span id="cb84-30"><a href="Eskdale_flow_algorithms.html#cb84-30" aria-hidden="true" tabindex="-1"></a>              <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_watersheds.tif&quot;</span>))</span>
+<span id="cb84-31"><a href="Eskdale_flow_algorithms.html#cb84-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-32"><a href="Eskdale_flow_algorithms.html#cb84-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Converts watershed to vector format (polygon)</span></span>
+<span id="cb84-33"><a href="Eskdale_flow_algorithms.html#cb84-33" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_raster_to_vector_polygons</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_watersheds.tif&quot;</span>),</span>
+<span id="cb84-34"><a href="Eskdale_flow_algorithms.html#cb84-34" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_watersheds.shp&quot;</span>))</span>
+<span id="cb84-35"><a href="Eskdale_flow_algorithms.html#cb84-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb84-36"><a href="Eskdale_flow_algorithms.html#cb84-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Converts streams to vector format (lines)</span></span>
+<span id="cb84-37"><a href="Eskdale_flow_algorithms.html#cb84-37" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_raster_to_vector_lines</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_streams_act500.tif&quot;</span>), </span>
+<span id="cb84-38"><a href="Eskdale_flow_algorithms.html#cb84-38" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_streams_act500.shp&quot;</span>))</span></code></pre></div>
 
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-jenson_extracting_1988" class="csl-entry">
+Jenson, Susan K., and Julia O. Domingue. 1988. <span>“Extracting Topographic Structure from Digital Elevation Data for Geographic Information-System Analysis.”</span> <em>Photogrammetric Engineering and Remote Sensing</em> 54 (11): 15931600. <a href="http://pubs.er.usgs.gov/publication/70142175">http://pubs.er.usgs.gov/publication/70142175</a>.
 </div>
 </div>
             </section>
