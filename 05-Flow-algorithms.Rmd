@@ -23,7 +23,7 @@ One common issue encountered when performing hydrological analyses is the presen
 
 Sinks can often be artefacts of the data and should be removed during DEM pre-processing. Pre-processing involves altering the elevations of the DEM in a way that enforces continuous flow-paths. However, it is important to realise that sometimes these ‘digital depressions’ reflect actual features in the landscape, and should be preserved during flow modelling. This is a particular issue for hydrological analysis of karst environments, where water can be routed into dolines and fractures. However, for our work, we will assume that all depressions in DEMs are artefacts and are justified in being removed.
 
-Several methods have been developed for removing depressions from DEMs. These methods vary greatly in terms of their sophistication and impact on the DEM. The two most common depression removal methods [Figure 3](Figure_3) are:
+Several methods have been developed for removing depressions from DEMs. These methods vary greatly in terms of their sophistication and impact on the DEM. The two most common depression removal methods ([Figure 3](Figure_3)) are:
 
 - depression **filling**, which raises cells within a depression to the elevation of the outlet cell;
 - depression **breaching**, which digs a trench from a depression’s bottom to some point downslope.

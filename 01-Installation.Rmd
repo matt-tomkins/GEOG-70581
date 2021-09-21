@@ -30,6 +30,27 @@ To Install RStudio:
 
 - Once downloaded, double click the application file (.exe) and follow the installation instructions.
 
-## Course materials
+## Course materials {#materials}
 
-All the data required for this sets of practicals is available on Blackboard or can be downloaded [here](XXXX). 
+All the data required for this sets of practicals is available on Blackboard or can be downloaded [here](XXXX).
+
+> Download the folder, save it to an appropriate location and extract the contents (unzip). 
+
+The directory structure is as follows:
+
+- GEOG70581
+    - Data 
+        - Practical_1
+        - Practical_2
+    - Images 
+        - Practical_1
+        - Practical_2
+    - Output
+        - Practical_1
+        - Practical_2
+    
+All the required data files for Practicals 1 and 2 are stored in the associated sub-directory within **Data**. 
+
+As we move through the practicals, we'll be creating a number of additional GIS files and we encourage you to save these within the corresponding sub-directory within **Output**. 
+
+Finally, maps and figures will be required for the assessment. These can be exported directly from R and stored in **Images**. 

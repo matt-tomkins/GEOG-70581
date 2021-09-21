@@ -163,7 +163,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="2.1" data-path="Installation.html"><a href="Installation.html#r"><i class="fa fa-check"></i><b>2.1</b> R</a></li>
 <li class="chapter" data-level="2.2" data-path="Installation.html"><a href="Installation.html#r-studio"><i class="fa fa-check"></i><b>2.2</b> R Studio</a></li>
-<li class="chapter" data-level="2.3" data-path="Installation.html"><a href="Installation.html#course-materials"><i class="fa fa-check"></i><b>2.3</b> Course materials</a></li>
+<li class="chapter" data-level="2.3" data-path="Installation.html"><a href="Installation.html#materials"><i class="fa fa-check"></i><b>2.3</b> Course materials</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="Intro_to_R.html"><a href="Intro_to_R.html"><i class="fa fa-check"></i><b>3</b> A (brief) introduction to R</a>
 <ul>
@@ -258,34 +258,7 @@ Hydrological analysis in R
 </div>
 <div id="download_data" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Download data</h2>
-<p>The data for this practical can be downloaded <a href="XXXX">here</a>.</p>
-<blockquote>
-<p>Download the folder, save it to an appropriate location and extract the contents (unzip).</p>
-</blockquote>
-<p>The directory structure is as follows:</p>
-<ul>
-<li>GEOG70581
-<ul>
-<li>Data
-<ul>
-<li>Practical_1</li>
-<li>Practical_2</li>
-</ul></li>
-<li>Images
-<ul>
-<li>Practical_1</li>
-<li>Practical_2</li>
-</ul></li>
-<li>Output
-<ul>
-<li>Practical_1</li>
-<li>Practical_2</li>
-</ul></li>
-</ul></li>
-</ul>
-<p>All the required data files for Practicals 1 and 2 are stored in the associated sub-directory within <strong>Data</strong>.</p>
-<p>As we move through the practicals, we’ll be creating a number of additional GIS files and we encourage you to save these within the corresponding sub-directory within <strong>Output</strong>.</p>
-<p>Finally, maps and figures will be required for the assessment. These can be exported directly from R and stored in <strong>Images</strong>.</p>
+<p>The data for this practical can be downloaded <a href="XXXX">here</a>. The directory structure is outlined in <a href="Installation.html#materials">Chapter 2</a>.</p>
 </div>
 <div id="open-rstudio" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> Open RStudio</h2>
@@ -350,7 +323,7 @@ Select <strong>Create new project</strong></p>
 <ul>
 <li>for simple storage of vector data;</li>
 </ul></li>
-<li><a href="https://paleolimbot.github.io/ggspatial/articles/ggspatial.html">`ggspatial’</a>
+<li><a href="https://paleolimbot.github.io/ggspatial/articles/ggspatial.html"><code>ggspatial</code></a>
 <ul>
 <li>for simple plotting of raster data in ggplot2;</li>
 </ul></li>
@@ -398,11 +371,9 @@ Select <strong>Create new project</strong></p>
 <blockquote>
 <p>Referring back to the instructions <a href="Intro_to_R.html#packages">here</a>, install and load <code>ggplot2</code>, <code>here</code>, <code>raster</code>, <code>sf</code>, <code>ggspatial</code> and <code>whitebox</code>. <strong>Hint 1</strong> - we’ve already installed whitebox, so this can be excluded if you’re using install.packages() and the library() commands. <strong>Hint 2</strong> - the user-defined function <code>check.packages</code> might be useful here.</p>
 </blockquote>
-<pre><code>##   ggplot2 ggspatial      here    raster        sf  whitebox 
-##      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE</code></pre>
 <p>If the package has been installed and loaded correctly, the console should print the following:</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="Eskdale_set_up.html#cb82-1" aria-hidden="true" tabindex="-1"></a> ggplot2     here   raster       sf whitebox   ggspatial</span>
-<span id="cb82-2"><a href="Eskdale_set_up.html#cb82-2" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span>     <span class="cn">TRUE</span>     <span class="cn">TRUE</span>     <span class="cn">TRUE</span>     <span class="cn">TRUE</span>   <span class="cn">TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="Eskdale_set_up.html#cb81-1" aria-hidden="true" tabindex="-1"></a> ggplot2     here   raster       sf whitebox   ggspatial</span>
+<span id="cb81-2"><a href="Eskdale_set_up.html#cb81-2" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span>     <span class="cn">TRUE</span>     <span class="cn">TRUE</span>     <span class="cn">TRUE</span>     <span class="cn">TRUE</span>   <span class="cn">TRUE</span></span></code></pre></div>
 <p>where the <strong>logical</strong> value <code>TRUE</code> equates to a successful installation (and vice versa for <code>FALSE</code>).</p>
 
 </div>

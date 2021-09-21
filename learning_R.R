@@ -42,3 +42,12 @@ g <- ggplot(data = df, mapping=aes(x=date, y=flow)) +
 
 # Saves to a png using ggsave
 ggsave(plot = g, "C:/Users/44797/Desktop/Repo/GEOG-70581/images/flow_data_2019.png", dpi = 150)
+
+# Creating a histogram
+h <- ggplot(data = df, mapping=aes(x=flow)) +
+  geom_histogram(binwidth = 1, colour = "#767676", fill = "#56ACFF") +
+  theme_classic() +
+  theme(aspect.ratio = 1)
+
+# Saves to a png using ggsave
+ggsave(plot = h, "C:/Users/44797/Desktop/Repo/GEOG-70581/images/histogram_2019.png", dpi = 150)

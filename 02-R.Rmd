@@ -724,6 +724,8 @@ ggsave(plot = g, "C:/Users/44797/Desktop/Repo/GEOG-70581/images/flow_data_2019.p
 
 We have now exported our plot and should be able to see it in the **images** sub-directory of GEOG-70581. **Importantly**, and for future plots, you don't need to run the commands in the sequence shown above e.g. first creating a canvas `ggplot()`, then defining a data frame `ggplot(data = df)`, and so on. This sequence was used to show you how we can add elements to the ggplot object, building from the blank canvas to exporting the final figure. 
 
+> To finish this practical, create a **histogram** of the average daily river flow values using ggplot2 and export to a png. Set the `binwidth` to 1 m<sup>3</sup> per second and try updating the default x and y-axis labels. Try [here](https://ggplot2.tidyverse.org/reference/) and [here](https://ggplot2.tidyverse.org/reference/labs.html) for tips. 
+
 **Congratulations!** You have now completed Chapter 3: the not-so-brief introduction to R. While this may have been challenging, we have covered most of the core skills which you will need. You should now have an appreciation of the the different data types and structures that are available in R, experience running code in the console and within scripts, and the ability to install packages, load data and create plots. We'll use many of these techniques in Practicals 1 and 2. 
 
 

@@ -4,7 +4,7 @@ objectives
 Installation
 r
 r-studio
-course-materials
+materials
 Intro_to_R
 overview
 what-is-r
