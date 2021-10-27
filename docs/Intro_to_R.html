@@ -233,10 +233,21 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="6.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#dem-pre-processing-flow-enforcement"><i class="fa fa-check"></i><b>6.1</b> DEM pre-processing: flow enforcement</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#application"><i class="fa fa-check"></i><b>6.1.1</b> Application</a></li>
+<li class="chapter" data-level="6.1.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#data-description"><i class="fa fa-check"></i><b>6.1.1</b> Data description</a></li>
+<li class="chapter" data-level="6.1.2" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#breaching-and-filling"><i class="fa fa-check"></i><b>6.1.2</b> Breaching and filling</a></li>
+<li class="chapter" data-level="6.1.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#choosing-a-colour-ramp"><i class="fa fa-check"></i><b>6.1.3</b> Choosing a colour ramp</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#calculating-flow-parameters-pointers"><i class="fa fa-check"></i><b>6.2</b> Calculating Flow Parameters: Pointers</a></li>
-<li class="chapter" data-level="6.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#comparing-flow-algorithms"><i class="fa fa-check"></i><b>6.3</b> Comparing flow algorithms</a></li>
+<li class="chapter" data-level="6.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#comparing-flow-algorithms"><i class="fa fa-check"></i><b>6.3</b> Comparing flow algorithms</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#comparing-flow-algorithms-1"><i class="fa fa-check"></i><b>6.3.1</b> Comparing flow algorithms</a></li>
+<li class="chapter" data-level="6.3.2" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#fd8-catchment-area"><i class="fa fa-check"></i><b>6.3.2</b> FD8 catchment area</a></li>
+<li class="chapter" data-level="6.3.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#d-infinity-catchment-area"><i class="fa fa-check"></i><b>6.3.3</b> D-infinity catchment area</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#comparing-the-outputs"><i class="fa fa-check"></i><b>6.4</b> Comparing the outputs</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#practical-solution"><i class="fa fa-check"></i><b>6.4.1</b> Practical solution</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="SecondPractical.html"><a href="SecondPractical.html"><i class="fa fa-check"></i><b>7</b> Practical 2 - Mersey</a>
 <ul>
@@ -269,6 +280,13 @@ Hydrological analysis in R
             <section class="normal" id="section-">
 <div id="Intro_to_R" class="section level1" number="3">
 <h1><span class="header-section-number">Chapter 3</span> A (brief) introduction to R</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="Intro_to_R.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;gridExtra&quot;</span>, <span class="at">repos =</span> <span class="st">&quot;http://cran.us.r-project.org&quot;</span>)      </span></code></pre></div>
+<pre><code>## Installing package into &#39;C:/Users/44797/OneDrive/Documents/R/win-library/4.0&#39;
+## (as &#39;lib&#39; is unspecified)</code></pre>
+<pre><code>## package &#39;gridExtra&#39; successfully unpacked and MD5 sums checked
+## 
+## The downloaded binary packages are in
+##  C:\Users\44797\AppData\Local\Temp\RtmpQZKiZC\downloaded_packages</code></pre>
 <div id="overview" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Overview</h2>
 <p>The following chapter provides a basic introduction to coding in R. If you already have experience with coding, perhaps from <a href="https://www.manchester.ac.uk/study/masters/courses/list/07053/msc-geographical-information-science/course-details/GEOG71921#course-unit-details">Spatial Ecology</a> or <a href="https://www.manchester.ac.uk/study/undergraduate/courses/2022/00575/bsc-geography/all-content/GEOG30552#course-unit-details">Understanding GIS</a>, then the following content should be familiar to you. For those of you with little or no experience with code, the content builds from the simple (using R as a calculator) to the complex (loading packages and data, plotting) and will equip you with the skills needed to complete Practicals 1 (Eskdale) and 2 (Mersey)</p>
@@ -303,12 +321,12 @@ Hydrological analysis in R
 <h3><span class="header-section-number">3.1.4</span> Dealing with errors</h3>
 <p>Before we load R and take our first steps towards coding excellence, it is worth noting that errors are an <strong>inevitable</strong> aspect of coding. Irrespective of how good you are, you will spend more time fixing your code (i.e. debugging) than writing it!</p>
 <p>Luckily, when R encounters an error, it will try and help you out. For example, shown below is some simple R code. Here, we are tying to create a new variable called <strong>a</strong>, which is the product (+) of variable <strong>b</strong> and the number <strong>1</strong>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="Intro_to_R.html#cb1-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> b <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="Intro_to_R.html#cb4-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> b <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
 <pre><code>## Error in eval(expr, envir, enclos): object &#39;b&#39; not found</code></pre>
 <p>In this example, the code fails and prints the error message <code>object 'b' not found</code> because the variable <strong>b</strong> does not exist! We could solve this by defining <strong>b</strong> beforehand as follows:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="Intro_to_R.html#cb3-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb3-2"><a href="Intro_to_R.html#cb3-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> b <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb3-3"><a href="Intro_to_R.html#cb3-3" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="Intro_to_R.html#cb6-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb6-2"><a href="Intro_to_R.html#cb6-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> b <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb6-3"><a href="Intro_to_R.html#cb6-3" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 <p>These error messages are <strong>important</strong> and contain helpful information - do not ignore them! If you’ve struggled to resolve the problem, you should then Google it (normally by just typing “R” followed by the error message into Google), e.g. <code>R Error in eval(expr, envir, enclos): object 'b' not found</code>.</p>
 <p>Another useful source of information is <a href="https://stackoverflow.com/">StackOverflow</a> which is a public collection of coding questions and answers. If you’ve come across a challenging error, there’s a high probability that someone else has also encountered the same error, and there may be a solution already available.</p>
@@ -330,7 +348,7 @@ Hydrological analysis in R
 <img src="figures/Using-R/RStudio_elements.png" id="workspace" />
 </p>
 <p>In the <strong>console window</strong>, commands can be typed and results returned. For example, typing the following command into the console:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="Intro_to_R.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="Intro_to_R.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div>
 <p>produces:</p>
 <pre><code>## [1] 3</code></pre>
 <blockquote>
@@ -341,10 +359,10 @@ Hydrological analysis in R
 </div>
 <div id="variables" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Variables</h2>
-<p>One of the most important things to know about in R is the <strong>variable</strong> or <strong>object</strong>. In this set of practicals, we use the term “variable,” which is more common across different programming languages. Variables are containers that you can store values in, and then refer to again later.
+<p>One of the most important things to know about in R is the <strong>variable</strong> or <strong>object</strong>. In this set of practicals, we use the term “variable”, which is more common across different programming languages. Variables are containers that you can store values in, and then refer to again later.
 R creates variables for you automatically, so all that is required is to name it and then use the <strong>assignment operator</strong> <code>&lt;-</code> to assign a value to it.</p>
 <p>As a general rule (and because of complicated reasons), use <code>&lt;-</code> for assignment, as shown below, and <strong>don’t</strong> use <code>=</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="Intro_to_R.html#cb7-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="Intro_to_R.html#cb10-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span></code></pre></div>
 <blockquote>
 <p>Run the above code. This assigns the value of “3” to a variable named “b”:</p>
 </blockquote>
@@ -356,13 +374,13 @@ R creates variables for you automatically, so all that is required is to name it
 <blockquote>
 <p>Run the following in the console. Does it work as expected?</p>
 </blockquote>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="Intro_to_R.html#cb8-1" aria-hidden="true" tabindex="-1"></a>b <span class="sc">+</span> <span class="dv">5</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="Intro_to_R.html#cb11-1" aria-hidden="true" tabindex="-1"></a>b <span class="sc">+</span> <span class="dv">5</span></span></code></pre></div>
 <p>There are number of benefits to using variables. For example, take the following:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="Intro_to_R.html#cb9-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb9-2"><a href="Intro_to_R.html#cb9-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb9-3"><a href="Intro_to_R.html#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="Intro_to_R.html#cb9-4" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> (<span class="fu">sqrt</span>(a) <span class="sc">+</span> <span class="fu">log</span>(b))<span class="sc">^</span>a <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>b</span>
-<span id="cb9-5"><a href="Intro_to_R.html#cb9-5" aria-hidden="true" tabindex="-1"></a>result <span class="co"># Typing the name of a variable (&#39;result&#39;) prints it in the Console Window</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="Intro_to_R.html#cb12-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb12-2"><a href="Intro_to_R.html#cb12-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb12-3"><a href="Intro_to_R.html#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="Intro_to_R.html#cb12-4" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> (<span class="fu">sqrt</span>(a) <span class="sc">+</span> <span class="fu">log</span>(b))<span class="sc">^</span>a <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>b</span>
+<span id="cb12-5"><a href="Intro_to_R.html#cb12-5" aria-hidden="true" tabindex="-1"></a>result <span class="co"># Typing the name of a variable (&#39;result&#39;) prints it in the Console Window</span></span></code></pre></div>
 <pre><code>## [1] 1945.905</code></pre>
 <p>This is a relatively complicated mathematical formula! It uses a square root <code>sqrt()</code> and logarithm <code>log()</code> function, as well as multiplication <code>*</code> and powers <code>^</code>. We could replicate this result by substituting each value of <strong>a</strong> for 5 and each value of <strong>b</strong> for 10, but this would be time consuming and prone to error, and would be very frustrating if we wanted to re-calculate the result for <code>a = 6</code> and <code>b = 11</code>! Using variables allows us to use and modify values multiple times within the code.</p>
 <blockquote>
@@ -370,23 +388,23 @@ R creates variables for you automatically, so all that is required is to name it
 </blockquote>
 <p>Using variables is also important for <a href="Intro_to_R.html#why_code"><strong>repeatability</strong></a>.</p>
 <p>Let’s say we want to calculate the sum of the squares from 1 to 5 i.e. <span class="math inline">\(1^2 + 2^2 + 3^2 + 4^2 +5^2\)</span>. We could write this numerically in R as follows:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="Intro_to_R.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span><span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span><span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">4</span><span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">5</span><span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="Intro_to_R.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span><span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span><span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">4</span><span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">5</span><span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
 <p>This produces the current result:</p>
 <pre><code>## [1] 55</code></pre>
 <p>However, what if wanted to perform this calculation for all the numbers from 1 to 50 i.e. <span class="math inline">\(1^2 + 2^2 + 3^2 + ... + 50^2\)</span>?</p>
 <p>What if we wanted to cube each value (i.e. <span class="math inline">\(n^3\)</span>), rather than squaring? Either change would require a great deal of manual editing, with lots of potential for error.</p>
 <p>By comparison, using variables allows us to <strong>loop</strong> (or iterate) through a series of calculations. The code below creates a variable called <code>result</code> and loops through a sequence of numbers using <code>seq()</code> to perform the above calculation, where the variable <code>i</code> is updated each iteration.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="Intro_to_R.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialises a variable called result, with a value of 0</span></span>
-<span id="cb13-2"><a href="Intro_to_R.html#cb13-2" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb13-3"><a href="Intro_to_R.html#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="Intro_to_R.html#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Loops through a sequence from 1 to 5 in increments of 1 (i.e. 1, 2, 3, 4, 5)</span></span>
-<span id="cb13-5"><a href="Intro_to_R.html#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">by =</span> <span class="dv">1</span>)){</span>
-<span id="cb13-6"><a href="Intro_to_R.html#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Squares each number (i) and adds to result</span></span>
-<span id="cb13-7"><a href="Intro_to_R.html#cb13-7" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> result <span class="sc">+</span> i<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb13-8"><a href="Intro_to_R.html#cb13-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb13-9"><a href="Intro_to_R.html#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-10"><a href="Intro_to_R.html#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Prints variable &#39;result&#39; to the Console Window</span></span>
-<span id="cb13-11"><a href="Intro_to_R.html#cb13-11" aria-hidden="true" tabindex="-1"></a>result</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="Intro_to_R.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialises a variable called result, with a value of 0</span></span>
+<span id="cb16-2"><a href="Intro_to_R.html#cb16-2" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb16-3"><a href="Intro_to_R.html#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="Intro_to_R.html#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Loops through a sequence from 1 to 5 in increments of 1 (i.e. 1, 2, 3, 4, 5)</span></span>
+<span id="cb16-5"><a href="Intro_to_R.html#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">by =</span> <span class="dv">1</span>)){</span>
+<span id="cb16-6"><a href="Intro_to_R.html#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Squares each number (i) and adds to result</span></span>
+<span id="cb16-7"><a href="Intro_to_R.html#cb16-7" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> result <span class="sc">+</span> i<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb16-8"><a href="Intro_to_R.html#cb16-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-9"><a href="Intro_to_R.html#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="Intro_to_R.html#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Prints variable &#39;result&#39; to the Console Window</span></span>
+<span id="cb16-11"><a href="Intro_to_R.html#cb16-11" aria-hidden="true" tabindex="-1"></a>result</span></code></pre></div>
 <pre><code>## [1] 55</code></pre>
 <blockquote>
 <p>Run the above code in the console. Try to modify the code to perform the calculation for 1 - 50; this should equal <span class="math inline">\(42925\)</span></p>
@@ -406,27 +424,27 @@ R creates variables for you automatically, so all that is required is to name it
 <div id="variables_types" class="section level3" number="3.3.2">
 <h3><span class="header-section-number">3.3.2</span> Variable types</h3>
 <p>Each variable will have a particular <strong>type</strong>, which specifies what kind of a value it can hold. Whilst this is handled automatically for you by R, it is important that you understand what the different types are. Here are some common examples:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="Intro_to_R.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Character i.e. a string of letters, numbers and/or characters</span></span>
-<span id="cb15-2"><a href="Intro_to_R.html#cb15-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="st">&quot;Bill&quot;</span></span>
-<span id="cb15-3"><a href="Intro_to_R.html#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-4"><a href="Intro_to_R.html#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Numeric i.e. a number with decimals</span></span>
-<span id="cb15-5"><a href="Intro_to_R.html#cb15-5" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fl">3.567</span></span>
-<span id="cb15-6"><a href="Intro_to_R.html#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="Intro_to_R.html#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Integer</span></span>
-<span id="cb15-8"><a href="Intro_to_R.html#cb15-8" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb15-9"><a href="Intro_to_R.html#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-10"><a href="Intro_to_R.html#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Logical i.e. TRUE or FALSE</span></span>
-<span id="cb15-11"><a href="Intro_to_R.html#cb15-11" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="Intro_to_R.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Character i.e. a string of letters, numbers and/or characters</span></span>
+<span id="cb18-2"><a href="Intro_to_R.html#cb18-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="st">&quot;Bill&quot;</span></span>
+<span id="cb18-3"><a href="Intro_to_R.html#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="Intro_to_R.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Numeric i.e. a number with decimals</span></span>
+<span id="cb18-5"><a href="Intro_to_R.html#cb18-5" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fl">3.567</span></span>
+<span id="cb18-6"><a href="Intro_to_R.html#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="Intro_to_R.html#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Integer</span></span>
+<span id="cb18-8"><a href="Intro_to_R.html#cb18-8" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb18-9"><a href="Intro_to_R.html#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="Intro_to_R.html#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Logical i.e. TRUE or FALSE</span></span>
+<span id="cb18-11"><a href="Intro_to_R.html#cb18-11" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span></code></pre></div>
 <blockquote>
 <p>Run the above code. If successful, your workspace should now include the variables <code>a, b, c, d</code>.</p>
 </blockquote>
 <p>Some data types are compatible e.g. </p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="Intro_to_R.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Numeric + integer</span></span>
-<span id="cb16-2"><a href="Intro_to_R.html#cb16-2" aria-hidden="true" tabindex="-1"></a>b <span class="sc">+</span> c</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="Intro_to_R.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Numeric + integer</span></span>
+<span id="cb19-2"><a href="Intro_to_R.html#cb19-2" aria-hidden="true" tabindex="-1"></a>b <span class="sc">+</span> c</span></code></pre></div>
 <pre><code>## [1] 6.567</code></pre>
 <p>But others are not!</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="Intro_to_R.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Numeric + character</span></span>
-<span id="cb18-2"><a href="Intro_to_R.html#cb18-2" aria-hidden="true" tabindex="-1"></a>b <span class="sc">+</span> a</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="Intro_to_R.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Numeric + character</span></span>
+<span id="cb21-2"><a href="Intro_to_R.html#cb21-2" aria-hidden="true" tabindex="-1"></a>b <span class="sc">+</span> a</span></code></pre></div>
 <pre><code>## Error in b + a: non-numeric argument to binary operator</code></pre>
 <blockquote>
 <p>Can you understand the error message above? Why does b + a produces an error?</p>
@@ -440,38 +458,38 @@ R creates variables for you automatically, so all that is required is to name it
 <div id="vectors" class="section level3" number="3.4.1">
 <h3><span class="header-section-number">3.4.1</span> Vectors</h3>
 <p>One of the simplest structures is the <strong>vector</strong>, which contains multiple elements of the same type. These are typically created using the command <code>c()</code>:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="Intro_to_R.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a vector (v) of the numbers 1 - 5</span></span>
-<span id="cb20-2"><a href="Intro_to_R.html#cb20-2" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
-<span id="cb20-3"><a href="Intro_to_R.html#cb20-3" aria-hidden="true" tabindex="-1"></a>v</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="Intro_to_R.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a vector (v) of the numbers 1 - 5</span></span>
+<span id="cb23-2"><a href="Intro_to_R.html#cb23-2" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb23-3"><a href="Intro_to_R.html#cb23-3" aria-hidden="true" tabindex="-1"></a>v</span></code></pre></div>
 <pre><code>## [1] 1 2 3 4 5</code></pre>
 <p>As a vector <strong>must</strong> have elements of the same type, R will try and coerce elements to the same type:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="Intro_to_R.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a mixed vector (m) containing numeric (1,2), character (&quot;Bill&quot;, &quot;Ben&quot;) and logical elements (TRUE)</span></span>
-<span id="cb22-2"><a href="Intro_to_R.html#cb22-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&quot;Bill&quot;</span>, <span class="st">&quot;Ben&quot;</span>, <span class="cn">TRUE</span>)</span>
-<span id="cb22-3"><a href="Intro_to_R.html#cb22-3" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="Intro_to_R.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a mixed vector (m) containing numeric (1,2), character (&quot;Bill&quot;, &quot;Ben&quot;) and logical elements (TRUE)</span></span>
+<span id="cb25-2"><a href="Intro_to_R.html#cb25-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&quot;Bill&quot;</span>, <span class="st">&quot;Ben&quot;</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb25-3"><a href="Intro_to_R.html#cb25-3" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div>
 <pre><code>## [1] &quot;1&quot;    &quot;2&quot;    &quot;Bill&quot; &quot;Ben&quot;  &quot;TRUE&quot;</code></pre>
 <p>In the above example, the numeric and logical elements have been coerced to characters, as signified by these elements being enclosed by quotation marks <code>" "</code>.</p>
 <p>We can also create vectors programmatically, rather than manually defining each element. For example, we can generate sequences using <code>seq()</code> or repetitive sequences using <code>rep()</code>:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="Intro_to_R.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a sequence from 1 to 5, in increments of 1</span></span>
-<span id="cb24-2"><a href="Intro_to_R.html#cb24-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
-<span id="cb24-3"><a href="Intro_to_R.html#cb24-3" aria-hidden="true" tabindex="-1"></a>s</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="Intro_to_R.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a sequence from 1 to 5, in increments of 1</span></span>
+<span id="cb27-2"><a href="Intro_to_R.html#cb27-2" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
+<span id="cb27-3"><a href="Intro_to_R.html#cb27-3" aria-hidden="true" tabindex="-1"></a>s</span></code></pre></div>
 <pre><code>## [1] 1 2 3 4 5</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="Intro_to_R.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a vector of length 5, consisting of the value 10</span></span>
-<span id="cb26-2"><a href="Intro_to_R.html#cb26-2" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">10</span>, <span class="at">times =</span> <span class="dv">5</span>)</span>
-<span id="cb26-3"><a href="Intro_to_R.html#cb26-3" aria-hidden="true" tabindex="-1"></a>r</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="Intro_to_R.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creating a vector of length 5, consisting of the value 10</span></span>
+<span id="cb29-2"><a href="Intro_to_R.html#cb29-2" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">10</span>, <span class="at">times =</span> <span class="dv">5</span>)</span>
+<span id="cb29-3"><a href="Intro_to_R.html#cb29-3" aria-hidden="true" tabindex="-1"></a>r</span></code></pre></div>
 <pre><code>## [1] 10 10 10 10 10</code></pre>
 </div>
 <div id="data_frames" class="section level3" number="3.4.2">
 <h3><span class="header-section-number">3.4.2</span> Data frames</h3>
 <p>Other common R data structures include <strong>matrices</strong>, <strong>lists</strong> and <strong>data frames</strong>. The data frame is the most commonly used structure for tabular data and will be familiar to those of you with experience in Microsoft Excel. Here is an example data frame, which is created by combining existing vectors of the same length:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="Intro_to_R.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create numeric, character and logical vectors</span></span>
-<span id="cb28-2"><a href="Intro_to_R.html#cb28-2" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Eric&quot;</span>, <span class="st">&quot;Michael&quot;</span>, <span class="st">&quot;Graham&quot;</span>, <span class="st">&quot;Terry&quot;</span>, <span class="st">&quot;Terry&quot;</span>)</span>
-<span id="cb28-3"><a href="Intro_to_R.html#cb28-3" aria-hidden="true" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.96</span>, <span class="fl">1.85</span>, <span class="fl">1.78</span>, <span class="fl">1.88</span>, <span class="fl">1.75</span>, <span class="fl">1.73</span>)</span>
-<span id="cb28-4"><a href="Intro_to_R.html#cb28-4" aria-hidden="true" tabindex="-1"></a>nationality <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;British&quot;</span>, <span class="st">&quot;British&quot;</span>, <span class="st">&quot;British&quot;</span>, <span class="st">&quot;British&quot;</span>, <span class="st">&quot;American&quot;</span>, <span class="st">&quot;British&quot;</span>)</span>
-<span id="cb28-5"><a href="Intro_to_R.html#cb28-5" aria-hidden="true" tabindex="-1"></a>bereft_of_life <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
-<span id="cb28-6"><a href="Intro_to_R.html#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-7"><a href="Intro_to_R.html#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Combines into a data frame</span></span>
-<span id="cb28-8"><a href="Intro_to_R.html#cb28-8" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(name, height, nationality, bereft_of_life)</span>
-<span id="cb28-9"><a href="Intro_to_R.html#cb28-9" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="Intro_to_R.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create numeric, character and logical vectors</span></span>
+<span id="cb31-2"><a href="Intro_to_R.html#cb31-2" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Eric&quot;</span>, <span class="st">&quot;Michael&quot;</span>, <span class="st">&quot;Graham&quot;</span>, <span class="st">&quot;Terry&quot;</span>, <span class="st">&quot;Terry&quot;</span>)</span>
+<span id="cb31-3"><a href="Intro_to_R.html#cb31-3" aria-hidden="true" tabindex="-1"></a>height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.96</span>, <span class="fl">1.85</span>, <span class="fl">1.78</span>, <span class="fl">1.88</span>, <span class="fl">1.75</span>, <span class="fl">1.73</span>)</span>
+<span id="cb31-4"><a href="Intro_to_R.html#cb31-4" aria-hidden="true" tabindex="-1"></a>nationality <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;British&quot;</span>, <span class="st">&quot;British&quot;</span>, <span class="st">&quot;British&quot;</span>, <span class="st">&quot;British&quot;</span>, <span class="st">&quot;American&quot;</span>, <span class="st">&quot;British&quot;</span>)</span>
+<span id="cb31-5"><a href="Intro_to_R.html#cb31-5" aria-hidden="true" tabindex="-1"></a>bereft_of_life <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb31-6"><a href="Intro_to_R.html#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="Intro_to_R.html#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Combines into a data frame</span></span>
+<span id="cb31-8"><a href="Intro_to_R.html#cb31-8" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(name, height, nationality, bereft_of_life)</span>
+<span id="cb31-9"><a href="Intro_to_R.html#cb31-9" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>##      name height nationality bereft_of_life
 ## 1    John   1.96     British          FALSE
 ## 2    Eric   1.85     British          FALSE
@@ -483,22 +501,22 @@ R creates variables for you automatically, so all that is required is to name it
 <p>Run the above code in your R console</p>
 </blockquote>
 <p>We’ll be working with data frames throughout the practicals, so it will be useful to know that we can access data frame elements in a variety of different ways. We can access individual columns of a data frame using the <code>$</code> operator, for example:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="Intro_to_R.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the &quot;name&quot; column</span></span>
-<span id="cb30-2"><a href="Intro_to_R.html#cb30-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>name</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="Intro_to_R.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the &quot;name&quot; column</span></span>
+<span id="cb33-2"><a href="Intro_to_R.html#cb33-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>name</span></code></pre></div>
 <pre><code>## [1] &quot;John&quot;    &quot;Eric&quot;    &quot;Michael&quot; &quot;Graham&quot;  &quot;Terry&quot;   &quot;Terry&quot;</code></pre>
 <p>We can also extract using <strong>indexing</strong>, which requires us to provide the row and columns indexes in the following format: <code>df[row.index, column.index]</code></p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="Intro_to_R.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the element at row 3, column 4</span></span>
-<span id="cb32-2"><a href="Intro_to_R.html#cb32-2" aria-hidden="true" tabindex="-1"></a>df[<span class="dv">3</span>,<span class="dv">4</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="Intro_to_R.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract the element at row 3, column 4</span></span>
+<span id="cb35-2"><a href="Intro_to_R.html#cb35-2" aria-hidden="true" tabindex="-1"></a>df[<span class="dv">3</span>,<span class="dv">4</span>]</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="Intro_to_R.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract rows 1 to 4, all columns</span></span>
-<span id="cb34-2"><a href="Intro_to_R.html#cb34-2" aria-hidden="true" tabindex="-1"></a>df[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,] </span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="Intro_to_R.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract rows 1 to 4, all columns</span></span>
+<span id="cb37-2"><a href="Intro_to_R.html#cb37-2" aria-hidden="true" tabindex="-1"></a>df[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,] </span></code></pre></div>
 <pre><code>##      name height nationality bereft_of_life
 ## 1    John   1.96     British          FALSE
 ## 2    Eric   1.85     British          FALSE
 ## 3 Michael   1.78     British          FALSE
 ## 4  Graham   1.88     British           TRUE</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="Intro_to_R.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extracts all rows, the second and third columns</span></span>
-<span id="cb36-2"><a href="Intro_to_R.html#cb36-2" aria-hidden="true" tabindex="-1"></a>df[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="Intro_to_R.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extracts all rows, the second and third columns</span></span>
+<span id="cb39-2"><a href="Intro_to_R.html#cb39-2" aria-hidden="true" tabindex="-1"></a>df[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]</span></code></pre></div>
 <pre><code>##   height nationality
 ## 1   1.96     British
 ## 2   1.85     British
@@ -507,22 +525,22 @@ R creates variables for you automatically, so all that is required is to name it
 ## 5   1.75    American
 ## 6   1.73     British</code></pre>
 <p>We can also extract rows and columns based on the values within the data frame, for example using the <code>subset()</code> function. This can be used to select and exclude variables and observations as follows:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="Intro_to_R.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract data frame rows where height is more than or equal to (&gt;=) 1.8 m. </span></span>
-<span id="cb38-2"><a href="Intro_to_R.html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(df, height <span class="sc">&gt;=</span> <span class="fl">1.8</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="Intro_to_R.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract data frame rows where height is more than or equal to (&gt;=) 1.8 m. </span></span>
+<span id="cb41-2"><a href="Intro_to_R.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(df, height <span class="sc">&gt;=</span> <span class="fl">1.8</span>) </span></code></pre></div>
 <pre><code>##     name height nationality bereft_of_life
 ## 1   John   1.96     British          FALSE
 ## 2   Eric   1.85     British          FALSE
 ## 4 Graham   1.88     British           TRUE</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="Intro_to_R.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract data frames rows where nationality is not equal to (!=) American</span></span>
-<span id="cb40-2"><a href="Intro_to_R.html#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(df, nationality <span class="sc">!=</span> <span class="st">&quot;American&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="Intro_to_R.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract data frames rows where nationality is not equal to (!=) American</span></span>
+<span id="cb43-2"><a href="Intro_to_R.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(df, nationality <span class="sc">!=</span> <span class="st">&quot;American&quot;</span>)</span></code></pre></div>
 <pre><code>##      name height nationality bereft_of_life
 ## 1    John   1.96     British          FALSE
 ## 2    Eric   1.85     British          FALSE
 ## 3 Michael   1.78     British          FALSE
 ## 4  Graham   1.88     British           TRUE
 ## 6   Terry   1.73     British           TRUE</code></pre>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="Intro_to_R.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract data frames rows where bereft_of_life is equal to (==) FALSE</span></span>
-<span id="cb42-2"><a href="Intro_to_R.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(df, bereft_of_life <span class="sc">==</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="Intro_to_R.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract data frames rows where bereft_of_life is equal to (==) FALSE</span></span>
+<span id="cb45-2"><a href="Intro_to_R.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(df, bereft_of_life <span class="sc">==</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>##      name height nationality bereft_of_life
 ## 1    John   1.96     British          FALSE
 ## 2    Eric   1.85     British          FALSE
@@ -563,14 +581,14 @@ This is <strong>not</strong> an exhaustive list of R functions, and we’ll cove
 <blockquote>
 <p>Below is some uncommented code. Copy and paste into your script and add some comments to describe what is taking place.</p>
 </blockquote>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="Intro_to_R.html#cb45-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">10</span>)</span>
-<span id="cb45-2"><a href="Intro_to_R.html#cb45-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> a<span class="sc">/</span><span class="dv">10</span></span>
-<span id="cb45-3"><a href="Intro_to_R.html#cb45-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> b<span class="sc">*</span>a</span>
-<span id="cb45-4"><a href="Intro_to_R.html#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c, a)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="Intro_to_R.html#cb48-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">10</span>, <span class="dv">100</span>, <span class="dv">10</span>)</span>
+<span id="cb48-2"><a href="Intro_to_R.html#cb48-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> a<span class="sc">/</span><span class="dv">10</span></span>
+<span id="cb48-3"><a href="Intro_to_R.html#cb48-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> b<span class="sc">*</span>a</span>
+<span id="cb48-4"><a href="Intro_to_R.html#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(c, a)</span></code></pre></div>
 <blockquote>
 <p>The above code is our first encounter with <code>plot()</code> which (as you may have guessed), is used to plot variables in base R.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> The new plot you’ve created should now appear in the <strong>plots window</strong> and should resemble the following figure. There are lots of more exciting ways to plot data in R, some of which are described <a href="Intro_to_R.html#data_plotting">below</a>.</p>
 </blockquote>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 <p>As a general rule, well-presented code would typically comprise:</p>
 <ul>
 <li>1/3 code;</li>
@@ -593,11 +611,11 @@ This is <strong>not</strong> an exhaustive list of R functions, and we’ll cove
 </p>
 <p><strong>BBC graphics created using ggplot2</strong>. See <a href="https://bbc.github.io/rcookbook/">here</a> for details.</p>
 <p>We can install the package using the helpfully named function <code>install.packages()</code> as follows:</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="Intro_to_R.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to install packages. Name of package enclosed by quotation marks. </span></span>
-<span id="cb46-2"><a href="Intro_to_R.html#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="Intro_to_R.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to install packages. Name of package enclosed by quotation marks. </span></span>
+<span id="cb49-2"><a href="Intro_to_R.html#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
 <p>This function installs the package to your computer, but before we can use it, it needs to be activated within your current R session. This can be achieved by adding it to the <code>library()</code> as follows:</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="Intro_to_R.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to add package to the library (no quotation marks)</span></span>
-<span id="cb47-2"><a href="Intro_to_R.html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="Intro_to_R.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to add package to the library (no quotation marks)</span></span>
+<span id="cb50-2"><a href="Intro_to_R.html#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
 <blockquote>
 <p>Copy and paste the two code snippets above into your script and run to install and load ggplot2.</p>
 </blockquote>
@@ -612,17 +630,17 @@ This is <strong>not</strong> an exhaustive list of R functions, and we’ll cove
 <p>Press <strong>No</strong>. The following message will appear in the console: <code>Warning in install.packages : package ‘ggplot2’ is in use and will not be installed</code></p>
 </blockquote>
 <p>We can address this issue by using a user-defined <strong>function</strong> (called <code>check.packages</code>) to check whether a package is already installed. If it <strong>is</strong> installed, R will skip the installation. If it is <strong>not</strong> installed, R will install as normal. This function is similar to the functions we’ve been using before, such as <code>sqrt()</code> or <code>seq()</code>, which are available by default in base R; the difference is it’s been written from scratch!</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="Intro_to_R.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to check and install packages</span></span>
-<span id="cb48-2"><a href="Intro_to_R.html#cb48-2" aria-hidden="true" tabindex="-1"></a>check.packages <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg){</span>
-<span id="cb48-3"><a href="Intro_to_R.html#cb48-3" aria-hidden="true" tabindex="-1"></a>  new.pkg <span class="ot">&lt;-</span> pkg[<span class="sc">!</span>(pkg <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
-<span id="cb48-4"><a href="Intro_to_R.html#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(new.pkg)) </span>
-<span id="cb48-5"><a href="Intro_to_R.html#cb48-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(new.pkg, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb48-6"><a href="Intro_to_R.html#cb48-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sapply</span>(pkg, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb48-7"><a href="Intro_to_R.html#cb48-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb48-8"><a href="Intro_to_R.html#cb48-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-9"><a href="Intro_to_R.html#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Checks and installs packages</span></span>
-<span id="cb48-10"><a href="Intro_to_R.html#cb48-10" aria-hidden="true" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
-<span id="cb48-11"><a href="Intro_to_R.html#cb48-11" aria-hidden="true" tabindex="-1"></a><span class="fu">check.packages</span>(packages)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="Intro_to_R.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to check and install packages</span></span>
+<span id="cb51-2"><a href="Intro_to_R.html#cb51-2" aria-hidden="true" tabindex="-1"></a>check.packages <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg){</span>
+<span id="cb51-3"><a href="Intro_to_R.html#cb51-3" aria-hidden="true" tabindex="-1"></a>  new.pkg <span class="ot">&lt;-</span> pkg[<span class="sc">!</span>(pkg <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
+<span id="cb51-4"><a href="Intro_to_R.html#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(new.pkg)) </span>
+<span id="cb51-5"><a href="Intro_to_R.html#cb51-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(new.pkg, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb51-6"><a href="Intro_to_R.html#cb51-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sapply</span>(pkg, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb51-7"><a href="Intro_to_R.html#cb51-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb51-8"><a href="Intro_to_R.html#cb51-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-9"><a href="Intro_to_R.html#cb51-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Checks and installs packages</span></span>
+<span id="cb51-10"><a href="Intro_to_R.html#cb51-10" aria-hidden="true" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
+<span id="cb51-11"><a href="Intro_to_R.html#cb51-11" aria-hidden="true" tabindex="-1"></a><span class="fu">check.packages</span>(packages)</span></code></pre></div>
 <blockquote>
 <p>Copy and paste the above code at the <strong>start</strong> of your R run script, removing the previous <code>install.packages()</code> and <code>library()</code> commands. Re-run the code.</p>
 </blockquote>
@@ -634,10 +652,10 @@ This is <strong>not</strong> an exhaustive list of R functions, and we’ll cove
 <p>In the final two sections of this chapter, we will load some data from a external file and plot using ggplot2.</p>
 <p>In the previous examples, we’ve been creating variables, vectors and data frames from scratch, but most data you will work with will be saved in another file format. This could be a comma-separated file (<code>.csv</code>), tab-delimited (<code>.txt</code>) or in an Excel format (<code>.xls</code>), or could be a spatial data type, such as a raster (<code>.tif</code>, <code>.asc</code>, <code>.img</code>) or vector (<code>.shp</code>). Being able to load and manipulate different data types is a key programming skill.</p>
 <p>We’ll use one of the most well-used formats as an example; the comma-separated file (.csv). This consists of rows and columns of data, where columns are delineated by commas. For example, here is an example of some comma-separated data:</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="Intro_to_R.html#cb49-1" aria-hidden="true" tabindex="-1"></a>name,age,height,year_of_birth,instrument</span>
-<span id="cb49-2"><a href="Intro_to_R.html#cb49-2" aria-hidden="true" tabindex="-1"></a>stewart,<span class="dv">69</span>,<span class="fl">1.87</span>,<span class="dv">1952</span>,drums</span>
-<span id="cb49-3"><a href="Intro_to_R.html#cb49-3" aria-hidden="true" tabindex="-1"></a>andy,<span class="dv">78</span>,<span class="fl">1.70</span>,<span class="dv">1942</span>,guitar</span>
-<span id="cb49-4"><a href="Intro_to_R.html#cb49-4" aria-hidden="true" tabindex="-1"></a>gordon,<span class="dv">69</span>,<span class="fl">1.81</span>,<span class="dv">1951</span>,vocals</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="Intro_to_R.html#cb52-1" aria-hidden="true" tabindex="-1"></a>name,age,height,year_of_birth,instrument</span>
+<span id="cb52-2"><a href="Intro_to_R.html#cb52-2" aria-hidden="true" tabindex="-1"></a>stewart,<span class="dv">69</span>,<span class="fl">1.87</span>,<span class="dv">1952</span>,drums</span>
+<span id="cb52-3"><a href="Intro_to_R.html#cb52-3" aria-hidden="true" tabindex="-1"></a>andy,<span class="dv">78</span>,<span class="fl">1.70</span>,<span class="dv">1942</span>,guitar</span>
+<span id="cb52-4"><a href="Intro_to_R.html#cb52-4" aria-hidden="true" tabindex="-1"></a>gordon,<span class="dv">69</span>,<span class="fl">1.81</span>,<span class="dv">1951</span>,vocals</span></code></pre></div>
 <p>When read by R, it is interpreted as follows, splitting columns based on the occurrence of commas, and using the first row as column names:</p>
 <table>
 <thead>
@@ -681,39 +699,39 @@ This is <strong>not</strong> an exhaustive list of R functions, and we’ll cove
 <img src="figures/Using-R/file_paths.png" />
 </p>
 <p>For the final two sections of this Chapter (and the <a href="Intro_to_R.html#formative_task">formative task</a>), we’ll using a data file called <code>flow_data.csv</code> which contains the average daily river flow (m<sup>3</sup> per second) from the <a href="https://nrfa.ceh.ac.uk/">National River Flow Archive</a> and the <a href="https://www.ceh.ac.uk/">UK Centre for Ecology &amp; Hydrology</a>. The data are from monitoring station <a href="https://nrfa.ceh.ac.uk/data/station/meanflow/90003">90003</a> on the River Nevis (shown below), which drains Ben Nevis, the highest mountain in the UK, and cover the period from the 1<sup>st</sup> October 1982 to the 30<sup>th</sup> September 2019.</p>
-<div id="htmlwidget-4f6d1a7e9817c59d4fd0" style="width:672px;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4f6d1a7e9817c59d4fd0">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"setView":[[56.8038334722105,-5.05921372803896],12,[]],"calls":[{"method":"addProviderTiles","args":["OpenTopoMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addMarkers","args":[56.8216488357479,-5.08991298435949,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"Station 90003: Glen Nevis",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addAwesomeMarkers","args":[56.7966437601099,-5.00345669691471,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"Ben Nevis (1345 m)",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[56.7966437601099,56.8216488357479],"lng":[-5.08991298435949,-5.00345669691471]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-6d6e0a901d76d487d336" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6d6e0a901d76d487d336">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"setView":[[56.8038334722105,-5.05921372803896],12,[]],"calls":[{"method":"addProviderTiles","args":["OpenTopoMap",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addMarkers","args":[56.8216488357479,-5.08991298435949,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"Station 90003: Glen Nevis",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addAwesomeMarkers","args":[56.7966437601099,-5.00345669691471,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"Ben Nevis (1345 m)",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[56.7966437601099,56.8216488357479],"lng":[-5.08991298435949,-5.00345669691471]}},"evals":[],"jsHooks":[]}</script>
 <p><br/></p>
 <p>The file path to your file might read as follows (if your name was Bill): <code>C:\Users\Bill\GEOG-70581\data\flow_data.csv</code></p>
 <p>To load this file into R:</p>
 <blockquote>
 <p>Copy and paste this file path into your script, enclosing the file path within quotation marks. <strong>Importantly</strong>, R uses forward slashes within file paths <code>/</code>, whereas the file path in your file explorer probably uses backslashes <code>\</code>, so these will need to be swapped.</p>
 </blockquote>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="Intro_to_R.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data</span></span>
-<span id="cb50-2"><a href="Intro_to_R.html#cb50-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;C:/Users/Bill/Documents/GEOG-70581/data/flow_data.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="Intro_to_R.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data</span></span>
+<span id="cb53-2"><a href="Intro_to_R.html#cb53-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;C:/Users/Bill/Documents/GEOG-70581/data/flow_data.csv&quot;</span>)</span></code></pre></div>
 <p>If this has worked successfully, a new variable <code>df</code> will have been loaded into the <strong>workspace</strong>:</p>
 <p align="center">
 <img src="figures/Using-R/loading_data_from_csv.png" />
 </p>
 <p>As you may have noticed, this is not the most elegant way to load data, as it requires us to copy, paste <em><strong>and</strong></em> edit the full file path each time. This would quickly become tiring if we wanted to load multiple data sets. In Practical 1, we’ll guide you through a solution using R <strong>projects</strong> and the <a href="Eskdale_set_up.html#R_Projects"><strong>here</strong> package</a> but as ever, it is important to understand the basics before moving on to more sophisticated solutions.</p>
 <p>We can use a variety of commands to inspect this new data set, including:</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="Intro_to_R.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span>
-<span id="cb51-2"><a href="Intro_to_R.html#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-3"><a href="Intro_to_R.html#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df)</span>
-<span id="cb51-4"><a href="Intro_to_R.html#cb51-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-5"><a href="Intro_to_R.html#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="Intro_to_R.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span>
+<span id="cb54-2"><a href="Intro_to_R.html#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="Intro_to_R.html#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df)</span>
+<span id="cb54-4"><a href="Intro_to_R.html#cb54-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-5"><a href="Intro_to_R.html#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span></code></pre></div>
 <blockquote>
 <p>Run the above code. What do each of the commands do? <code>head()</code>, <code>colnames()</code>, <code>str()</code> What data <strong>types</strong> do we have in each column? See <a href="Intro_to_R.html#variables_types">here</a> for a reminder. What data <strong>structure</strong> are we working with?</p>
 </blockquote>
 <p>As outlined previously, we can access individual columns of a data frame using the <code>$</code> operator and could start to do some simple analysis using base R functions, such as:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="Intro_to_R.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What is the average daily flow?</span></span>
-<span id="cb52-2"><a href="Intro_to_R.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df<span class="sc">$</span>flow)</span>
-<span id="cb52-3"><a href="Intro_to_R.html#cb52-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-4"><a href="Intro_to_R.html#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="co"># What is the maximum daily flow?</span></span>
-<span id="cb52-5"><a href="Intro_to_R.html#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(df<span class="sc">$</span>flow)</span>
-<span id="cb52-6"><a href="Intro_to_R.html#cb52-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-7"><a href="Intro_to_R.html#cb52-7" aria-hidden="true" tabindex="-1"></a><span class="co"># What is the minimum daily flow?</span></span>
-<span id="cb52-8"><a href="Intro_to_R.html#cb52-8" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(df<span class="sc">$</span>flow)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="Intro_to_R.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What is the average daily flow?</span></span>
+<span id="cb55-2"><a href="Intro_to_R.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df<span class="sc">$</span>flow)</span>
+<span id="cb55-3"><a href="Intro_to_R.html#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-4"><a href="Intro_to_R.html#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="co"># What is the maximum daily flow?</span></span>
+<span id="cb55-5"><a href="Intro_to_R.html#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(df<span class="sc">$</span>flow)</span>
+<span id="cb55-6"><a href="Intro_to_R.html#cb55-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-7"><a href="Intro_to_R.html#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="co"># What is the minimum daily flow?</span></span>
+<span id="cb55-8"><a href="Intro_to_R.html#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(df<span class="sc">$</span>flow)</span></code></pre></div>
 <blockquote>
 <p>Question: What is the <strong>range</strong> of daily flow measurements?</p>
 </blockquote>
@@ -722,8 +740,8 @@ This is <strong>not</strong> an exhaustive list of R functions, and we’ll cove
 <p>The data frame rows which correspond to 2019 are from the 1<sup>st</sup> January [13242] to the 30<sup>th</sup> September [13514]. Extract these rows and all columns using indexing; see <a href="Intro_to_R.html#data_frames">here</a> for a reminder if you get stuck.</p>
 </blockquote>
 <p>You may also have noticed from the <code>str()</code> command that our column of dates (day/month/year) were stored as <strong>characters</strong> e.g. <code>$ date: chr  "01/10/1982"</code>. Working with dates and times is a complicated task (see this <a href="https://www.youtube.com/watch?v=-5wpm-gesOY">Tom Scott</a> video for a light introduction to the problem), so to simplify plotting, we’ll convert these characters e.g. <code>"01/10/1982"</code> into a <strong>date format</strong>. This can be achieved using the following code, which overwrites the date column in the data frame: <code>df$date &lt;-</code> and uses the function <code>as.Date()</code> to define a date format. In this case, our numbers are listed in day, month and then year, which is formatted in R as <code>"%d/%m/%Y"</code>:</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="Intro_to_R.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Converts dates (in character format) to date format</span></span>
-<span id="cb53-2"><a href="Intro_to_R.html#cb53-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(df<span class="sc">$</span>date, <span class="at">format =</span>  <span class="st">&quot;%d/%m/%Y&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="Intro_to_R.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Converts dates (in character format) to date format</span></span>
+<span id="cb56-2"><a href="Intro_to_R.html#cb56-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>date <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(df<span class="sc">$</span>date, <span class="at">format =</span>  <span class="st">&quot;%d/%m/%Y&quot;</span>)</span></code></pre></div>
 <blockquote>
 <p>Once you’ve extracted the flow data corresponding to 2019, run the above code.</p>
 </blockquote>
@@ -735,52 +753,48 @@ This is <strong>not</strong> an exhaustive list of R functions, and we’ll cove
 <p>To finish this chapter, copy and paste the following code elements into your R script in turn and run them. Make sure to <em>read</em> and <em>understand</em> what each step is doing.</p>
 </blockquote>
 <p>To begin, we’re going to create an empty ggplot <strong>canvas</strong> i.e. the blank canvas upon which we can add ggplot elements, such as axes, legends, data, scale bars etc.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="Intro_to_R.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialising an empty canvas</span></span>
-<span id="cb54-2"><a href="Intro_to_R.html#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()</span></code></pre></div>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-38-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Next, we specify which data set we are going to plot. <strong>Note</strong>: ggplot2 works almost exclusively with <strong>data frames</strong>:</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="Intro_to_R.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Which data frame do we want to use?</span></span>
-<span id="cb55-2"><a href="Intro_to_R.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="Intro_to_R.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialising an empty canvas</span></span>
+<span id="cb57-2"><a href="Intro_to_R.html#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()</span></code></pre></div>
 <p><img src="Practical_1_files/figure-html/unnamed-chunk-39-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>With the data frame defined, we now need to specify which columns of date we wish to plot. The code below uses the function <code>mapping=aes()</code>to do so, where the date variable is assigned to the x-axis <code>x=date</code> and the flow rate variable is assigned to the y-axis <code>y=flow</code> using their column names:</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="Intro_to_R.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Which data frame columns do we want to plot?</span></span>
-<span id="cb56-2"><a href="Intro_to_R.html#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>flow))</span></code></pre></div>
+<p>Next, we specify which data set we are going to plot. <strong>Note</strong>: ggplot2 works almost exclusively with <strong>data frames</strong>:</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="Intro_to_R.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Which data frame do we want to use?</span></span>
+<span id="cb58-2"><a href="Intro_to_R.html#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df)</span></code></pre></div>
 <p><img src="Practical_1_files/figure-html/unnamed-chunk-40-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>With the data frame defined, we now need to specify which columns of date we wish to plot. The code below uses the function <code>mapping=aes()</code>to do so, where the date variable is assigned to the x-axis <code>x=date</code> and the flow rate variable is assigned to the y-axis <code>y=flow</code> using their column names:</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="Intro_to_R.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Which data frame columns do we want to plot?</span></span>
+<span id="cb59-2"><a href="Intro_to_R.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>flow))</span></code></pre></div>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-41-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>However, our data are still not visible because we need to select a <strong>geom</strong> type, which is a complicated way of saying the type of geometric object we want to plot. We could plot our data as points, lines or polygons; we could choose a histogram, bar plot, or box and whiskers plot; there are <a href="https://ggplot2.tidyverse.org/reference/">many</a> to choose from!</p>
 <p>In this example, we are going to plot our data as points, which is done using the <code>geom_point()</code> command. As you can see from the code below, the structure differs slightly from normal code, in that ggplot elements are separated by the <code>+</code> operator. This allows the user to add each ggplot element on a separate line of code, thereby improving readability.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="Intro_to_R.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What type of geom do we want?</span></span>
-<span id="cb57-2"><a href="Intro_to_R.html#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>flow)) <span class="sc">+</span></span>
-<span id="cb57-3"><a href="Intro_to_R.html#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-41-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>In the same way, we could also plot the same data as a line, using <code>geom_line()</code>. In this example, both <strong>geoms</strong> are using the same data frame as inputs <code>x=date, y=flow</code>. This is because the data frame and columns have been specified in the initial call to ggplot here: <code>data = df, mapping=aes(x=date, y=flow)</code>. All subsequent geom objects (e.g. points, lines, bar plots…) will these inputs, unless an alternative is specified.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="Intro_to_R.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding a line geom</span></span>
-<span id="cb58-2"><a href="Intro_to_R.html#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>flow)) <span class="sc">+</span></span>
-<span id="cb58-3"><a href="Intro_to_R.html#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb58-4"><a href="Intro_to_R.html#cb58-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="Intro_to_R.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What type of geom do we want?</span></span>
+<span id="cb60-2"><a href="Intro_to_R.html#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>flow)) <span class="sc">+</span></span>
+<span id="cb60-3"><a href="Intro_to_R.html#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="Practical_1_files/figure-html/unnamed-chunk-42-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>The above code covers the basics of ggplot, but we can start to improve the design of our plots. For example, we can choose one of the available <strong>themes</strong>. We could re-order our geoms to show the data points above the line, while adding some colour using <a href="https://htmlcolorcodes.com/">HEX codes</a>. We could change the aspect ratio to produce a square plot and maybe add some axis labels:</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="Intro_to_R.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specifying data frame and columns</span></span>
-<span id="cb59-2"><a href="Intro_to_R.html#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>flow)) <span class="sc">+</span></span>
-<span id="cb59-3"><a href="Intro_to_R.html#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Specifying colours</span></span>
-<span id="cb59-4"><a href="Intro_to_R.html#cb59-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;#56ACFF&quot;</span>) <span class="sc">+</span></span>
-<span id="cb59-5"><a href="Intro_to_R.html#cb59-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;#767676&quot;</span>) <span class="sc">+</span></span>
-<span id="cb59-6"><a href="Intro_to_R.html#cb59-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Adding a ggplot theme</span></span>
-<span id="cb59-7"><a href="Intro_to_R.html#cb59-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb59-8"><a href="Intro_to_R.html#cb59-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Setting the aspect ratio</span></span>
-<span id="cb59-9"><a href="Intro_to_R.html#cb59-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb59-10"><a href="Intro_to_R.html#cb59-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Updating axis labels (including superscript elements)</span></span>
-<span id="cb59-11"><a href="Intro_to_R.html#cb59-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Date (January - October 2019)&quot;</span>, <span class="at">y =</span> <span class="fu">bquote</span>(<span class="st">&#39;Average daily flow&#39;</span><span class="sc">~</span>(m<span class="sc">^</span><span class="dv">3</span><span class="sc">~</span><span class="st">&#39;per second&#39;</span>)))</span></code></pre></div>
+<p>In the same way, we could also plot the same data as a line, using <code>geom_line()</code>. In this example, both <strong>geoms</strong> are using the same data frame as inputs <code>x=date, y=flow</code>. This is because the data frame and columns have been specified in the initial call to ggplot here: <code>data = df, mapping=aes(x=date, y=flow)</code>. All subsequent geom objects (e.g. points, lines, bar plots…) will these inputs, unless an alternative is specified.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="Intro_to_R.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding a line geom</span></span>
+<span id="cb61-2"><a href="Intro_to_R.html#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>flow)) <span class="sc">+</span></span>
+<span id="cb61-3"><a href="Intro_to_R.html#cb61-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb61-4"><a href="Intro_to_R.html#cb61-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
 <p><img src="Practical_1_files/figure-html/unnamed-chunk-43-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The above code covers the basics of ggplot, but we can start to improve the design of our plots. For example, we can choose one of the available <strong>themes</strong>. We could re-order our geoms to show the data points above the line, while adding some colour using <a href="https://htmlcolorcodes.com/">HEX codes</a>. We could change the aspect ratio to produce a square plot and maybe add some axis labels:</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="Intro_to_R.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specifying data frame and columns</span></span>
+<span id="cb62-2"><a href="Intro_to_R.html#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>flow)) <span class="sc">+</span></span>
+<span id="cb62-3"><a href="Intro_to_R.html#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Specifying colours</span></span>
+<span id="cb62-4"><a href="Intro_to_R.html#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;#56ACFF&quot;</span>) <span class="sc">+</span></span>
+<span id="cb62-5"><a href="Intro_to_R.html#cb62-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;#767676&quot;</span>) <span class="sc">+</span></span>
+<span id="cb62-6"><a href="Intro_to_R.html#cb62-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Adding a ggplot theme</span></span>
+<span id="cb62-7"><a href="Intro_to_R.html#cb62-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb62-8"><a href="Intro_to_R.html#cb62-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Setting the aspect ratio</span></span>
+<span id="cb62-9"><a href="Intro_to_R.html#cb62-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb62-10"><a href="Intro_to_R.html#cb62-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Updating axis labels (including superscript elements)</span></span>
+<span id="cb62-11"><a href="Intro_to_R.html#cb62-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Date (January - October 2019)&quot;</span>, <span class="at">y =</span> <span class="fu">bquote</span>(<span class="st">&#39;Average daily flow&#39;</span><span class="sc">~</span>(m<span class="sc">^</span><span class="dv">3</span><span class="sc">~</span><span class="st">&#39;per second&#39;</span>)))</span></code></pre></div>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-44-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Using the above plot, we could start to identify periods of above or below average flow. As a final step, we will probably want to export our figure so that it can be used elsewhere e.g. in the <a href="Assessment.html#Assessment">assessment</a>. To do so, we simply assign our ggplot object to a variable using the assignment operator: <code>&lt;-</code> as normal:</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="Intro_to_R.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign our ggplot object to the variable &quot;g&quot;</span></span>
-<span id="cb60-2"><a href="Intro_to_R.html#cb60-2" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>flow)) <span class="sc">+</span></span>
-<span id="cb60-3"><a href="Intro_to_R.html#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;#56ACFF&quot;</span>) <span class="sc">+</span></span>
-<span id="cb60-4"><a href="Intro_to_R.html#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;#767676&quot;</span>) <span class="sc">+</span></span>
-<span id="cb60-5"><a href="Intro_to_R.html#cb60-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb60-6"><a href="Intro_to_R.html#cb60-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="Intro_to_R.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign our ggplot object to the variable &quot;g&quot;</span></span>
+<span id="cb63-2"><a href="Intro_to_R.html#cb63-2" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>flow)) <span class="sc">+</span> ...</span></code></pre></div>
 <p>Finally, we can save our ggplot object using the <code>ggsave()</code> function, as shown below. This takes in the name of the plot (<code>g</code>), as well as the intended name, extension and file path e.g. <code>"C:/Users/Bill/Documents/GEOG-70581/images/flow_data_2019.png"</code>. In this example, we are saving our output within the <strong>images</strong> sub-directory of GEOG-70581. We have also defined the name of the file <code>flow_data_2019</code> and specified its file type: <code>.png</code> (portable network graphics file). We can also modify other settings, such as the <strong>dpi</strong> which determines the plot resolution. A list of ggsave options can be found <a href="https://ggplot2.tidyverse.org/reference/ggsave.html">here</a>.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="Intro_to_R.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Saves to a png</span></span>
-<span id="cb61-2"><a href="Intro_to_R.html#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">plot =</span> g, <span class="st">&quot;C:/Users/Bill/Documents/GEOG-70581/images/flow_data_2019.png&quot;</span>, <span class="at">dpi =</span> <span class="dv">150</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="Intro_to_R.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Saves to a png</span></span>
+<span id="cb64-2"><a href="Intro_to_R.html#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">plot =</span> g, <span class="st">&quot;C:/Users/Bill/Documents/GEOG-70581/images/flow_data_2019.png&quot;</span>, <span class="at">dpi =</span> <span class="dv">150</span>)</span></code></pre></div>
 <pre><code>## Saving 7 x 5 in image</code></pre>
 <blockquote>
 <p>Run the above code to assign your plot to the variable <code>g</code> and export it to your images folder, <strong>making sure</strong> to update the file path!</p>
@@ -803,7 +817,7 @@ This is <strong>not</strong> an exhaustive list of R functions, and we’ll cove
 <p>Extracts all rows corresponding to the years 2000 to 2019, making sure to convert to date format.</p>
 </blockquote>
 <blockquote>
-<p>Finds the average daily river flow (m<sup>3</sup> per second) <strong>for each month</strong> and plots the result.</p>
+<p>Finds the average daily river flow (m<sup>3</sup> per second) <strong>for each month</strong> and plot the result.</p>
 </blockquote>
 <blockquote>
 <p><strong>Questions</strong>: on average, which month had the <strong>highest</strong> average daily flow and which had the <strong>lowest</strong>?</p>
@@ -811,13 +825,13 @@ This is <strong>not</strong> an exhaustive list of R functions, and we’ll cove
 <p><br/></p>
 <p><strong>Hints and Tips</strong>:</p>
 <p>For general guidance on using ggplot2, see <a href="https://ggplot2.tidyverse.org/reference/">here</a>.</p>
-<p>To extract the month from each record, you may want to use the <code>months()</code> function from base R, while <code>aggregate()</code> (described <a href="https://r-coder.com/aggregate-r/">here</a>) can be used to compute summary statistics (i.e. the mean) based on groups (i.e. each month).</p>
+<p>To extract the month from each record, you may want to use the <code>months()</code> function from base R, while <code>aggregate()</code> (described <a href="https://r-coder.com/aggregate-r/">here</a>) can be used to compute summary statistics (i.e. the mean) based on groups.</p>
 <div id="formative-solution" class="section level3" number="3.9.1">
 <h3><span class="header-section-number">3.9.1</span> Formative solution</h3>
 <p>A code solution to the formative task will be uploaded here on the Monday after the class (22/11/2021).</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="Intro_to_R.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution to the Chapter 3 formative task</span></span>
-<span id="cb63-2"><a href="Intro_to_R.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Author: matt-tomkins</span></span>
-<span id="cb63-3"><a href="Intro_to_R.html#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Date of upload: xx-xx-xxxx</span></span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="Intro_to_R.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution to the Chapter 3 formative task</span></span>
+<span id="cb66-2"><a href="Intro_to_R.html#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Author: matt-tomkins</span></span>
+<span id="cb66-3"><a href="Intro_to_R.html#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Date of upload: xx-xx-xxxx</span></span></code></pre></div>
 
 </div>
 </div>

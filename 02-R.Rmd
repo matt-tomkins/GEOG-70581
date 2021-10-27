@@ -1,5 +1,14 @@
 # A (brief) introduction to R  {#Intro_to_R}
 
+```{r, eval = FALSE, echo = FALSE}
+# Packages used in Chapter 2
+install.packages("leaflet", repos = "http://cran.us.r-project.org")
+install.packages("dplyr", repos = "http://cran.us.r-project.org")
+install.packages("gridExtra", repos = "http://cran.us.r-project.org")               
+```
+```{r}
+install.packages("gridExtra", repos = "http://cran.us.r-project.org")      
+```
 ## Overview
 
 The following chapter provides a basic introduction to coding in R. If you already have experience with coding, perhaps from [Spatial Ecology](https://www.manchester.ac.uk/study/masters/courses/list/07053/msc-geographical-information-science/course-details/GEOG71921#course-unit-details) or [Understanding GIS](https://www.manchester.ac.uk/study/undergraduate/courses/2022/00575/bsc-geography/all-content/GEOG30552#course-unit-details), then the following content should be familiar to you. For those of you with little or no experience with code, the content builds from the simple (using R as a calculator) to the complex (loading packages and data, plotting) and will equip you with the skills needed to complete Practicals 1 (Eskdale) and 2 (Mersey)
@@ -531,12 +540,7 @@ To load a `.csv` file into R, we can use the command `read.csv()`. The most basi
 
 For the final two sections of this Chapter (and the [formative task](#formative_task)), we'll using a data file called `flow_data.csv` which contains the average daily river flow (m<sup>3</sup> per second) from the [National River Flow Archive](https://nrfa.ceh.ac.uk/) and the [UK Centre for Ecology & Hydrology](https://www.ceh.ac.uk/). The data are from monitoring station [90003](https://nrfa.ceh.ac.uk/data/station/meanflow/90003) on the River Nevis (shown below), which drains Ben Nevis, the highest mountain in the UK, and cover the period from the 1<sup>st</sup> October 1982 to the 30<sup>th</sup> September 2019.  
 
-```{r, eval = FALSE, echo = FALSE}
 
-install.packages("leaflet", repos = "http://cran.us.r-project.org")
-install.packages("dplyr", repos = "http://cran.us.r-project.org")
-
-```
 
 ```{r, echo = FALSE, warning = FALSE, message = FALSE}
 
@@ -701,18 +705,13 @@ ggplot(data = df, mapping=aes(x=date, y=flow)) +
   # Updating axis labels (including superscript elements)
   labs(x = "Date (January - October 2019)", y = bquote('Average daily flow'~(m^3~'per second')))
 
-
 ```
 
 Using the above plot, we could start to identify periods of above or below average flow. As a final step, we will probably want to export our figure so that it can be used elsewhere e.g. in the [assessment](#Assessment). To do so, we simply assign our ggplot object to a variable using the assignment operator: `<-` as normal:
 
 ```{r, eval = FALSE, fig.align="center"}
 # Assign our ggplot object to the variable "g"
-g <- ggplot(data = df, mapping=aes(x=date, y=flow)) +
-  geom_line(colour = "#56ACFF") +
-  geom_point(colour = "#767676") +
-  theme_classic() +
-  theme(aspect.ratio = 1)
+g <- ggplot(data = df, mapping=aes(x=date, y=flow)) + ...
 ```
 
 Finally, we can save our ggplot object using the `ggsave()` function, as shown below. This takes in the name of the plot (`g`), as well as the intended name, extension and file path e.g. `"C:/Users/Bill/Documents/GEOG-70581/images/flow_data_2019.png"`. In this example, we are saving our output within the **images** sub-directory of GEOG-70581. We have also defined the name of the file `flow_data_2019` and specified its file type: `.png` (portable network graphics file). We can also modify other settings, such as the **dpi** which determines the plot resolution. A list of ggsave options can be found [here](https://ggplot2.tidyverse.org/reference/ggsave.html).
@@ -754,7 +753,7 @@ Create an R Script which does the following:
   
   > Extracts all rows corresponding to the years 2000 to 2019, making sure to convert to date format. 
   
-  > Finds the average daily river flow (m<sup>3</sup> per second) **for each month** and plots the result. 
+  > Finds the average daily river flow (m<sup>3</sup> per second) **for each month** and plot the result. 
   
   > **Questions**: on average, which month had the **highest** average daily flow and which had the **lowest**?
   

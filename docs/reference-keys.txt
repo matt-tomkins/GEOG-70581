@@ -41,9 +41,16 @@ install-whiteboxtools
 loading-packages
 Eskdale_flow_algorithms
 dem-pre-processing-flow-enforcement
-application
+data-description
+breaching-and-filling
+choosing-a-colour-ramp
 calculating-flow-parameters-pointers
 comparing-flow-algorithms
+comparing-flow-algorithms-1
+fd8-catchment-area
+d-infinity-catchment-area
+comparing-the-outputs
+practical-solution
 SecondPractical
 part-1-overview
 topics-covered-in-this-practical

@@ -6,7 +6,7 @@ If you haven't installed R and RStudio, please refer to the instructions [here](
 
 ## Download data {#download_data}
 
-The data for this practical can be downloaded [here](XXXX). The directory structure is outlined in [Chapter 2](#materials). 
+If you've not already done so, the data for this practical can be downloaded [here](https://online.manchester.ac.uk/webapps/blackboard/content/listContentEditable.jsp?content_id=_13304460_1&course_id=_68533_1). The directory structure is outlined in [Chapter 2](#materials). 
 
 ## Open RStudio
 
@@ -16,7 +16,7 @@ The data for this practical can be downloaded [here](XXXX). The directory struct
 
 In the previous chapter, we typed commands into the **console** and used **R scripts** to store commands and comments.
 
-For both Practicals 1 and 2, we are going to expand on these by also utilising **R projects**. Projects make life simpler by allowing us to access file locations (e.g. loading and writing data) using **relative** file paths, rather than using the clunky and prone-to-breaking **absolute** file paths.  
+For both Practicals 1 (Eskdale) and 2 (Mersey), we are going to expand on these by also utilising **R projects**. Projects make life simpler by allowing us to access file locations (e.g. for loading and writing data) using **relative** file paths, rather than using the clunky and prone-to-breaking **absolute** file paths.  
 
 Relative file paths work by setting the **working directory**, which is simply the the default location where R will look for files you want to load and where it will put any files you save. We can do this manually by using the `setwd()` function, but a simpler approach is to use an R **project**, which sets the working directory for your automatically. 
 
@@ -31,7 +31,7 @@ which indicates that the file is located in `data`, which is within `GEOG-70581`
 here("data", "flow_data.csv")
 ```
 
-This approach not only makes it easier to access files, but also improves **reproducibility**. Using projects ensures that our work is **self-contained** (the project directory contains all the data, scripts and outputs) and **portable**. Transferring the project directory to another user, to a different sub-folder on your computer, or a different drive, would not cause any code to fail. By comparison, scripts featuring absolute file paths would likely fail in any of the above scenarios. 
+This approach not only makes it easier to access files, but also improves **reproducibility**. Using projects ensures that our work is **self-contained** (the project directory contains all the data, scripts and outputs) and **portable**. Transferring the project directory to another user, to a different sub-folder on your computer, or a different drive, would not cause any code to fail. By comparison, scripts featuring absolute file paths or a manually defined working directory would likely fail in any of the above scenarios. 
 
 To initialise a new R project:
 
