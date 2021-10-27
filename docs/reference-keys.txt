@@ -1,6 +1,7 @@
 introduction
 practical-outline
 objectives
+schedule
 Installation
 r
 r-studio
@@ -23,6 +24,8 @@ comments
 packages
 data_loading
 data_plotting
+formative_task
+formative-solution
 FirstPractical
 overview-1
 intended-learning-outcomes

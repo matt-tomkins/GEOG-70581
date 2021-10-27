@@ -53,6 +53,18 @@ Hydrological analysis in R
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+<link href="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.css" rel="stylesheet" />
+<script src="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.min.js"></script>
 
 
 <style type="text/css">
@@ -158,6 +170,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#practical-outline"><i class="fa fa-check"></i><b>1.1</b> Practical outline</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#objectives"><i class="fa fa-check"></i><b>1.2</b> Objectives</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>1.3</b> Schedule</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>2</b> Installation</a>
 <ul>
@@ -192,6 +205,10 @@ div.csl-indent {
 <li class="chapter" data-level="3.6" data-path="Intro_to_R.html"><a href="Intro_to_R.html#packages"><i class="fa fa-check"></i><b>3.6</b> Loading packages</a></li>
 <li class="chapter" data-level="3.7" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data_loading"><i class="fa fa-check"></i><b>3.7</b> Loading data</a></li>
 <li class="chapter" data-level="3.8" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data_plotting"><i class="fa fa-check"></i><b>3.8</b> Plotting</a></li>
+<li class="chapter" data-level="3.9" data-path="Intro_to_R.html"><a href="Intro_to_R.html#formative_task"><i class="fa fa-check"></i><b>3.9</b> Formative task</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#formative-solution"><i class="fa fa-check"></i><b>3.9.1</b> Formative solution</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="FirstPractical.html"><a href="FirstPractical.html"><i class="fa fa-check"></i><b>4</b> Eskdale I - Introduction</a>
 <ul>
@@ -286,17 +303,17 @@ Hydrological analysis in R
 <p>The DEM we are working with was downloaded from <a href="https://digimap.edina.ac.uk/">EDINA Digimap</a>, has a cell size of 10 m and uses the <strong>British National Grid</strong> (BNG), a <strong>projected</strong> coordinate Reference System [<a href="https://epsg.io/27700">EPSG:27700</a>].</p>
 <p>Unfortunately, we don’t have time in this course to delve into the exciting world of map projections, although these are covered excellently by Dr. Jonny Huck in the Semester 2 course <a href="https://www.manchester.ac.uk/study/masters/courses/list/07053/msc-geographical-information-science/course-details/GEOG71552#course-unit-details"><strong>Understanding GIS</strong></a>. However, it is important to know that different map projections have different uses and work more/less effectively in different spatial areas. As we are working within the UK, it makes sense to use a map projection which is tailored to the UK (e.g. BNG) as this minimises different types of map distortion (length, shape, area).</p>
 <p>When loaded into R using the <code>raster</code> package and plotted using <code>ggplot2</code> and <code>ggspatial</code>, our DEM can be visualised as follows, where the outlet point (white circle) and summits (black triangles) match those shown in <a href="Figure_4">Figure 4</a>.</p>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-56-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>To accentuate areas of relief, the DEM has been combined with a semi-transparent <strong>hillshade</strong> layer, which is shown below:</p>
 <p><img src="Practical_1_files/figure-html/unnamed-chunk-57-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>To accentuate areas of relief, the DEM has been combined with a semi-transparent <strong>hillshade</strong> layer, which is shown below:</p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-58-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>To evaluate the effects of depression <strong>breaching</strong> and <strong>filling</strong>, we’re going to</p>
 <p>DEM of the Upper Eskdale catchment</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="Eskdale_flow_algorithms.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sets file path for DEM</span></span>
-<span id="cb82-2"><a href="Eskdale_flow_algorithms.html#cb82-2" aria-hidden="true" tabindex="-1"></a>dem <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m.tif&quot;</span>)</span>
-<span id="cb82-3"><a href="Eskdale_flow_algorithms.html#cb82-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb82-4"><a href="Eskdale_flow_algorithms.html#cb82-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Breach and fills depressions</span></span>
-<span id="cb82-5"><a href="Eskdale_flow_algorithms.html#cb82-5" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_fill_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span>
-<span id="cb82-6"><a href="Eskdale_flow_algorithms.html#cb82-6" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_breach_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_breach.tif&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="Eskdale_flow_algorithms.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sets file path for DEM</span></span>
+<span id="cb71-2"><a href="Eskdale_flow_algorithms.html#cb71-2" aria-hidden="true" tabindex="-1"></a>dem <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m.tif&quot;</span>)</span>
+<span id="cb71-3"><a href="Eskdale_flow_algorithms.html#cb71-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-4"><a href="Eskdale_flow_algorithms.html#cb71-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Breach and fills depressions</span></span>
+<span id="cb71-5"><a href="Eskdale_flow_algorithms.html#cb71-5" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_fill_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span>
+<span id="cb71-6"><a href="Eskdale_flow_algorithms.html#cb71-6" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_breach_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_breach.tif&quot;</span>))</span></code></pre></div>
 </div>
 </div>
 <div id="calculating-flow-parameters-pointers" class="section level2" number="6.2">
@@ -305,44 +322,44 @@ Hydrological analysis in R
 <div id="comparing-flow-algorithms" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span> Comparing flow algorithms</h2>
 <p>#——————– Analysis ———————</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="Eskdale_flow_algorithms.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sets file path for DEM</span></span>
-<span id="cb83-2"><a href="Eskdale_flow_algorithms.html#cb83-2" aria-hidden="true" tabindex="-1"></a>dem <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m.tif&quot;</span>)</span>
-<span id="cb83-3"><a href="Eskdale_flow_algorithms.html#cb83-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb83-4"><a href="Eskdale_flow_algorithms.html#cb83-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Breach and fills depressions</span></span>
-<span id="cb83-5"><a href="Eskdale_flow_algorithms.html#cb83-5" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_fill_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span>
-<span id="cb83-6"><a href="Eskdale_flow_algorithms.html#cb83-6" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_breach_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_breach.tif&quot;</span>))</span>
-<span id="cb83-7"><a href="Eskdale_flow_algorithms.html#cb83-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb83-8"><a href="Eskdale_flow_algorithms.html#cb83-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculates D8 pointer</span></span>
-<span id="cb83-9"><a href="Eskdale_flow_algorithms.html#cb83-9" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_d8_pointer</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_breach.tif&quot;</span>), </span>
-<span id="cb83-10"><a href="Eskdale_flow_algorithms.html#cb83-10" aria-hidden="true" tabindex="-1"></a>               <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_D8_pointer.tif&quot;</span>))</span>
-<span id="cb83-11"><a href="Eskdale_flow_algorithms.html#cb83-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb83-12"><a href="Eskdale_flow_algorithms.html#cb83-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculates accumulation file</span></span>
-<span id="cb83-13"><a href="Eskdale_flow_algorithms.html#cb83-13" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_d8_flow_accumulation</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_breach.tif&quot;</span>), </span>
-<span id="cb83-14"><a href="Eskdale_flow_algorithms.html#cb83-14" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_flow_accumulation.tif&quot;</span>))</span>
-<span id="cb83-15"><a href="Eskdale_flow_algorithms.html#cb83-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb83-16"><a href="Eskdale_flow_algorithms.html#cb83-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Extracts streams, accumulation threshold of 500</span></span>
-<span id="cb83-17"><a href="Eskdale_flow_algorithms.html#cb83-17" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_extract_streams</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_flow_accumulation.tif&quot;</span>),</span>
-<span id="cb83-18"><a href="Eskdale_flow_algorithms.html#cb83-18" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_streams_act500.tif&quot;</span>), </span>
-<span id="cb83-19"><a href="Eskdale_flow_algorithms.html#cb83-19" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">500</span>)</span>
-<span id="cb83-20"><a href="Eskdale_flow_algorithms.html#cb83-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb83-21"><a href="Eskdale_flow_algorithms.html#cb83-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Snaps pour points to stream network, snap distance in map units (50 = 50 m)</span></span>
-<span id="cb83-22"><a href="Eskdale_flow_algorithms.html#cb83-22" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_jenson_snap_pour_points</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;pour_point.shp&quot;</span>),</span>
-<span id="cb83-23"><a href="Eskdale_flow_algorithms.html#cb83-23" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_streams_act500.tif&quot;</span>), </span>
-<span id="cb83-24"><a href="Eskdale_flow_algorithms.html#cb83-24" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_pour_point_snapped.shp&quot;</span>),</span>
-<span id="cb83-25"><a href="Eskdale_flow_algorithms.html#cb83-25" aria-hidden="true" tabindex="-1"></a>                            <span class="at">snap_dist =</span> <span class="dv">50</span>)</span>
-<span id="cb83-26"><a href="Eskdale_flow_algorithms.html#cb83-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb83-27"><a href="Eskdale_flow_algorithms.html#cb83-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Watershed from pour points</span></span>
-<span id="cb83-28"><a href="Eskdale_flow_algorithms.html#cb83-28" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_watershed</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_D8_pointer.tif&quot;</span>), </span>
-<span id="cb83-29"><a href="Eskdale_flow_algorithms.html#cb83-29" aria-hidden="true" tabindex="-1"></a>              <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_pour_point_snapped.shp&quot;</span>), </span>
-<span id="cb83-30"><a href="Eskdale_flow_algorithms.html#cb83-30" aria-hidden="true" tabindex="-1"></a>              <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_watersheds.tif&quot;</span>))</span>
-<span id="cb83-31"><a href="Eskdale_flow_algorithms.html#cb83-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb83-32"><a href="Eskdale_flow_algorithms.html#cb83-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Converts watershed to vector format (polygon)</span></span>
-<span id="cb83-33"><a href="Eskdale_flow_algorithms.html#cb83-33" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_raster_to_vector_polygons</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_watersheds.tif&quot;</span>),</span>
-<span id="cb83-34"><a href="Eskdale_flow_algorithms.html#cb83-34" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_watersheds.shp&quot;</span>))</span>
-<span id="cb83-35"><a href="Eskdale_flow_algorithms.html#cb83-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb83-36"><a href="Eskdale_flow_algorithms.html#cb83-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Converts streams to vector format (lines)</span></span>
-<span id="cb83-37"><a href="Eskdale_flow_algorithms.html#cb83-37" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_raster_to_vector_lines</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_streams_act500.tif&quot;</span>), </span>
-<span id="cb83-38"><a href="Eskdale_flow_algorithms.html#cb83-38" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_streams_act500.shp&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="Eskdale_flow_algorithms.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sets file path for DEM</span></span>
+<span id="cb72-2"><a href="Eskdale_flow_algorithms.html#cb72-2" aria-hidden="true" tabindex="-1"></a>dem <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m.tif&quot;</span>)</span>
+<span id="cb72-3"><a href="Eskdale_flow_algorithms.html#cb72-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-4"><a href="Eskdale_flow_algorithms.html#cb72-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Breach and fills depressions</span></span>
+<span id="cb72-5"><a href="Eskdale_flow_algorithms.html#cb72-5" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_fill_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span>
+<span id="cb72-6"><a href="Eskdale_flow_algorithms.html#cb72-6" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_breach_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_breach.tif&quot;</span>))</span>
+<span id="cb72-7"><a href="Eskdale_flow_algorithms.html#cb72-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-8"><a href="Eskdale_flow_algorithms.html#cb72-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculates D8 pointer</span></span>
+<span id="cb72-9"><a href="Eskdale_flow_algorithms.html#cb72-9" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_d8_pointer</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_breach.tif&quot;</span>), </span>
+<span id="cb72-10"><a href="Eskdale_flow_algorithms.html#cb72-10" aria-hidden="true" tabindex="-1"></a>               <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_D8_pointer.tif&quot;</span>))</span>
+<span id="cb72-11"><a href="Eskdale_flow_algorithms.html#cb72-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-12"><a href="Eskdale_flow_algorithms.html#cb72-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculates accumulation file</span></span>
+<span id="cb72-13"><a href="Eskdale_flow_algorithms.html#cb72-13" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_d8_flow_accumulation</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_breach.tif&quot;</span>), </span>
+<span id="cb72-14"><a href="Eskdale_flow_algorithms.html#cb72-14" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_flow_accumulation.tif&quot;</span>))</span>
+<span id="cb72-15"><a href="Eskdale_flow_algorithms.html#cb72-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-16"><a href="Eskdale_flow_algorithms.html#cb72-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Extracts streams, accumulation threshold of 500</span></span>
+<span id="cb72-17"><a href="Eskdale_flow_algorithms.html#cb72-17" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_extract_streams</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_flow_accumulation.tif&quot;</span>),</span>
+<span id="cb72-18"><a href="Eskdale_flow_algorithms.html#cb72-18" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_streams_act500.tif&quot;</span>), </span>
+<span id="cb72-19"><a href="Eskdale_flow_algorithms.html#cb72-19" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">500</span>)</span>
+<span id="cb72-20"><a href="Eskdale_flow_algorithms.html#cb72-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-21"><a href="Eskdale_flow_algorithms.html#cb72-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Snaps pour points to stream network, snap distance in map units (50 = 50 m)</span></span>
+<span id="cb72-22"><a href="Eskdale_flow_algorithms.html#cb72-22" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_jenson_snap_pour_points</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;pour_point.shp&quot;</span>),</span>
+<span id="cb72-23"><a href="Eskdale_flow_algorithms.html#cb72-23" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_streams_act500.tif&quot;</span>), </span>
+<span id="cb72-24"><a href="Eskdale_flow_algorithms.html#cb72-24" aria-hidden="true" tabindex="-1"></a>                            <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_pour_point_snapped.shp&quot;</span>),</span>
+<span id="cb72-25"><a href="Eskdale_flow_algorithms.html#cb72-25" aria-hidden="true" tabindex="-1"></a>                            <span class="at">snap_dist =</span> <span class="dv">50</span>)</span>
+<span id="cb72-26"><a href="Eskdale_flow_algorithms.html#cb72-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-27"><a href="Eskdale_flow_algorithms.html#cb72-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Watershed from pour points</span></span>
+<span id="cb72-28"><a href="Eskdale_flow_algorithms.html#cb72-28" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_watershed</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_D8_pointer.tif&quot;</span>), </span>
+<span id="cb72-29"><a href="Eskdale_flow_algorithms.html#cb72-29" aria-hidden="true" tabindex="-1"></a>              <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_pour_point_snapped.shp&quot;</span>), </span>
+<span id="cb72-30"><a href="Eskdale_flow_algorithms.html#cb72-30" aria-hidden="true" tabindex="-1"></a>              <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_watersheds.tif&quot;</span>))</span>
+<span id="cb72-31"><a href="Eskdale_flow_algorithms.html#cb72-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-32"><a href="Eskdale_flow_algorithms.html#cb72-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Converts watershed to vector format (polygon)</span></span>
+<span id="cb72-33"><a href="Eskdale_flow_algorithms.html#cb72-33" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_raster_to_vector_polygons</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_watersheds.tif&quot;</span>),</span>
+<span id="cb72-34"><a href="Eskdale_flow_algorithms.html#cb72-34" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_watersheds.shp&quot;</span>))</span>
+<span id="cb72-35"><a href="Eskdale_flow_algorithms.html#cb72-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-36"><a href="Eskdale_flow_algorithms.html#cb72-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Converts streams to vector format (lines)</span></span>
+<span id="cb72-37"><a href="Eskdale_flow_algorithms.html#cb72-37" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_raster_to_vector_lines</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_streams_act500.tif&quot;</span>), </span>
+<span id="cb72-38"><a href="Eskdale_flow_algorithms.html#cb72-38" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_streams_act500.shp&quot;</span>))</span></code></pre></div>
 
 </div>
 </div>

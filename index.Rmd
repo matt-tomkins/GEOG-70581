@@ -30,3 +30,16 @@ After completing these practicals, you will:
 - utilised statistical analysis to investigate the relationships between water quality indicators and catchment characteristics; 
 - improved your understanding of the hydrological processes influencing water quality.
 
+## Schedule
+
+These practicals will be completed across Weeks 8 to 12 as follows:
+
+- Week 8: 
+  - Lecture on Hydrological and Geomorphological models (~1 hr)
+  - Complete Chapters 1 - 3 (~2 hr)
+- Weeks 9 and 10:
+  - Water Quality Modelling introduction lecture (~1 hr)
+  - Complete **Eskdale** practical, covered in Chapters 4 - 6 (~5 hr)
+- Weeks 11 and 12:
+  - Complete **Mersey** practical, covered in Chapters 7 - X (~6 hr)
+

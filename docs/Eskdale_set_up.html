@@ -53,6 +53,18 @@ Hydrological analysis in R
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+<link href="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.css" rel="stylesheet" />
+<script src="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.min.js"></script>
 
 
 <style type="text/css">
@@ -158,6 +170,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#practical-outline"><i class="fa fa-check"></i><b>1.1</b> Practical outline</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#objectives"><i class="fa fa-check"></i><b>1.2</b> Objectives</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>1.3</b> Schedule</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>2</b> Installation</a>
 <ul>
@@ -192,6 +205,10 @@ div.csl-indent {
 <li class="chapter" data-level="3.6" data-path="Intro_to_R.html"><a href="Intro_to_R.html#packages"><i class="fa fa-check"></i><b>3.6</b> Loading packages</a></li>
 <li class="chapter" data-level="3.7" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data_loading"><i class="fa fa-check"></i><b>3.7</b> Loading data</a></li>
 <li class="chapter" data-level="3.8" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data_plotting"><i class="fa fa-check"></i><b>3.8</b> Plotting</a></li>
+<li class="chapter" data-level="3.9" data-path="Intro_to_R.html"><a href="Intro_to_R.html#formative_task"><i class="fa fa-check"></i><b>3.9</b> Formative task</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#formative-solution"><i class="fa fa-check"></i><b>3.9.1</b> Formative solution</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="FirstPractical.html"><a href="FirstPractical.html"><i class="fa fa-check"></i><b>4</b> Eskdale I - Introduction</a>
 <ul>
@@ -272,9 +289,9 @@ Hydrological analysis in R
 <p>For both Practicals 1 and 2, we are going to expand on these by also utilising <strong>R projects</strong>. Projects make life simpler by allowing us to access file locations (e.g. loading and writing data) using <strong>relative</strong> file paths, rather than using the clunky and prone-to-breaking <strong>absolute</strong> file paths.</p>
 <p>Relative file paths work by setting the <strong>working directory</strong>, which is simply the the default location where R will look for files you want to load and where it will put any files you save. We can do this manually by using the <code>setwd()</code> function, but a simpler approach is to use an R <strong>project</strong>, which sets the working directory for your automatically.</p>
 <p>Rather than the complicated absolute file paths:</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="Eskdale_set_up.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;C:/Users/Bill/Documents/GEOG-70581/data/flow_data.csv&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="Eskdale_set_up.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;C:/Users/Bill/Documents/GEOG-70581/data/flow_data.csv&quot;</span></span></code></pre></div>
 <p>which indicates that the file is located in <code>data</code>, which is within <code>GEOG-70581</code>, which is within <code>Documents</code>, which is within <code>Bill</code>, which is within <code>Users</code>, which is on the <code>C drive</code>, we can set the working directory to <code>GEOG-70581</code> (for example) and then access the file using the <strong>here</strong> package:</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="Eskdale_set_up.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;flow_data.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="Eskdale_set_up.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;flow_data.csv&quot;</span>)</span></code></pre></div>
 <p>This approach not only makes it easier to access files, but also improves <strong>reproducibility</strong>. Using projects ensures that our work is <strong>self-contained</strong> (the project directory contains all the data, scripts and outputs) and <strong>portable</strong>. Transferring the project directory to another user, to a different sub-folder on your computer, or a different drive, would not cause any code to fail. By comparison, scripts featuring absolute file paths would likely fail in any of the above scenarios.</p>
 <p>To initialise a new R project:</p>
 <blockquote>
@@ -338,28 +355,28 @@ Select <strong>Create new project</strong></p>
 <blockquote>
 <p>Paste the following code into your R script and run to install whitebox</p>
 </blockquote>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="Eskdale_set_up.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Installs whitebox from R-Forge</span></span>
-<span id="cb77-2"><a href="Eskdale_set_up.html#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;whitebox&quot;</span>, <span class="at">repos=</span><span class="st">&quot;http://R-Forge.R-project.org&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="Eskdale_set_up.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Installs whitebox from R-Forge</span></span>
+<span id="cb66-2"><a href="Eskdale_set_up.html#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;whitebox&quot;</span>, <span class="at">repos=</span><span class="st">&quot;http://R-Forge.R-project.org&quot;</span>)</span></code></pre></div>
 <p>If successful, the console window should update as the installation progresses and should finish by printing the directory where the package is saved e.g. <code>The downloaded source packages are in ‘C:\file-path-here\downloaded_packages</code>.</p>
 <p>One additional step, which is different from “normal” R package installation, is to use the function <code>whitebox::wbt_init()</code>, which initialises WhiteboxTools:</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="Eskdale_set_up.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialise WBT </span></span>
-<span id="cb78-2"><a href="Eskdale_set_up.html#cb78-2" aria-hidden="true" tabindex="-1"></a>whitebox<span class="sc">::</span><span class="fu">wbt_init</span>()</span></code></pre></div>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="Eskdale_set_up.html#cb79-1" aria-hidden="true" tabindex="-1"></a>Performing one<span class="sc">-</span>time download of WhiteboxTools binary from</span>
-<span id="cb79-2"><a href="Eskdale_set_up.html#cb79-2" aria-hidden="true" tabindex="-1"></a>     https<span class="sc">:</span><span class="er">//</span>jblindsay.github.io<span class="sc">/</span>ghrg<span class="sc">/</span>WhiteboxTools<span class="sc">/</span>WhiteboxTools_win_amd64.zip </span>
-<span id="cb79-3"><a href="Eskdale_set_up.html#cb79-3" aria-hidden="true" tabindex="-1"></a>(This could take a few minutes, please be patient...)</span>
-<span id="cb79-4"><a href="Eskdale_set_up.html#cb79-4" aria-hidden="true" tabindex="-1"></a>WhiteboxTools binary is located at<span class="sc">:</span>  C<span class="sc">:</span><span class="er">/</span>Users<span class="sc">/</span><span class="dv">44797</span><span class="sc">/</span>OneDrive<span class="sc">/</span>Documents<span class="sc">/</span>R<span class="sc">/</span>win<span class="sc">-</span>library<span class="sc">/</span><span class="fl">4.0</span><span class="sc">/</span>whitebox<span class="sc">/</span>WBT<span class="sc">/</span>whitebox_tools.exe </span>
-<span id="cb79-5"><a href="Eskdale_set_up.html#cb79-5" aria-hidden="true" tabindex="-1"></a>You can now start using whitebox</span>
-<span id="cb79-6"><a href="Eskdale_set_up.html#cb79-6" aria-hidden="true" tabindex="-1"></a>    <span class="sc">&gt;</span> <span class="fu">library</span>(whitebox)</span>
-<span id="cb79-7"><a href="Eskdale_set_up.html#cb79-7" aria-hidden="true" tabindex="-1"></a>    <span class="sc">&gt;</span> <span class="fu">wbt_version</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="Eskdale_set_up.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialise WBT </span></span>
+<span id="cb67-2"><a href="Eskdale_set_up.html#cb67-2" aria-hidden="true" tabindex="-1"></a>whitebox<span class="sc">::</span><span class="fu">wbt_init</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="Eskdale_set_up.html#cb68-1" aria-hidden="true" tabindex="-1"></a>Performing one<span class="sc">-</span>time download of WhiteboxTools binary from</span>
+<span id="cb68-2"><a href="Eskdale_set_up.html#cb68-2" aria-hidden="true" tabindex="-1"></a>     https<span class="sc">:</span><span class="er">//</span>jblindsay.github.io<span class="sc">/</span>ghrg<span class="sc">/</span>WhiteboxTools<span class="sc">/</span>WhiteboxTools_win_amd64.zip </span>
+<span id="cb68-3"><a href="Eskdale_set_up.html#cb68-3" aria-hidden="true" tabindex="-1"></a>(This could take a few minutes, please be patient...)</span>
+<span id="cb68-4"><a href="Eskdale_set_up.html#cb68-4" aria-hidden="true" tabindex="-1"></a>WhiteboxTools binary is located at<span class="sc">:</span>  C<span class="sc">:</span><span class="er">/</span>Users<span class="sc">/</span><span class="dv">44797</span><span class="sc">/</span>OneDrive<span class="sc">/</span>Documents<span class="sc">/</span>R<span class="sc">/</span>win<span class="sc">-</span>library<span class="sc">/</span><span class="fl">4.0</span><span class="sc">/</span>whitebox<span class="sc">/</span>WBT<span class="sc">/</span>whitebox_tools.exe </span>
+<span id="cb68-5"><a href="Eskdale_set_up.html#cb68-5" aria-hidden="true" tabindex="-1"></a>You can now start using whitebox</span>
+<span id="cb68-6"><a href="Eskdale_set_up.html#cb68-6" aria-hidden="true" tabindex="-1"></a>    <span class="sc">&gt;</span> <span class="fu">library</span>(whitebox)</span>
+<span id="cb68-7"><a href="Eskdale_set_up.html#cb68-7" aria-hidden="true" tabindex="-1"></a>    <span class="sc">&gt;</span> <span class="fu">wbt_version</span>()</span></code></pre></div>
 <p>This code checks if a suitable WhiteboxTools <strong>executable</strong> is present (.exe) and installs if missing. The WhiteboxTools executable contains all the code used for geospatial analysis, which we then access using R via the whitebox R package. This is a slightly different configuration from normal R packages but enables WhiteboxTools to be used <strong>cross-platform</strong> i.e. WhiteboxTools functionality stored in the executable can be assessed through R, Python, ArcGIS or QGIS etc, depending on the user needs.</p>
 <blockquote>
 <p>Run the above code to initialise WhiteboxTools, which should perform a one-time download of the WhiteboxTools binary (executable)</p>
 </blockquote>
 <p>When complete, WhiteboxTools has now been successfully installed and initialised and is almost ready to be used.</p>
 <p>However, to avoid re-installing and re-initialisng WBT every time we run our script, we can either delete the code or <strong>comment-out</strong> <code>#</code> each line. Remember that R ignores any line of comment that begins with <code>#</code>:</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="Eskdale_set_up.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Code to install whitebox from R-forge and initialise</span></span>
-<span id="cb80-2"><a href="Eskdale_set_up.html#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;whitebox&quot;, repos=&quot;http://R-Forge.R-project.org&quot;)</span></span>
-<span id="cb80-3"><a href="Eskdale_set_up.html#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="co"># whitebox::wbt_init()</span></span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="Eskdale_set_up.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Code to install whitebox from R-forge and initialise</span></span>
+<span id="cb69-2"><a href="Eskdale_set_up.html#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;whitebox&quot;, repos=&quot;http://R-Forge.R-project.org&quot;)</span></span>
+<span id="cb69-3"><a href="Eskdale_set_up.html#cb69-3" aria-hidden="true" tabindex="-1"></a><span class="co"># whitebox::wbt_init()</span></span></code></pre></div>
 <blockquote>
 <p>Either delete or comment-out the previous commands (<code>install.packages()</code>, <code>wbt_init</code>). <code>Ctrl + Shift + C</code> is a useful shortcut for adding or removing comments from multiple lines of highlighted code.</p>
 </blockquote>
@@ -372,8 +389,8 @@ Select <strong>Create new project</strong></p>
 <p>Referring back to the instructions <a href="Intro_to_R.html#packages">here</a>, install and load <code>ggplot2</code>, <code>here</code>, <code>raster</code>, <code>sf</code>, <code>ggspatial</code> and <code>whitebox</code>. <strong>Hint 1</strong> - we’ve already installed whitebox, so this can be excluded if you’re using install.packages() and the library() commands. <strong>Hint 2</strong> - the user-defined function <code>check.packages</code> might be useful here.</p>
 </blockquote>
 <p>If the package has been installed and loaded correctly, the console should print the following:</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="Eskdale_set_up.html#cb81-1" aria-hidden="true" tabindex="-1"></a> ggplot2     here   raster       sf whitebox   ggspatial</span>
-<span id="cb81-2"><a href="Eskdale_set_up.html#cb81-2" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span>     <span class="cn">TRUE</span>     <span class="cn">TRUE</span>     <span class="cn">TRUE</span>     <span class="cn">TRUE</span>   <span class="cn">TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="Eskdale_set_up.html#cb70-1" aria-hidden="true" tabindex="-1"></a> ggplot2     here   raster       sf whitebox   ggspatial</span>
+<span id="cb70-2"><a href="Eskdale_set_up.html#cb70-2" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span>     <span class="cn">TRUE</span>     <span class="cn">TRUE</span>     <span class="cn">TRUE</span>     <span class="cn">TRUE</span>   <span class="cn">TRUE</span></span></code></pre></div>
 <p>where the <strong>logical</strong> value <code>TRUE</code> equates to a successful installation (and vice versa for <code>FALSE</code>).</p>
 
 </div>

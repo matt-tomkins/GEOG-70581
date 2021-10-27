@@ -51,3 +51,46 @@ h <- ggplot(data = df, mapping=aes(x=flow)) +
 
 # Saves to a png using ggsave
 ggsave(plot = h, "C:/Users/44797/Desktop/Repo/GEOG-70581/images/histogram_2019.png", dpi = 150)
+
+
+# Solution to the Chapter 3 formative task
+
+# Load data from csv
+df <- read.csv("C:/Users/44797/Desktop/Repo/GEOG-70581/data/flow_data.csv")
+
+# Convert dates (in character format) to date format
+df$date <- as.Date(df$date, format =  "%d/%m/%Y")
+
+# Extracts post-2000 river flow
+df_post2000 <- subset(df, date >= as.Date("2000-01-01"))
+
+# Create a new column, corresponding to the month of measurement, using the months() function
+df_post2000$month <- months(df_post2000$date)
+
+# Summarise by month, using the aggregate() function and 'mean'
+summary <- aggregate(flow ~ month, df_post2000, mean)
+
+# Converts dates (in character format) to date format
+summary$month <- factor(summary$month, levels = month.name)
+
+# Plotting using ggplot2
+g <- ggplot(data = summary, mapping=aes(x=month, y=flow)) +
+  # Stat = "identity" is used when the values of x and y are known
+  geom_bar(fill = "#3EBBFB", stat="identity") +
+  # Sets the theme
+  theme_classic() +
+  # Add x and y-axis labels
+  labs(x = "Month (2000 - 2019)", y = bquote('Average daily flow'~(m^3~'per second)'))) +
+  # Tight fitting y-axis
+  scale_y_continuous(expand = c(0,0)) +
+  # Adjusts angle of x-axis labels
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+g
+
+print(paste0("The month with the highest average daily flow is ", summary$month[summary$flow == max(summary$flow)]))
+print(paste0("The month with the lowest average daily flow is ", summary$month[summary$flow == min(summary$flow)]))
+
+# Saves to a png using ggsave
+ggsave(plot = g, "C:/Users/44797/Desktop/Repo/GEOG-70581/images/flow_data_2019.png", dpi = 150)
+
+
