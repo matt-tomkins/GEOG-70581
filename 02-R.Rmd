@@ -104,7 +104,7 @@ In the **Workspace window**, you can see all the objects that you have created i
 
 At it's most basic, R can operate as a powerful calculator. We can add `+`, subtract `-`, multiply `*` and divide `/`, take the exponent `^`, calculate the square root `sqrt()` or the logarithm of a number `log10()`, or melt our computers by using the `factorial()` function. Operators can also be combined to produce more complicated mathematical functions. 
 
-## Variables
+## Variables {#variables-looping}
 
 One of the most important things to know about in R is the **variable** or **object**. In this set of practicals, we use the term "variable", which is more common across different programming languages. Variables are containers that you can store values in, and then refer to again later. 
 R creates variables for you automatically, so all that is required is to name it and then use the **assignment operator** `<-` to assign a value to it. 

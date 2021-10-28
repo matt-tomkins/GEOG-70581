@@ -1,0 +1,12 @@
+<PAMDataset>
+  <PAMRasterBand band="1">
+    <CategoryNames>
+      <Category></Category>
+      <Category>Arable</Category>
+      <Category>Heath</Category>
+      <Category>Grassland</Category>
+      <Category>Urban</Category>
+      <Category>Wetland</Category>
+    </CategoryNames>
+  </PAMRasterBand>
+</PAMDataset>

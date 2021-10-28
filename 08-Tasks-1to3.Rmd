@@ -35,7 +35,7 @@ We also know from the previous practical that Whitebox stores D8 pointers as bin
 
 Initially, this can seem unnecessarily complex, particularly when compared to a simple sequential storage method (e.g. $N = 0, NE = 1, E = 2, ...$). However, the advantage of this approach is only apparent when multi-directional flow algorithms are considered such as **FD8** (@freeman_calculating_1991; @quinn_prediction_1991; @quinn_tan_1995) and **D-infinity** (@tarboton_new_1997). 
 
-While the D8 algorithm assigns all water flow to a single neighbouring cell, multi-directional algorithms split water flow into two or more neighbouring cells. For these methods, a binary base-2 approach enables this information to be stored efficiently as a single number (see **Figure 3**). With eight neighbouring cells, there are a total of 255 possible combinations[^1]. 
+While the D8 algorithm assigns all water flow to a single neighbouring cell, multi-directional algorithms split water flow into two or more neighbouring cells. For these methods, a binary base-2 approach enables this information to be stored efficiently as a single number (see **Figure 3**). With eight neighbouring cells, there are a total of 255 possible combinations[^2]. 
 
 <p align="center">
 <a name="Figure_binary"></a>![](figures/Practical-2/binary-storage.png){width=100%}
@@ -45,7 +45,7 @@ While the D8 algorithm assigns all water flow to a single neighbouring cell, mul
 
 <br/> 
 
-[^1]: The total number of combinations for a set of eight numbers (n = 8) is equal to 255 (ignoring order, no repetition) and is calculated as follows using **factorials**: $\frac{n!}{k!(n-k!)}$, where *k* is the number of selected elements ($k = 1, 2, ... , 8$): see [here](https://www.hackmath.net/en/calculator/combinations-and-permutations?n=8&k=8&order=0&repeat=0) for a interactive version. In WBT, each one of these combinations has a unique value. This is not the case for other formats (e.g. SAGA GIS), where additional programming is required to store and extract that information. 
+[^2]: The total number of combinations for a set of eight numbers (n = 8) is equal to 255 (ignoring order, no repetition) and is calculated as follows using **factorials**: $\frac{n!}{k!(n-k!)}$, where *k* is the number of selected elements ($k = 1, 2, ... , 8$): see [here](https://www.hackmath.net/en/calculator/combinations-and-permutations?n=8&k=8&order=0&repeat=0) for a interactive version. In WBT, each one of these combinations has a unique value. This is not the case for other formats (e.g. SAGA GIS), where additional programming is required to store and extract that information. 
 
 For this practical, we'll be calculating the pointer file using the simplest D8 algorithm, as shown in Practical 1. 
 
@@ -127,7 +127,7 @@ The UK Environment Agency (EA) collects river water quality data at a series of 
 
 The locations of the EA monitoring stations are shown below:
 
-```{r, echo = FALSE, fig.align="center", warning = FALSE, message = FALSE}
+```{r, echo = FALSE, fig.align="center", warning = FALSE, message = FALSE, results='hide'}
 
 # Loads library and shapefile
 mersey_points <- readOGR(here("data", "practical_2", "mersey_EA_sites.shp"), verbose = FALSE)
@@ -292,7 +292,7 @@ wbt_jenson_snap_pour_points(here("data", "practical_2", "mersey_EA_sites.shp"),
 
 > Run the following code to inspect the outputs of Jenson Snap Pour Points. The stream network is a Boolean (logical) raster, where stream cells = 1 (yellow) and non-stream cells = 0 (blue). The original pour points are shown in white, with the snapped points in red. 
 
-```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
 # Loads streams raster using the raster and here packages
 mersey_streams <- raster(here("output", "practical_2", "mersey_dem_streams_act200.tif"))
 
@@ -351,7 +351,7 @@ p
 
 ```
 
-The watersheds are currently stored as rasters, but it is often easy to work with vector data, especially when dealing with attributes and spatial relationships.
+The watersheds are currently stored as rasters, but it is often easier to work with vectors, especially when dealing with attributes and spatial relationships (topology).
 
 > Use the following code to convert your watersheds raster (`.tif`) to vector format (`.shp`) 
 
@@ -374,7 +374,7 @@ These delineated watersheds can now be used for further analysis. However, it is
 
 > To finish, compare your outputs to those shown below. If there are any clear differences in your version, repeat the previous tasks and play close attention to the input settings.
 
-```{r, echo = FALSE, fig.align="center", warning = FALSE, message = FALSE}
+```{r, echo = FALSE, fig.align="center", warning = FALSE, message = FALSE, results='hide'}
 
 # Loads shapefiles
 mersey_watershed_polygons <- readOGR(here("output", "practical_2", "mersey_watersheds.shp"), verbose = FALSE)

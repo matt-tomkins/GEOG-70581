@@ -1,0 +1,11 @@
+<PAMDataset>
+  <PAMRasterBand band="1">
+    <CategoryNames>
+      <Category></Category>
+      <Category>Permeable</Category>
+      <Category>Impermeable</Category>
+      <Category>Gleyed</Category>
+      <Category>Peats</Category>
+    </CategoryNames>
+  </PAMRasterBand>
+</PAMDataset>

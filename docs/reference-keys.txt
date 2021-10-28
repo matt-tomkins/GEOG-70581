@@ -13,7 +13,7 @@ why_code
 a-quick-note-on-the-practicals
 dealing-with-errors
 loading-r
-variables
+variables-looping
 variable-names
 variables_types
 data-structures
@@ -78,8 +78,16 @@ snapping
 task-3-watershed-creation
 mersey_four
 task-4-reclassification
+land-cover
+hydrology-of-soil-types-host
+bedrock-geology
 task-5-calculating-surface-derivatives
 task-6-extracting-surface-derivatives
+water-quality-measurements
+spatial-areas
+continuous-derivatives
+calculating-categorical-derivatives
+normalising-categorical-derivatives
 mersey_five
 task-7-metrics
 task-8-spatial-predictions

@@ -8,7 +8,7 @@ check.packages <- function(pkg){
 
 # Checks and installs packages
 packages <- c("ggplot2", "ggspatial", "here", "raster", "sf", "whitebox", # Practical-1
-              "data.table", "dplyr", "forcats", "MASS", "units") # Practical-2 
+              "data.table", "dplyr", "forcats", "MASS", "units", "patchwork") # Practical-2 
 check.packages(packages)
 
 # Sets file path for DEM
@@ -140,3 +140,155 @@ p <- ggplot() +
   theme(legend.position = "top")
 p 
 
+#-------------------- [8] Land cover raster reclassification ---------------------
+
+# Loads land cover raster
+land_cover <- as.factor(raster(here("data", "practical_2", "mersey_LC.tif")))
+
+# Prints the unique values in the raster
+unique(land_cover)
+
+# Categories of interest
+categories <- as.data.frame(c(41, 42, 43, 91, 101, 102, 51, 52, 61, 71, 81, 171, 172, 111, 121))
+colnames(categories) <- "ID"
+
+head(categories)
+
+# Collapse categories into broad groups
+categories$name <- fct_collapse(as.factor(categories$ID),
+                                "Arable" = c("41", "42", "43"),
+                                "Heath" = c("91", "101", "102"),
+                                "Grassland" = c("51", "52", "61", "71", "81"),
+                                "Urban" = c("171", "172"), 
+                                "Wetland" = c("111", "121"))
+
+categories
+
+# Substitute raster values for new categories
+land_cover_classified <- subs(land_cover, categories)
+
+# Write to new raster
+writeRaster(land_cover_classified, here("output", "practical_2", "mersey_LC_reclass.tif"))
+
+
+# Loads streams raster using the raster and here packages
+mersey_land_cover <- raster(here("output", "practical_2", "mersey_LC_reclass.tif"))
+
+
+# Plots using ggplot
+p <- ggplot() +
+  layer_spatial(mersey_land_cover, aes(fill = stat(band1))) + # Adds raster layer
+  #annotation_spatial(data = snapped_seed_points, shape = 21, fill = "#FB5858", colour = "black", size = 3) + # Adds snapped seeds layer
+  theme_classic() + 
+  labs(fill = "Land cover class", x = "Easting", y = "Northing") +
+  #scale_fill_continuous(type = "viridis",  na.value = NA) +
+  scale_fill_distiller(palette = "RdYlBu", na.value = NA) +
+  theme(legend.position = "top")
+p 
+
+
+#-------------------- [11] Calculating surface derivatives ---------------------
+
+# Slope and aspect
+wbt_slope(dem, here("output", "practical_2", "mersey_dem_slope.tif")) 
+wbt_aspect(dem, here("output", "practical_2", "mersey_dem_aspect.tif")) 
+
+# Loads slope and aspect rasters
+mersey_slope <- raster(here("output", "practical_2", "mersey_dem_slope.tif"))
+mersey_aspect <- raster(here("output", "practical_2", "mersey_dem_aspect.tif"))
+
+slope <- ggplot() +
+  layer_spatial(mersey_slope, aes(fill = stat(band1))) + # Adds raster layer
+  #annotation_spatial(data = snapped_seed_points, shape = 21, fill = "#FB5858", colour = "black", size = 3) + # Adds snapped seeds layer
+  theme_classic() + 
+  labs(fill = "Slope angle", x = "Easting", y = "Northing") +
+  scale_fill_continuous(type = "viridis",  na.value = NA) +
+  #scale_fill_distiller(palette = "RdYlBu", na.value = NA) +
+  theme(legend.position = "top")
+slope 
+
+aspect <- ggplot() +
+  layer_spatial(mersey_aspect, aes(fill = stat(band1))) + # Adds raster layer
+  #annotation_spatial(data = snapped_seed_points, shape = 21, fill = "#FB5858", colour = "black", size = 3) + # Adds snapped seeds layer
+  theme_classic() + 
+  labs(fill = "Aspect", x = "Easting", y = "Northing") +
+  #scale_fill_continuous(type = "viridis",  na.value = NA) +
+  scale_fill_distiller(palette = "RdYlBu", na.value = NA) +
+  theme(legend.position = "top")
+aspect 
+
+slope+aspect
+
+
+#-------------------- [12] Merging watersheds with WQ data ---------------------
+
+# Load watersheds (vector, sf, VALUE column is important) and renames
+watersheds <- st_read(here("output", "practical_2", "mersey_watersheds.shp"))
+names(watersheds)[names(watersheds) == 'VALUE'] <- 'Seed_Point_ID'
+
+# Load Environment Agency data
+ea_data <- read.csv(here("data", "practical_2", "mersey_EA_chemistry.csv"))
+
+# Merge based on ID
+watersheds_ea <- merge(watersheds, ea_data, by = "Seed_Point_ID") # correct
+
+
+
+# Calculates geometry as sf object, converts to km^2 using the units package
+watersheds_ea$area <- set_units(st_area(watersheds_ea), km^2)
+
+# Load elevation raster
+mersey_dem <- raster(here("data", "practical_2", "mersey_dem_fill.tif"))
+
+# Calculates the number of raster cells per watershed 
+watersheds_ea$count <- extract(dem, watersheds_ea, fun=function(x, ...) length(x)) 
+
+# Removes object(s) from memory to avoid confusion
+rm(watersheds)
+
+
+#-------------------- [13] Extracting continuous surface derivatives ---------------------
+
+# Load raster data
+rainfall <- raster(here("data", "practical_2", "mersey_rainfall.tif"))
+slope <- raster(here("output", "practical_2", "mersey_dem_slope.tif"))
+aspect <- raster(here("output", "practical_2", "mersey_dem_aspect.tif"))
+
+# Extract derivatives, calculate mean, and store in attribute table
+watersheds_ea$average_elevation <- extract(mersey_dem, watersheds_ea, fun=mean, na.rm=TRUE)
+watersheds_ea$average_rainfall  <- extract(rainfall, watersheds_ea, fun=mean, na.rm=TRUE)
+watersheds_ea$average_slope <- extract(slope, watersheds_ea, fun=mean, na.rm=TRUE)
+watersheds_ea$average_aspect  <- extract(aspect, watersheds_ea, fun=mean, na.rm=TRUE)
+
+head(watersheds_ea)
+
+# Removes object(s) from memory
+rm(dem, rainfall, slope, aspect)
+
+
+#-------------------- [14] Extracting categorical surface derivatives ---------------------
+
+# Loads categorical rasters into R
+land_cover <- raster(here("output", "practical_2", "mersey_LC_reclass.tif"))
+#soils <- raster(here("output", "practical_2", "mersey_HOST_reclass.tif"))
+#bedrock <- raster(here("output", "practical_2", "mersey_bedrock_reclass.tif"))
+
+# Extract land cover counts (5 classes, 1:5)
+land_cover_classes <- extract(land_cover, watersheds_ea, fun=function(i,...) table(factor(i, levels = 1:5)))
+colnames(land_cover_classes) <- c("Arable", "Heath", "Grassland", "Urban", "Wetland")
+
+# Extract soils counts (4 classes, 1:4)
+soils_classes <- extract(soils, watersheds_ea, fun=function(i,...) table(factor(i, levels = 1:4)))
+colnames(soils_classes) <- c("Permeable", "Impermeable", "Gleyed", "Peats")
+
+# Extract bedrock counts (3 classes, 1:3)
+bedrock_classes <- extract(bedrock, watersheds_ea, fun=function(i,...) table(factor(i, levels = 1:3)))
+colnames(bedrock_classes) <- c("Sands_and_Muds", "Limestone", "Coal")
+
+# Combines counts with watersheds data
+watersheds_ea <- cbind(watersheds_ea, land_cover_classes, soils_classes, bedrock_classes)
+
+
+df <- read.csv(here("output", "practical_2", "mersey_watersheds_EA_compiled.csv"))
+
+head(df[,(ncol(df)-10-1):ncol(df)])
