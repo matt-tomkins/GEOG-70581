@@ -288,7 +288,7 @@ The **viridis** colour ramp we have been using so far **is** perceptually unifor
 
 In a similar fashion, not all colour ramps are suitable for individuals with various forms of colour-blindness (see @levine_using_2009 and  @geissbuehler_how_2013), who may have difficulty distinguishing reds from greens, or yellows from blues. Luckily, there are now a range of perceptually uniform and colour-blind friendly colour ramps (e.g. @crameri_geodynamic_2018), including [Scientific Colour Maps 6.0](http://www.fabiocrameri.ch/colourmaps.php). These can be downloaded and used across a range of GIS programs to suit a range of data types. For now, utilise the colour ramps available in R (i.e. viridis) but bear these issues in mind for future map creation. 
 
-## Calculating Flow Parameters: Pointers
+## Flow Parameters: Pointers
 
 Now that we have a DEM that has had all interruptions to flow removed, we can continue to calculate the data needed to define the drainage network i.e. the topological network describing how each cell in a DEM is connected to all others.
 
@@ -369,7 +369,7 @@ which is described here:
 
 > Question: Can you think of any issues with symbolising pointer data? 
 
-## Comparing flow algorithms
+##  Flow Algorithms
 
 Once you have determined how each grid cell in a DEM is connected to its neighbours, it is possible to use this pointer information to calculate the number of grid cells that are connected to each cell in an upslope (catchment area) and downslope (dispersal area) direction. These data describe the spatial pattern of upslope (or downslope) area draining to (or away from) each pixel in a DEM.
 
@@ -440,7 +440,7 @@ To calculate the catchment area using the D-infinity algorithm of @tarboton_new_
 
 > Use `wbt_d_inf_flow_accumulation`. Use the same input parameters as above (i.e. SCA, log-transformed values). Save with an appropriate name (e.g. `dem_10m_flow_accumulation_d_inf.tif`). Load the raster in R and plot. 
 
-## Comparing the outputs
+### Comparing the outputs
 
 The output of the algorithms should resemble the following:
 
@@ -478,7 +478,7 @@ The above code uses British National Grid coordinates (m), rather than decimal d
 
 <br/> 
 
-### Practical solution
+## Practical solution
 
 As with the introduction to R (Chapter 2 - 3), I will provide a code solution to the Eskdale practical (Chapters 4 - 6), outlining the major analytical steps. 
 
@@ -507,7 +507,7 @@ check.packages <- function(pkg){
 }
 
 # Checks and installs packages
-packages <- c("ggplot2", "here", "raster", "whitebox", "ggspatial", "patchwork")
+packages <- c("ggplot2", "sf", "here", "raster", "whitebox", "ggspatial", "patchwork")
 check.packages(packages)
 
 # Sets file path for DEM

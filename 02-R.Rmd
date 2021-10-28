@@ -5,9 +5,7 @@
 install.packages("leaflet", repos = "http://cran.us.r-project.org")
 install.packages("dplyr", repos = "http://cran.us.r-project.org")
 install.packages("gridExtra", repos = "http://cran.us.r-project.org")               
-```
-```{r}
-install.packages("gridExtra", repos = "http://cran.us.r-project.org")      
+install.packages("rgdal", repos = "http://cran.us.r-project.org")      
 ```
 ## Overview
 
@@ -538,9 +536,9 @@ To load a `.csv` file into R, we can use the command `read.csv()`. The most basi
 ![](figures/Using-R/file_paths.png)
 </p>
 
-For the final two sections of this Chapter (and the [formative task](#formative_task)), we'll using a data file called `flow_data.csv` which contains the average daily river flow (m<sup>3</sup> per second) from the [National River Flow Archive](https://nrfa.ceh.ac.uk/) and the [UK Centre for Ecology & Hydrology](https://www.ceh.ac.uk/). The data are from monitoring station [90003](https://nrfa.ceh.ac.uk/data/station/meanflow/90003) on the River Nevis (shown below), which drains Ben Nevis, the highest mountain in the UK, and cover the period from the 1<sup>st</sup> October 1982 to the 30<sup>th</sup> September 2019.  
+For the final two sections of this Chapter (and the [formative task](#formative_task)), we'll using a data file called `flow_data.csv` which contains the average daily river flow (m<sup>3</sup> per second) from the [National River Flow Archive](https://nrfa.ceh.ac.uk/) and the [UK Centre for Ecology & Hydrology](https://www.ceh.ac.uk/). The data are from monitoring station [90003](https://nrfa.ceh.ac.uk/data/station/meanflow/90003) on the River Nevis, which drains Ben Nevis, the highest mountain in the UK, and cover the period from the 1<sup>st</sup> October 1982 to the 30<sup>th</sup> September 2019.  
 
-
+You can explore the Glen Nevis area below:
 
 ```{r, echo = FALSE, warning = FALSE, message = FALSE}
 
