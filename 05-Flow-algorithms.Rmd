@@ -56,7 +56,7 @@ The DEM we are working with is centred on the Upper Eskdale catchment; an upland
 
 You can explore the catchment below: 
 
-```{r, echo = FALSE, fig.align="center"}
+```{r, echo = FALSE, fig.align="center", warning = FALSE, message=FALSE}
 
 # Loads shapefiles
 eskdale_watershed_polygons <- readOGR(here("output", "practical_1", "eskdale_watershed.shp"), verbose = FALSE)
