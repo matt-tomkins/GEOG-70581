@@ -288,7 +288,51 @@ colnames(bedrock_classes) <- c("Sands_and_Muds", "Limestone", "Coal")
 # Combines counts with watersheds data
 watersheds_ea <- cbind(watersheds_ea, land_cover_classes, soils_classes, bedrock_classes)
 
+#-------------------- [15] Normalising categorical surface derivatives ---------------------
 
-df <- read.csv(here("output", "practical_2", "mersey_watersheds_EA_compiled.csv"))
+# Creates list of categorical variables
+categorical_names <- c("Arable", "Heath", "Grassland", "Urban", "Wetland", "Permeable", "Impermeable", "Gleyed", "Peats", "Sands_and_Muds", "Limestone", "Coal")
 
-head(df[,(ncol(df)-10-1):ncol(df)])
+# Loops through list
+for (i in categorical_names){
+  # Defines new column name
+  col <- paste(i, "percent", sep="_")
+  # Updates with percentage
+  watersheds_ea[col] <- as.numeric(watersheds_ea[[i]]/watersheds_ea$count*100)
+}
+
+
+# Drop geometry from sf object
+watersheds_df <- st_drop_geometry(watersheds_ea)
+
+# Writes completed file to csv
+write.csv(x = watersheds_df, here("output", "practical_2", "mersey_watersheds_EA_compiled.csv"), row.names=FALSE)
+
+
+#-------------------- [16] Multi-linear regression ---------------------
+
+# Reads completed file from csv
+watersheds_df <- read.csv(here("output", "practical_2", "mersey_watersheds_ea.csv"))
+
+
+# Runs a linear model (mu)
+model <- lm(formula = NO2 ~ average_elevation + average_rainfall + Urban_percent, data = watersheds_df)
+
+# Column names of interest
+factors <- colnames(watersheds_df %>% dplyr::select(contains(c("average", "percent"))))
+
+# Creates data frame
+variables <- watersheds_df[factors]
+
+# Column bind the NO2 column from watersheds_df with the data frame containing all the independent variables 
+model_df <- cbind(NO2 = watersheds_df$NO2, variables)
+
+
+# Fits a linear model
+no2_model <- lm(formula = NO2 ~ ., data = model_df)
+
+summary(no2_model)
+
+step.model <- stepAIC(no2_model, direction = "backward", 
+                      trace = FALSE, k = 1)
+summary(step.model)

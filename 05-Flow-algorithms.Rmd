@@ -58,15 +58,25 @@ You can explore the catchment below:
 
 ```{r, echo = FALSE, fig.align="center"}
 
+# Loads shapefiles
+eskdale_watershed_polygons <- readOGR(here("output", "practical_1", "eskdale_watershed.shp"), verbose = FALSE)
+
+# Transform to WGS 84
+eskdale_watershed_polygons <- spTransform(eskdale_watershed_polygons, CRS("+proj=longlat +datum=WGS84"))
+
 m <- leaflet() %>%
   # Sets views
   setView(lat=54.436374897510255, lng = -3.1909687216299947, zoom = 12.1) %>%
   # Adds default tiles
   #addTiles()  %>%
   addProviderTiles(providers$OpenTopoMap) %>%
+  # Add polygon
+  addPolygons(data=eskdale_watershed_polygons, color = "#444444", fillColor = "#33b9ff", 
+              weight = 1, smoothFactor = 0.5, opacity = 0.9, fillOpacity = 0.2) %>%
   # Adds marker for the catchment outlet
   addMarkers(lat=54.412119851, lng = -3.204500685, popup = "Catchment Outlet (~160 m)")
 m
+
 ```
 
 <br/> 
@@ -267,6 +277,8 @@ s
 
 Before we move on to further analysis, it is worth thinking carefully about the **symbology** we are using for our raster layers. This is important, because not all colour ramps are created equal! Colour ramps differ in terms of their **perceptual uniformity** and their accessibility for **colour-blind** individuals. 
 
+> Save your script before continuing. 
+
 ### Choosing a colour ramp
 
 Perceptual uniformity refers to how well a colour ramp represents the underlying data. Some (e.g. [rainbow](https://www.climate-lab-book.ac.uk/2014/endof- the-rainbow/); @hawkins_scrap_2015) can introduce artificial boundaries (@alcalde_framing_2017) which influence how we assess and then use that data (see [here](https://blogs.egu.eu/divisions/gd/2017/08/23/the-rainbow-colour-map/). In the schematic below, there are numerous artificial boundaries in the rainbow colour ramp (e.g. dark blue → light blue, light blue → green, green → yellow, yellow → orange), whereas the monochrome colour ramp smoothly transitions from black → white. 
@@ -369,6 +381,9 @@ which is described here:
 
 > Question: Can you think of any issues with symbolising pointer data? 
 
+> Save your script before continuing. 
+
+
 ##  Flow Algorithms
 
 Once you have determined how each grid cell in a DEM is connected to its neighbours, it is possible to use this pointer information to calculate the number of grid cells that are connected to each cell in an upslope (catchment area) and downslope (dispersal area) direction. These data describe the spatial pattern of upslope (or downslope) area draining to (or away from) each pixel in a DEM.
@@ -462,7 +477,7 @@ The above code uses British National Grid coordinates (m), rather than decimal d
 
 <br/> 
 
-**To finish Practical 1**, complete the following:
+**To finish Practical 1**, save your script and complete the following:
 
 > Compare the D8, FD8 and D-Inf outputs. Either cycle between the plots using the plot window or combine them using the `patchwork` package. This would need to be installed and loaded to the library. 
 

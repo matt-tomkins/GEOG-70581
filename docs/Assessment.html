@@ -303,8 +303,12 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="11" data-path="mersey_five.html"><a href="mersey_five.html"><i class="fa fa-check"></i><b>11</b> Mersey V - Statistical analysis</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="mersey_five.html"><a href="mersey_five.html#task-7-metrics"><i class="fa fa-check"></i><b>11.1</b> Task 7: Metrics</a></li>
-<li class="chapter" data-level="11.2" data-path="mersey_five.html"><a href="mersey_five.html#task-8-spatial-predictions"><i class="fa fa-check"></i><b>11.2</b> Task 8: Spatial predictions</a></li>
+<li class="chapter" data-level="11.1" data-path="mersey_five.html"><a href="mersey_five.html#task-7-model-building"><i class="fa fa-check"></i><b>11.1</b> Task 7: Model building</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="mersey_five.html"><a href="mersey_five.html#an-introduction-to-linear-models-in-r"><i class="fa fa-check"></i><b>11.1.1</b> An introduction to linear models in R</a></li>
+<li class="chapter" data-level="11.1.2" data-path="mersey_five.html"><a href="mersey_five.html#stepwise-regression"><i class="fa fa-check"></i><b>11.1.2</b> Stepwise regression</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="mersey_five.html"><a href="mersey_five.html#task-8-error-analysis"><i class="fa fa-check"></i><b>11.2</b> Task 8: Error analysis</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="Assessment.html"><a href="Assessment.html"><i class="fa fa-check"></i><b>12</b> Assessment</a></li>
 </ul>
@@ -329,10 +333,52 @@ Hydrological analysis in R
 <div id="Assessment" class="section level1" number="12">
 <h1><span class="header-section-number">Chapter 12</span> Assessment</h1>
 <p><strong>Title:</strong> Modelling River Hydrochemistry</p>
-<p><strong>Word Limit:</strong> 2000. The guidelines provided in the CO<sub>2</sub> flux practical, which outline what is and what is not included in the word count, as well penalties for exceeding the word count, also apply here.</p>
+<p><strong>Word Limit:</strong> 1500. The guidelines provided in the CO<sub>2</sub> flux practical, which outline what is and what is not included in the word count, as well penalties for exceeding the word count, also apply here.</p>
 <p><strong>Format:</strong> Report</p>
-<p><strong>Structure:</strong> Your report should be a coherent document, as opposed to a list of Q&amp;As as with the CO<sub>2</sub> flux practical. Within this, how you structure the report is your decision. However, there are certain items that must be included in the main body of the report. These are the regression equations (and associated information i.e. significance values, R<sup>2</sup> etc) for all ten water quality indicators, and your three spatial predictions of river water quality. You can choose which three water quality indicators you focus on for the spatial predictions, but you should justify your choice in the report.</p>
-<p>As well as these important items, the following points must be covered in the report:</p>
+<p><strong>Structure:</strong> Your report should be a coherent document, as opposed to a list of Q&amp;As as with the CO<sub>2</sub> flux practical. Within this, how you structure the report is your decision. However, there are certain items that must be included in the main body of the report. These are the regression equations (and associated information i.e. significance values, R<sup>2</sup> etc) for all ten water quality indicators.</p>
+<p>This could be presented as a table, perhaps in the format shown below:</p>
+<table>
+<colgroup>
+<col width="10%" />
+<col width="52%" />
+<col width="9%" />
+<col width="7%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Indicator</th>
+<th align="center">Equation</th>
+<th align="center">R<sup>2</sup></th>
+<th align="center"><em>p</em> value</th>
+<th align="center">Additional columns as required</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">NO<sub>2</sub></td>
+<td align="center"><span class="math inline">\(NO_2 = 0.049 + (0.001 \cdot Urban \: percent) + (-0.005 \cdot Average \: slope)\)</span></td>
+<td align="center">0.41</td>
+<td align="center">&lt; 0.01</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>As well as these important items, the following points should be covered in the report:</p>
 <ol style="list-style-type: decimal">
 <li><p>What are the relationships between water quality and catchment characteristics?</p></li>
 <li><p>Are there any consistent predictors of water quality?</p></li>
@@ -340,30 +386,28 @@ Hydrological analysis in R
 <li><p>What sort of errors may occur during the derivation of catchment characteristics?</p></li>
 <li><p>How could these errors be minimised?</p></li>
 <li><p>How could you validate the models?</p></li>
-<li><p>Are there any patterns in modelled river water quality?</p></li>
-<li><p>Are your predictive maps of water quality useful?</p></li>
-<li><p>Are there any errors / limitations when constructing maps of this type?</p></li>
-<li><p>How could you improve the spatial predictions?</p></li>
+<li><p>Your regression models could be used to predict water quality in different catchments or different sub-basins of the Mersey. Can you think of any possible errors / limitations when making predictions of this type?</p></li>
 </ol>
-<p>Your report should not just be a reworked version of the practical instructions. In fact, there is no need to include a ‘methodology’ section at all, although you may wish to reflect on the methods used when considering the points above. You may find it useful to refer to the my learning essential resources on report writing ([<a href="https://www.library.manchester.ac.uk/using-the-library/students/training-and-skills-support/my-learning-essentials/online-resources/" class="uri">https://www.library.manchester.ac.uk/using-the-library/students/training-and-skills-support/my-learning-essentials/online-resources/</a>)</p>
-<p>In addition to the above, you must produce maps for each of the following files created during the practical exercise. These are listed using the file names used above, but check these carefully if you used a different naming format. These need to be included in an Appendix at the back of the report (ideally two images per page):</p>
+<p>Your report should not just be a reworked version of the practical instructions. <strong>Do not</strong> include a ‘methodology’ section at all, although you may wish to reflect on the methods used when considering the points above. You may find it useful to refer to the my learning essential resources on <a href="https://www.library.manchester.ac.uk/using-the-library/students/training-and-skills-support/my-learning-essentials/online-resources/">report writing</a>.</p>
+<p>In addition to the above, we will like to produce three output maps to visualise the practical steps. These should be included in an Appendix at the back of the report (ideally two images per page). These should include the layers listed below but can include others to improve map design (e.g. an elevation background).</p>
 <ul>
-<li>D8 specific contributing areas (SCA) – (“mersey_DEM_fill_D8_SCA”);</li>
-<li>Watersheds in the Mersey Basin, derived from the 70 modified Environment Agency seed points – (“mersey_watersheds”);</li>
-<li>Boolean (logical) raster of urban land cover – (“mersey_LC_Urban”);</li>
-<li>Boolean (logical) raster of permeable HOST soil cover – (“mersey_HOST_Perm”);</li>
-<li>Boolean (logical) raster of coal bedrock – (“mersey_bedrock_Coal”);</li>
-<li>Slope map – (“mersey_DEM_fill_slope”);</li>
-<li>Streams raster, created using the specific contributing area (SCA) and a channelization threshold of 10 (log-transformed) – (“mersey_Streams_SCA10”);</li>
-<li>Masked sub-basins – (“mersey_subsbasin_mask”).</li>
+<li>a map showing the flow accumulation network (<code>mersey_dem_flow_accumulation.tif</code>), using log-transformed values and specific contributing areas;</li>
+<li>a map showing the watersheds in the Mersey Basin (<code>mersey_watersheds.shp</code>), derived from the 70 modified Environment Agency seed points;</li>
+<li>a map showing the reclassified soils raster (<code>mersey_HOST_reclass.tif</code>).</li>
 </ul>
-<p>Presentation of Images: All maps should have a scale bar, north arrow and legend, all of which can be added in Whitebox under the Cartographic dropdown menu. Maps can be exported from Whitebox to image format (e.g. .png) using Export Map as Image.</p>
-<p>Referencing: The report should be fully referenced, using the Harvard style. You should not just adapt the text from the Rothwell paper, substituting key values for the data here. This will result in a high similarity index and you may face a penalty due to poor academic practice. You must write up the report in your own words, making sure you paraphrase the ideas of others, and reference fully throughout.</p>
-<p><strong>Submission deadline</strong>: XX/XX/XXXX, XX:XX</p>
+<p><strong>Map design</strong>: Normally, all maps should have a scale bar and north arrow. However, because we’re using projected data (British National Grid) and because <code>ggpsatial</code> automatically adds informative latitude/longitude axes to your plots, you <strong>don’t</strong> need to include either of these elements here. For reference, these can be added using <code>annotation_scale()</code> and <code>annotation_north_arrow()</code> respectively. Maps should, however, include informative legends, titles and axis labels, and should use colour-blind friendly and perceptually-uniform palettes.</p>
+<p><strong>Referencing</strong>: The report should be fully referenced, using the Harvard style. You should not just adapt the text from the Rothwell paper, substituting key values for the data here. This will result in a high similarity index and you may face a penalty due to poor academic practice. You must write up the report in your own words, making sure you paraphrase the ideas of others, and reference fully throughout.</p>
+<p><strong>Submission deadline</strong>: 06/01/2022, 14:00</p>
 
 <div id="refs" class="references csl-bib-body">
 <div class="csl-entry">
 Alcalde, J. <em>et al.</em> (2017) <span>‘Framing bias: <span>The</span> effect of figure presentation on seismic interpretation’</span>, <em>Interpretation</em>, 5(4), pp. T591–T605. doi:<a href="https://doi.org/10.1190/INT-2017-0083.1">10.1190/INT-2017-0083.1</a>.
+</div>
+<div class="csl-entry">
+Amrhein, V. <em>et al.</em> (2019) <span>‘Scientists rise up against statistical significance’</span>, <em>Nature</em>, 567(7748), pp. 305–307. doi:<a href="https://doi.org/10.1038/d41586-019-00857-9">10.1038/d41586-019-00857-9</a>.
+</div>
+<div class="csl-entry">
+Andrade, C. (2019) <span>‘The <span>P</span> <span>Value</span> and <span>Statistical</span> <span>Significance</span>: <span>Misunderstandings</span>, <span>Explanations</span>, <span>Challenges</span>, and <span>Alternatives</span>’</span>, <em>Indian Journal of Psychological Medicine</em>, 41(3), pp. 210–215. doi:<a href="https://doi.org/10.4103/IJPSYM.IJPSYM_193_19">10.4103/IJPSYM.IJPSYM_193_19</a>.
 </div>
 <div class="csl-entry">
 Crameri, F. (2018) <span>‘Geodynamic diagnostics, scientific visualisation and <span>StagLab</span> 3.0’</span>, <em>Geoscientific Model Development</em>, 11(6), pp. 2541–2562. doi:<a href="https://doi.org/10.5194/gmd-11-2541-2018">https://doi.org/10.5194/gmd-11-2541-2018</a>.
@@ -376,6 +420,9 @@ Freeman, T.G. (1991) <span>‘Calculating catchment area with divergent flow bas
 </div>
 <div class="csl-entry">
 Geissbuehler, M. and Lasser, T. (2013) <span>‘How to display data by color schemes compatible with red-green color perception deficiencies’</span>, <em>Optics Express</em>, 21(8), pp. 9862–9874. doi:<a href="https://doi.org/10.1364/OE.21.009862">10.1364/OE.21.009862</a>.
+</div>
+<div class="csl-entry">
+Goodman, S. (2008) <span>‘A <span>Dirty</span> <span>Dozen</span>: <span>Twelve</span> <span>P</span>-<span>Value</span> <span>Misconceptions</span>’</span>, <em>Seminars in Hematology</em>, 45(3), pp. 135–140. doi:<a href="https://doi.org/10.1053/j.seminhematol.2008.04.003">10.1053/j.seminhematol.2008.04.003</a>.
 </div>
 <div class="csl-entry">
 Grabs, T.J. <em>et al.</em> (2010) <span>‘Calculating terrain indices along streams: <span>A</span> new method for separating stream sides’</span>, <em>Water Resources Research</em>, 46(12). doi:<a href="https://doi.org/10.1029/2010WR009296">https://doi.org/10.1029/2010WR009296</a>.

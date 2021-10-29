@@ -213,3 +213,5 @@ wbt_raster_to_vector_polygons(here("output", "practical_1", "dem_10m_watersheds.
 # Converts streams to vector format (lines)
 wbt_raster_to_vector_lines(here("output", "practical_1", "dem_10m_streams_act500.tif"), 
                            here("output", "practical_1", "dem_10m_streams_act500.shp"))
+
+

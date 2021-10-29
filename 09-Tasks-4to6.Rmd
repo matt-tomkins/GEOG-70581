@@ -48,7 +48,7 @@ As not all categories are applicable to our study area, we are next going to cre
 
 > Inspect the code below. Many of the code elements should be familiar to you. We are creating a vector called `categories` using the `c()` function, which contains all the classes of interest `c(41, 42, 43, ...)`). Next, we have converted that to a data frame using `as.data.frame()` and assigned a column name (`ID`). When you understand what is happening, add to your script and run.
 
-```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', cache = TRUE}
 # Categories of interest
 categories <- as.data.frame(c(41, 42, 43, 91, 101, 102, 51, 52, 61, 71, 81, 171, 172, 111, 121))
 colnames(categories) <- "ID"
@@ -63,7 +63,7 @@ head(categories)
 
 Using this new data frame, we are going to create a new column called `name`, which corresponds to the name of the land cover class (e.g. $Arable = 41$)
 
-```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', cache = TRUE}
 
 # Collapse categories into groups based on ID
 categories$name <- fct_collapse(as.factor(categories$ID),
@@ -86,7 +86,7 @@ Finally, we can use this updated data frame to replace (or substitute) values in
 
 > Inspect the following code, which substitutes (reclassifies) the raster layer and saves to a new raster (`.tif`) using the `writeRaster` function. 
 
-```{r, echo = TRUE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
+```{r, echo = TRUE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center', cache = TRUE}
 # Substitutes raster values with new categories
 land_cover_classified <- subs(land_cover, categories)
 
@@ -120,13 +120,15 @@ In the above image, the land cover classes are shown as follows:
 
 <br/> 
 
-> Using the methodology outlined above, repeat this process for the soil type (`mersey_HOST`) and bedrock geology rasters (`mersey_bedrock`). Make sure to use a consistent approach to file naming e.g. `mersey_HOST_reclass.tif` and `mersey_bedrock_reclass.tif`. 
+> First, save your script before continuing. 
+
+> Next, using the methodology outlined above, repeat this process for the soil type (`mersey_HOST`) and bedrock geology rasters (`mersey_bedrock`). Make sure to use a consistent approach to file naming e.g. `mersey_HOST_reclass.tif` and `mersey_bedrock_reclass.tif`. 
 
 <br/> 
 
 ### Hydrology of Soil Types (HOST)
 
-```{r, echo = FALSE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
+```{r, echo = FALSE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center, cache = TRUE'}
 # Loads land cover raster
 soils <- as.factor(raster(here("data", "practical_2", "mersey_HOST.tif")))
 
@@ -169,7 +171,7 @@ Utilising the order above, the values of the output raster should be as follows:
 
 ### Bedrock geology
 
-```{r, echo = FALSE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
+```{r, echo = FALSE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center', cache = TRUE}
 
 # Loads land cover raster
 bedrock <- as.factor(raster(here("data", "practical_2", "mersey_bedrock.tif")))
@@ -205,6 +207,9 @@ Utilising the order above, the values of the output raster should be as follows:
 - **Sandmud** = 1
 - **Limestone** = 2
 - **Coal** = 3
+
+> When complete, save your script before continuing. 
+
 
 ## Task 5: Calculating surface derivatives
 
@@ -322,6 +327,8 @@ watersheds_ea <- merge(watersheds, ea_data, by = "Seed_Point_ID")
 head(watersheds_ea)
 ```
 
+> Save your script before continuing. 
+
 ### Spatial areas
 
 With our datasets now linked, we may want to calculate the **area** of our watersheds, expressed as either km<sup>2</sup> or as a count of raster cells. 
@@ -405,7 +412,7 @@ watersheds_ea$average_elevation <- extract(mersey_dem, watersheds_ea, fun=mean, 
 
 > When you're happy you understand it, copy to your script and run, before repeating the process for the other continuous variables, and storing the data using sensible attribute names e.g. `watersheds_ea$average_elevation`, `$average_rainfall`, `$average_slope`, `$average_aspect`.
 
-```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide',  cache = TRUE}
 # Extract derivatives, calculate mean, and store in attribute table
 watersheds_ea$average_elevation <- extract(mersey_dem, watersheds_ea, fun=mean, na.rm=TRUE)
 watersheds_ea$average_rainfall  <- extract(mersey_rainfall, watersheds_ea, fun=mean, na.rm=TRUE)
@@ -435,7 +442,7 @@ bedrock <- raster(here("output", "practical_2", "mersey_bedrock_reclass.tif"))
 
 > Next, we are going to use the `extract` function again, but this time returning the count of each category (e.g. Arable, Heath, Grassland, Urban, Wetland) for each watershed area, as shown here:
 
-```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide',  cache = TRUE}
 # Extract land cover counts (5 classes so levels = 1:5)
 land_cover_classes <- extract(land_cover, watersheds_ea, fun=function(i,...) table(factor(i, levels = 1:5)))
 
@@ -467,7 +474,7 @@ head(land_cover_classes)
 
 > Replicate this approach for the soil type and bedrock datasets, using sensible variable names (e.g. `soils_classes` and `bedrock_classes`), remembering to update the `extract` function used (i.e. `levels = 1:4` for the soil data and `levels = 1:3` for the bedrock data). 
 
-```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', cache = TRUE}
 # Extract soils counts (4 classes, 1:4)
 soils_classes <- extract(soils, watersheds_ea, fun=function(i,...) table(factor(i, levels = 1:4)))
 colnames(soils_classes) <- c("Permeable", "Impermeable", "Gleyed", "Peats")
@@ -573,10 +580,24 @@ for (i in categorical_names){
 
 ```
 
-> When you're happy you understand the above code, run it to finish the practical. Use `head()` to inspect the final output, which should resemble the following:
+> When you're happy you understand the above code, run it. To finish the practical, we're going to remove the geometry stored in the data frame (not required for subsequent analysis) before saving as a comma-separated file:
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+
+# Drops geometry attribute from watersheds_ea
+watersheds_ea <- st_drop_geometry(watersheds_ea)
+
+# Writes data frame to comma-separated file
+write.csv(x = watersheds_ea, here("output", "practical_2", "mersey_watersheds_ea.csv"), row.names=FALSE)
+
+```
+
+Use `head()` to inspect the final output, which should resemble the following:
 
 ```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
 head(watersheds_ea)
 ```
 
 In the final week of Environmental Modelling and Monitoring Concepts (Week 12, **Mersey V**), we'll use this data frame to evaluate the environmental controls on water quality. 
+
+

@@ -10,6 +10,8 @@ In this lab exercise, we will use a DEM of the Upper Eskdale catchment to model 
 - Calculating flow parameters (e.g. pointers and contributing areas);
 - Comparing flow algorithms. 
 
+**Make sure to save your R script regularly!**
+
 ![Upper Eskdale catchment](figures/Practical-1/cover.png)
 
 ### Intended learning outcomes

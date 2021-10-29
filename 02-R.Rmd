@@ -1,12 +1,21 @@
 # A (brief) introduction to R  {#Intro_to_R}
 
-```{r, eval = FALSE, echo = FALSE}
-# Packages used in Chapter 2
-install.packages("leaflet", repos = "http://cran.us.r-project.org")
-install.packages("dplyr", repos = "http://cran.us.r-project.org")
-install.packages("gridExtra", repos = "http://cran.us.r-project.org")               
-install.packages("rgdal", repos = "http://cran.us.r-project.org")      
+```{r, eval = TRUE, echo = FALSE, warning= FALSE, message = FALSE, results='hide'}
+# Function to check and install packages
+check.packages <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if (length(new.pkg)) 
+    install.packages(new.pkg, dependencies = TRUE)
+  sapply(pkg, require, character.only = TRUE)
+}
+
+# Checks and installs packages
+packages <- c("ggplot2", "ggspatial", "here", "raster", "sf", "whitebox", # Practical-1
+              "data.table", "dplyr", "forcats", "MASS", "units", "patchwork", "leaflet", "gridExtra", "rgdal") # Practical-2 
+check.packages(packages)
 ```
+
+
 ## Overview
 
 The following chapter provides a basic introduction to coding in R. If you already have experience with coding, perhaps from [Spatial Ecology](https://www.manchester.ac.uk/study/masters/courses/list/07053/msc-geographical-information-science/course-details/GEOG71921#course-unit-details) or [Understanding GIS](https://www.manchester.ac.uk/study/undergraduate/courses/2022/00575/bsc-geography/all-content/GEOG30552#course-unit-details), then the following content should be familiar to you. For those of you with little or no experience with code, the content builds from the simple (using R as a calculator) to the complex (loading packages and data, plotting) and will equip you with the skills needed to complete Practicals 1 (Eskdale) and 2 (Mersey)

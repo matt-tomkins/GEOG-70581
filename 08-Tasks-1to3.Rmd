@@ -78,6 +78,8 @@ p <- ggplot() +
 p 
 ```
 
+> Save your script before continuing. 
+
 ### Catchment area
 
 Using this pointer information, we can calculate the number of grid cells that are connected to each cell in an upslope (catchment area) and downslope (dispersal area) direction. These data describe the spatial pattern of upslope (or downslope) area draining to (or away from) each pixel in a DEM.
@@ -246,6 +248,9 @@ However, the Jenson approach requires additional inputs and utilises a **Streams
 
 <br/>
 
+> Save your script before continuing. 
+
+
 #### Number of Upslope Elements
 
 > Run the `wbt_d8_flow_accumulation` tool, using the original filled DEM as the input file (`pntr = FALSE`) and saving with an appropriate name `mersey_dem_D8_flow_accumulation_NUE.tif` and in the correct location. Set the output type as `cells` (i.e. the number of upslope cells) and **don't** log-transform values.
@@ -372,9 +377,9 @@ These delineated watersheds can now be used for further analysis. However, it is
 
 <br/> 
 
-> To finish, compare your outputs to those shown below. If there are any clear differences in your version, repeat the previous tasks and play close attention to the input settings.
+> To finish, **save your script** and compare your outputs to those shown below. If there are any clear differences in your version, repeat the previous tasks and play close attention to the input settings.
 
-```{r, echo = FALSE, fig.align="center", warning = FALSE, message = FALSE, results='hide'}
+```{r, echo = FALSE, fig.align="center", warning = FALSE, message = FALSE}
 
 # Loads shapefiles
 mersey_watershed_polygons <- readOGR(here("output", "practical_2", "mersey_watersheds.shp"), verbose = FALSE)

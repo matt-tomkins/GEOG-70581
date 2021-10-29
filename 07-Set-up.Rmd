@@ -1,21 +1,5 @@
 # Mersey II - Set-up {#Mersy_set_up}
 
-```{r, eval = TRUE, echo = FALSE, warning= FALSE, message = FALSE, results='hide'}
-# Function to check and install packages
-check.packages <- function(pkg){
-  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
-  if (length(new.pkg)) 
-    install.packages(new.pkg, dependencies = TRUE)
-  sapply(pkg, require, character.only = TRUE)
-}
-
-# Checks and installs packages
-packages <- c("ggplot2", "ggspatial", "here", "raster", "sf", "whitebox", # Practical-1
-              "data.table", "dplyr", "forcats", "MASS", "units", "patchwork") # Practical-2 
-check.packages(packages)
-```
-
-
 ## Practical overview
 
 This practical is comprised of eight primary tasks, with three weeks of class time available (Weeks 10 - 12). Each of the steps is described in more detail in the remainder of this document. An outline of the key tasks is as follows:
@@ -34,8 +18,8 @@ This practical is comprised of eight primary tasks, with three weeks of class ti
 
 **Mersey V** (Chapter 11): To complete in class in Week 12: 
 
-- Task 7: Relating river water quality to catchment metrics 
-- Task 8: Spatial predictions of water quality across the Mersey Basin 
+- Task 7: Model building i.e. relating river water quality to catchment metrics 
+- Task 8: Error analysis
 
 Any class time remaining can be used to commence your practical report and ask any questions you may have before submission.
 
