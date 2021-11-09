@@ -23,9 +23,11 @@ In this set of practicals, we'll be using [R](https://www.r-project.org/), [RStu
 
 In [Chapters 2](#Installation) and [3](#R), we'll install and get to grips with the required programs. 
 
-In [Practical 1](#FirstPractical) (Chapters 4 - 6), which uses data for the **Eskdale** watershed, we'll introduce you to some of the key approaches, including DEM pre-processing, calculating flow parameters and comparing flow algorithms. 
+In Practical 1 (Chapters 4 - 6), which uses data for the **Eskdale** watershed, we'll introduce you to some of the key approaches, including DEM pre-processing, calculating flow parameters and comparing flow algorithms. 
 
-In [Practical 2](#SecondPractical) (Chapters 7 - 11),  we'll utilise these approaches to investigate the water quality of the **Mersey** Basin. This forms the basis for your [assessment](#Assessment). 
+In Practical 2 (Chapters 7 - 11),  we'll utilise these approaches to investigate the water quality of the **Mersey** Basin. This forms the basis for your assessment. 
+
+The relevant chapters will be made available as the weeks progress. The assessed practical and assessment guidance will be released prior to our session in Week 10. 
 
 ## Objectives
 
@@ -50,5 +52,5 @@ These practicals will be completed across Weeks 8 to 12 as follows:
   - Complete **Mersey** practical, covered in Chapters 7 - 11 (~9 hr)
   
   
-The [assessment](#Assessment), based upon Practical 2 (**Mersey**), is due 06/01/2022 (14:00). 
+The assessment, based upon Practical 2 (**Mersey**), is due 06/01/2022 (14:00). 
 
