@@ -34,7 +34,7 @@ As well as these important items, the following points should be covered in the 
 
 Your report should not just be a reworked version of the practical instructions. **Do not** include a ‘methodology’ section at all, although you may wish to reflect on the methods used when considering the points above. You may find it useful to refer to the my learning essential resources on [report writing](https://www.library.manchester.ac.uk/using-the-library/students/training-and-skills-support/my-learning-essentials/online-resources/). 
 
-In addition to the above, we will like to produce three output maps to visualise the practical steps. These should be included in an Appendix at the back of the report (ideally two images per page). These should include the layers listed below but can include others to improve map design (e.g. an elevation background). 
+In addition to the above, we would like you to produce three output maps to visualise the practical steps. These should be included in an Appendix at the back of the report (ideally two images per page). These should include the layers listed below but can include others to improve map design (e.g. an elevation background). 
 
 - a map showing the flow accumulation network (`mersey_dem_flow_accumulation.tif`), using log-transformed values and specific contributing areas;
 - a map showing the watersheds in the Mersey Basin (`mersey_watersheds.shp`), derived from the 70 modified Environment Agency seed points;

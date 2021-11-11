@@ -27,7 +27,7 @@ In Practical 1 (Chapters 4 - 6), which uses data for the **Eskdale** watershed, 
 
 In Practical 2 (Chapters 7 - 11),  we'll utilise these approaches to investigate the water quality of the **Mersey** Basin. This forms the basis for your assessment. 
 
-**Note**: the relevant chapters will be made available as we progress through the semester, hence when Practicals 1 and 2 are not currently visible. Practical 1 will be released in Week 9 and Practical 2 will be released in Week 10.
+**Note**: the relevant chapters will be made available as we progress through the semester, hence why Practicals 1 and 2 are not currently visible. Practical 1 will be released in Week 9 and Practical 2 will be released in Week 10.
 
 ## Objectives
 
@@ -44,12 +44,13 @@ These practicals will be completed across Weeks 8 to 12 as follows:
 
 - Week 8: 
   - Lecture on Hydrological and Geomorphological models (~1 hr)
-  - Complete Chapters 1 - 3 (~2 hr)
+  - Complete Chapters 1 - 3: An introduction to R (~2 hr)
+  - If there's time available, begin Chapters 4 - 6: **Eskdale** practical. 
 - Weeks 9:
-  - Water Quality Modelling introduction lecture (< 1 hr)
-  - Complete **Eskdale** practical, covered in Chapters 4 - 6 (~2-3 hr)
+  - Water Quality Modelling introduction lecture (~1 hr)
+  - Complete Chapters 4 - 6: **Eskdale** practical (~2-3 hr)
 - Weeks 10 - 12:
-  - Complete **Mersey** practical, covered in Chapters 7 - 11 (~9 hr)
+  - Complete Chapters 7 - 11: **Mersey** practical (~9 hr)
   
   
 The assessment, based upon Practical 2 (**Mersey**), is due 06/01/2022 (14:00). 

@@ -24,8 +24,5 @@ In [Chapter 5](#Eskdale_set_up), we'll download the data and install the require
 
 ### Assessment
 
-This practical is formative and as such will not count towards your final mark for GEOG 70581, but you are encouraged to complete the practical to the best of your ability, and to have one or more attempts at the formative quiz. 
+This practical is formative and as such will not count towards your final mark for GEOG 70581, but you are encouraged to complete the practical to the best of your ability as the skills developed here will be used throughout the assessed Practical 2. 
 
-### Quiz
-
-There is an on-line Blackboard quiz associated with this practical that you are encouraged to complete. The quiz can be found on Blackboard under Course Content → [Week 8 to 12](https://online.manchester.ac.uk/webapps/blackboard/content/listContentEditable.jsp?content_id=_13304460_1&course_id=_68533_1). The quiz consists of six questions. You can have multiple attempts at the quiz.
