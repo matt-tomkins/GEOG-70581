@@ -776,7 +776,7 @@ To extract the month from each record, you may want to use the `months()` functi
 
 A code solution to the formative task will be uploaded here on the Monday after the class (22/11/2021). 
 
-```{r}
+```{r, eval = FALSE, echo = FALSE, warning = FALSE, message = FALSE}
 
 # Solution to the Chapter 3 formative task
 # Author: matt-tomkins
@@ -784,11 +784,11 @@ A code solution to the formative task will be uploaded here on the Monday after 
 
 ```
 
-```{r, eval = FALSE, echo = FALSE, warning = FALSE, message = FALSE}
+```{r, eval = TRUE, echo = TRUE, warning = FALSE, message = FALSE}
 
 # Solution to the Chapter 3 formative task
 # Author: matt-tomkins
-# Date: 27-10-2021
+# Date of upload: 22-11-2021
 
 # Function to check and install packages
 check.packages <- function(pkg){
@@ -802,7 +802,7 @@ check.packages <- function(pkg){
 packages <- c("ggplot2")
 check.packages(packages)
 
-# Load data from csv
+# Load data from csv (personal file path - update to your own)
 df <- read.csv("C:/Users/44797/Desktop/Repo/GEOG-70581/data/flow_data.csv")
 
 # Convert dates (in character format) to date format
