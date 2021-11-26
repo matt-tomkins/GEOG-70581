@@ -499,7 +499,7 @@ As with the introduction to R (Chapter 2 - 3), I will provide a code solution to
 
 This will be released prior to the Week 10 class (scheduled for 3/12/2021). 
 
-```{r}
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
 
 # Solution to Practical 1 (Eskdale)
 # Author: matt-tomkins
@@ -511,7 +511,7 @@ This will be released prior to the Week 10 class (scheduled for 3/12/2021).
 
 # Solution to Practical 1 (Eskdale)
 # Author: matt-tomkins
-# Date of upload: xx-xx-xxxx
+# Date of upload: 29-11-2021
 
 # Function to check and install packages
 check.packages <- function(pkg){
@@ -536,47 +536,57 @@ wbt_breach_depressions(dem, here("output", "practical_1", "dem_10m_breach.tif"))
 wbt_d8_pointer(here("output", "practical_1", "dem_10m_fill.tif"), 
                here("output", "practical_1", "dem_10m_D8_pointer.tif"))
 
-# Calculates D8 accumulation file
+# Calculates D8 accumulation file (SCA), with log-transformed values
 wbt_d8_flow_accumulation(here("output", "practical_1", "dem_10m_fill.tif"), 
                          here("output", "practical_1", "dem_10m_flow_accumulation.tif"),
                          out_type = "specific contributing area", 
                          log = "TRUE")
 
-# Calculates FD8 accumulation file
+# Calculates FD8 accumulation file (SCA), with log-transformed values
 wbt_fd8_flow_accumulation(here("output", "practical_1", "dem_10m_fill.tif"), 
                          here("output", "practical_1", "dem_10m_flow_accumulation_fd8.tif"), 
                          out_type = "specific contributing area", 
                          log	= "TRUE", 
                          exponent = 1.1)
 
-# Calculates D-Infinity accumulation file
+# Calculates D-Infinity accumulation file (SCA), with log-transformed value 
 wbt_d_inf_flow_accumulation(here("output", "practical_1", "dem_10m_fill.tif"), 
                           here("output", "practical_1", "dem_10m_flow_accumulation_d_inf.tif"), 
                           out_type = "specific contributing area", 
                           log	= "TRUE")
 
-# Loads rasters using the raster and here packages
+# Loads acccumulation files using raster and here packages
 eskdale_d8 <- raster(here("output", "practical_1", "dem_10m_flow_accumulation.tif"))
 eskdale_fd8 <- raster(here("output", "practical_1", "dem_10m_flow_accumulation_fd8.tif"))
 eskdale_d_inf <- raster(here("output", "practical_1", "dem_10m_flow_accumulation_d_inf.tif"))
 
 # Plots D8 using ggplot2
 p_d8 <- ggplot() +
+  # Adds raster layer using layer_spatial
   layer_spatial(eskdale_d8, aes(fill = stat(band1))) +
+  # Sets ggplot theme
   theme_classic() + 
+  # Axis and legend labeling
   labs(fill = "Flow accumulation value", x = "Easting", y = "Northing", 
        title="D8") +
+  # Sets fill symbology
   scale_fill_continuous(type = "viridis",  na.value = NA) +
+  # Removes legend, sets title size
   theme(legend.position = "none", 
         plot.title = element_text(hjust = 0.5))
 
 # Plots FD8 using ggplot2
 p_fd8 <- ggplot() +
+  # Adds raster layer using layer_spatial
   layer_spatial(eskdale_fd8, aes(fill = stat(band1))) +
+  # Sets ggplot theme
   theme_classic() + 
+  # Axis and legend labeling
   labs(fill = "Flow accumulation value", x = "Easting", y = "Northing", 
        title="FD8") +
+  # Sets fill symbology
   scale_fill_continuous(type = "viridis",  na.value = NA) +
+  # Sets legend location and axis labeling 
   theme(legend.position = "bottom") +
   theme(axis.title.y=element_blank(),
         axis.text.y=element_blank(),
@@ -585,24 +595,27 @@ p_fd8 <- ggplot() +
 
 # Plots D-Infinity using ggplot2
 p_dinf <- ggplot() +
+  # Adds raster layer using layer_spatial
   layer_spatial(eskdale_d_inf, aes(fill = stat(band1))) +
+  # Sets ggplot theme
   theme_classic() + 
+  # Axis and legend labeling
   labs(fill = "Flow accumulation value", x = "Easting", y = "Northing",
        title="D-Infinity") +
   scale_fill_continuous(type = "viridis",  na.value = NA) +
+  # Sets fill symbology
   theme(legend.position = "top") +
+  # Removes legend and sets axis labeling 
   theme(axis.title.y=element_blank(),
         axis.text.y=element_blank(),
         axis.ticks.y=element_blank(), 
         legend.position = "none", 
         plot.title = element_text(hjust = 0.5))
 
-# Combines using the patchwork library and plots
-patchwork <- p_d8 + p_fd8 + p_dinf
-patchwork
+# Combines using the patchwork library
+combined_plot <- p_d8 + p_fd8 + p_dinf
 
-# Saves to images directoty
-ggsave(plot = patchwork, here("images", "practical_1", "flow-comparison.png"), dpi = 300)
-
+# Displays figure
+combined_plot
 
 ```
