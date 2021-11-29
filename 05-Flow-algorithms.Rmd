@@ -499,7 +499,7 @@ As with the introduction to R (Chapter 2 - 3), I will provide a code solution to
 
 This will be released prior to the Week 10 class (scheduled for 3/12/2021). 
 
-```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+```{r, echo = FALSE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
 
 # Solution to Practical 1 (Eskdale)
 # Author: matt-tomkins
@@ -507,7 +507,7 @@ This will be released prior to the Week 10 class (scheduled for 3/12/2021).
 
 ```
 
-```{r, echo = FALSE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
 
 # Solution to Practical 1 (Eskdale)
 # Author: matt-tomkins

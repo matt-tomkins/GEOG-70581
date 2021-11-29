@@ -480,13 +480,13 @@ Hydrological analysis in R
 <blockquote>
 <p>Copy and paste the <code>check.packages</code> function into your new script, either from below or from <code>Practical-1-Eskdale.R</code>:</p>
 </blockquote>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="Mersy_set_up.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to check and install packages</span></span>
-<span id="cb88-2"><a href="Mersy_set_up.html#cb88-2" aria-hidden="true" tabindex="-1"></a>check.packages <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg){</span>
-<span id="cb88-3"><a href="Mersy_set_up.html#cb88-3" aria-hidden="true" tabindex="-1"></a>  new.pkg <span class="ot">&lt;-</span> pkg[<span class="sc">!</span>(pkg <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
-<span id="cb88-4"><a href="Mersy_set_up.html#cb88-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(new.pkg)) </span>
-<span id="cb88-5"><a href="Mersy_set_up.html#cb88-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(new.pkg, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb88-6"><a href="Mersy_set_up.html#cb88-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sapply</span>(pkg, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb88-7"><a href="Mersy_set_up.html#cb88-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="Mersy_set_up.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to check and install packages</span></span>
+<span id="cb102-2"><a href="Mersy_set_up.html#cb102-2" aria-hidden="true" tabindex="-1"></a>check.packages <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg){</span>
+<span id="cb102-3"><a href="Mersy_set_up.html#cb102-3" aria-hidden="true" tabindex="-1"></a>  new.pkg <span class="ot">&lt;-</span> pkg[<span class="sc">!</span>(pkg <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
+<span id="cb102-4"><a href="Mersy_set_up.html#cb102-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(new.pkg)) </span>
+<span id="cb102-5"><a href="Mersy_set_up.html#cb102-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(new.pkg, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb102-6"><a href="Mersy_set_up.html#cb102-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sapply</span>(pkg, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb102-7"><a href="Mersy_set_up.html#cb102-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p><br/></p>
 <p>In <strong>Practical 1</strong>, we used the following packages:</p>
 <ul>
@@ -541,10 +541,10 @@ Hydrological analysis in R
 </ul>
 <p><br/></p>
 <p>To load new packages, you can either use the <code>install.packages()</code> and <code>library()</code> functions or more simply, add package names to the packages vector, as shown here:</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="Mersy_set_up.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checks and installs packages</span></span>
-<span id="cb89-2"><a href="Mersy_set_up.html#cb89-2" aria-hidden="true" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;ggspatial&quot;</span>, <span class="st">&quot;here&quot;</span>, <span class="st">&quot;raster&quot;</span>, <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;whitebox&quot;</span>, <span class="co"># Practical-1</span></span>
-<span id="cb89-3"><a href="Mersy_set_up.html#cb89-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;data.table&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;forcats&quot;</span>, <span class="st">&quot;MASS&quot;</span>, <span class="st">&quot;units&quot;</span>) <span class="co"># Practical-2 </span></span>
-<span id="cb89-4"><a href="Mersy_set_up.html#cb89-4" aria-hidden="true" tabindex="-1"></a><span class="fu">check.packages</span>(packages)</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="Mersy_set_up.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checks and installs packages</span></span>
+<span id="cb103-2"><a href="Mersy_set_up.html#cb103-2" aria-hidden="true" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;ggspatial&quot;</span>, <span class="st">&quot;here&quot;</span>, <span class="st">&quot;raster&quot;</span>, <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;whitebox&quot;</span>, <span class="co"># Practical-1</span></span>
+<span id="cb103-3"><a href="Mersy_set_up.html#cb103-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;data.table&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;forcats&quot;</span>, <span class="st">&quot;MASS&quot;</span>, <span class="st">&quot;units&quot;</span>) <span class="co"># Practical-2 </span></span>
+<span id="cb103-4"><a href="Mersy_set_up.html#cb103-4" aria-hidden="true" tabindex="-1"></a><span class="fu">check.packages</span>(packages)</span></code></pre></div>
 <blockquote>
 <p>Use the above code to install and load the required packages.</p>
 </blockquote>
