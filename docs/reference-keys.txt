@@ -93,3 +93,4 @@ an-introduction-to-linear-models-in-r
 stepwise-regression
 task-8-error-analysis
 Assessment
+Hints
