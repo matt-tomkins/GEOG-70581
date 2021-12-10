@@ -367,7 +367,7 @@ colours <- c("1" = "#D73027",
 p <- ggplot() +
   layer_spatial(eskdale_pointer, aes(fill = factor(stat(band1)))) +
   theme_classic() + 
-  labs(fill = "Slope angle", x = "Easting", y = "Northing") +
+  labs(fill = "Pointer value", x = "Easting", y = "Northing") +
   scale_fill_manual(values = colours, na.value = NA)
 p
 ```
