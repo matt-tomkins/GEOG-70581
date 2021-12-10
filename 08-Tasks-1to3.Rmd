@@ -273,7 +273,7 @@ mersey_streams <- raster(here("output", "practical_2", "mersey_dem_streams_act20
 p <- ggplot() +
   layer_spatial(mersey_streams, aes(fill = stat(band1))) + # Adds raster layer
   theme_classic() + 
-  labs(fill = "Log-transformed flow accumulation value", x = "Easting", y = "Northing") +
+  labs(fill = "Stream locations (1 = stream, 0 = no stream)", x = "Easting", y = "Northing") +
   scale_fill_continuous(type = "viridis",  na.value = NA) +
   theme(legend.position = "top")
 p 
