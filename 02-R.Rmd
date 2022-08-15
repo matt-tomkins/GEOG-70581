@@ -553,10 +553,24 @@ You can explore the Glen Nevis area below:
 
 library(dplyr)
 library(leaflet)
+library(sf)
 
 ```
 
-```{r, echo = FALSE, fig.align="center"}
+```{r, echo = FALSE, fig.align="center", warning = FALSE, message=FALSE}
+
+# Labelling
+content <- paste(sep = "<br/>",
+                 "<b><a href='https://nrfa.ceh.ac.uk/data/station/info/90003'>Station 90003</a></b>",
+                 "Glen Nevis",
+                 "Scotland"
+                 )
+
+# Loads shapefiles
+nevis_watershed_polygons <- readOGR(here("output", "introduction", "nevis_fill_watersheds.shp"), verbose = FALSE)
+
+# Transform to WGS 84
+nevis_watershed_polygons <- spTransform(nevis_watershed_polygons, CRS("+proj=longlat +datum=WGS84"))
 
 m <- leaflet() %>%
   # Sets views
@@ -564,10 +578,19 @@ m <- leaflet() %>%
   # Adds default tiles
   #addTiles()  %>%
   addProviderTiles(providers$OpenTopoMap) %>%
+  # Add polygon
+  addPolygons(data=nevis_watershed_polygons, color = "#444444", fillColor = "#33b9ff", 
+              weight = 1, smoothFactor = 0.5, opacity = 0.9, fillOpacity = 0.2) %>%
+  # Add popops
+  addPopups(-5.0899129843594855, 56.82164883574794, content,
+    options = popupOptions(autoClose = FALSE, closeOnClick = FALSE)
+  )
   # Adds marker for the monitoring station
-  addMarkers(lat=56.82164883574794, lng = -5.0899129843594855, popup = "Station 90003: Glen Nevis") %>%
+  #addMarkers(lat=56.82164883574794, lng = -5.0899129843594855, popup = "Station 90003: Glen Nevis")
   # Adds marker for Ben Nevis
-  addAwesomeMarkers(lat=56.79664376010986, lng = -5.003456696914713, popup = "Ben Nevis (1345 m)")
+  #addAwesomeMarkers(lat=56.79664376010986, lng = -5.003456696914713, popup = "Ben Nevis (1345 m)")
+  
+
 m
 
 ```

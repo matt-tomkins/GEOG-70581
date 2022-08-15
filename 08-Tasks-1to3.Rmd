@@ -285,7 +285,7 @@ Finally, we are going to reposition the EA seed points to match the stream netwo
 
 Before we execute the tool, we need to decide on the **Snap Distance**, which is measured in the units of the input data and is the maximum distance that points can be moved to match the stream network. Our raster is measured in **metres** (m) with a grid resolution of 50 m<sup>2</sup>. Most points are incorrectly positioned by one grid cell (50 m) or two grid cells (100 m). However, to ensure we include all points, we'll set the snap distance to 500 m. 
 
-> Using the output of Step 2 (`mersey_dem_streams_act200.tif`) and the EA monitoring stations shapefile `mersey_EA_sites_data.shp`, run the `wbt_jenson_snap_pour_points` function, using a snap distance of 500 m (`snap_dist = 500`). Save with an appropriate name `mersey_EA_sites_snapped.shp`. 
+> Using the output of Step 2 (`mersey_dem_streams_act200.tif`) and the EA monitoring stations shapefile `mersey_EA_sites.shp`, run the `wbt_jenson_snap_pour_points` function, using a snap distance of 500 m (`snap_dist = 500`). Save with an appropriate name `mersey_EA_sites_snapped.shp`. 
 
 ```{r, echo = FALSE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
 # Snaps pour points to stream network, snap distance in map units. 
@@ -398,9 +398,8 @@ m <- leaflet() %>%
   addPolygons(data=mersey_watershed_polygons, color = "#444444", fillColor = "#33b9ff", 
               weight = 1, smoothFactor = 0.5, opacity = 0.9, fillOpacity = 0.2) %>%
   # Add markers
-  addMarkers(data = mersey_points, label = ~as.character(EA_ID))
-
-
+  addCircleMarkers(data = mersey_points, label = ~as.character(EA_ID), 
+                   stroke = FALSE, fillOpacity = 0.5, radius = 5)
 
 m
 ```

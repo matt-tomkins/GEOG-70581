@@ -58,6 +58,13 @@ You can explore the catchment below:
 
 ```{r, echo = FALSE, fig.align="center", warning = FALSE, message=FALSE}
 
+# Labelling
+content <- paste(sep = "<br/>",
+                 "<b><a>Catchment Outlet (~160 m)</a></b>",
+                 "Upper Eskdale",
+                 "Western Lake District"
+                 )
+
 # Loads shapefiles
 eskdale_watershed_polygons <- readOGR(here("output", "practical_1", "eskdale_watershed.shp"), verbose = FALSE)
 
@@ -73,8 +80,12 @@ m <- leaflet() %>%
   # Add polygon
   addPolygons(data=eskdale_watershed_polygons, color = "#444444", fillColor = "#33b9ff", 
               weight = 1, smoothFactor = 0.5, opacity = 0.9, fillOpacity = 0.2) %>%
+  # Add popops
+  addPopups(-3.204500685, 54.412119851, content,
+    options = popupOptions(autoClose = FALSE, closeOnClick = FALSE)
+  )
   # Adds marker for the catchment outlet
-  addMarkers(lat=54.412119851, lng = -3.204500685, popup = "Catchment Outlet (~160 m)")
+  #addMarkers(lat=54.412119851, lng = -3.204500685, popup = "Catchment Outlet (~160 m)")
 m
 
 ```

@@ -63,8 +63,6 @@ Hydrological analysis in R
 <script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
 <script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
-<link href="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.css" rel="stylesheet" />
-<script src="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.min.js"></script>
 
 
 <style type="text/css">
@@ -305,9 +303,10 @@ div.csl-indent {
 <li class="chapter" data-level="11.1" data-path="mersey_five.html"><a href="mersey_five.html#task-7-model-building"><i class="fa fa-check"></i><b>11.1</b> Task 7: Model building</a>
 <ul>
 <li class="chapter" data-level="11.1.1" data-path="mersey_five.html"><a href="mersey_five.html#an-introduction-to-linear-models-in-r"><i class="fa fa-check"></i><b>11.1.1</b> An introduction to linear models in R</a></li>
-<li class="chapter" data-level="11.1.2" data-path="mersey_five.html"><a href="mersey_five.html#stepwise-regression"><i class="fa fa-check"></i><b>11.1.2</b> Stepwise regression</a></li>
+<li class="chapter" data-level="11.1.2" data-path="mersey_five.html"><a href="mersey_five.html#training-vs.-testing"><i class="fa fa-check"></i><b>11.1.2</b> Training vs. Testing</a></li>
+<li class="chapter" data-level="11.1.3" data-path="mersey_five.html"><a href="mersey_five.html#variable-selection-strategies"><i class="fa fa-check"></i><b>11.1.3</b> Variable selection strategies</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="mersey_five.html"><a href="mersey_five.html#task-8-error-analysis"><i class="fa fa-check"></i><b>11.2</b> Task 8: Error analysis</a></li>
+<li class="chapter" data-level="11.2" data-path="mersey_five.html"><a href="mersey_five.html#task-8-model-evaluation"><i class="fa fa-check"></i><b>11.2</b> Task 8: Model evaluation</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="Assessment.html"><a href="Assessment.html"><i class="fa fa-check"></i><b>12</b> Assessment</a></li>
 <li class="chapter" data-level="13" data-path="Hints.html"><a href="Hints.html"><i class="fa fa-check"></i><b>13</b> Handy Hints</a></li>
@@ -369,20 +368,20 @@ Hydrological analysis in R
 <p>We have defined the data frame being used (<code>data = watersheds_df</code>) and the input variables from that data frame. This is achieved by including their column names, shown here:</p>
 <div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="mersey_five.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(watersheds_df)</span></code></pre></div>
 <pre><code>##  [1] &quot;Seed_Point_ID&quot;          &quot;FID&quot;                    &quot;EA_ID&quot;                 
-##  [4] &quot;Ph&quot;                     &quot;SSC&quot;                    &quot;Ca&quot;                    
-##  [7] &quot;Mg&quot;                     &quot;NH4&quot;                    &quot;NO3&quot;                   
-## [10] &quot;NO2&quot;                    &quot;TON&quot;                    &quot;PO4&quot;                   
-## [13] &quot;Zn&quot;                     &quot;area&quot;                   &quot;count&quot;                 
-## [16] &quot;average_elevation&quot;      &quot;average_rainfall&quot;       &quot;average_slope&quot;         
-## [19] &quot;average_aspect&quot;         &quot;Arable&quot;                 &quot;Heath&quot;                 
-## [22] &quot;Grassland&quot;              &quot;Urban&quot;                  &quot;Wetland&quot;               
-## [25] &quot;Permeable&quot;              &quot;Impermeable&quot;            &quot;Gleyed&quot;                
-## [28] &quot;Peats&quot;                  &quot;Sands_and_Muds&quot;         &quot;Limestone&quot;             
-## [31] &quot;Coal&quot;                   &quot;Arable_percent&quot;         &quot;Heath_percent&quot;         
-## [34] &quot;Grassland_percent&quot;      &quot;Urban_percent&quot;          &quot;Wetland_percent&quot;       
-## [37] &quot;Permeable_percent&quot;      &quot;Impermeable_percent&quot;    &quot;Gleyed_percent&quot;        
-## [40] &quot;Peats_percent&quot;          &quot;Sands_and_Muds_percent&quot; &quot;Limestone_percent&quot;     
-## [43] &quot;Coal_percent&quot;</code></pre>
+##  [4] &quot;Group&quot;                  &quot;Ph&quot;                     &quot;SSC&quot;                   
+##  [7] &quot;Ca&quot;                     &quot;Mg&quot;                     &quot;NH4&quot;                   
+## [10] &quot;NO3&quot;                    &quot;NO2&quot;                    &quot;TON&quot;                   
+## [13] &quot;PO4&quot;                    &quot;Zn&quot;                     &quot;area&quot;                  
+## [16] &quot;count&quot;                  &quot;average_elevation&quot;      &quot;average_rainfall&quot;      
+## [19] &quot;average_slope&quot;          &quot;average_aspect&quot;         &quot;Arable&quot;                
+## [22] &quot;Heath&quot;                  &quot;Grassland&quot;              &quot;Urban&quot;                 
+## [25] &quot;Wetland&quot;                &quot;Permeable&quot;              &quot;Impermeable&quot;           
+## [28] &quot;Gleyed&quot;                 &quot;Peats&quot;                  &quot;Sands_and_Muds&quot;        
+## [31] &quot;Limestone&quot;              &quot;Coal&quot;                   &quot;Arable_percent&quot;        
+## [34] &quot;Heath_percent&quot;          &quot;Grassland_percent&quot;      &quot;Urban_percent&quot;         
+## [37] &quot;Wetland_percent&quot;        &quot;Permeable_percent&quot;      &quot;Impermeable_percent&quot;   
+## [40] &quot;Gleyed_percent&quot;         &quot;Peats_percent&quot;          &quot;Sands_and_Muds_percent&quot;
+## [43] &quot;Limestone_percent&quot;      &quot;Coal_percent&quot;</code></pre>
 <p>Input variables in the <strong>formula</strong> are separated by <code>~</code>, where the variable to the left is the dependent variable (<code>NO2</code>) and the variable to the right is an independent variable (<code>average_elevation</code>). We can, however, include <strong>multiple</strong> independent variables to perform multiple linear regression. This is achieved as follows, where additional independent variables are separated by <code>+</code>:</p>
 <div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="mersey_five.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fits a linear model</span></span>
 <span id="cb155-2"><a href="mersey_five.html#cb155-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> NO2 <span class="sc">~</span> average_elevation <span class="sc">+</span> average_rainfall, <span class="at">data =</span> watersheds_df)</span></code></pre></div>
@@ -407,7 +406,7 @@ Hydrological analysis in R
 ## Residual standard error: 0.04402 on 67 degrees of freedom
 ## Multiple R-squared:  0.3109, Adjusted R-squared:  0.2903 
 ## F-statistic: 15.11 on 2 and 67 DF,  p-value: 3.828e-06</code></pre>
-<p>For this set of independent variables, we have an R<sup>2</sup> of 0.32 (<code>Multiple R-squared: 0.3109</code>) and a model <em>p</em> value of &lt; 0.01 (<code>p-value: 3.828e-06</code>).</p>
+<p>For this set of independent variables, we have an R<sup>2</sup> of 0.31 (<code>Multiple R-squared: 0.3109</code>) and a model <em>p</em> value of &lt; 0.01 (<code>p-value: 3.828e-06</code>).</p>
 <p>The model coefficients for the independent variables are described above, where <code>*</code> denotes <em>p</em> values &lt; 0.05 (95% probability) and <code>**</code> denotes <em>p</em> values &lt; 0.01 (99% probability). As the coefficients are very small, they are presented in scientific notation. These can be converted to numeric (non-scientific) format using the following code:</p>
 <div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="mersey_five.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(<span class="sc">-</span><span class="fl">2.096e-04</span>, <span class="at">scientific =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;-0.0002096&quot;</code></pre>
@@ -417,17 +416,43 @@ Hydrological analysis in R
 <p>When you’re happy you understanding the formatting of the <code>lm</code> function, move on to the next section.</p>
 </blockquote>
 </div>
-<div id="stepwise-regression" class="section level3" number="11.1.2">
-<h3><span class="header-section-number">11.1.2</span> Stepwise regression</h3>
-<p>However, one of the weaknesses of the above approach is that we have manually defined the independent variables of interest (<code>average_elevation + average_rainfall</code>). For exploratory analysis, however, we may not know which are the most important variables. Perhaps there is a combination of independent variables which produces a better model fit (e.g. R<sup>2</sup> &gt; 0.32)?</p>
-<p>To test this, we’re going to include <strong>all</strong> the relevant independent variables in the analysis and then select those with the greatest explanatory power using <strong>Stepwise Regression</strong> (from the <code>MASS</code> package).</p>
-<p>We don’t necessarily want to test all model variables, however. We would probably want to exclude the categorical counts (e.g. Arable, Heath, …) as these factors are already represented by the normalised variables (e.g. Arable_percent, Heath_percent, …), as well as any IDs or geometry variables (area). In general, we are only interested in testing the continuous derivatives (column names starting with <code>average_</code>) and the normalised categorical derivatives (column names ending in ’_percent’).</p>
-<p>Rather than typing out the columns of interest manually, we are going to use the <code>select</code> function from the <code>dplyr</code> package to do so:</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="mersey_five.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creates a vector of column names, including only those which contain &quot;average&quot; or &quot;percent&quot;</span></span>
-<span id="cb161-2"><a href="mersey_five.html#cb161-2" aria-hidden="true" tabindex="-1"></a>factors <span class="ot">&lt;-</span> <span class="fu">colnames</span>(watersheds_df <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">contains</span>(<span class="fu">c</span>(<span class="st">&quot;average&quot;</span>, <span class="st">&quot;percent&quot;</span>))))</span>
+<div id="training-vs.-testing" class="section level3" number="11.1.2">
+<h3><span class="header-section-number">11.1.2</span> Training vs. Testing</h3>
+<p>One limitation of the above approach is that our dataframe (<code>watersheds_df</code>) contains observations from all 70 EA monitoring stations.</p>
+<p>When performing statistical analysis, it is common practice to split any dataset into:</p>
+<ul>
+<li>a <strong>training</strong> subset, which is used to create the model(s).</li>
+<li>a <strong>testing</strong> subset, which is used to evaluate the model(s).</li>
+</ul>
+<p>Subsetting our data in this way allows models to be evaluated more rigorously. Many models perform well “in-sample” but poorly “out-of-sample” when evaluated against independent data (i.e. the testing subset). This is commonly referred to as “over-fitting”.</p>
+<p>Training and testing subsets are usually defined randomly, with an approximate ratio of 70:30 (although this varies). However, and to ensure reproducibility, this step has been completed for you: the <code>watersheds_df</code> dataframe contains a <code>group</code> variable denoting which monitoring sites belong to the training and testing subsets.</p>
+<blockquote>
+<p>Run the code above to create <code>training</code> and <code>testing</code> dataframes:</p>
+</blockquote>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="mersey_five.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extracts training dataset, comprising 50 observations (~70%)</span></span>
+<span id="cb161-2"><a href="mersey_five.html#cb161-2" aria-hidden="true" tabindex="-1"></a>training <span class="ot">&lt;-</span> <span class="fu">subset</span>(watersheds_df, Group <span class="sc">==</span> <span class="st">&quot;Training&quot;</span>)</span>
 <span id="cb161-3"><a href="mersey_five.html#cb161-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb161-4"><a href="mersey_five.html#cb161-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Prints to console</span></span>
-<span id="cb161-5"><a href="mersey_five.html#cb161-5" aria-hidden="true" tabindex="-1"></a>factors</span></code></pre></div>
+<span id="cb161-4"><a href="mersey_five.html#cb161-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Extracts training dataset, comprising 20 observations (~30%)</span></span>
+<span id="cb161-5"><a href="mersey_five.html#cb161-5" aria-hidden="true" tabindex="-1"></a>testing <span class="ot">&lt;-</span> <span class="fu">subset</span>(watersheds_df, Group <span class="sc">==</span> <span class="st">&quot;Testing&quot;</span>) </span></code></pre></div>
+<blockquote>
+<p>Before you move on to the next section, can you think of any limitations of this approach?</p>
+</blockquote>
+<blockquote>
+<p>Hints: How important is the training-testing ratio? How are training-testing subsets created?</p>
+</blockquote>
+</div>
+<div id="variable-selection-strategies" class="section level3" number="11.1.3">
+<h3><span class="header-section-number">11.1.3</span> Variable selection strategies</h3>
+<p>An addition weakness of the above approach is that we have manually defined the independent variables of interest (<code>average_elevation + average_rainfall</code>). For exploratory analysis, however, we may not know which are the most important variables. Perhaps there is a combination of independent variables which produces a better model fit (e.g. R<sup>2</sup> &gt; 0.32)?</p>
+<p>Determining which variables to include/exclude from a model is a very difficult problem, which has resulted in many different variable selection strategies. Common approaches include expert opinion and/or theory, partial least squares (PLS) regression, implemented in <code>PLS</code>, Least Absolute Shrinkage and Selection Operator (LASSO), implemented in <code>glmnet</code> and <code>LARS</code>, as well as elastic net methods and ridge regression, also implemented in <code>glmnet</code>.</p>
+<p>For our analysis, we are going to use a relatively simple method known as <strong>Stepwise Regression</strong>, implemented in the <code>MASS</code> package. This works by including <strong>all</strong> the relevant independent variables in the analysis and then selecting those with the greatest explanatory power.</p>
+<p>However, we don’t necessarily want to test <em>all</em> model variables. We would probably want to exclude the categorical counts (e.g. Arable, Heath, …) as these factors are already represented by the normalised variables (e.g. Arable_percent, Heath_percent, …), as well as any IDs or geometry variables (area). In general, we are only interested in testing the continuous derivatives (column names starting with <code>average_</code>) and the normalised categorical derivatives (column names ending in ’_percent’).</p>
+<p>Rather than typing out the columns of interest manually, we are going to use the <code>select</code> function from the <code>dplyr</code> package to do so:</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="mersey_five.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Creates a vector of column names, including only those which contain &quot;average&quot; or &quot;percent&quot;</span></span>
+<span id="cb162-2"><a href="mersey_five.html#cb162-2" aria-hidden="true" tabindex="-1"></a>factors <span class="ot">&lt;-</span> <span class="fu">colnames</span>(watersheds_df <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">contains</span>(<span class="fu">c</span>(<span class="st">&quot;average&quot;</span>, <span class="st">&quot;percent&quot;</span>))))</span>
+<span id="cb162-3"><a href="mersey_five.html#cb162-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-4"><a href="mersey_five.html#cb162-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Prints to console</span></span>
+<span id="cb162-5"><a href="mersey_five.html#cb162-5" aria-hidden="true" tabindex="-1"></a>factors</span></code></pre></div>
 <pre><code>##  [1] &quot;average_elevation&quot;      &quot;average_rainfall&quot;       &quot;average_slope&quot;         
 ##  [4] &quot;average_aspect&quot;         &quot;Arable_percent&quot;         &quot;Heath_percent&quot;         
 ##  [7] &quot;Grassland_percent&quot;      &quot;Urban_percent&quot;          &quot;Wetland_percent&quot;       
@@ -437,17 +462,17 @@ Hydrological analysis in R
 <blockquote>
 <p>Run the above code. <strong>Note</strong>, the formatting of <code>dplyr::select</code> may be slightly confusing but it is necessary because there is also a <code>select</code> function in the <code>MASS</code> package. Here, we are telling R to use <code>select</code> from <code>dplyr</code>.</p>
 </blockquote>
-<p>Using the vector of column names, we are going to create a new data frame (called <code>variables</code>) containing only the independent variables of interest:</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="mersey_five.html#cb163-1" aria-hidden="true" tabindex="-1"></a>variables <span class="ot">&lt;-</span> watersheds_df[factors]</span></code></pre></div>
+<p>Using this vector of column names, we are going to create a new data frame (called <code>variables</code>) containing only the independent variables of interest. <strong>Crucially</strong>, this is only for the <code>training</code> dataset:</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="mersey_five.html#cb164-1" aria-hidden="true" tabindex="-1"></a>variables <span class="ot">&lt;-</span> training[factors]</span></code></pre></div>
 <blockquote>
 <p>Run the above code and use <code>head()</code> to inspect the results.</p>
 </blockquote>
 <p>Next, we are going to combine this data frame (<code>cbind</code>) with the dependent variable of interest (NO<sub>2</sub>). We’ll call this <code>model_df</code> as it contains all the variables (dependent + independent) required for multiple linear regression. <strong>Note</strong>: by default, <code>cbind</code> will (somewhat unhelpfully) rename input column names e.g. <code>NO2</code> will become <code>watersheds_df$NO2</code>. The code below specifies the new column name as NO2 (<code>NO2 =</code>) for readability:</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="mersey_five.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Column bind the NO2 column from watersheds_df with the data frame containing all the independent variables </span></span>
-<span id="cb164-2"><a href="mersey_five.html#cb164-2" aria-hidden="true" tabindex="-1"></a>model_df <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">NO2 =</span> watersheds_df<span class="sc">$</span>NO2, variables)</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="mersey_five.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Column bind the NO2 column with the independent variables from the training dataset</span></span>
+<span id="cb165-2"><a href="mersey_five.html#cb165-2" aria-hidden="true" tabindex="-1"></a>model_df <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">NO2 =</span> training<span class="sc">$</span>NO2, variables)</span></code></pre></div>
 <p>When complete, we can then run a new model, making sure to update the data frame used (<code>data = model_df</code>) and updating the formula to <code>NO2 ~ .</code>. This denotes that <em>all</em> other data frame columns will be included as independent variables (a useful time saver!):</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="mersey_five.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fits a linear model</span></span>
-<span id="cb165-2"><a href="mersey_five.html#cb165-2" aria-hidden="true" tabindex="-1"></a>no2_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> NO2 <span class="sc">~</span> ., <span class="at">data =</span> model_df)</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="mersey_five.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fits a linear model</span></span>
+<span id="cb166-2"><a href="mersey_five.html#cb166-2" aria-hidden="true" tabindex="-1"></a>no2_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> NO2 <span class="sc">~</span> ., <span class="at">data =</span> model_df)</span></code></pre></div>
 <blockquote>
 <p>When you’re happy you understand the <code>lm</code> syntax, combine the two dataframes, run the linear model and inspect the output using <code>summary()</code>. This should resemble the following:</p>
 </blockquote>
@@ -456,43 +481,43 @@ Hydrological analysis in R
 ## lm(formula = NO2 ~ ., data = model_df)
 ## 
 ## Residuals:
-##       Min        1Q    Median        3Q       Max 
-## -0.079376 -0.020381  0.000134  0.012654  0.174510 
+##      Min       1Q   Median       3Q      Max 
+## -0.05094 -0.01581  0.00000  0.01189  0.07890 
 ## 
 ## Coefficients:
 ##                          Estimate Std. Error t value Pr(&gt;|t|)  
-## (Intercept)            -2.862e-01  1.780e+00  -0.161   0.8729  
-## average_elevation       2.658e-04  2.222e-04   1.196   0.2369  
-## average_rainfall       -8.230e-06  7.071e-05  -0.116   0.9078  
-## average_slope          -1.188e-02  8.469e-03  -1.403   0.1664  
-## average_aspect         -5.281e-05  1.614e-04  -0.327   0.7448  
-## Arable_percent         -9.127e-04  9.229e-04  -0.989   0.3272  
-## Heath_percent          -1.526e-03  1.273e-03  -1.199   0.2358  
-## Grassland_percent      -1.653e-03  9.247e-04  -1.787   0.0796 .
-## Urban_percent          -2.907e-04  9.812e-04  -0.296   0.7682  
-## Wetland_percent        -1.362e-03  1.096e-03  -1.243   0.2194  
-## Permeable_percent       3.946e-03  1.734e-02   0.228   0.8209  
-## Impermeable_percent     2.880e-03  1.729e-02   0.167   0.8684  
-## Gleyed_percent          3.649e-03  1.734e-02   0.210   0.8341  
-## Peats_percent           3.289e-03  1.740e-02   0.189   0.8508  
-## Sands_and_Muds_percent  1.035e-03  3.016e-03   0.343   0.7329  
-## Limestone_percent       1.473e-03  3.528e-03   0.417   0.6780  
-## Coal_percent            1.008e-03  2.999e-03   0.336   0.7382  
+## (Intercept)            -1.488e-01  1.541e+00  -0.097   0.9237  
+## average_elevation       2.101e-04  2.093e-04   1.004   0.3227  
+## average_rainfall        7.235e-05  8.240e-05   0.878   0.3863  
+## average_slope          -1.432e-02  7.764e-03  -1.844   0.0741 .
+## average_aspect          8.238e-05  1.734e-04   0.475   0.6379  
+## Arable_percent         -3.115e-05  8.696e-04  -0.036   0.9716  
+## Heath_percent          -6.940e-04  1.157e-03  -0.600   0.5526  
+## Grassland_percent      -6.541e-04  8.737e-04  -0.749   0.4594  
+## Urban_percent           5.643e-04  9.223e-04   0.612   0.5449  
+## Wetland_percent        -5.993e-04  1.020e-03  -0.588   0.5608  
+## Permeable_percent       2.498e-03  1.496e-02   0.167   0.8684  
+## Impermeable_percent     1.755e-03  1.489e-02   0.118   0.9069  
+## Gleyed_percent          2.198e-03  1.495e-02   0.147   0.8840  
+## Peats_percent           2.075e-03  1.503e-02   0.138   0.8911  
+## Sands_and_Muds_percent -4.969e-04  3.784e-03  -0.131   0.8963  
+## Limestone_percent       9.282e-05  3.982e-03   0.023   0.9815  
+## Coal_percent           -7.355e-04  3.790e-03  -0.194   0.8473  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.04256 on 53 degrees of freedom
-## Multiple R-squared:  0.4905, Adjusted R-squared:  0.3367 
-## F-statistic: 3.189 on 16 and 53 DF,  p-value: 0.0007589</code></pre>
-<p>Our overall model fit (R<sup>2</sup>) is 0.49 which indicates that the independent variables explain ~49% of variability in the dependent variable. However, the model contains many independent variables which are not statistically significant, here defined as having a <em>p</em> value &gt; 0.05.</p>
+## Residual standard error: 0.03511 on 33 degrees of freedom
+## Multiple R-squared:  0.5481, Adjusted R-squared:  0.329 
+## F-statistic: 2.502 on 16 and 33 DF,  p-value: 0.0127</code></pre>
+<p>Our overall model fit (R<sup>2</sup>) is 0.55 which indicates that the independent variables explain ~55% of variability in the dependent variable. However, the model contains many independent variables which are not statistically significant, here defined as having a <em>p</em> value &gt; 0.05.</p>
 <p>This number represents the probability that the result has occurred by chance. When values are very small (e.g. <em>p</em> &lt; 0.0005), we would typically present these as a discrete value e.g. <em>p</em> &lt; 0.05, &lt; 0.01, &lt; 0.001. Generally, we only use models in which we can be 95% confident or higher (i.e. significance level of 0.05 or less).</p>
 <p>However, it is important to note that <em>p</em> values should be not be considered in isolation and need to be interpreted carefully. For statistical reviews of using and interpreting <em>p</em> values, see <span class="citation"><a href="#ref-goodman_dirty_2008" role="doc-biblioref">Goodman</a> (<a href="#ref-goodman_dirty_2008" role="doc-biblioref">2008</a>)</span> and <span class="citation"><a href="#ref-andrade_p_2019" role="doc-biblioref">Andrade</a> (<a href="#ref-andrade_p_2019" role="doc-biblioref">2019</a>)</span>. For a broader overview, see the <em>Nature</em> commentary by <span class="citation"><a href="#ref-amrhein_scientists_2019" role="doc-biblioref">Amrhein <em>et al.</em></a> (<a href="#ref-amrhein_scientists_2019" role="doc-biblioref">2019</a>)</span>, as well as a summary article by <a href="https://www.vox.com/latest-news/2019/3/22/18275913/statistical-significance-p-values-explained">Vox</a>.</p>
 <p>To filter our independent variables to include only the most important, we can use the <code>step.AIC</code> function from the <code>MASS</code> library as follows:</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="mersey_five.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stepwise regression model</span></span>
-<span id="cb167-2"><a href="mersey_five.html#cb167-2" aria-hidden="true" tabindex="-1"></a>step.model <span class="ot">&lt;-</span> <span class="fu">stepAIC</span>(no2_model, <span class="co"># Input linear model</span></span>
-<span id="cb167-3"><a href="mersey_five.html#cb167-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">direction =</span> <span class="st">&quot;both&quot;</span>,</span>
-<span id="cb167-4"><a href="mersey_five.html#cb167-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">trace =</span> <span class="cn">FALSE</span>, <span class="co"># Print out intermediate results? </span></span>
-<span id="cb167-5"><a href="mersey_five.html#cb167-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">k =</span> <span class="dv">1</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="mersey_five.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stepwise regression model</span></span>
+<span id="cb168-2"><a href="mersey_five.html#cb168-2" aria-hidden="true" tabindex="-1"></a>step.model <span class="ot">&lt;-</span> <span class="fu">stepAIC</span>(no2_model, <span class="co"># Input linear model</span></span>
+<span id="cb168-3"><a href="mersey_five.html#cb168-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">direction =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb168-4"><a href="mersey_five.html#cb168-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">trace =</span> <span class="cn">FALSE</span>, <span class="co"># Print out intermediate results? </span></span>
+<span id="cb168-5"><a href="mersey_five.html#cb168-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">k =</span> <span class="dv">1</span>) </span></code></pre></div>
 <p>Helpfully, this takes the output of the <code>lm</code> model (<code>no2_model</code>) with no need for any additional data wrangling. The following are important parameters:</p>
 <ul>
 <li><code>direction = "both"</code>:
@@ -500,7 +525,7 @@ Hydrological analysis in R
 <li>Determines the method used, either <strong>forward</strong> or <strong>backward</strong> stepwise regression, or a mixture of <strong>both</strong>.</li>
 <li>“Forward” begins with a model with <strong>no</strong> variables and then starts adding the most significant variables, stopping when there are no more significant variables.</li>
 <li>“Backward” begins with a model with <strong>all</strong> variables and then starts removing the least significant variables, stopping when only significant variables are remaining.</li>
-<li>“Both” includes both of the above.</li>
+<li>“Both” includes both of the above, allowing for variables to be added/removed at each step.</li>
 </ul></li>
 <li><code>k = 1</code>:
 <ul>
@@ -512,31 +537,28 @@ Hydrological analysis in R
 </blockquote>
 <pre><code>## 
 ## Call:
-## lm(formula = NO2 ~ average_elevation + average_slope + Arable_percent + 
-##     Heath_percent + Grassland_percent + Wetland_percent + Permeable_percent + 
-##     Gleyed_percent, data = model_df)
+## lm(formula = NO2 ~ average_elevation + average_rainfall + average_slope + 
+##     Urban_percent + Permeable_percent + Coal_percent, data = model_df)
 ## 
 ## Residuals:
 ##       Min        1Q    Median        3Q       Max 
-## -0.073206 -0.024423 -0.001572  0.011732  0.173498 
+## -0.055272 -0.015115 -0.003007  0.015961  0.084550 
 ## 
 ## Coefficients:
 ##                     Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)        0.1022932  0.0318332   3.213 0.002097 ** 
-## average_elevation  0.0002730  0.0001814   1.505 0.137485    
-## average_slope     -0.0122713  0.0070213  -1.748 0.085546 .  
-## Arable_percent    -0.0005464  0.0004921  -1.110 0.271209    
-## Heath_percent     -0.0012936  0.0008355  -1.548 0.126706    
-## Grassland_percent -0.0014058  0.0004046  -3.474 0.000948 ***
-## Wetland_percent   -0.0010922  0.0006835  -1.598 0.115189    
-## Permeable_percent  0.0007075  0.0003031   2.334 0.022908 *  
-## Gleyed_percent     0.0003857  0.0002536   1.521 0.133507    
+## (Intercept)        6.584e-04  3.927e-02   0.017 0.986701    
+## average_elevation  1.594e-04  1.497e-04   1.065 0.292790    
+## average_rainfall   6.196e-05  6.626e-05   0.935 0.354980    
+## average_slope     -1.400e-02  6.255e-03  -2.239 0.030399 *  
+## Urban_percent      1.122e-03  3.093e-04   3.628 0.000753 ***
+## Permeable_percent  3.384e-04  2.054e-04   1.648 0.106710    
+## Coal_percent      -2.648e-04  1.855e-04  -1.428 0.160617    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.03989 on 61 degrees of freedom
-## Multiple R-squared:  0.4847, Adjusted R-squared:  0.4171 
-## F-statistic: 7.173 on 8 and 61 DF,  p-value: 1.19e-06</code></pre>
+## Residual standard error: 0.0315 on 43 degrees of freedom
+## Multiple R-squared:  0.526,  Adjusted R-squared:  0.4598 
+## F-statistic: 7.952 on 6 and 43 DF,  p-value: 8.487e-06</code></pre>
 <p>As you can see above, using a low threshold for the degrees of freedom (<code>k = 1</code>) means we still have many “non-significant” variables remaining (<em>p</em> &gt; 0.05)</p>
 <blockquote>
 <p>Re-run the above model, but increasing the value of <code>k</code> in intervals of 1 until all the independent variables are significant at <em>p</em> = 0.05 (denoted by <code>*</code>):</p>
@@ -547,26 +569,26 @@ Hydrological analysis in R
 ## 
 ## Residuals:
 ##       Min        1Q    Median        3Q       Max 
-## -0.064188 -0.020809 -0.004947  0.011032  0.192829 
+## -0.054050 -0.020404 -0.004278  0.012876  0.098725 
 ## 
 ## Coefficients:
 ##                 Estimate Std. Error t value Pr(&gt;|t|)   
-## (Intercept)    0.0491099  0.0144297   3.403  0.00113 **
-## average_slope -0.0047714  0.0018903  -2.524  0.01397 * 
-## Urban_percent  0.0011327  0.0003502   3.234  0.00190 **
+## (Intercept)    0.0435188  0.0125665   3.463  0.00115 **
+## average_slope -0.0040031  0.0016679  -2.400  0.02040 * 
+## Urban_percent  0.0009819  0.0002977   3.299  0.00186 **
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.04078 on 67 degrees of freedom
-## Multiple R-squared:  0.4086, Adjusted R-squared:  0.391 
-## F-statistic: 23.15 on 2 and 67 DF,  p-value: 2.274e-08</code></pre>
-<p>In general, we prefer models with the minimum number of parameters (independent variables). They require fewer assumptions, less intensive data collection and can be applied more confidently to new data sets/locations. This approach is based upon <strong>Occam’s Razor</strong>: <em>other things being equal, simpler explanations are generally better than more complex ones</em>.</p>
-<p>Our original model, based upon 16 independent variables had an R<sup>2</sup> of 0.49. This new model, based upon just 2 independent variables (<code>average_slope + Urban_percent</code>) has an R<sup>2</sup> of 0.41; a minor reduction in explanatory power given the removal of 14 (arguably unimportant) additional variables.</p>
+## Residual standard error: 0.03169 on 47 degrees of freedom
+## Multiple R-squared:  0.4756, Adjusted R-squared:  0.4533 
+## F-statistic: 21.31 on 2 and 47 DF,  p-value: 2.582e-07</code></pre>
+<p>In general, we prefer models with the minimum number of parameters (independent variables). They require fewer assumptions, less intensive data collection and can be applied more confidently to new data sets/locations. This principle of model parsimony is based upon <strong>Occam’s Razor</strong>: “other things being equal, simpler explanations are generally better than more complex ones”.</p>
+<p>Our original model, based upon 16 independent variables had an R<sup>2</sup> of 0.55. This new model, based upon just 2 independent variables (<code>average_slope + Urban_percent</code>) has an R<sup>2</sup> of 0.48; a relatively minor reduction in explanatory power given the removal of 14 (arguably unimportant) additional variables.</p>
 <p>Our model coefficients are now as follows:</p>
 <ul>
-<li><code>intercept</code> = 0.0491099, <em>p</em> = 0.00113 (<em>p</em> &lt; 0.01)</li>
-<li><code>average_slope</code> = -0.0047714, <em>p</em> = 0.01397 (<em>p</em> &lt; 0.05)</li>
-<li><code>Urban_percent</code> = 0.0011327, <em>p</em> = 0.00190 (<em>p</em> &lt; 0.01)</li>
+<li><code>intercept</code> = 0.0435188, <em>p</em> = 0.00115 (<em>p</em> &lt; 0.01)</li>
+<li><code>average_slope</code> = -0.0040031, <em>p</em> = 0.02040 (<em>p</em> &lt; 0.05)</li>
+<li><code>Urban_percent</code> = 0.0009819, <em>p</em> = 0.00186 (<em>p</em> &lt; 0.01)</li>
 </ul>
 <p>Coefficients are important because they are used in <strong>regression equations</strong>, which can then be used to predict values.</p>
 <p>The general format for a regression equation is as follows:</p>
@@ -576,44 +598,70 @@ y = a + (b_1 \cdot x_1) + (b_2 \cdot x_2) + (b_n \cdot x_n)
 where <code>a</code> is the constant (intercept) value, and <code>b</code> is the coefficient of x.</p>
 <p>For our NO<sub>2</sub> model above, we can define our regression equation (presented using sensible data precision) as:</p>
 <p><span class="math display">\[
-NO_2 = 0.049 + (0.001 \cdot Urban \: percent) + (-0.005 \cdot Average \: slope)
+NO_2 = 0.044 + (0.001 \cdot Urban \: percent) + (-0.004 \cdot Average \: slope)
 \]</span>
-<strong>Well done!</strong> You have now calculated a regression which links the dependent variable (NO<sub>2</sub>) to a set of independent variables, in the case the average elevation of the watershed and the percentage urban land cover.</p>
+<strong>Well done!</strong> You have now calculated a regression which links the dependent variable (NO<sub>2</sub>) to a set of independent variables, in the case the average slope of the watershed and the percentage urban land cover.</p>
 </div>
 </div>
-<div id="task-8-error-analysis" class="section level2" number="11.2">
-<h2><span class="header-section-number">11.2</span> Task 8: Error analysis</h2>
-<p>Using this regression equation, we could predict NO<sub>2</sub> values for the sampled watersheds to assess how well it reproduces the actual measured values. Comparison plots of <strong>measured vs. modelled (or predicted) values</strong> are just one way to assess model quality, alongside other metrics such as root-mean-square error (RMSE), normalised root-mean-square-error (nRMSE), Q-Q plots, or histograms of model residuals. You may want to explore some of these for the assessment.</p>
-<p>To calculate modelled values, we can use the <code>predict()</code> function, taking the model variable (<code>step.model</code>) as the input, rather than re-creating the above equation manually in code:</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="mersey_five.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Predicts based on upon stepwise model, saving to watersheds dataframe</span></span>
-<span id="cb170-2"><a href="mersey_five.html#cb170-2" aria-hidden="true" tabindex="-1"></a>watersheds_df<span class="sc">$</span>predicted_no2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(step.model)</span></code></pre></div>
-<p>As we haven’t specified any <code>new_data</code> (a <code>predict</code> parameter; see <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/predict.lm">here</a>), this uses the fitted values for prediction.</p>
+<div id="task-8-model-evaluation" class="section level2" number="11.2">
+<h2><span class="header-section-number">11.2</span> Task 8: Model evaluation</h2>
+<p>Having created a statistical model, it is necessary to evaluate its performance. Comparison plots of <strong>measured vs. modelled (or predicted) values</strong> are one common way to assess model quality, alongside other metrics such as root-mean-square error (RMSE), normalised root-mean-square-error (nRMSE), Q-Q plots, or histograms of model residuals. You may want to explore some of these for the assessment.</p>
+<p>To calculate modelled values, we can use the <code>predict()</code> function, taking the model variable (<code>step.model</code>) as the input, rather than re-creating the above equation manually in code, and using our <code>testing</code> dataframe for the <code>newdata</code> argument:</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="mersey_five.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Predicts based on upon stepwise model, saving to testing dataframe</span></span>
+<span id="cb171-2"><a href="mersey_five.html#cb171-2" aria-hidden="true" tabindex="-1"></a>testing<span class="sc">$</span>predicted_no2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(step.model, <span class="at">newdata =</span> testing)</span></code></pre></div>
+<p>If<code>new_data</code> is not defined, the <code>predict</code> function uses the fitted values for prediction i.e. the training data used to construct the model (see <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/predict.lm">here</a>).</p>
 <blockquote>
-<p>Run the above code block to predict the NO<sub>2</sub> based on the regression equation.</p>
+<p>Run the above code block to predict NO<sub>2</sub> concentrations in the testing dataset, based on the regression model produced from the training dataset.</p>
 </blockquote>
 <p>These values could be used to calculate RMSE or other metrics (nRMSE) using your own code or additional packages (e.g. <code>Metrics</code>);</p>
 <p><span class="math display">\[
  RMSE = \sqrt{mean(measured\:values - modelled\:values)^2}
 \]</span></p>
 <p>Plots of measured vs. modelled values (as well as Q-Q plots and histograms) can be created in ggplot2. Here is an example:</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="mersey_five.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot of measured vs. modelled (predicted) NO2 values</span></span>
-<span id="cb171-2"><a href="mersey_five.html#cb171-2" aria-hidden="true" tabindex="-1"></a>no2_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> watersheds_df, <span class="fu">aes</span>(<span class="at">x =</span> predicted_no2, <span class="at">y =</span> NO2)) <span class="sc">+</span></span>
-<span id="cb171-3"><a href="mersey_five.html#cb171-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Adds the point data, modifying the shape, size, colour and fill</span></span>
-<span id="cb171-4"><a href="mersey_five.html#cb171-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;#5695FF&quot;</span>, <span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
-<span id="cb171-5"><a href="mersey_five.html#cb171-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Adding a linear regression (&quot;lm&quot;), removing standard error bars (se = FALSE)</span></span>
-<span id="cb171-6"><a href="mersey_five.html#cb171-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">colour =</span> <span class="st">&quot;#FF7A71&quot;</span>) <span class="sc">+</span></span>
-<span id="cb171-7"><a href="mersey_five.html#cb171-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Adding a 1:1 line for comparison</span></span>
-<span id="cb171-8"><a href="mersey_five.html#cb171-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
-<span id="cb171-9"><a href="mersey_five.html#cb171-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Setting the theme and aspect ratio</span></span>
-<span id="cb171-10"><a href="mersey_five.html#cb171-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb171-11"><a href="mersey_five.html#cb171-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb171-12"><a href="mersey_five.html#cb171-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add axis labels and a title</span></span>
-<span id="cb171-13"><a href="mersey_five.html#cb171-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Modelled NO2&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Measured NO2&quot;</span>, </span>
-<span id="cb171-14"><a href="mersey_five.html#cb171-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="fu">bquote</span>(<span class="st">&#39;Plot of measured vs. modelled&#39;</span><span class="sc">~</span>NO[<span class="dv">2</span>]<span class="sc">~</span><span class="st">&#39;values&#39;</span>))</span>
-<span id="cb171-15"><a href="mersey_five.html#cb171-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb171-16"><a href="mersey_five.html#cb171-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb171-17"><a href="mersey_five.html#cb171-17" aria-hidden="true" tabindex="-1"></a>no2_plot</span></code></pre></div>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-155-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="mersey_five.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot of measured vs. modelled (predicted) NO2 values</span></span>
+<span id="cb172-2"><a href="mersey_five.html#cb172-2" aria-hidden="true" tabindex="-1"></a>no2_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> testing, <span class="fu">aes</span>(<span class="at">x =</span> predicted_no2, <span class="at">y =</span> NO2)) <span class="sc">+</span></span>
+<span id="cb172-3"><a href="mersey_five.html#cb172-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Adding a linear regression (&quot;lm&quot;), removing standard error bars (se = FALSE)</span></span>
+<span id="cb172-4"><a href="mersey_five.html#cb172-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">colour=</span><span class="st">&quot;#5695FF&quot;</span>) <span class="sc">+</span></span>
+<span id="cb172-5"><a href="mersey_five.html#cb172-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Adds a 1:1 line for comparison</span></span>
+<span id="cb172-6"><a href="mersey_five.html#cb172-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb172-7"><a href="mersey_five.html#cb172-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Adds the point data, modifying the shape, size, colour and fill</span></span>
+<span id="cb172-8"><a href="mersey_five.html#cb172-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">colour =</span> <span class="st">&quot;white&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;#5695FF&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb172-9"><a href="mersey_five.html#cb172-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Setting the theme and aspect ratio</span></span>
+<span id="cb172-10"><a href="mersey_five.html#cb172-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb172-11"><a href="mersey_five.html#cb172-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb172-12"><a href="mersey_five.html#cb172-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add axis labels and a title</span></span>
+<span id="cb172-13"><a href="mersey_five.html#cb172-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> Modelled<span class="sc">~</span>NO[<span class="dv">2</span>], <span class="at">y =</span> Measured<span class="sc">~</span>NO[<span class="dv">2</span>], </span>
+<span id="cb172-14"><a href="mersey_five.html#cb172-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> Plot<span class="sc">~</span>of<span class="sc">~</span>measured<span class="sc">~</span>vs.<span class="sc">~</span>modelled<span class="sc">~</span>NO[<span class="dv">2</span>]<span class="sc">~</span>values)</span>
+<span id="cb172-15"><a href="mersey_five.html#cb172-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-16"><a href="mersey_five.html#cb172-16" aria-hidden="true" tabindex="-1"></a>no2_plot</span></code></pre></div>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-156-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>You could also assess this relationship statistically, using linear regression:</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="mersey_five.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Linear regression of measured vs. modelled NO2 values</span></span>
+<span id="cb173-2"><a href="mersey_five.html#cb173-2" aria-hidden="true" tabindex="-1"></a>prediction_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> NO2 <span class="sc">~</span> predicted_no2, <span class="at">data =</span> testing)</span>
+<span id="cb173-3"><a href="mersey_five.html#cb173-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb173-4"><a href="mersey_five.html#cb173-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Print summary statistics</span></span>
+<span id="cb173-5"><a href="mersey_five.html#cb173-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(prediction_model)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = NO2 ~ predicted_no2, data = testing)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.084244 -0.027091  0.000268  0.011034  0.151937 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)   
+## (Intercept)    -0.0155     0.0232  -0.668  0.51244   
+## predicted_no2   1.7953     0.4705   3.816  0.00127 **
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.05418 on 18 degrees of freedom
+## Multiple R-squared:  0.4472, Adjusted R-squared:  0.4165 
+## F-statistic: 14.56 on 1 and 18 DF,  p-value: 0.001265</code></pre>
+<blockquote>
+<p>How well does our NO<sub>2</sub> model perform on the testing dataset, based on the above graphs/statistics? Is out-of-sample performance comparable to in-sample performance?</p>
+</blockquote>
 <p><br/></p>
 <p><strong>To finish the practical</strong> and to prepare for the assessment:</p>
 <blockquote>

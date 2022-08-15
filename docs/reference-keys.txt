@@ -90,7 +90,8 @@ normalising-categorical-derivatives
 mersey_five
 task-7-model-building
 an-introduction-to-linear-models-in-r
-stepwise-regression
-task-8-error-analysis
+training-vs.-testing
+variable-selection-strategies
+task-8-model-evaluation
 Assessment
 Hints

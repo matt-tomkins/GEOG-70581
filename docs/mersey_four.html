@@ -63,8 +63,6 @@ Hydrological analysis in R
 <script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
 <script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
-<link href="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.css" rel="stylesheet" />
-<script src="libs/leaflet-awesomemarkers-2.0.3/leaflet.awesome-markers.min.js"></script>
 
 
 <style type="text/css">
@@ -305,9 +303,10 @@ div.csl-indent {
 <li class="chapter" data-level="11.1" data-path="mersey_five.html"><a href="mersey_five.html#task-7-model-building"><i class="fa fa-check"></i><b>11.1</b> Task 7: Model building</a>
 <ul>
 <li class="chapter" data-level="11.1.1" data-path="mersey_five.html"><a href="mersey_five.html#an-introduction-to-linear-models-in-r"><i class="fa fa-check"></i><b>11.1.1</b> An introduction to linear models in R</a></li>
-<li class="chapter" data-level="11.1.2" data-path="mersey_five.html"><a href="mersey_five.html#stepwise-regression"><i class="fa fa-check"></i><b>11.1.2</b> Stepwise regression</a></li>
+<li class="chapter" data-level="11.1.2" data-path="mersey_five.html"><a href="mersey_five.html#training-vs.-testing"><i class="fa fa-check"></i><b>11.1.2</b> Training vs. Testing</a></li>
+<li class="chapter" data-level="11.1.3" data-path="mersey_five.html"><a href="mersey_five.html#variable-selection-strategies"><i class="fa fa-check"></i><b>11.1.3</b> Variable selection strategies</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="mersey_five.html"><a href="mersey_five.html#task-8-error-analysis"><i class="fa fa-check"></i><b>11.2</b> Task 8: Error analysis</a></li>
+<li class="chapter" data-level="11.2" data-path="mersey_five.html"><a href="mersey_five.html#task-8-model-evaluation"><i class="fa fa-check"></i><b>11.2</b> Task 8: Model evaluation</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="Assessment.html"><a href="Assessment.html"><i class="fa fa-check"></i><b>12</b> Assessment</a></li>
 <li class="chapter" data-level="13" data-path="Hints.html"><a href="Hints.html"><i class="fa fa-check"></i><b>13</b> Handy Hints</a></li>
@@ -543,25 +542,25 @@ Hydrological analysis in R
 <blockquote>
 <p>Use the <code>head()</code> function to inspect the first few rows of our new data frame.</p>
 </blockquote>
-<pre><code>## Simple feature collection with 6 features and 13 fields
+<pre><code>## Simple feature collection with 6 features and 14 fields
 ## Geometry type: MULTIPOLYGON
 ## Dimension:     XY
 ## Bounding box:  xmin: 343660.8 ymin: 382963.7 xmax: 353552.6 ymax: 394555.6
 ## Projected CRS: OSGB 1936 / British National Grid
-##   Seed_Point_ID FID   EA_ID   Ph   SSC     Ca    Mg  NH4  NO3  NO2  TON  PO4
-## 1             1  54 1940214 7.79 21.37  60.82 11.12 0.24 2.64 0.08 2.73 0.34
-## 2             2  42 1941025 7.79 33.52  75.45 17.52 4.46 3.24 0.11 3.35 0.99
-## 3             3  40 1941017 8.55 11.69  58.54 20.50 0.25 0.83 0.02 0.84 0.07
-## 4             4  47 1941007 7.71 34.06  96.83 46.33 0.24 3.65 0.07 3.73 0.21
-## 5             5  45 1941002 8.08 70.81 141.98 85.85 0.40 4.47 0.05 4.52 0.14
-## 6             6  44 1941003 8.12 34.00 174.49 86.27 0.21 2.69 0.06 2.75 0.15
-##      Zn                       geometry
-## 1 50.00 MULTIPOLYGON (((345159.5 38...
-## 2 20.51 MULTIPOLYGON (((348107.1 39...
-## 3 35.23 MULTIPOLYGON (((346108.7 39...
-## 4 74.26 MULTIPOLYGON (((350505.1 39...
-## 5 20.16 MULTIPOLYGON (((351854 3906...
-## 6 18.27 MULTIPOLYGON (((352903.1 39...</code></pre>
+##   Seed_Point_ID FID   EA_ID    Group   Ph   SSC     Ca    Mg  NH4  NO3  NO2
+## 1             1  54 1940214 Training 7.79 21.37  60.82 11.12 0.24 2.64 0.08
+## 2             2  42 1941025  Testing 7.79 33.52  75.45 17.52 4.46 3.24 0.11
+## 3             3  40 1941017 Training 8.55 11.69  58.54 20.50 0.25 0.83 0.02
+## 4             4  47 1941007 Training 7.71 34.06  96.83 46.33 0.24 3.65 0.07
+## 5             5  45 1941002 Training 8.08 70.81 141.98 85.85 0.40 4.47 0.05
+## 6             6  44 1941003 Training 8.12 34.00 174.49 86.27 0.21 2.69 0.06
+##    TON  PO4    Zn                       geometry
+## 1 2.73 0.34 50.00 MULTIPOLYGON (((345159.5 38...
+## 2 3.35 0.99 20.51 MULTIPOLYGON (((348107.1 39...
+## 3 0.84 0.07 35.23 MULTIPOLYGON (((346108.7 39...
+## 4 3.73 0.21 74.26 MULTIPOLYGON (((350505.1 39...
+## 5 4.52 0.14 20.16 MULTIPOLYGON (((351854 3906...
+## 6 2.75 0.15 18.27 MULTIPOLYGON (((352903.1 39...</code></pre>
 <blockquote>
 <p>Save your script before continuing.</p>
 </blockquote>
@@ -775,20 +774,20 @@ Hydrological analysis in R
 <span id="cb149-4"><a href="mersey_four.html#cb149-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Writes data frame to comma-separated file</span></span>
 <span id="cb149-5"><a href="mersey_four.html#cb149-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(<span class="at">x =</span> watersheds_ea, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_watersheds_ea.csv&quot;</span>), <span class="at">row.names=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Use <code>head()</code> to inspect the final output, which should resemble the following:</p>
-<pre><code>##   Seed_Point_ID FID   EA_ID   Ph   SSC     Ca    Mg  NH4  NO3  NO2  TON  PO4
-## 1             1  54 1940214 7.79 21.37  60.82 11.12 0.24 2.64 0.08 2.73 0.34
-## 2             2  42 1941025 7.79 33.52  75.45 17.52 4.46 3.24 0.11 3.35 0.99
-## 3             3  40 1941017 8.55 11.69  58.54 20.50 0.25 0.83 0.02 0.84 0.07
-## 4             4  47 1941007 7.71 34.06  96.83 46.33 0.24 3.65 0.07 3.73 0.21
-## 5             5  45 1941002 8.08 70.81 141.98 85.85 0.40 4.47 0.05 4.52 0.14
-## 6             6  44 1941003 8.12 34.00 174.49 86.27 0.21 2.69 0.06 2.75 0.15
-##      Zn              area count average_elevation average_rainfall
-## 1 50.00  3.9614467 [km^2]  1587          21.51344         539.8778
-## 2 20.51 10.2618193 [km^2]  4111          39.95542         581.1832
-## 3 35.23  3.6619044 [km^2]  1467          66.75006         591.3545
-## 4 74.26  1.2131462 [km^2]   486          44.82042         549.0123
-## 5 20.16  0.7413671 [km^2]   297          43.72755         557.1751
-## 6 18.27  1.4028564 [km^2]   562          49.89805         562.9039
+<pre><code>##   Seed_Point_ID FID   EA_ID    Group   Ph   SSC     Ca    Mg  NH4  NO3  NO2
+## 1             1  54 1940214 Training 7.79 21.37  60.82 11.12 0.24 2.64 0.08
+## 2             2  42 1941025  Testing 7.79 33.52  75.45 17.52 4.46 3.24 0.11
+## 3             3  40 1941017 Training 8.55 11.69  58.54 20.50 0.25 0.83 0.02
+## 4             4  47 1941007 Training 7.71 34.06  96.83 46.33 0.24 3.65 0.07
+## 5             5  45 1941002 Training 8.08 70.81 141.98 85.85 0.40 4.47 0.05
+## 6             6  44 1941003 Training 8.12 34.00 174.49 86.27 0.21 2.69 0.06
+##    TON  PO4    Zn              area count average_elevation average_rainfall
+## 1 2.73 0.34 50.00  3.9614467 [km^2]  1587          21.51344         539.8778
+## 2 3.35 0.99 20.51 10.2618193 [km^2]  4111          39.95542         581.1832
+## 3 0.84 0.07 35.23  3.6619044 [km^2]  1467          66.75006         591.3545
+## 4 3.73 0.21 74.26  1.2131462 [km^2]   486          44.82042         549.0123
+## 5 4.52 0.14 20.16  0.7413671 [km^2]   297          43.72755         557.1751
+## 6 2.75 0.15 18.27  1.4028564 [km^2]   562          49.89805         562.9039
 ##   average_slope average_aspect Arable Heath Grassland Urban Wetland Permeable
 ## 1     0.4837142       93.89182    379     0       340   785       0         0
 ## 2     1.2318246      206.14489   1832     0       984   861       0       271
