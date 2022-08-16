@@ -12,7 +12,7 @@ To Install R on a personal computer:
 - Click the "download R" link in the middle of the page under "Getting Started."
 - Select a CRAN location (a mirror site) and click the corresponding link e.g. the site provided by [Imperial College London](https://cran.ma.imperial.ac.uk/).
 - Click on the "Download R for Windows" link, or the relevant link for your operating system (macOS, Linux). 
-- Click on 'base' and then `Download R [Version Number] for Windows`. The current version is 4.1.1. 
+- Click on 'base' and then `Download R [Version Number] for Windows`. The current version is 4.2.1. 
 - Once downloaded, double click the application file (.exe) and follow the installation instructions.
 
 If you're working on a university-managed computer or accessing the course via *Citrix*, both R and RStudio (described below) can be accessed through the Software Centre. 

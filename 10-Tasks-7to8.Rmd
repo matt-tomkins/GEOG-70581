@@ -111,9 +111,9 @@ testing <- subset(watersheds_df, Group == "Testing")
 
 ### Variable selection strategies
 
-An addition weakness of the above approach is that we have manually defined the independent variables of interest (`average_elevation + average_rainfall`). For exploratory analysis, however, we may not know which are the most important variables. Perhaps there is a combination of independent variables which produces a better model fit (e.g. R<sup>2</sup> > 0.32)?
+An addition weakness of the above approach is that we have manually defined the independent variables of interest (`average_elevation + average_rainfall`). For exploratory analysis, however, we may not know which are the most important variables. Perhaps there is a combination of independent variables which produces a better model fit (e.g. R<sup>2</sup> > 0.31)?
 
-Determining which variables to include/exclude from a model is a very difficult problem, which has resulted in many different variable selection strategies. Common approaches include expert opinion and/or theory, partial least squares (PLS) regression, implemented in `PLS`, Least Absolute Shrinkage and Selection Operator (LASSO), implemented in `glmnet` and `LARS`, as well as elastic net methods and ridge regression, also implemented in `glmnet`. 
+Determining which variables to include/exclude from a model is a very difficult problem, which has resulted in many different variable selection strategies. Common approaches include expert opinion and/or theory, partial least squares (PLS) regression, implemented in `PLS`, Least Absolute Shrinkage and Selection Operator (LASSO), implemented in `glmnet` and `LARS`, as well as elastic net methods and ridge regression, also implemented in `glmnet`. You may want to explore some of these more complex approaches for your dissertation. 
 
 For our analysis, we are going to use a relatively simple method known as **Stepwise Regression**, implemented in the `MASS` package. This works by including **all** the relevant independent variables in the analysis and then selecting those with the greatest explanatory power. 
 
@@ -139,7 +139,7 @@ variables <- training[factors]
 
 > Run the above code and use `head()` to inspect the results. 
 
-Next, we are going to combine this data frame (`cbind`) with the dependent variable of interest (NO<sub>2</sub>). We'll call this `model_df` as it contains all the variables (dependent + independent) required for multiple linear regression. **Note**: by default, `cbind` will (somewhat unhelpfully) rename input column names e.g. `NO2` will become `watersheds_df$NO2`. The code below specifies the new column name as NO2 (`NO2 = `) for readability:
+Next, we are going to combine this data frame (`cbind`) with a dependent variable of interest; we will use NO<sub>2</sub> as an example. Our new dataframe will be called `model_df` as it contains all the variables (dependent + independent) required for multiple linear regression. **Note**: by default, `cbind` will (somewhat unhelpfully) rename input column names e.g. `NO2` will become `watersheds_df$NO2`. The code below specifies the new column name as NO2 (`NO2 = `) for readability:
 
 ```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
 # Column bind the NO2 column with the independent variables from the training dataset
@@ -149,7 +149,7 @@ model_df <- cbind(NO2 = training$NO2, variables)
 When complete, we can then run a new model, making sure to update the data frame used (`data = model_df`) and updating the formula to `NO2 ~ .`. This denotes that *all* other data frame columns will be included as independent variables (a useful time saver!):
 
 ```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
-# Fits a linear model
+# Fits a linear model, including all other columns (~.) as independent variables
 no2_model <- lm(formula = NO2 ~ ., data = model_df)
 ```
 
@@ -232,7 +232,9 @@ For our NO<sub>2</sub> model above, we can define our regression equation (prese
 $$
 NO_2 = 0.044 + (0.001 \cdot Urban \: percent) + (-0.004 \cdot Average \: slope)
 $$
-**Well done!** You have now calculated a regression which links the dependent variable (NO<sub>2</sub>) to a set of independent variables, in the case the average slope of the watershed and the percentage urban land cover. 
+**Well done!** You have now calculated a regression which links the dependent variable (NO<sub>2</sub>) to a set of independent variables, in the case the average slope of the watershed and the percentage urban land cover.
+
+> For your assessment, we would like you to **explain** the regression results, linking to hydrological processes and literature. Think about specific sources of pollution, transport pathways, types of flow...
 
 
 ## Task 8: Model evaluation
@@ -243,7 +245,7 @@ To calculate modelled values, we can use the `predict()` function, taking the mo
 
 ```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', cache = TRUE}
 
-# Predicts based on upon stepwise model, saving to testing dataframe
+# Predict NO2 values based upon stepwise model, saving to testing dataframe
 testing$predicted_no2 <- predict(step.model, newdata = testing)
 
 ```
@@ -281,6 +283,8 @@ no2_plot
 
 ```
 
+> Does the regression line match the 1:1 line? Is there any evidence of under- or over-prediction? Are there any outliers? What **types** of errors can you identify?  
+
 You could also assess this relationship statistically, using linear regression: 
 
 ```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
@@ -299,7 +303,7 @@ summary(prediction_model)
 
 **To finish the practical** and to prepare for the assessment:
 
-> Replicating the above approaches (Task 7), calculate regression equations based on stepwise linear regression for all 10 water quality indicators (NO<sub>2</sub>, pH, SSC, Ca, Mg, NH<sub>4</sub>, NO<sub>3</sub>, TON, PO<sub>4</sub>, Zn). 
+> Replicating the above approaches, calculate regression equations based on stepwise linear regression for all 10 water quality indicators (NO<sub>2</sub>, pH, SSC, Ca, Mg, NH<sub>4</sub>, NO<sub>3</sub>, TON, PO<sub>4</sub>, Zn). 
 
 > Use the same approach to create new data frames for each indicator, remembering to update the `k` parameter in the `step.AIC` function (beginning at `k = 1`) to determine the statistically significant variables.
 

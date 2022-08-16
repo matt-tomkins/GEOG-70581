@@ -368,7 +368,7 @@ Broadly, the function extracts values from a raster object at the locations of s
 mersey_dem <- raster(here("data", "practical_2", "mersey_dem_fill.tif"))
 ```
 
-> before using the `extract` function as follows. This takes in both raster (`mersey_dem`) and vector input data (`watersheds_ea`), where the value of interest is determined by the `fun` parameter (i.e. a function). Normally, we can specify an existing base R function (e.g. mean) but here we are using a user-defined function `fun=function(x, ...) length(x)` to *count* the length (or number) of raster cells for each watershed.
+> before using the `extract` function as follows. This takes in both raster (`mersey_dem`) and vector input data (`watersheds_ea`), where the value of interest is determined by the `fun` parameter (i.e. a function). Normally, we can specify an existing base R function (e.g. mean) but here we are using a user-defined function `fun=function(x, ...) length(x)` to **count** the length (or number) of raster cells for each watershed.
 
 ```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
 # Calculates the number of raster cells per watershed 

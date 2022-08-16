@@ -82,8 +82,8 @@ mixture <- whisk(mixture, ingredients$flour, ingredients$milk, ingredients$vanil
 
 # If oven temperature is 180 degrees of more
 if(oven_temperature >= 180){
-  # Bake mixture
-  cake <- bake_mixture(30)
+  # Bake for 30 minutes
+  cake <- bake(mixture, time = 30)
 }
 
 ```

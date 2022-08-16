@@ -40,7 +40,7 @@ First, and with **career progression** in mind, the ability to code is becoming 
 
 Second, performing your analysis using code ensures that your outputs are **reproducible**. If you provide someone else with the original data files and the corresponding code i.e. a list of operations carried out by the computer (e.g. read data, modify, plot, perform statistical test, save), they should be able to reproduce your outputs exactly. 
 
-Third, code is **repeatable**. In standard GIS software (for example), most functions allow you to perform a single task on a single data file e.g. [clipping](https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/clip.htm) a digital elevation model to the geometry of a shapefile. By comparison, if that same functionality can be implemented in [code](https://www.rdocumentation.org/packages/raster/versions/3.4-13/topics/crop), it can applied as easily to 10 data files, or 1000, or 10,000.
+Third, code is **repeatable**. In standard GIS software (for example), most functions allow you to perform a single task on a single data file e.g. [clipping](https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/clip.htm) a digital elevation model to the geometry of a shapefile. By comparison, if that same functionality can be implemented in [code](https://www.rdocumentation.org/packages/raster/versions/3.4-13/topics/crop), it can be applied as easily to 10 data files, or 1000, or 10,000.
 
 Finally, code is easily **modifiable**. Code can be tweaked, adapted, or completely rewritten to produce the desired outputs. In R, a wide range of functions are already available in [**packages**](https://cran.r-project.org/web/packages/), but you can write your own functions or combine existing functions to suit your analysis. This functionality is often not the case in other software, which are generally more complicated to modify and typically provide [Black Box](https://en.wikipedia.org/wiki/Black_box) solutions, where we can inspect the inputs and outputs, but typically have limited understanding of the steps in between. 
 
@@ -176,7 +176,7 @@ Let's say we want to calculate the sum of the squares from 1 to 5 i.e. $1^2 + 2^
 
 ```
 
-This produces the current result:
+This produces the correct result:
 
 ```{r, echo = FALSE}
 
@@ -307,7 +307,7 @@ r
 
 ### Data frames {#data_frames}
 
-Other common R data structures include **matrices**, **lists** and **data frames**. The data frame is the most commonly used structure for tabular data and will be familiar to those of you with experience in Microsoft Excel. Here is an example data frame, which is created by combining existing vectors of the same length:
+Other common R data structures include **matrices**, **lists** and **data frames**. The data frame is the most commonly used structure for tabular data and will be familiar to those of you with experience in Microsoft Excel. Here is an example data frame, which is created by combining four existing vectors of the same length (`name`, `height`, `nationality`, [`bereft_of_life`](https://en.wikipedia.org/wiki/Dead_Parrot_sketch)):
 
 ```{r}
 
@@ -373,10 +373,10 @@ nrow(subset(df, name == "Terry"))
 
 The sections above have given you a crash course in some of the fundamentals of R. Learning to code (or learning a new code syntax for those of your familiar with Python, MATLAB, Java, ...) is similar to learning a new language. **Don't worry** if it seems complicated! You can always refer back to these instructions if you get stuck, or ask for guidance.
 
-To finish this Chapter, we'll provide a brief overview of some other key skills, including writing [R scripts](#scripts), [loading data](#data_loading) and [packages](#packages), and [plotting](#data_plotting). This should prepare you for the [formative task](#formative_task) 
+To finish this Chapter, we'll provide a brief overview of some other key skills, including writing [R scripts](#scripts), [loading data](#data_loading) and [packages](#packages), and [plotting](#data_plotting). This should prepare you for the [formative task](#formative_task). 
 This is **not** an exhaustive list of R functions, and we'll cover other functionality in Practicals 1 and 2 (e.g. loading GIS raster and vector data, creating maps and figures, performing statistical tests). 
 
-However, the R functionality outlined here will cover all the steps required for the [assessment](#Assessment) and should equip you with the core skills required to progress further with R in the future.
+However, the R functionality outlined here will cover all the steps required for the [assessment](#Assessment) and should equip you with the core skills required to progress further with R in the future e.g. as the basis for your dissertation. 
 
 ## Scripts {#scripts}
 
@@ -522,9 +522,9 @@ We'll use one of the most well-used formats as an example; the comma-separated f
 ```{r, eval = FALSE, warning= FALSE, message = FALSE}
 
 name,age,height,year_of_birth,instrument
-stewart,69,1.87,1952,drums
-andy,78,1.70,1942,guitar
-gordon,69,1.81,1951,vocals
+stewart,70,1.87,1952,drums
+andy,79,1.70,1942,guitar
+gordon,70,1.81,1951,vocals
 
 
 ```
@@ -533,9 +533,9 @@ When read by R, it is interpreted as follows, splitting columns based on the occ
 
 |   name  | age | height | year_of_birth | instrument |
 |:-------:|:---:|:------:|:-------------:|:----------:|
-| stewart | 69  | 1.87   | 1952          | drums      |
-| andy    | 78  | 1.70   | 1942          | guitar     |
-| gordon  | 69  | 1.81   | 1951          | vocals     |
+| stewart | 70  | 1.87   | 1952          | drums      |
+| andy    | 79  | 1.70   | 1942          | guitar     |
+| gordon  | 70  | 1.81   | 1951          | vocals     |
 
 To load a `.csv` file into R, we can use the command `read.csv()`. The most basic way to load a file is to write the **absolute** file path. This is the location on your computer where the file is saved. For example, a file saved on your `C drive`, within your `Documents` folder, and within a folder called `Manchester` would be formatted as: `C:\Documents\Manchester`
 
@@ -547,7 +547,7 @@ To load a `.csv` file into R, we can use the command `read.csv()`. The most basi
 
 For the final two sections of this Chapter (and the [formative task](#formative_task)), we'll using a data file called `flow_data.csv` which contains the average daily river flow (m<sup>3</sup> per second) from the [National River Flow Archive](https://nrfa.ceh.ac.uk/) and the [UK Centre for Ecology & Hydrology](https://www.ceh.ac.uk/). The data are from monitoring station [90003](https://nrfa.ceh.ac.uk/data/station/meanflow/90003) on the River Nevis, which drains Ben Nevis, the highest mountain in the UK, and cover the period from the 1<sup>st</sup> October 1982 to the 30<sup>th</sup> September 2019.  
 
-You can explore the Glen Nevis area below:
+You can explore the Glen Nevis catchment below:
 
 ```{r, echo = FALSE, warning = FALSE, message = FALSE}
 
@@ -783,7 +783,7 @@ Create an R Script which does the following:
   
   > Extracts all rows corresponding to the years 2000 to 2019, making sure to convert to date format. 
   
-  > Finds the average daily river flow (m<sup>3</sup> per second) **for each month** and plot the result. 
+  > Finds the average daily river flow (m<sup>3</sup> per second) **for each month** and plots the result. 
   
   > **Questions**: on average, which month had the **highest** average daily flow and which had the **lowest**?
   
@@ -799,7 +799,7 @@ To extract the month from each record, you may want to use the `months()` functi
 
 A code solution to the formative task will be uploaded here on the Monday after the class (22/11/2021). 
 
-```{r, eval = FALSE, echo = FALSE, warning = FALSE, message = FALSE}
+```{r, eval = FALSE, echo = TRUE, warning = FALSE, message = FALSE}
 
 # Solution to the Chapter 3 formative task
 # Author: matt-tomkins
@@ -807,7 +807,7 @@ A code solution to the formative task will be uploaded here on the Monday after 
 
 ```
 
-```{r, eval = TRUE, echo = TRUE, warning = FALSE, message = FALSE}
+```{r, eval = FALSE, echo = FALSE, warning = FALSE, message = FALSE}
 
 # Solution to the Chapter 3 formative task
 # Author: matt-tomkins

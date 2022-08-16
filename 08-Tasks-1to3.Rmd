@@ -96,7 +96,7 @@ In Practical 1, we used the filled DEM to calculate the SCA for each raster cell
 
 > Run the `wbt_d8_flow_accumulation` function, using the D8 pointer raster as the input file (`mersey_dem_D8_pointer.tif`). **Important**: because we're working with a pointer raster, rather than a DEM, we need to specify this parameter (`pntr = TRUE`). If we don't set this parameter, WBT will assume the DEM values are actually elevations (ranging from 1 - 128 m) and we will obtain spurious results!
 
-> Make sure to set the output type (`out_type`) as 'specific contributing area' (in quotation marks). As SCA data typically have a very large range of values, we can also log-transform the flow accumulation values (`log = "TRUE"`) to improve plot readability. Save the output file with a logical name (e.g. `dem_10m_flow_accumulation.tif`) and to the correct sub-directory (`output/practical_2`). Load the raster to R and plot, and your output should resemble the following:
+> Make sure to set the output type (`out_type`) as 'specific contributing area' (in quotation marks). As SCA data typically have a very large range of values, we can also log-transform the flow accumulation values (`log = "TRUE"`) to improve plot readability. Save the output file with a logical name (e.g. `mersey_dem_flow_accumulation.tif`) and to the correct sub-directory (`output/practical_2`). Load the raster to R and plot, and your output should resemble the following:
 
 ```{r, echo = FALSE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
 # Calculates accumulation file
@@ -125,7 +125,7 @@ p
 
 ## Task 2: Seed points
 
-The UK Environment Agency (EA) collects river water quality data at a series of fixed locations across the Mersey Basin. The location of each of these sites is recorded using a GPS and locations have a unique identification number. Seed points are sometimes referred to as pour points, and are routinely used to delineate watersheds. 
+The UK Environment Agency (EA) collects river water quality data at a series of fixed locations across the Mersey Basin. The location of each of these sites is recorded using a GPS and locations have a unique identification number. Seed points are sometimes referred to as "pour points", and are routinely used to delineate watersheds. 
 
 The locations of the EA monitoring stations are shown below:
 
@@ -155,7 +155,7 @@ m
 
 However, before you can delineate the watershed for each of these outlet points, the seed point location must be checked, repositioned if necessary and given its own unique identifier. This is a very important part of any watershed delineation process. 
 
-Below is a figure showing the flow accumulation raster (`mersey_dem_flow_accumulation.tif`) and the EA monitoring stations (`mersey_EA_sites.shp`). Here, we're using the **raster** package to load the raster data, and the `st_read()` function from the *sf* package (**S**imple **F**eatures) to load the vector data. 
+Below is a figure showing the flow accumulation raster (`mersey_dem_flow_accumulation.tif`) and the EA monitoring stations (`mersey_EA_sites.shp`). Here, we're using the **raster** package to load the raster data, and the `st_read()` function from the `sf` package (**S**imple **F**eatures) to load the vector data. 
 
 To add spatial data to our ggplot map, we are using the `annotation_spatial()` function which is designed for spatial geometries. Helpfully, this works across the main vector types; points, lines, and polygons can all be added using `geom_sf()`. For design reasons, we've modified the [shape type](http://www.sthda.com/english/wiki/ggplot2-point-shapes) as well as the fill, colour and size of the point data.
  
@@ -240,7 +240,7 @@ wbt_extract_streams(here("output", "practical_2", "mersey_dem_D8_flow_accumulati
 
 Of these, the Jenson Snap Pour Points approach (@lindsay_mapping_2008) is more sophisticated and has one clear advantage: when an initial outlet point is located on a stream cell, it will not be moved. For our EA dataset, which contains points of variable accuracy, this is beneficial because correctly placed points will retain their original positions, and only those incorrectly placed will be modified. In contrast, a standard snap pour points approach will often move all the points, even those which were located correctly!
 
-However, the Jenson approach requires additional inputs and utilises a **Streams** raster file, rather than an SCA accumulation file. To calculate this, the overall process is as follows:
+However, the Jenson approach requires additional inputs and utilises a **streams** raster file, rather than an SCA accumulation file. To calculate this, the overall process is as follows:
 
 1. Calculate the Number of Upslope Elements (**NUE**) using the `wbt_d8_flow_accumulation` function. 
 2. Define the stream network using the `wbt_extract_streams` function. 
@@ -283,7 +283,7 @@ p
 
 Finally, we are going to reposition the EA seed points to match the stream network. **Remember**, seed points already located on the steam network will not be moved. 
 
-Before we execute the tool, we need to decide on the **Snap Distance**, which is measured in the units of the input data and is the maximum distance that points can be moved to match the stream network. Our raster is measured in **metres** (m) with a grid resolution of 50 m<sup>2</sup>. Most points are incorrectly positioned by one grid cell (50 m) or two grid cells (100 m). However, to ensure we include all points, we'll set the snap distance to 500 m. 
+Before we execute the tool, we need to decide on the **Snap Distance**, which is measured in the units of the input data and is the maximum distance that points can be moved to match the stream network. Our raster is measured in **metres** (m) with a grid resolution of 50 m<sup>2</sup>. Most points are incorrectly positioned by one to three grid cells (50 - 150 m). However, to ensure we include all points, we'll set the snap distance to 500 m. 
 
 > Using the output of Step 2 (`mersey_dem_streams_act200.tif`) and the EA monitoring stations shapefile `mersey_EA_sites.shp`, run the `wbt_jenson_snap_pour_points` function, using a snap distance of 500 m (`snap_dist = 500`). Save with an appropriate name `mersey_EA_sites_snapped.shp`. 
 

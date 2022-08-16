@@ -354,34 +354,34 @@ Hydrological analysis in R
 <blockquote>
 <p>Inspect the code below:</p>
 </blockquote>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="Hints.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to check and install packages</span></span>
-<span id="cb175-2"><a href="Hints.html#cb175-2" aria-hidden="true" tabindex="-1"></a>check.packages <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg){</span>
-<span id="cb175-3"><a href="Hints.html#cb175-3" aria-hidden="true" tabindex="-1"></a>  new.pkg <span class="ot">&lt;-</span> pkg[<span class="sc">!</span>(pkg <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
-<span id="cb175-4"><a href="Hints.html#cb175-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(new.pkg))</span>
-<span id="cb175-5"><a href="Hints.html#cb175-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(new.pkg, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb175-6"><a href="Hints.html#cb175-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sapply</span>(pkg, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb175-7"><a href="Hints.html#cb175-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb175-8"><a href="Hints.html#cb175-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb175-9"><a href="Hints.html#cb175-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Checks and installs packages</span></span>
-<span id="cb175-10"><a href="Hints.html#cb175-10" aria-hidden="true" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;here&quot;</span>, <span class="st">&quot;raster&quot;</span>, <span class="st">&quot;whitebox&quot;</span>, <span class="st">&quot;ggspatial&quot;</span>, <span class="st">&quot;patchwork&quot;</span>)</span>
-<span id="cb175-11"><a href="Hints.html#cb175-11" aria-hidden="true" tabindex="-1"></a><span class="fu">check.packages</span>(packages)</span>
-<span id="cb175-12"><a href="Hints.html#cb175-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb175-13"><a href="Hints.html#cb175-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Sets file path for DEM</span></span>
-<span id="cb175-14"><a href="Hints.html#cb175-14" aria-hidden="true" tabindex="-1"></a>dem <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m.tif&quot;</span>)</span>
-<span id="cb175-15"><a href="Hints.html#cb175-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb175-16"><a href="Hints.html#cb175-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Breach and fills depressions</span></span>
-<span id="cb175-17"><a href="Hints.html#cb175-17" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_fill_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span>
-<span id="cb175-18"><a href="Hints.html#cb175-18" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_breach_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_breach.tif&quot;</span>))</span>
-<span id="cb175-19"><a href="Hints.html#cb175-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb175-20"><a href="Hints.html#cb175-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculates D8 pointer</span></span>
-<span id="cb175-21"><a href="Hints.html#cb175-21" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_d8_pointer</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>),</span>
-<span id="cb175-22"><a href="Hints.html#cb175-22" aria-hidden="true" tabindex="-1"></a>               <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_D8_pointer.tif&quot;</span>))</span>
-<span id="cb175-23"><a href="Hints.html#cb175-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb175-24"><a href="Hints.html#cb175-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculates D8 accumulation file (SCA), with log-transformed values</span></span>
-<span id="cb175-25"><a href="Hints.html#cb175-25" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_d8_flow_accumulation</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>),</span>
-<span id="cb175-26"><a href="Hints.html#cb175-26" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_flow_accumulation.tif&quot;</span>),</span>
-<span id="cb175-27"><a href="Hints.html#cb175-27" aria-hidden="true" tabindex="-1"></a>                         <span class="at">out_type =</span> <span class="st">&quot;specific contributing area&quot;</span>,</span>
-<span id="cb175-28"><a href="Hints.html#cb175-28" aria-hidden="true" tabindex="-1"></a>                         <span class="at">log =</span> <span class="st">&quot;TRUE&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="Hints.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to check and install packages</span></span>
+<span id="cb154-2"><a href="Hints.html#cb154-2" aria-hidden="true" tabindex="-1"></a>check.packages <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg){</span>
+<span id="cb154-3"><a href="Hints.html#cb154-3" aria-hidden="true" tabindex="-1"></a>  new.pkg <span class="ot">&lt;-</span> pkg[<span class="sc">!</span>(pkg <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
+<span id="cb154-4"><a href="Hints.html#cb154-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(new.pkg))</span>
+<span id="cb154-5"><a href="Hints.html#cb154-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(new.pkg, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb154-6"><a href="Hints.html#cb154-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sapply</span>(pkg, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb154-7"><a href="Hints.html#cb154-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb154-8"><a href="Hints.html#cb154-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb154-9"><a href="Hints.html#cb154-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Checks and installs packages</span></span>
+<span id="cb154-10"><a href="Hints.html#cb154-10" aria-hidden="true" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;here&quot;</span>, <span class="st">&quot;raster&quot;</span>, <span class="st">&quot;whitebox&quot;</span>, <span class="st">&quot;ggspatial&quot;</span>, <span class="st">&quot;patchwork&quot;</span>)</span>
+<span id="cb154-11"><a href="Hints.html#cb154-11" aria-hidden="true" tabindex="-1"></a><span class="fu">check.packages</span>(packages)</span>
+<span id="cb154-12"><a href="Hints.html#cb154-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb154-13"><a href="Hints.html#cb154-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Sets file path for DEM</span></span>
+<span id="cb154-14"><a href="Hints.html#cb154-14" aria-hidden="true" tabindex="-1"></a>dem <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m.tif&quot;</span>)</span>
+<span id="cb154-15"><a href="Hints.html#cb154-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb154-16"><a href="Hints.html#cb154-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Breach and fills depressions</span></span>
+<span id="cb154-17"><a href="Hints.html#cb154-17" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_fill_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span>
+<span id="cb154-18"><a href="Hints.html#cb154-18" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_breach_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_breach.tif&quot;</span>))</span>
+<span id="cb154-19"><a href="Hints.html#cb154-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb154-20"><a href="Hints.html#cb154-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculates D8 pointer</span></span>
+<span id="cb154-21"><a href="Hints.html#cb154-21" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_d8_pointer</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>),</span>
+<span id="cb154-22"><a href="Hints.html#cb154-22" aria-hidden="true" tabindex="-1"></a>               <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_D8_pointer.tif&quot;</span>))</span>
+<span id="cb154-23"><a href="Hints.html#cb154-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb154-24"><a href="Hints.html#cb154-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculates D8 accumulation file (SCA), with log-transformed values</span></span>
+<span id="cb154-25"><a href="Hints.html#cb154-25" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_d8_flow_accumulation</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>),</span>
+<span id="cb154-26"><a href="Hints.html#cb154-26" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_flow_accumulation.tif&quot;</span>),</span>
+<span id="cb154-27"><a href="Hints.html#cb154-27" aria-hidden="true" tabindex="-1"></a>                         <span class="at">out_type =</span> <span class="st">&quot;specific contributing area&quot;</span>,</span>
+<span id="cb154-28"><a href="Hints.html#cb154-28" aria-hidden="true" tabindex="-1"></a>                         <span class="at">log =</span> <span class="st">&quot;TRUE&quot;</span>)</span></code></pre></div>
 <p>This code includes comments for each main code block, line spaces to distinguish different parts of the code, and is written in a logical order (e.g. first loading packages, then loading/selecting data, running tools). Any non-essential code has been removed e.g. additional calls to install.packages() or library().</p>
 <p>If there are any other questions, please do get in touch.</p>
 

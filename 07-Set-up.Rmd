@@ -10,7 +10,7 @@ This practical is comprised of eight primary tasks, with three weeks of class ti
 - Task 2: Seed points 
 - Task 3: Watershed delineation 
 
-**Mersey IV** (Chapter 10): To complete in class in Week 11, and finish before the class in Week 11: 
+**Mersey IV** (Chapter 10): To complete in class in Week 11, and finish before the class in Week 12: 
 
 - Task 4: Reclassification of categorical datasets 
 - Task 5: Calculating surface derivatives 
@@ -19,7 +19,7 @@ This practical is comprised of eight primary tasks, with three weeks of class ti
 **Mersey V** (Chapter 11): To complete in class in Week 12: 
 
 - Task 7: Model building i.e. relating river water quality to catchment metrics 
-- Task 8: Error analysis
+- Task 8: Model evaluation
 
 Any class time remaining can be used to commence your practical report and ask any questions you may have before submission.
 

@@ -13,7 +13,7 @@ Using this method, water flow is allowed in one of eight possible directions (�
 
 ## DEM pre-processing: flow enforcement
 
-One common issue encountered when performing hydrological analyses is the presence of sinks, which interrupt the drainage network. When sinks are encountered, flow direction is undefined when a grid cell, or group of grid cells, is lower than all neighbouring cells (see **Figure 2**) When sinks are encountered, and when there are no downslope neighbours, all water that enters a cell is unable to escape. These features are referred to as pits if they are a single cell in size, and depressions if they consist of groups of cells.
+One common issue encountered when performing hydrological analyses is the presence of sinks, which interrupt the drainage network. When sinks are encountered, flow direction is undefined when a grid cell, or group of grid cells, is lower than all neighbouring cells (see **Figure 2**). When sinks are encountered, and when there are no downslope neighbours, all water that enters a cell is unable to escape. These features are referred to as pits if they are a single cell in size, and depressions if they consist of groups of cells.
 
 <p align="center">
 <a name="Figure_2"></a>![](figures/Practical-1/DEM_Sinks.png){width=50%}
@@ -94,7 +94,7 @@ m
 
 The DEM we are working with was downloaded from [EDINA Digimap](https://digimap.edina.ac.uk/), has a cell size of 10 m and uses the **British National Grid** (BNG), a **projected** coordinate Reference System [[EPSG:27700](https://epsg.io/27700)]. 
 
-Unfortunately, we don't have time in this course to delve into the exciting world of map projections, although these are covered excellently by Dr. Jonny Huck in the Semester 2 course [**Understanding GIS**](https://www.manchester.ac.uk/study/masters/courses/list/07053/msc-geographical-information-science/course-details/GEOG71552#course-unit-details). However, it is important to know that different map projections have different uses and work more/less effectively in different regions. As we are working within the UK, it makes sense to use a map projection which is tailored to the UK (e.g. BNG) as this minimises different types of map distortion (length, shape, area). 
+Unfortunately, we don't have time in this course to delve into the exciting world of map projections, although these are covered excellently by Dr. Jonny Huck in [**Understanding GIS**](https://www.manchester.ac.uk/study/masters/courses/list/07053/msc-geographical-information-science/course-details/GEOG71552#course-unit-details). However, it is important to know that different map projections have different uses and work more/less effectively in different regions. As we are working within the UK, it makes sense to use a map projection which is tailored to the UK (e.g. BNG) as this minimises different types of map distortion (length, shape, area). 
 
 When loaded into R using the `raster` package and plotted using `ggplot2` and `ggspatial`, our DEM can be visualised as follows, where the outlet point (white circle) and summits (black triangles) match those shown in Figure 5. 
 
@@ -172,7 +172,7 @@ wbt_fill_depressions("C:/Users/Bill/GEOG-70581/data/practical_1/dem_10m.tif",
 
 ```
 
-Here, we've using absolute file paths to set the input DEM as `dem_10m.tif` (stored in data/practical_1) and have specified the output DEM as `dem_10m_fill.tif`. The function `wbt_fill_depressions` will fill depressions in the input DEM and save the new DEM as `dem_10m_fill.tif` in output/practical_1. 
+Here, we've used absolute file paths to set the input DEM as `dem_10m.tif`, stored in data/practical_1. The function `wbt_fill_depressions` will fill depressions in the input DEM and save the new DEM as `dem_10m_fill.tif`, stored in output/practical_1. 
  
 However, because we're using an R project we can simplify this further. As we'll be using the DEM (`dem_10m.tif`) on multiple occasions, we can store its file path using the **here** package in the variable `dem` as follows:
 
@@ -292,7 +292,7 @@ Before we move on to further analysis, it is worth thinking carefully about the 
 
 ### Choosing a colour ramp
 
-Perceptual uniformity refers to how well a colour ramp represents the underlying data. Some (e.g. [rainbow](https://www.climate-lab-book.ac.uk/2014/endof- the-rainbow/); @hawkins_scrap_2015) can introduce artificial boundaries (@alcalde_framing_2017) which influence how we assess and then use that data (see [here](https://blogs.egu.eu/divisions/gd/2017/08/23/the-rainbow-colour-map/). In the schematic below, there are numerous artificial boundaries in the rainbow colour ramp (e.g. dark blue → light blue, light blue → green, green → yellow, yellow → orange), whereas the monochrome colour ramp smoothly transitions from black → white. 
+Perceptual uniformity refers to how well a colour ramp represents the underlying data. Some (e.g. [rainbow](https://www.climate-lab-book.ac.uk/2014/endof- the-rainbow/); @hawkins_scrap_2015) can introduce artificial boundaries (@alcalde_framing_2017) which influence how we assess and then use that data (see [here](https://blogs.egu.eu/divisions/gd/2017/08/23/the-rainbow-colour-map/)). In the schematic below, there are numerous artificial boundaries in the rainbow colour ramp (e.g. dark blue → light blue, light blue → green, green → yellow, yellow → orange), whereas the monochrome colour ramp smoothly transitions from black → white. 
 
 <p align="center">
 <a name="Figure_6"></a>![](figures/Practical-1/Perceptual_Colour_Ramps.png){width=50%}
@@ -410,7 +410,7 @@ To calculate the upslope catchment area for each raster cell, we can use the `wb
 
 > Run the above function, using the filled DEM as the input file and the output type (`out_type`) as 'specific contributing area' (in quotation marks). As SCA data typically have a very large range of values, we can also log-transform the flow accumulation values (`log = "TRUE"`) to improve plot readability. Save the output file with a logical name (e.g. `dem_10m_flow_accumulation.tif`) and to the correct sub-directory (output/practical_1). Load the raster to R and plot, and your output should resemble the following:
 
-```{r, echo = TRUE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
+```{r, echo = FALSE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
 
 # Calculates accumulation file
 wbt_d8_flow_accumulation(here("output", "practical_1", "dem_10m_fill.tif"), 
@@ -437,7 +437,7 @@ p
 
 ### Comparing flow algorithms 
 
-So far we have used the most simplistic flow algorithm (D8) to model specific catchment area (SCA). However, there are many flow algorithms available (e.g. @fairfield_drainage_1991, @seibert_new_2007, @grabs_calculating_2010) and each algorithm results in slightly different spatial patterns of catchment area. As flow routing is fundamental to the modelling of surface water hydrology, it is important to familiarise yourself with several commonly used methods, although it can be difficult to decide when or where it is appropriate to use a particular routing algorithm. In this section of the practical, we will compare the output of three flow routing algorithms including:
+So far we have used the most simplistic flow algorithm (D8) to model specific catchment area (SCA). However, there are many flow algorithms available (e.g. @fairfield_drainage_1991, @seibert_new_2007, @grabs_calculating_2010) and each algorithm results in slightly different spatial patterns of water flow. As flow routing is fundamental to the modelling of surface water hydrology, it is important to familiarise yourself with several commonly used methods, although it can be difficult to decide when or where it is appropriate to use a particular routing algorithm. In this section of the practical, we will compare the output of three flow routing algorithms including:
 
 - **D8**: see @ocallaghan_extraction_1984
 - **FD8**: see @freeman_calculating_1991, @quinn_prediction_1991 and its modification by @quinn_tan_1995
@@ -451,7 +451,7 @@ Flow algorithms differ in the way in which they:
 
 The D8 algorithm is incapable of modelling flow divergence (or dispersion) because the flow from a particular grid cell is directed to a single downslope neighbour. FD8 (i.e. fractional D8; @freeman_calculating_1991, @quinn_prediction_1991) divides flow to each downslope neighbour using a partitioning scheme that is based on the slope angle to neighbouring cells, while a later modification by @quinn_tan_1995 increases the degree of flow convergence from the catchment divide to the channel head. Finally, D-infinity divide flows between a maximum of two downslope neighbours based on the direction of maximum downward slope. Of these, FD8-Quinn (@quinn_tan_1995) is the only algorithm of the three that explicitly recognises that flow on hillslopes should be divergent while flow along valley bottoms should be convergent. 
 
-In the final part of the practical, assess the specific catchment areas (SCA) derived from each of the flow algorithms discussed above.
+In the final part of the practical, we will assess the specific catchment areas (SCA) derived from each of the flow algorithms discussed above.
 
 ### FD8 catchment area 
 
@@ -509,7 +509,7 @@ As with the introduction to R (Chapter 2 - 3), I will provide a code solution to
 
 This will be released prior to the Week 10 class (scheduled for 3/12/2021). 
 
-```{r, echo = FALSE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
+```{r, echo = TRUE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
 
 # Solution to Practical 1 (Eskdale)
 # Author: matt-tomkins
@@ -517,7 +517,7 @@ This will be released prior to the Week 10 class (scheduled for 3/12/2021).
 
 ```
 
-```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+```{r, echo = FALSE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
 
 # Solution to Practical 1 (Eskdale)
 # Author: matt-tomkins
