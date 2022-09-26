@@ -797,7 +797,7 @@ To extract the month from each record, you may want to use the `months()` functi
 
 ### Formative solution
 
-A code solution to the formative task will be uploaded here on the Monday after the class (22/11/2021). 
+A code solution to the formative task will be uploaded here on the Monday after the class.
 
 ```{r, eval = FALSE, echo = TRUE, warning = FALSE, message = FALSE}
 

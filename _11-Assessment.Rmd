@@ -12,7 +12,7 @@ This could be presented as a table, perhaps in the format shown below:
 
 |    Indicator   |                                      Equation                                     | R<sup>2</sup> | *p* value | Additional columns as required |
 |:--------------:|:---------------------------------------------------------------------------------:|:-------------:|:---------:|:------------------------------:|
-| NO<sub>2</sub> | $NO_2 = 0.049 + (0.001 \cdot Urban \: percent) + (-0.005 \cdot Average \: slope)$ | 0.41          | < 0.01    |                                |
+| NO<sub>2</sub> | $NO_2 = 0.044 + (0.001 \cdot Urban \: percent) + (-0.004 \cdot Average \: slope)$ | 0.48          | < 0.01    |                                |
 |                |                                                                                   |               |           |                                |
 |                |                                                                                   |               |           |                                |
 
@@ -42,8 +42,8 @@ In addition to the above, we would like you to produce three output maps to visu
 
 **Map design**: Normally, all maps should have a scale bar and north arrow. However, because we're using projected data (British National Grid) and because `ggpsatial` automatically adds informative latitude/longitude axes to your plots, you **don't** need to include either of these elements here. For reference, these can be added using `annotation_scale()` and `annotation_north_arrow()` respectively. Maps should, however, include informative legends, titles and axis labels, and should use colour-blind friendly and perceptually-uniform palettes. 
 
-**Referencing**: The report should be fully referenced, using the Harvard style. You should not just adapt the text from the Rothwell paper, substituting key values for the data here. This will result in a high similarity index and you may face a penalty due to poor academic practice. You must write up the report in your own words, making sure you paraphrase the ideas of others, and reference fully throughout. 
+**Referencing**: The report should be fully referenced, using the Harvard style. You should not just adapt the text from the Rothwell et al. ([2010](https://doi.org/10.1016/j.jhydrol.2010.10.015)) paper, substituting key values for the data here. This will result in a high similarity index and you may face a penalty due to poor academic practice. You must write up the report in your own words, making sure you paraphrase the ideas of others, and reference fully throughout. 
 
-**Submission deadline**: 06/01/2022, 14:00
+**Submission deadline**: 05/01/2023, 14:00
 
 

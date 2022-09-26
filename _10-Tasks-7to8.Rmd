@@ -5,6 +5,7 @@ In this final chapter, we will compare the information about catchment character
 ```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
 # Reads completed file from csv
 watersheds_df <- read.csv(here("output", "practical_2", "mersey_watersheds_ea.csv"))
+
 ```
 
 If you have any other variables in your R environment, these can be removed using `rm()`. 
@@ -64,7 +65,7 @@ We can then assess the model output using the `summary` function:
 summary(model)
 ```
 
-For this set of independent variables, we have an R<sup>2</sup> of 0.32 (`Multiple R-squared: 0.3109`) and a model *p* value of < 0.01 (`p-value: 3.828e-06`). 
+For this set of independent variables, we have an R<sup>2</sup> of 0.31 (`Multiple R-squared: 0.3109`) and a model *p* value of < 0.01 (`p-value: 3.828e-06`). 
 
 The model coefficients for the independent variables are described above, where `*` denotes *p* values < 0.05 (95% probability) and `**` denotes *p* values < 0.01 (99% probability). As the coefficients are very small, they are presented in scientific notation. These can be converted to numeric (non-scientific) format using the following code:
 
@@ -80,14 +81,43 @@ format(c(-2.096e-04, -8.358e-06, ...) , scientific = FALSE)
 
 > When you're happy you understanding the formatting of the `lm` function, move on to the next section. 
 
+### Training vs. Testing 
 
-### Stepwise regression 
+One limitation of the above approach is that our dataframe (`watersheds_df`) contains observations from all 70 EA monitoring stations. 
 
-However, one of the weaknesses of the above approach is that we have manually defined the independent variables of interest (`average_elevation + average_rainfall`). For exploratory analysis, however, we may not know which are the most important variables. Perhaps there is a combination of independent variables which produces a better model fit (e.g. R<sup>2</sup> > 0.32)?
+When performing statistical analysis, it is common practice to split any dataset into:
 
-To test this, we're going to include **all** the relevant independent variables in the analysis and then select those with the greatest explanatory power using **Stepwise Regression** (from the `MASS` package). 
+- a **training** subset, which is used to create the model(s).
+- a **testing** subset, which is used to evaluate the model(s). 
 
-We don't necessarily want to test all model variables, however. We would probably want to exclude the categorical counts (e.g. Arable, Heath, ...) as these factors are already represented by the normalised variables (e.g. Arable_percent, Heath_percent, ...), as well as any IDs or geometry variables (area). In general, we are only interested in testing the continuous derivatives (column names starting with `average_`) and the normalised categorical derivatives (column names ending in '_percent'). 
+Subsetting our data in this way allows models to be evaluated more rigorously. Many models perform well "in-sample" but poorly "out-of-sample" when evaluated against independent data (i.e. the testing subset). This is commonly referred to as "over-fitting". 
+
+Training and testing subsets are usually defined randomly, with an approximate ratio of 70:30 (although this varies). However, and to ensure reproducibility, this step has been completed for you: the `watersheds_df` dataframe contains a `group` variable denoting which monitoring sites belong to the training and testing subsets. 
+
+> Run the code above to create `training` and `testing` dataframes:
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+# Extracts training dataset, comprising 50 observations (~70%)
+training <- subset(watersheds_df, Group == "Training")
+
+# Extracts training dataset, comprising 20 observations (~30%)
+testing <- subset(watersheds_df, Group == "Testing") 
+
+```
+
+> Before you move on to the next section, can you think of any limitations of this approach? 
+
+> Hints: How important is the training-testing ratio? How are training-testing subsets created? 
+
+### Variable selection strategies
+
+An addition weakness of the above approach is that we have manually defined the independent variables of interest (`average_elevation + average_rainfall`). For exploratory analysis, however, we may not know which are the most important variables. Perhaps there is a combination of independent variables which produces a better model fit (e.g. R<sup>2</sup> > 0.31)?
+
+Determining which variables to include/exclude from a model is a very difficult problem, which has resulted in many different variable selection strategies. Common approaches include expert opinion and/or theory, partial least squares (PLS) regression, implemented in `PLS`, Least Absolute Shrinkage and Selection Operator (LASSO), implemented in `glmnet` and `LARS`, as well as elastic net methods and ridge regression, also implemented in `glmnet`. You may want to explore some of these more complex approaches for your dissertation. 
+
+For our analysis, we are going to use a relatively simple method known as **Stepwise Regression**, implemented in the `MASS` package. This works by including **all** the relevant independent variables in the analysis and then selecting those with the greatest explanatory power. 
+
+However, we don't necessarily want to test *all* model variables. We would probably want to exclude the categorical counts (e.g. Arable, Heath, ...) as these factors are already represented by the normalised variables (e.g. Arable_percent, Heath_percent, ...), as well as any IDs or geometry variables (area). In general, we are only interested in testing the continuous derivatives (column names starting with `average_`) and the normalised categorical derivatives (column names ending in '_percent'). 
 
 Rather than typing out the columns of interest manually, we are going to use the `select` function from the `dplyr` package to do so:
 
@@ -101,25 +131,25 @@ factors
 
 > Run the above code. **Note**, the formatting of `dplyr::select` may be slightly confusing but it is necessary because there is also a `select` function in the `MASS` package. Here, we are telling R to use `select` from `dplyr`.
 
-Using the vector of column names, we are going to create a new data frame (called `variables`) containing only the independent variables of interest:
+Using this vector of column names, we are going to create a new data frame (called `variables`) containing only the independent variables of interest. **Crucially**, this is only for the `training` dataset:
 
 ```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
-variables <- watersheds_df[factors]
+variables <- training[factors]
 ```
 
 > Run the above code and use `head()` to inspect the results. 
 
-Next, we are going to combine this data frame (`cbind`) with the dependent variable of interest (NO<sub>2</sub>). We'll call this `model_df` as it contains all the variables (dependent + independent) required for multiple linear regression. **Note**: by default, `cbind` will (somewhat unhelpfully) rename input column names e.g. `NO2` will become `watersheds_df$NO2`. The code below specifies the new column name as NO2 (`NO2 = `) for readability:
+Next, we are going to combine this data frame (`cbind`) with a dependent variable of interest; we will use NO<sub>2</sub> as an example. Our new dataframe will be called `model_df` as it contains all the variables (dependent + independent) required for multiple linear regression. **Note**: by default, `cbind` will (somewhat unhelpfully) rename input column names e.g. `NO2` will become `watersheds_df$NO2`. The code below specifies the new column name as NO2 (`NO2 = `) for readability:
 
 ```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
-# Column bind the NO2 column from watersheds_df with the data frame containing all the independent variables 
-model_df <- cbind(NO2 = watersheds_df$NO2, variables)
+# Column bind the NO2 column with the independent variables from the training dataset
+model_df <- cbind(NO2 = training$NO2, variables)
 ```
 
 When complete, we can then run a new model, making sure to update the data frame used (`data = model_df`) and updating the formula to `NO2 ~ .`. This denotes that *all* other data frame columns will be included as independent variables (a useful time saver!):
 
 ```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
-# Fits a linear model
+# Fits a linear model, including all other columns (~.) as independent variables
 no2_model <- lm(formula = NO2 ~ ., data = model_df)
 ```
 
@@ -130,7 +160,7 @@ no2_model <- lm(formula = NO2 ~ ., data = model_df)
 summary(no2_model)
 ```
 
-Our overall model fit (R<sup>2</sup>) is 0.49 which indicates that the independent variables explain ~49% of variability in the dependent variable. However, the model contains many independent variables which are not statistically significant, here defined as having a *p* value > 0.05.
+Our overall model fit (R<sup>2</sup>) is 0.55 which indicates that the independent variables explain ~55% of variability in the dependent variable. However, the model contains many independent variables which are not statistically significant, here defined as having a *p* value > 0.05.
 
 This number represents the probability that the result has occurred by chance. When values are very small (e.g. *p* < 0.0005), we would typically present these as a discrete value e.g. *p* < 0.05, < 0.01, < 0.001. Generally, we only use models in which we can be 95% confident or higher (i.e. significance level of 0.05 or less). 
 
@@ -152,7 +182,7 @@ Helpfully, this takes the output of the `lm` model (`no2_model`) with no need fo
   - Determines the method used, either **forward** or **backward** stepwise regression, or a mixture of **both**. 
   - "Forward" begins with a model with **no** variables and then starts adding the most significant variables, stopping when there are no more significant variables. 
   - "Backward" begins with a model with **all** variables and then starts removing the least significant variables, stopping when only significant variables are remaining.
-  - "Both" includes both of the above. 
+  - "Both" includes both of the above, allowing for variables to be added/removed at each step. 
 - `k = 1`:
   - The number of degrees of freedom used for the penalty i.e. for determining whether variables are significant or not.
   
@@ -178,15 +208,15 @@ step.model <- stepAIC(no2_model, # Input linear model
 summary(step.model)
 ```
 
-In general, we prefer models with the minimum number of parameters (independent variables). They require fewer assumptions, less intensive data collection and can be applied more confidently to new data sets/locations. This approach is based upon **Occam’s Razor**: *other things being equal, simpler explanations are generally better than more complex ones*. 
+In general, we prefer models with the minimum number of parameters (independent variables). They require fewer assumptions, less intensive data collection and can be applied more confidently to new data sets/locations. This principle of model parsimony is based upon **Occam’s Razor**: "other things being equal, simpler explanations are generally better than more complex ones". 
 
-Our original model, based upon 16 independent variables had an R<sup>2</sup> of 0.49. This new model, based upon just 2 independent variables (`average_slope + Urban_percent`) has an R<sup>2</sup> of 0.41; a minor reduction in explanatory power given the removal of 14 (arguably unimportant) additional variables. 
+Our original model, based upon 16 independent variables had an R<sup>2</sup> of 0.55. This new model, based upon just 2 independent variables (`average_slope + Urban_percent`) has an R<sup>2</sup> of 0.48; a relatively minor reduction in explanatory power given the removal of 14 (arguably unimportant) additional variables. 
 
 Our model coefficients are now as follows:
 
-- `intercept` = 0.0491099, *p* = 0.00113 (*p* < 0.01)
-- `average_slope` = -0.0047714, *p* = 0.01397 (*p* < 0.05)
-- `Urban_percent` = 0.0011327, *p* = 0.00190 (*p* < 0.01)
+- `intercept` = 0.0435188, *p* = 0.00115 (*p* < 0.01)
+- `average_slope` = -0.0040031, *p* = 0.02040 (*p* < 0.05)
+- `Urban_percent` = 0.0009819, *p* = 0.00186 (*p* < 0.01)
 
 Coefficients are important because they are used in **regression equations**, which can then be used to predict values. 
 
@@ -200,27 +230,29 @@ where `a` is the constant (intercept) value, and `b` is the coefficient of x.
 For our NO<sub>2</sub> model above, we can define our regression equation (presented using sensible data precision) as:
 
 $$
-NO_2 = 0.049 + (0.001 \cdot Urban \: percent) + (-0.005 \cdot Average \: slope)
+NO_2 = 0.044 + (0.001 \cdot Urban \: percent) + (-0.004 \cdot Average \: slope)
 $$
-**Well done!** You have now calculated a regression which links the dependent variable (NO<sub>2</sub>) to a set of independent variables, in the case the average elevation of the watershed and the percentage urban land cover. 
+**Well done!** You have now calculated a regression which links the dependent variable (NO<sub>2</sub>) to a set of independent variables, in the case the average slope of the watershed and the percentage urban land cover.
+
+> For your assessment, we would like you to **explain** the regression results, linking to hydrological processes and literature. Think about specific sources of pollution, transport pathways, types of flow...
 
 
-## Task 8: Error analysis
+## Task 8: Model evaluation
 
-Using this regression equation, we could predict NO<sub>2</sub> values for the sampled watersheds to assess how well it reproduces the actual measured values. Comparison plots of **measured vs. modelled (or predicted) values** are just one way to assess model quality, alongside other metrics such as root-mean-square error (RMSE), normalised root-mean-square-error (nRMSE), Q-Q plots, or histograms of model residuals. You may want to explore some of these for the assessment. 
+Having created a statistical model, it is necessary to evaluate its performance. Comparison plots of **measured vs. modelled (or predicted) values** are one common way to assess model quality, alongside other metrics such as root-mean-square error (RMSE), normalised root-mean-square-error (nRMSE), Q-Q plots, or histograms of model residuals. You may want to explore some of these for the assessment. 
 
-To calculate modelled values, we can use the `predict()` function, taking the model variable (`step.model`) as the input, rather than re-creating the above equation manually in code:
+To calculate modelled values, we can use the `predict()` function, taking the model variable (`step.model`) as the input, rather than re-creating the above equation manually in code, and using our `testing` dataframe for the `newdata` argument:
 
 ```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', cache = TRUE}
 
-# Predicts based on upon stepwise model, saving to watersheds dataframe
-watersheds_df$predicted_no2 <- predict(step.model)
+# Predict NO2 values based upon stepwise model, saving to testing dataframe
+testing$predicted_no2 <- predict(step.model, newdata = testing)
 
 ```
 
-As we haven't specified any `new_data` (a `predict` parameter; see [here](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/predict.lm)), this uses the fitted values for prediction. 
+If`new_data` is not defined, the `predict` function uses the fitted values for prediction i.e. the training data used to construct the model (see [here](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/predict.lm)). 
 
-> Run the above code block to predict the NO<sub>2</sub> based on the regression equation. 
+> Run the above code block to predict NO<sub>2</sub> concentrations in the testing dataset, based on the regression model produced from the training dataset.  
 
 These values could be used to calculate RMSE or other metrics (nRMSE) using your own code or additional packages (e.g. `Metrics`);
 
@@ -230,36 +262,50 @@ $$
 
 Plots of measured vs. modelled values (as well as Q-Q plots and histograms) can be created in ggplot2. Here is an example:
 
-
 ```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
 
 # ggplot of measured vs. modelled (predicted) NO2 values
-no2_plot <- ggplot(data = watersheds_df, aes(x = predicted_no2, y = NO2)) +
-  # Adds the point data, modifying the shape, size, colour and fill
-  geom_point(shape = 21, colour = "black", fill = "#5695FF", size = 1.5) +
+no2_plot <- ggplot(data = testing, aes(x = predicted_no2, y = NO2)) +
   # Adding a linear regression ("lm"), removing standard error bars (se = FALSE)
-  geom_smooth(method = "lm", se = FALSE, colour = "#FF7A71") +
-  # Adding a 1:1 line for comparison
+  geom_smooth(method = "lm", se = FALSE, colour="#5695FF") +
+  # Adds a 1:1 line for comparison
   geom_abline(intercept = 0, slope = 1, lty = "dashed") +
+  # Adds the point data, modifying the shape, size, colour and fill
+  geom_point(shape = 21, colour = "white", fill = "#5695FF", size = 2) +
   # Setting the theme and aspect ratio
   theme_classic() +
   theme(aspect.ratio = 1) +
   # Add axis labels and a title
-  labs(x = "Modelled NO2", y = "Measured NO2", 
-       title = bquote('Plot of measured vs. modelled'~NO[2]~'values'))
-
+  labs(x = Modelled~NO[2], y = Measured~NO[2], 
+       title = Plot~of~measured~vs.~modelled~NO[2]~values)
 
 no2_plot
 
 ```
 
+> Does the regression line match the 1:1 line? Is there any evidence of under- or over-prediction? Are there any outliers? What **types** of errors can you identify?  
+
+You could also assess this relationship statistically, using linear regression: 
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+
+# Linear regression of measured vs. modelled NO2 values
+prediction_model <- lm(formula = NO2 ~ predicted_no2, data = testing)
+
+# Print summary statistics
+summary(prediction_model)
+
+```
+
+> How well does our NO<sub>2</sub> model perform on the testing dataset, based on the above graphs/statistics? Is out-of-sample performance comparable to in-sample performance?
+
 <br/> 
 
 **To finish the practical** and to prepare for the assessment:
 
-> Replicating the above approaches (Task 7), calculate regression equations based on stepwise linear regression for all 10 water quality indicators (NO<sub>2</sub>, pH, SSC, Ca, Mg, NH<sub>4</sub>, NO<sub>3</sub>, TON, PO<sub>4</sub>, Zn). 
+> Replicating the above approaches, calculate regression equations based on stepwise linear regression for all 10 water quality indicators (NO<sub>2</sub>, pH, SSC, Ca, Mg, NH<sub>4</sub>, NO<sub>3</sub>, TON, PO<sub>4</sub>, Zn). 
 
-> Use the same approach to create new data frames for each indicator, remembering to update the `k` parameter in the `step.AIC` function (beginnin at `k = 1`) to determine the statistically significant variables.
+> Use the same approach to create new data frames for each indicator, remembering to update the `k` parameter in the `step.AIC` function (beginning at `k = 1`) to determine the statistically significant variables.
 
 > Save the relevant model coefficients and the R<sup>2</sup> and *p* values for each equation. These should be stored in a single table for the assessment.  
 

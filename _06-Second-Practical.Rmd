@@ -2,7 +2,7 @@
 
 Within a Geographical Information System (GIS) framework, readily available spatial datasets, such as land use and geology, have been used to explore the controls on river water quality. Understanding the relationships between catchment characteristics (or metrics) and river water quality provides a base for determining how future changes in both land use and climate will impact river water quality. Therefore, it is important to determine the processes that regulate river water quality in landscapes under increasing pressure from human population, whether from urbanisation or more intensive food production.
 
-The **Mersey Basin** is one of the UK’s most environmentally varied regions, with rich rural landscapes and urban-industrial centres. Industrial prosperity in the region over the last few hundred years resulted in severe pollution of the many rivers in the basin. Although there has been significant improvements in water quality in recent years the rivers in the Mersey Basin are still subjected to a number of sewage and industrial inputs, and agricultural runoff.
+The **Mersey Basin** is one of the UK’s most environmentally varied regions, with rich rural landscapes and urban-industrial centres. Industrial prosperity in the region over the last few hundred years resulted in severe pollution of the many rivers in the basin. Although there has been significant improvements in water quality in recent years (see [here](https://www.merseybasin.org.uk/)),  the rivers in the Mersey Basin are still subjected to a number of sewage and industrial inputs, and agricultural runoff.
 
 You can explore the basin below:
 
@@ -10,6 +10,14 @@ You can explore the basin below:
 
 # Loads library and shapefile
 library(rgdal)
+
+# Labelling
+content <- paste(sep = "<br/>",
+                 "<b><a href='https://www.merseybasin.org.uk/'>Mersey Basin</a></b>",
+                 "NW England",
+                 "UK"
+                 )
+
 mersey_watershed <- readOGR(here("data", "practical_2", "mersey_watershed_basin.shp"), 
                             layer = "mersey_watershed_basin", verbose = FALSE)
 
@@ -24,8 +32,12 @@ m <- leaflet() %>%
   # Add polygon
   addPolygons(data=mersey_watershed, color = "#444444", fillColor = "#33b9ff", 
               weight = 1, smoothFactor = 0.5, opacity = 0.9, fillOpacity = 0.3) %>%
+  # Add popops
+  addPopups(-2.6704572, 53.3565240, content,
+    options = popupOptions(autoClose = FALSE, closeOnClick = FALSE)
+  )
   # Adds marker for the catchment outlet
-  addMarkers(lat=53.3565240, lng = -2.6704572, popup = "Mersey Basin outlet")
+  #addMarkers(lat=53.3565240, lng = -2.6704572, popup = "Mersey Basin outlet")
 
 m
 ```
@@ -39,8 +51,8 @@ Basin and develop empirical models of river water quality across the region.
 
 - Terrain analysis, including catchment delineation and derivation of catchment characteristics;
 - Writing and execution of scripts;
-- Multiple Linear Regression to create models of catchment hydrochemistry;
-- Using models to create spatial predictions of catchment hydrochemistry using [WhiteboxTools](https://jblindsay.github.io/wbt_book/intro.html).
+- Multiple linear regression to create models of catchment hydrochemistry;
+- Methods for model evaluation.
 
 ### Intended Learning Outcomes
 
@@ -67,6 +79,6 @@ As well as the standard SEED PGT criteria, you will also be assessed on your abi
 - Use references to relevant academic literature to support your arguments;
 
 
-<div align="center">The **deadline** for this practical is 2pm on Thursday 6th January 2022.
+<div align="center">The **deadline** for this practical is 2pm on XX XXth XX XXXX
 
 The **word count** for this practical is 1500.</div>
