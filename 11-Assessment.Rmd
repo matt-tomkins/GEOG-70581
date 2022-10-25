@@ -44,6 +44,6 @@ In addition to the above, we would like you to produce three output maps to visu
 
 **Referencing**: The report should be fully referenced, using the Harvard style. You should not just adapt the text from the Rothwell et al. ([2010](https://doi.org/10.1016/j.jhydrol.2010.10.015)) paper, substituting key values for the data here. This will result in a high similarity index and you may face a penalty due to poor academic practice. You must write up the report in your own words, making sure you paraphrase the ideas of others, and reference fully throughout. 
 
-**Submission deadline**: XX/XX/XXXX, 14:00
+**Submission deadline**: 05/01/2023, 14:00
 
 

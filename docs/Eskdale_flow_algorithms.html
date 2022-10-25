@@ -33,7 +33,6 @@ Hydrological analysis in R
   
 <link rel="prev" href="Eskdale_set_up.html"/>
 <link rel="next" href="SecondPractical.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,6 +50,7 @@ Hydrological analysis in R
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
@@ -66,17 +66,18 @@ Hydrological analysis in R
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -96,7 +97,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -129,28 +130,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 </head>
 
@@ -164,60 +143,49 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
-<ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#practical-outline"><i class="fa fa-check"></i><b>1.1</b> Practical outline</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#objectives"><i class="fa fa-check"></i><b>1.2</b> Objectives</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>1.3</b> Schedule</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>2</b> Installation</a>
-<ul>
+<li class="chapter" data-level="2" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>2</b> Installation</a><ul>
 <li class="chapter" data-level="2.1" data-path="Installation.html"><a href="Installation.html#r"><i class="fa fa-check"></i><b>2.1</b> R</a></li>
 <li class="chapter" data-level="2.2" data-path="Installation.html"><a href="Installation.html#r-studio"><i class="fa fa-check"></i><b>2.2</b> R Studio</a></li>
 <li class="chapter" data-level="2.3" data-path="Installation.html"><a href="Installation.html#materials"><i class="fa fa-check"></i><b>2.3</b> Course materials</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="Intro_to_R.html"><a href="Intro_to_R.html"><i class="fa fa-check"></i><b>3</b> A (brief) introduction to R</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#overview"><i class="fa fa-check"></i><b>3.1</b> Overview</a>
-<ul>
+<li class="chapter" data-level="3" data-path="Intro_to_R.html"><a href="Intro_to_R.html"><i class="fa fa-check"></i><b>3</b> A (brief) introduction to R</a><ul>
+<li class="chapter" data-level="3.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#overview"><i class="fa fa-check"></i><b>3.1</b> Overview</a><ul>
 <li class="chapter" data-level="3.1.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#what-is-r"><i class="fa fa-check"></i><b>3.1.1</b> What is R?</a></li>
 <li class="chapter" data-level="3.1.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#why_code"><i class="fa fa-check"></i><b>3.1.2</b> Why code?</a></li>
 <li class="chapter" data-level="3.1.3" data-path="Intro_to_R.html"><a href="Intro_to_R.html#a-quick-note-on-the-practicals"><i class="fa fa-check"></i><b>3.1.3</b> A quick note on the practicals</a></li>
 <li class="chapter" data-level="3.1.4" data-path="Intro_to_R.html"><a href="Intro_to_R.html#dealing-with-errors"><i class="fa fa-check"></i><b>3.1.4</b> Dealing with errors</a></li>
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#loading-r"><i class="fa fa-check"></i><b>3.2</b> Loading R</a></li>
-<li class="chapter" data-level="3.3" data-path="Intro_to_R.html"><a href="Intro_to_R.html#variables-looping"><i class="fa fa-check"></i><b>3.3</b> Variables</a>
-<ul>
+<li class="chapter" data-level="3.3" data-path="Intro_to_R.html"><a href="Intro_to_R.html#variables-looping"><i class="fa fa-check"></i><b>3.3</b> Variables</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#variable-names"><i class="fa fa-check"></i><b>3.3.1</b> Variable names</a></li>
 <li class="chapter" data-level="3.3.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#variables_types"><i class="fa fa-check"></i><b>3.3.2</b> Variable types</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data-structures"><i class="fa fa-check"></i><b>3.4</b> Data structures</a>
-<ul>
+<li class="chapter" data-level="3.4" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data-structures"><i class="fa fa-check"></i><b>3.4</b> Data structures</a><ul>
 <li class="chapter" data-level="3.4.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#vectors"><i class="fa fa-check"></i><b>3.4.1</b> Vectors</a></li>
 <li class="chapter" data-level="3.4.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data_frames"><i class="fa fa-check"></i><b>3.4.2</b> Data frames</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="Intro_to_R.html"><a href="Intro_to_R.html#scripts"><i class="fa fa-check"></i><b>3.5</b> Scripts</a>
-<ul>
+<li class="chapter" data-level="3.5" data-path="Intro_to_R.html"><a href="Intro_to_R.html#scripts"><i class="fa fa-check"></i><b>3.5</b> Scripts</a><ul>
 <li class="chapter" data-level="3.5.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#comments"><i class="fa fa-check"></i><b>3.5.1</b> Comments</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="Intro_to_R.html"><a href="Intro_to_R.html#packages"><i class="fa fa-check"></i><b>3.6</b> Loading packages</a></li>
 <li class="chapter" data-level="3.7" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data_loading"><i class="fa fa-check"></i><b>3.7</b> Loading data</a></li>
 <li class="chapter" data-level="3.8" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data_plotting"><i class="fa fa-check"></i><b>3.8</b> Plotting</a></li>
-<li class="chapter" data-level="3.9" data-path="Intro_to_R.html"><a href="Intro_to_R.html#formative_task"><i class="fa fa-check"></i><b>3.9</b> Formative task</a>
-<ul>
+<li class="chapter" data-level="3.9" data-path="Intro_to_R.html"><a href="Intro_to_R.html#formative_task"><i class="fa fa-check"></i><b>3.9</b> Formative task</a><ul>
 <li class="chapter" data-level="3.9.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#formative-solution"><i class="fa fa-check"></i><b>3.9.1</b> Formative solution</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="FirstPractical.html"><a href="FirstPractical.html"><i class="fa fa-check"></i><b>4</b> Eskdale I - Introduction</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="FirstPractical.html"><a href="FirstPractical.html#overview-1"><i class="fa fa-check"></i><b>4.1</b> Overview</a>
-<ul>
+<li class="chapter" data-level="4" data-path="FirstPractical.html"><a href="FirstPractical.html"><i class="fa fa-check"></i><b>4</b> Eskdale I - Introduction</a><ul>
+<li class="chapter" data-level="4.1" data-path="FirstPractical.html"><a href="FirstPractical.html#overview-1"><i class="fa fa-check"></i><b>4.1</b> Overview</a><ul>
 <li class="chapter" data-level="4.1.1" data-path="FirstPractical.html"><a href="FirstPractical.html#intended-learning-outcomes"><i class="fa fa-check"></i><b>4.1.1</b> Intended learning outcomes</a></li>
 <li class="chapter" data-level="4.1.2" data-path="FirstPractical.html"><a href="FirstPractical.html#assessment"><i class="fa fa-check"></i><b>4.1.2</b> Assessment</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html"><i class="fa fa-check"></i><b>5</b> Eskdale II - Set-up</a>
-<ul>
+<li class="chapter" data-level="5" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html"><i class="fa fa-check"></i><b>5</b> Eskdale II - Set-up</a><ul>
 <li class="chapter" data-level="5.1" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#install-programs"><i class="fa fa-check"></i><b>5.1</b> Install programs</a></li>
 <li class="chapter" data-level="5.2" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#download_data"><i class="fa fa-check"></i><b>5.2</b> Download data</a></li>
 <li class="chapter" data-level="5.3" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#open-rstudio"><i class="fa fa-check"></i><b>5.3</b> Open RStudio</a></li>
@@ -226,17 +194,14 @@ div.csl-indent {
 <li class="chapter" data-level="5.6" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#install-whiteboxtools"><i class="fa fa-check"></i><b>5.6</b> Install WhiteboxTools</a></li>
 <li class="chapter" data-level="5.7" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#loading-packages"><i class="fa fa-check"></i><b>5.7</b> Loading packages</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html"><i class="fa fa-check"></i><b>6</b> Eskdale III - Flow routing</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#dem-pre-processing-flow-enforcement"><i class="fa fa-check"></i><b>6.1</b> DEM pre-processing: flow enforcement</a>
-<ul>
+<li class="chapter" data-level="6" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html"><i class="fa fa-check"></i><b>6</b> Eskdale III - Flow routing</a><ul>
+<li class="chapter" data-level="6.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#dem-pre-processing-flow-enforcement"><i class="fa fa-check"></i><b>6.1</b> DEM pre-processing: flow enforcement</a><ul>
 <li class="chapter" data-level="6.1.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#data-description"><i class="fa fa-check"></i><b>6.1.1</b> Data description</a></li>
 <li class="chapter" data-level="6.1.2" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#breaching-and-filling"><i class="fa fa-check"></i><b>6.1.2</b> Breaching and filling</a></li>
 <li class="chapter" data-level="6.1.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#choosing-a-colour-ramp"><i class="fa fa-check"></i><b>6.1.3</b> Choosing a colour ramp</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#flow-parameters-pointers"><i class="fa fa-check"></i><b>6.2</b> Flow Parameters: Pointers</a></li>
-<li class="chapter" data-level="6.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#flow-algorithms"><i class="fa fa-check"></i><b>6.3</b> Flow Algorithms</a>
-<ul>
+<li class="chapter" data-level="6.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#flow-algorithms"><i class="fa fa-check"></i><b>6.3</b> Flow Algorithms</a><ul>
 <li class="chapter" data-level="6.3.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#comparing-flow-algorithms"><i class="fa fa-check"></i><b>6.3.1</b> Comparing flow algorithms</a></li>
 <li class="chapter" data-level="6.3.2" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#fd8-catchment-area"><i class="fa fa-check"></i><b>6.3.2</b> FD8 catchment area</a></li>
 <li class="chapter" data-level="6.3.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#d-infinity-catchment-area"><i class="fa fa-check"></i><b>6.3.3</b> D-infinity catchment area</a></li>
@@ -244,53 +209,43 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#practical-solution"><i class="fa fa-check"></i><b>6.4</b> Practical solution</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="SecondPractical.html"><a href="SecondPractical.html"><i class="fa fa-check"></i><b>7</b> Mersey I - Introduction</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="SecondPractical.html"><a href="SecondPractical.html#overview-2"><i class="fa fa-check"></i><b>7.1</b> Overview</a>
-<ul>
+<li class="chapter" data-level="7" data-path="SecondPractical.html"><a href="SecondPractical.html"><i class="fa fa-check"></i><b>7</b> Mersey I - Introduction</a><ul>
+<li class="chapter" data-level="7.1" data-path="SecondPractical.html"><a href="SecondPractical.html#overview-2"><i class="fa fa-check"></i><b>7.1</b> Overview</a><ul>
 <li class="chapter" data-level="7.1.1" data-path="SecondPractical.html"><a href="SecondPractical.html#topics-covered-in-this-practical"><i class="fa fa-check"></i><b>7.1.1</b> Topics covered in this practical</a></li>
 <li class="chapter" data-level="7.1.2" data-path="SecondPractical.html"><a href="SecondPractical.html#intended-learning-outcomes-1"><i class="fa fa-check"></i><b>7.1.2</b> Intended Learning Outcomes</a></li>
 <li class="chapter" data-level="7.1.3" data-path="SecondPractical.html"><a href="SecondPractical.html#assessment-1"><i class="fa fa-check"></i><b>7.1.3</b> Assessment</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html"><i class="fa fa-check"></i><b>8</b> Mersey II - Set-up</a>
-<ul>
+<li class="chapter" data-level="8" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html"><i class="fa fa-check"></i><b>8</b> Mersey II - Set-up</a><ul>
 <li class="chapter" data-level="8.1" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#practical-overview"><i class="fa fa-check"></i><b>8.1</b> Practical overview</a></li>
 <li class="chapter" data-level="8.2" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#install-programs-1"><i class="fa fa-check"></i><b>8.2</b> Install programs</a></li>
 <li class="chapter" data-level="8.3" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#download_data_v2"><i class="fa fa-check"></i><b>8.3</b> Download data</a></li>
 <li class="chapter" data-level="8.4" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#practical-2-data"><i class="fa fa-check"></i><b>8.4</b> Data description</a></li>
 <li class="chapter" data-level="8.5" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#open-rstudio-1"><i class="fa fa-check"></i><b>8.5</b> Open RStudio</a></li>
-<li class="chapter" data-level="8.6" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#projects-and-scripts"><i class="fa fa-check"></i><b>8.6</b> Projects and Scripts</a>
-<ul>
+<li class="chapter" data-level="8.6" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#projects-and-scripts"><i class="fa fa-check"></i><b>8.6</b> Projects and Scripts</a><ul>
 <li class="chapter" data-level="8.6.1" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#Existing_R_Projects"><i class="fa fa-check"></i><b>8.6.1</b> Using an existing R project</a></li>
 <li class="chapter" data-level="8.6.2" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#creating-an-r-script-1"><i class="fa fa-check"></i><b>8.6.2</b> Creating an R script</a></li>
 </ul></li>
 <li class="chapter" data-level="8.7" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#loading-packages-1"><i class="fa fa-check"></i><b>8.7</b> Loading packages</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="mersey_three.html"><a href="mersey_three.html"><i class="fa fa-check"></i><b>9</b> Mersey III - Hydrology</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="mersey_three.html"><a href="mersey_three.html#task-1-flow-routing"><i class="fa fa-check"></i><b>9.1</b> Task 1: Flow routing</a>
-<ul>
+<li class="chapter" data-level="9" data-path="mersey_three.html"><a href="mersey_three.html"><i class="fa fa-check"></i><b>9</b> Mersey III - Hydrology</a><ul>
+<li class="chapter" data-level="9.1" data-path="mersey_three.html"><a href="mersey_three.html#task-1-flow-routing"><i class="fa fa-check"></i><b>9.1</b> Task 1: Flow routing</a><ul>
 <li class="chapter" data-level="9.1.1" data-path="mersey_three.html"><a href="mersey_three.html#creating-a-d8-pointer"><i class="fa fa-check"></i><b>9.1.1</b> Creating a D8 pointer</a></li>
 <li class="chapter" data-level="9.1.2" data-path="mersey_three.html"><a href="mersey_three.html#catchment-area"><i class="fa fa-check"></i><b>9.1.2</b> Catchment area</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="mersey_three.html"><a href="mersey_three.html#task-2-seed-points"><i class="fa fa-check"></i><b>9.2</b> Task 2: Seed points</a>
-<ul>
+<li class="chapter" data-level="9.2" data-path="mersey_three.html"><a href="mersey_three.html#task-2-seed-points"><i class="fa fa-check"></i><b>9.2</b> Task 2: Seed points</a><ul>
 <li class="chapter" data-level="9.2.1" data-path="mersey_three.html"><a href="mersey_three.html#seed-repositioning"><i class="fa fa-check"></i><b>9.2.1</b> Seed repositioning</a></li>
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="mersey_three.html"><a href="mersey_three.html#task-3-watershed-creation"><i class="fa fa-check"></i><b>9.3</b> Task 3: Watershed creation</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="mersey_four.html"><a href="mersey_four.html"><i class="fa fa-check"></i><b>10</b> Mersey IV - Surface derivatives</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="mersey_four.html"><a href="mersey_four.html#task-4-reclassification"><i class="fa fa-check"></i><b>10.1</b> Task 4: Reclassification</a>
-<ul>
+<li class="chapter" data-level="10" data-path="mersey_four.html"><a href="mersey_four.html"><i class="fa fa-check"></i><b>10</b> Mersey IV - Surface derivatives</a><ul>
+<li class="chapter" data-level="10.1" data-path="mersey_four.html"><a href="mersey_four.html#task-4-reclassification"><i class="fa fa-check"></i><b>10.1</b> Task 4: Reclassification</a><ul>
 <li class="chapter" data-level="10.1.1" data-path="mersey_four.html"><a href="mersey_four.html#land-cover"><i class="fa fa-check"></i><b>10.1.1</b> Land cover</a></li>
 <li class="chapter" data-level="10.1.2" data-path="mersey_four.html"><a href="mersey_four.html#hydrology-of-soil-types-host"><i class="fa fa-check"></i><b>10.1.2</b> Hydrology of Soil Types (HOST)</a></li>
 <li class="chapter" data-level="10.1.3" data-path="mersey_four.html"><a href="mersey_four.html#bedrock-geology"><i class="fa fa-check"></i><b>10.1.3</b> Bedrock geology</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="mersey_four.html"><a href="mersey_four.html#task-5-calculating-surface-derivatives"><i class="fa fa-check"></i><b>10.2</b> Task 5: Calculating surface derivatives</a></li>
-<li class="chapter" data-level="10.3" data-path="mersey_four.html"><a href="mersey_four.html#task-6-extracting-surface-derivatives"><i class="fa fa-check"></i><b>10.3</b> Task 6: Extracting surface derivatives</a>
-<ul>
+<li class="chapter" data-level="10.3" data-path="mersey_four.html"><a href="mersey_four.html#task-6-extracting-surface-derivatives"><i class="fa fa-check"></i><b>10.3</b> Task 6: Extracting surface derivatives</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="mersey_four.html"><a href="mersey_four.html#water-quality-measurements"><i class="fa fa-check"></i><b>10.3.1</b> Water quality measurements</a></li>
 <li class="chapter" data-level="10.3.2" data-path="mersey_four.html"><a href="mersey_four.html#spatial-areas"><i class="fa fa-check"></i><b>10.3.2</b> Spatial areas</a></li>
 <li class="chapter" data-level="10.3.3" data-path="mersey_four.html"><a href="mersey_four.html#continuous-derivatives"><i class="fa fa-check"></i><b>10.3.3</b> Continuous derivatives</a></li>
@@ -298,10 +253,8 @@ div.csl-indent {
 <li class="chapter" data-level="10.3.5" data-path="mersey_four.html"><a href="mersey_four.html#normalising-categorical-derivatives"><i class="fa fa-check"></i><b>10.3.5</b> Normalising categorical derivatives</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="mersey_five.html"><a href="mersey_five.html"><i class="fa fa-check"></i><b>11</b> Mersey V - Statistical analysis</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="mersey_five.html"><a href="mersey_five.html#task-7-model-building"><i class="fa fa-check"></i><b>11.1</b> Task 7: Model building</a>
-<ul>
+<li class="chapter" data-level="11" data-path="mersey_five.html"><a href="mersey_five.html"><i class="fa fa-check"></i><b>11</b> Mersey V - Statistical analysis</a><ul>
+<li class="chapter" data-level="11.1" data-path="mersey_five.html"><a href="mersey_five.html#task-7-model-building"><i class="fa fa-check"></i><b>11.1</b> Task 7: Model building</a><ul>
 <li class="chapter" data-level="11.1.1" data-path="mersey_five.html"><a href="mersey_five.html#an-introduction-to-linear-models-in-r"><i class="fa fa-check"></i><b>11.1.1</b> An introduction to linear models in R</a></li>
 <li class="chapter" data-level="11.1.2" data-path="mersey_five.html"><a href="mersey_five.html#training-vs.-testing"><i class="fa fa-check"></i><b>11.1.2</b> Training vs. Testing</a></li>
 <li class="chapter" data-level="11.1.3" data-path="mersey_five.html"><a href="mersey_five.html#variable-selection-strategies"><i class="fa fa-check"></i><b>11.1.3</b> Variable selection strategies</a></li>
@@ -329,7 +282,7 @@ Hydrological analysis in R
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="Eskdale_flow_algorithms" class="section level1" number="6">
+<div id="Eskdale_flow_algorithms" class="section level1">
 <h1><span class="header-section-number">Chapter 6</span> Eskdale III - Flow routing</h1>
 <p>Overland and near-surface water flow can be modelled using DEMs if we assume that surface topography is the sole factor which influences the distribution of water. One very simple model routes all water from a particular grid cell in a DEM to a single neighbouring cell (i.e. water is not partitioned between multiple neighbours). This ‘D8’ (8 direction) method sets the flow direction toward the lowest of the eight neighbouring cells, in relation to the centre cell.</p>
 <p align="center">
@@ -337,7 +290,7 @@ Hydrological analysis in R
 </p>
 <p><strong>Figure 1: Schematic of the D8 method</strong>. The elevation value of the centre cell is 8 m (dark blue). Under atmospheric pressure, water flows to areas of lower elevation (&lt; 8 m; light blue) and does not flow to areas of higher elevation (&gt;8 m; grey). In this case, the D8 method would route all the water from the centre cell into the bottom left cell, as it has the lowest value (4 m).</p>
 <p>Using this method, water flow is allowed in one of eight possible directions (↑ ↗ → ↘ ↓ ↙ ← ↖), assuming that water will travel along the steepest downslope path. In turn, the method is sometimes referred to as the steepest descent method. Based on the <span class="math inline">\(3 * 3\)</span> cell neighbourhood shown in <strong>Figure 1</strong>, flow would be directed from the centre cell (8 m elevation) to the southwest cell (4 m elevation).</p>
-<div id="dem-pre-processing-flow-enforcement" class="section level2" number="6.1">
+<div id="dem-pre-processing-flow-enforcement" class="section level2">
 <h2><span class="header-section-number">6.1</span> DEM pre-processing: flow enforcement</h2>
 <p>One common issue encountered when performing hydrological analyses is the presence of sinks, which interrupt the drainage network. When sinks are encountered, flow direction is undefined when a grid cell, or group of grid cells, is lower than all neighbouring cells (see <strong>Figure 2</strong>). When sinks are encountered, and when there are no downslope neighbours, all water that enters a cell is unable to escape. These features are referred to as pits if they are a single cell in size, and depressions if they consist of groups of cells.</p>
 <p align="center">
@@ -359,8 +312,8 @@ Hydrological analysis in R
 <a name="Figure_3"></a><img src="figures/Practical-1/DEM_Sinks_Fix.png" style="width:100.0%" />
 </p>
 <p><strong>Figure 4: Schematic of depression filling and breaching in a DEM</strong>. Using the same values from Figure 2, original values are modified to allow water to escape the sink (orange). Depression filling has raised the value of the sink (2 m → 4 m), while depression breaching has lowered the value of a neighbouring cell (3 m → 1 m). In this simplified example, the outputs of these two distinct approaches are identical but care should be taken when working with real world data as they will often produce different results.</p>
-<p>Not all interruptions to flow routing are caused by depression cells. Often, DEMs contain extensive flat regions (areas of equal elevation). Flat areas interrupt flow routing in the same way as depressions. Cells within a flat region do not have downslope neighbours, and therefore, flow routing is impossible on flat sites without pre-processing. Correction of flow direction on flat sites typically involves finding an outlet cell, forcing flow from cells adjacent to the outlet to the outlet, and continuing backwards in an iterative manner (e.g., <span class="citation"><a href="#ref-jenson_extracting_1988" role="doc-biblioref">Jenson and Domingue</a> (<a href="#ref-jenson_extracting_1988" role="doc-biblioref">1988</a>)</span>).</p>
-<div id="data-description" class="section level3" number="6.1.1">
+<p>Not all interruptions to flow routing are caused by depression cells. Often, DEMs contain extensive flat regions (areas of equal elevation). Flat areas interrupt flow routing in the same way as depressions. Cells within a flat region do not have downslope neighbours, and therefore, flow routing is impossible on flat sites without pre-processing. Correction of flow direction on flat sites typically involves finding an outlet cell, forcing flow from cells adjacent to the outlet to the outlet, and continuing backwards in an iterative manner (e.g., <span class="citation">Jenson and Domingue (<a href="#ref-jenson_extracting_1988" role="doc-biblioref">1988</a>)</span>).</p>
+<div id="data-description" class="section level3">
 <h3><span class="header-section-number">6.1.1</span> Data description</h3>
 <p>The DEM we are working with is centred on the Upper Eskdale catchment; an upland valley which drains the highest mountain in England (Scafell Pike; 978 m), as shown below:</p>
 <p align="center">
@@ -378,29 +331,29 @@ Hydrological analysis in R
 <p>To accentuate areas of relief, the DEM has been combined with a semi-transparent <strong>hillshade</strong> layer, which is shown below:</p>
 <p><img src="Practical_1_files/figure-html/unnamed-chunk-60-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
-<div id="breaching-and-filling" class="section level3" number="6.1.2">
+<div id="breaching-and-filling" class="section level3">
 <h3><span class="header-section-number">6.1.2</span> Breaching and filling</h3>
 <p>To evaluate the effects of depression <strong>breaching</strong> and <strong>filling</strong>, we’re going to use the <code>whitebox</code> package and the <code>wbt_fill_depressions</code> and <code>wbt_breach_depressions</code> functions. One of the advantages of using <code>whitebox</code> is that functions can be applied to spatial data without having to load files into the R environment (and assign them to variables), which can be an issue when working with large files (e.g. high spatial resolution rasters) or when working on computers with limited available memory.</p>
 <p>We can <strong>call</strong> <code>whitebox</code> functions by simply naming the function, specifying the names of the input and output layers, and deciding on parameters (if required). For example, the code to fill depressions, might resemble the following:</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="Eskdale_flow_algorithms.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill depressions</span></span>
-<span id="cb72-2"><a href="Eskdale_flow_algorithms.html#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_fill_depressions</span>(<span class="st">&quot;name of input file goes here&quot;</span>, <span class="st">&quot;name of output file goes here&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="Eskdale_flow_algorithms.html#cb72-1"></a><span class="co"># Fill depressions</span></span>
+<span id="cb72-2"><a href="Eskdale_flow_algorithms.html#cb72-2"></a><span class="kw">wbt_fill_depressions</span>(<span class="st">&quot;name of input file goes here&quot;</span>, <span class="st">&quot;name of output file goes here&quot;</span>)</span></code></pre></div>
 <p>Given the structure of our file directory, this could be written as:</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="Eskdale_flow_algorithms.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fill depressions</span></span>
-<span id="cb73-2"><a href="Eskdale_flow_algorithms.html#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_fill_depressions</span>(<span class="st">&quot;C:/Users/Bill/GEOG-70581/data/practical_1/dem_10m.tif&quot;</span>, </span>
-<span id="cb73-3"><a href="Eskdale_flow_algorithms.html#cb73-3" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&quot;C:/Users/Bill/GEOG-70581/output/practical_1/dem_10m_fill.tif&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="Eskdale_flow_algorithms.html#cb73-1"></a><span class="co"># Fill depressions</span></span>
+<span id="cb73-2"><a href="Eskdale_flow_algorithms.html#cb73-2"></a><span class="kw">wbt_fill_depressions</span>(<span class="st">&quot;C:/Users/Bill/GEOG-70581/data/practical_1/dem_10m.tif&quot;</span>, </span>
+<span id="cb73-3"><a href="Eskdale_flow_algorithms.html#cb73-3"></a>                     <span class="st">&quot;C:/Users/Bill/GEOG-70581/output/practical_1/dem_10m_fill.tif&quot;</span>)</span></code></pre></div>
 <p>Here, we’ve used absolute file paths to set the input DEM as <code>dem_10m.tif</code>, stored in data/practical_1. The function <code>wbt_fill_depressions</code> will fill depressions in the input DEM and save the new DEM as <code>dem_10m_fill.tif</code>, stored in output/practical_1.</p>
 <p>However, because we’re using an R project we can simplify this further. As we’ll be using the DEM (<code>dem_10m.tif</code>) on multiple occasions, we can store its file path using the <strong>here</strong> package in the variable <code>dem</code> as follows:</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="Eskdale_flow_algorithms.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sets file path for DEM</span></span>
-<span id="cb74-2"><a href="Eskdale_flow_algorithms.html#cb74-2" aria-hidden="true" tabindex="-1"></a>dem <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m.tif&quot;</span>)</span>
-<span id="cb74-3"><a href="Eskdale_flow_algorithms.html#cb74-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb74-4"><a href="Eskdale_flow_algorithms.html#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Prints the file path to the console window</span></span>
-<span id="cb74-5"><a href="Eskdale_flow_algorithms.html#cb74-5" aria-hidden="true" tabindex="-1"></a>dem</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="Eskdale_flow_algorithms.html#cb74-1"></a><span class="co"># Sets file path for DEM</span></span>
+<span id="cb74-2"><a href="Eskdale_flow_algorithms.html#cb74-2"></a>dem &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m.tif&quot;</span>)</span>
+<span id="cb74-3"><a href="Eskdale_flow_algorithms.html#cb74-3"></a></span>
+<span id="cb74-4"><a href="Eskdale_flow_algorithms.html#cb74-4"></a><span class="co"># Prints the file path to the console window</span></span>
+<span id="cb74-5"><a href="Eskdale_flow_algorithms.html#cb74-5"></a>dem</span></code></pre></div>
 <blockquote>
 <p>Copy and paste the above code into your Practical-1-Eskdale script and run. This should print the absolute file path to <code>dem_10m.tif</code>.</p>
 </blockquote>
 <p>With this file path stored, we can run the fill depressions function as follows, using the <strong>here</strong> package to specify the name and intended location of the <strong>output</strong> file:</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="Eskdale_flow_algorithms.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fills depressions</span></span>
-<span id="cb75-2"><a href="Eskdale_flow_algorithms.html#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_fill_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="Eskdale_flow_algorithms.html#cb75-1"></a><span class="co"># Fills depressions</span></span>
+<span id="cb75-2"><a href="Eskdale_flow_algorithms.html#cb75-2"></a><span class="kw">wbt_fill_depressions</span>(dem, <span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span></code></pre></div>
 <blockquote>
 <p>Run the above code, which should produce a new raster file in the output/practical_1 folder.</p>
 </blockquote>
@@ -408,30 +361,30 @@ Hydrological analysis in R
 <p>Repeat this process to also <strong>breach</strong> depressions, making sure to update the output file name.</p>
 </blockquote>
 <p>The difference between the original DEM and the processed DEM(s) may be very subtle and you probably won’t be able to observe the differences directly. As such, it may be useful to identify the specific areas of the raster which have been modified. This can be achieved by using the <code>subtract</code> function to work out the difference between the original DEM and the processed DEM, as follows:</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="Eskdale_flow_algorithms.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subtract function; the difference between the processed DEM (filled) and the original DEM</span></span>
-<span id="cb76-2"><a href="Eskdale_flow_algorithms.html#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_subtract</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>), <span class="co"># Input file 1</span></span>
-<span id="cb76-3"><a href="Eskdale_flow_algorithms.html#cb76-3" aria-hidden="true" tabindex="-1"></a>              dem, <span class="co"># Input file 2</span></span>
-<span id="cb76-4"><a href="Eskdale_flow_algorithms.html#cb76-4" aria-hidden="true" tabindex="-1"></a>              <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill_difference.tif&quot;</span>)) <span class="co"># Output file</span></span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="Eskdale_flow_algorithms.html#cb76-1"></a><span class="co"># Subtract function; the difference between the processed DEM (filled) and the original DEM</span></span>
+<span id="cb76-2"><a href="Eskdale_flow_algorithms.html#cb76-2"></a><span class="kw">wbt_subtract</span>(<span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>), <span class="co"># Input file 1</span></span>
+<span id="cb76-3"><a href="Eskdale_flow_algorithms.html#cb76-3"></a>              dem, <span class="co"># Input file 2</span></span>
+<span id="cb76-4"><a href="Eskdale_flow_algorithms.html#cb76-4"></a>              <span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill_difference.tif&quot;</span>)) <span class="co"># Output file</span></span></code></pre></div>
 <blockquote>
 <p>Run the above code.</p>
 </blockquote>
 <p>To visualise this new raster file, we’re going to load it into the R environment using the <code>raster</code> and <code>here</code> packages and plot with <code>ggplot2</code> and <code>ggspatial</code>.</p>
 <p>The raster can be loaded as follows:</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="Eskdale_flow_algorithms.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loads raster using the raster and here packages</span></span>
-<span id="cb77-2"><a href="Eskdale_flow_algorithms.html#cb77-2" aria-hidden="true" tabindex="-1"></a>eskdale_dem <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill_difference.tif&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="Eskdale_flow_algorithms.html#cb77-1"></a><span class="co"># Loads raster using the raster and here packages</span></span>
+<span id="cb77-2"><a href="Eskdale_flow_algorithms.html#cb77-2"></a>eskdale_dem &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill_difference.tif&quot;</span>))</span></code></pre></div>
 <p>It can be plotted as follows:</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="Eskdale_flow_algorithms.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find minimum and maximum values</span></span>
-<span id="cb78-2"><a href="Eskdale_flow_algorithms.html#cb78-2" aria-hidden="true" tabindex="-1"></a>minimum_value <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="fu">values</span>(eskdale_dem)[<span class="fu">which</span>(<span class="fu">values</span>(eskdale_dem) <span class="sc">&gt;</span> <span class="dv">0</span>)])</span>
-<span id="cb78-3"><a href="Eskdale_flow_algorithms.html#cb78-3" aria-hidden="true" tabindex="-1"></a>maximum_value <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="fu">values</span>(eskdale_dem))</span>
-<span id="cb78-4"><a href="Eskdale_flow_algorithms.html#cb78-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb78-5"><a href="Eskdale_flow_algorithms.html#cb78-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plots using ggplot</span></span>
-<span id="cb78-6"><a href="Eskdale_flow_algorithms.html#cb78-6" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb78-7"><a href="Eskdale_flow_algorithms.html#cb78-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_spatial</span>(eskdale_dem, <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">stat</span>(band1))) <span class="sc">+</span></span>
-<span id="cb78-8"><a href="Eskdale_flow_algorithms.html#cb78-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
-<span id="cb78-9"><a href="Eskdale_flow_algorithms.html#cb78-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Elevation difference (m)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Northing&quot;</span>) <span class="sc">+</span></span>
-<span id="cb78-10"><a href="Eskdale_flow_algorithms.html#cb78-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">type =</span> <span class="st">&quot;viridis&quot;</span>,  <span class="at">na.value =</span> <span class="cn">NA</span>, </span>
-<span id="cb78-11"><a href="Eskdale_flow_algorithms.html#cb78-11" aria-hidden="true" tabindex="-1"></a>                        <span class="at">limits =</span> <span class="fu">c</span>(minimum_value, maximum_value))</span>
-<span id="cb78-12"><a href="Eskdale_flow_algorithms.html#cb78-12" aria-hidden="true" tabindex="-1"></a>g</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="Eskdale_flow_algorithms.html#cb78-1"></a><span class="co"># Find minimum and maximum values</span></span>
+<span id="cb78-2"><a href="Eskdale_flow_algorithms.html#cb78-2"></a>minimum_value &lt;-<span class="st"> </span><span class="kw">min</span>(<span class="kw">values</span>(eskdale_dem)[<span class="kw">which</span>(<span class="kw">values</span>(eskdale_dem) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)])</span>
+<span id="cb78-3"><a href="Eskdale_flow_algorithms.html#cb78-3"></a>maximum_value &lt;-<span class="st"> </span><span class="kw">max</span>(<span class="kw">values</span>(eskdale_dem))</span>
+<span id="cb78-4"><a href="Eskdale_flow_algorithms.html#cb78-4"></a></span>
+<span id="cb78-5"><a href="Eskdale_flow_algorithms.html#cb78-5"></a><span class="co"># Plots using ggplot</span></span>
+<span id="cb78-6"><a href="Eskdale_flow_algorithms.html#cb78-6"></a>g &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb78-7"><a href="Eskdale_flow_algorithms.html#cb78-7"></a><span class="st">  </span><span class="kw">layer_spatial</span>(eskdale_dem, <span class="kw">aes</span>(<span class="dt">fill =</span> <span class="kw">stat</span>(band1))) <span class="op">+</span></span>
+<span id="cb78-8"><a href="Eskdale_flow_algorithms.html#cb78-8"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb78-9"><a href="Eskdale_flow_algorithms.html#cb78-9"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill =</span> <span class="st">&quot;Elevation difference (m)&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Northing&quot;</span>) <span class="op">+</span></span>
+<span id="cb78-10"><a href="Eskdale_flow_algorithms.html#cb78-10"></a><span class="st">  </span><span class="kw">scale_fill_continuous</span>(<span class="dt">type =</span> <span class="st">&quot;viridis&quot;</span>,  <span class="dt">na.value =</span> <span class="ot">NA</span>, </span>
+<span id="cb78-11"><a href="Eskdale_flow_algorithms.html#cb78-11"></a>                        <span class="dt">limits =</span> <span class="kw">c</span>(minimum_value, maximum_value))</span>
+<span id="cb78-12"><a href="Eskdale_flow_algorithms.html#cb78-12"></a>g</span></code></pre></div>
 <p><img src="Practical_1_files/figure-html/unnamed-chunk-67-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Most of the above should be familiar to you, with a few exceptions:</p>
 <ul>
@@ -461,9 +414,9 @@ Hydrological analysis in R
 <p>Save your script before continuing.</p>
 </blockquote>
 </div>
-<div id="choosing-a-colour-ramp" class="section level3" number="6.1.3">
+<div id="choosing-a-colour-ramp" class="section level3">
 <h3><span class="header-section-number">6.1.3</span> Choosing a colour ramp</h3>
-<p>Perceptual uniformity refers to how well a colour ramp represents the underlying data. Some (e.g. <a href="https://www.climate-lab-book.ac.uk/2014/endof-%20the-rainbow/">rainbow</a>; <span class="citation"><a href="#ref-hawkins_scrap_2015" role="doc-biblioref">Hawkins</a> (<a href="#ref-hawkins_scrap_2015" role="doc-biblioref">2015</a>)</span>) can introduce artificial boundaries (<span class="citation"><a href="#ref-alcalde_framing_2017" role="doc-biblioref">Alcalde <em>et al.</em></a> (<a href="#ref-alcalde_framing_2017" role="doc-biblioref">2017</a>)</span>) which influence how we assess and then use that data (see <a href="https://blogs.egu.eu/divisions/gd/2017/08/23/the-rainbow-colour-map/">here</a>). In the schematic below, there are numerous artificial boundaries in the rainbow colour ramp (e.g. dark blue → light blue, light blue → green, green → yellow, yellow → orange), whereas the monochrome colour ramp smoothly transitions from black → white.</p>
+<p>Perceptual uniformity refers to how well a colour ramp represents the underlying data. Some (e.g. <a href="https://www.climate-lab-book.ac.uk/2014/endof-%20the-rainbow/">rainbow</a>; <span class="citation">Hawkins (<a href="#ref-hawkins_scrap_2015" role="doc-biblioref">2015</a>)</span>) can introduce artificial boundaries (<span class="citation">Alcalde <em>et al.</em> (<a href="#ref-alcalde_framing_2017" role="doc-biblioref">2017</a>)</span>) which influence how we assess and then use that data (see <a href="https://blogs.egu.eu/divisions/gd/2017/08/23/the-rainbow-colour-map/">here</a>). In the schematic below, there are numerous artificial boundaries in the rainbow colour ramp (e.g. dark blue → light blue, light blue → green, green → yellow, yellow → orange), whereas the monochrome colour ramp smoothly transitions from black → white.</p>
 <p align="center">
 <a name="Figure_6"></a><img src="figures/Practical-1/Perceptual_Colour_Ramps.png" style="width:50.0%" />
 </p>
@@ -475,10 +428,10 @@ Hydrological analysis in R
 <a name="Figure_6"></a><img src="figures/Practical-1/colour-scales.png" style="width:100.0%" />
 </p>
 <p><strong>Figure 6: Perceptual uniformity</strong> with rainbow and monochrome colour ramps.</p>
-<p>In a similar fashion, not all colour ramps are suitable for individuals with various forms of colour-blindness (see <span class="citation"><a href="#ref-levine_using_2009" role="doc-biblioref">Levine</a> (<a href="#ref-levine_using_2009" role="doc-biblioref">2009</a>)</span> and <span class="citation"><a href="#ref-geissbuehler_how_2013" role="doc-biblioref">Geissbuehler and Lasser</a> (<a href="#ref-geissbuehler_how_2013" role="doc-biblioref">2013</a>)</span>), who may have difficulty distinguishing reds from greens, or yellows from blues. Luckily, there are now a range of perceptually uniform and colour-blind friendly colour ramps (e.g. <span class="citation"><a href="#ref-crameri_geodynamic_2018" role="doc-biblioref">Crameri</a> (<a href="#ref-crameri_geodynamic_2018" role="doc-biblioref">2018</a>)</span>), including <a href="http://www.fabiocrameri.ch/colourmaps.php">Scientific Colour Maps 6.0</a>. These can be downloaded and used across a range of GIS programs to suit a range of data types. For now, utilise the colour ramps available in R (i.e. viridis) but bear these issues in mind for future map creation.</p>
+<p>In a similar fashion, not all colour ramps are suitable for individuals with various forms of colour-blindness (see <span class="citation">Levine (<a href="#ref-levine_using_2009" role="doc-biblioref">2009</a>)</span> and <span class="citation">Geissbuehler and Lasser (<a href="#ref-geissbuehler_how_2013" role="doc-biblioref">2013</a>)</span>), who may have difficulty distinguishing reds from greens, or yellows from blues. Luckily, there are now a range of perceptually uniform and colour-blind friendly colour ramps (e.g. <span class="citation">Crameri (<a href="#ref-crameri_geodynamic_2018" role="doc-biblioref">2018</a>)</span>), including <a href="http://www.fabiocrameri.ch/colourmaps.php">Scientific Colour Maps 6.0</a>. These can be downloaded and used across a range of GIS programs to suit a range of data types. For now, utilise the colour ramps available in R (i.e. viridis) but bear these issues in mind for future map creation.</p>
 </div>
 </div>
-<div id="flow-parameters-pointers" class="section level2" number="6.2">
+<div id="flow-parameters-pointers" class="section level2">
 <h2><span class="header-section-number">6.2</span> Flow Parameters: Pointers</h2>
 <p>Now that we have a DEM that has had all interruptions to flow removed, we can continue to calculate the data needed to define the drainage network i.e. the topological network describing how each cell in a DEM is connected to all others.</p>
 <p>One key input for drainage network calculations is a <strong>pointer file</strong>, which stores the flow direction of each cell in a raster grid, and thus, the topology of the drainage network. The exact nature of these data depends on the method used to derive the flow directions. Whitebox Tools stores D8 pointers as binary numbers in base-2, as follows:</p>
@@ -503,23 +456,23 @@ Hydrological analysis in R
 <li><span class="math inline">\(2^7 = 128\)</span></li>
 </ul>
 <p>Here is the same data but using a discrete scale:</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="Eskdale_flow_algorithms.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Manually defined colours based on &quot;RdYlBu&quot; colour palette</span></span>
-<span id="cb79-2"><a href="Eskdale_flow_algorithms.html#cb79-2" aria-hidden="true" tabindex="-1"></a>colours <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1&quot;</span> <span class="ot">=</span> <span class="st">&quot;#D73027&quot;</span>,</span>
-<span id="cb79-3"><a href="Eskdale_flow_algorithms.html#cb79-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;2&quot;</span> <span class="ot">=</span> <span class="st">&quot;#F46D43&quot;</span>,</span>
-<span id="cb79-4"><a href="Eskdale_flow_algorithms.html#cb79-4" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;4&quot;</span> <span class="ot">=</span> <span class="st">&quot;#FDAE61&quot;</span>,</span>
-<span id="cb79-5"><a href="Eskdale_flow_algorithms.html#cb79-5" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;8&quot;</span> <span class="ot">=</span> <span class="st">&quot;#FEE090&quot;</span>,</span>
-<span id="cb79-6"><a href="Eskdale_flow_algorithms.html#cb79-6" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;16&quot;</span> <span class="ot">=</span> <span class="st">&quot;#E0F3F8&quot;</span>,</span>
-<span id="cb79-7"><a href="Eskdale_flow_algorithms.html#cb79-7" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;32&quot;</span> <span class="ot">=</span> <span class="st">&quot;#ABD9E9&quot;</span>,</span>
-<span id="cb79-8"><a href="Eskdale_flow_algorithms.html#cb79-8" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;64&quot;</span> <span class="ot">=</span> <span class="st">&quot;#74ADD1&quot;</span>,</span>
-<span id="cb79-9"><a href="Eskdale_flow_algorithms.html#cb79-9" aria-hidden="true" tabindex="-1"></a>             <span class="st">&quot;128&quot;</span> <span class="ot">=</span> <span class="st">&quot;#4575B4&quot;</span>)</span>
-<span id="cb79-10"><a href="Eskdale_flow_algorithms.html#cb79-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-11"><a href="Eskdale_flow_algorithms.html#cb79-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting</span></span>
-<span id="cb79-12"><a href="Eskdale_flow_algorithms.html#cb79-12" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb79-13"><a href="Eskdale_flow_algorithms.html#cb79-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_spatial</span>(eskdale_pointer, <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">factor</span>(<span class="fu">stat</span>(band1)))) <span class="sc">+</span></span>
-<span id="cb79-14"><a href="Eskdale_flow_algorithms.html#cb79-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
-<span id="cb79-15"><a href="Eskdale_flow_algorithms.html#cb79-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Pointer value&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Northing&quot;</span>) <span class="sc">+</span></span>
-<span id="cb79-16"><a href="Eskdale_flow_algorithms.html#cb79-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> colours, <span class="at">na.value =</span> <span class="cn">NA</span>)</span>
-<span id="cb79-17"><a href="Eskdale_flow_algorithms.html#cb79-17" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="Eskdale_flow_algorithms.html#cb79-1"></a><span class="co"># Manually defined colours based on &quot;RdYlBu&quot; colour palette</span></span>
+<span id="cb79-2"><a href="Eskdale_flow_algorithms.html#cb79-2"></a>colours &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;1&quot;</span> =<span class="st"> &quot;#D73027&quot;</span>,</span>
+<span id="cb79-3"><a href="Eskdale_flow_algorithms.html#cb79-3"></a>             <span class="st">&quot;2&quot;</span> =<span class="st"> &quot;#F46D43&quot;</span>,</span>
+<span id="cb79-4"><a href="Eskdale_flow_algorithms.html#cb79-4"></a>             <span class="st">&quot;4&quot;</span> =<span class="st"> &quot;#FDAE61&quot;</span>,</span>
+<span id="cb79-5"><a href="Eskdale_flow_algorithms.html#cb79-5"></a>             <span class="st">&quot;8&quot;</span> =<span class="st"> &quot;#FEE090&quot;</span>,</span>
+<span id="cb79-6"><a href="Eskdale_flow_algorithms.html#cb79-6"></a>             <span class="st">&quot;16&quot;</span> =<span class="st"> &quot;#E0F3F8&quot;</span>,</span>
+<span id="cb79-7"><a href="Eskdale_flow_algorithms.html#cb79-7"></a>             <span class="st">&quot;32&quot;</span> =<span class="st"> &quot;#ABD9E9&quot;</span>,</span>
+<span id="cb79-8"><a href="Eskdale_flow_algorithms.html#cb79-8"></a>             <span class="st">&quot;64&quot;</span> =<span class="st"> &quot;#74ADD1&quot;</span>,</span>
+<span id="cb79-9"><a href="Eskdale_flow_algorithms.html#cb79-9"></a>             <span class="st">&quot;128&quot;</span> =<span class="st"> &quot;#4575B4&quot;</span>)</span>
+<span id="cb79-10"><a href="Eskdale_flow_algorithms.html#cb79-10"></a></span>
+<span id="cb79-11"><a href="Eskdale_flow_algorithms.html#cb79-11"></a><span class="co"># Plotting</span></span>
+<span id="cb79-12"><a href="Eskdale_flow_algorithms.html#cb79-12"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb79-13"><a href="Eskdale_flow_algorithms.html#cb79-13"></a><span class="st">  </span><span class="kw">layer_spatial</span>(eskdale_pointer, <span class="kw">aes</span>(<span class="dt">fill =</span> <span class="kw">factor</span>(<span class="kw">stat</span>(band1)))) <span class="op">+</span></span>
+<span id="cb79-14"><a href="Eskdale_flow_algorithms.html#cb79-14"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb79-15"><a href="Eskdale_flow_algorithms.html#cb79-15"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill =</span> <span class="st">&quot;Pointer value&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Northing&quot;</span>) <span class="op">+</span></span>
+<span id="cb79-16"><a href="Eskdale_flow_algorithms.html#cb79-16"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> colours, <span class="dt">na.value =</span> <span class="ot">NA</span>)</span>
+<span id="cb79-17"><a href="Eskdale_flow_algorithms.html#cb79-17"></a>p</span></code></pre></div>
 <p><img src="Practical_1_files/figure-html/unnamed-chunk-72-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>which is described here:</p>
 <p align="center">
@@ -532,7 +485,7 @@ Hydrological analysis in R
 <p>Save your script before continuing.</p>
 </blockquote>
 </div>
-<div id="flow-algorithms" class="section level2" number="6.3">
+<div id="flow-algorithms" class="section level2">
 <h2><span class="header-section-number">6.3</span> Flow Algorithms</h2>
 <p>Once you have determined how each grid cell in a DEM is connected to its neighbours, it is possible to use this pointer information to calculate the number of grid cells that are connected to each cell in an upslope (catchment area) and downslope (dispersal area) direction. These data describe the spatial pattern of upslope (or downslope) area draining to (or away from) each pixel in a DEM.</p>
 <p>Measures of catchment area are often used for stream network extraction and other terrain indices. There are three primary measures of catchment area:</p>
@@ -550,13 +503,13 @@ Hydrological analysis in R
 <blockquote>
 <p>Inspect the map output. <strong>Question</strong>: Which parts of the landscape have low/high values of SCA, respectively?</p>
 </blockquote>
-<div id="comparing-flow-algorithms" class="section level3" number="6.3.1">
+<div id="comparing-flow-algorithms" class="section level3">
 <h3><span class="header-section-number">6.3.1</span> Comparing flow algorithms</h3>
-<p>So far we have used the most simplistic flow algorithm (D8) to model specific catchment area (SCA). However, there are many flow algorithms available (e.g. <span class="citation"><a href="#ref-fairfield_drainage_1991" role="doc-biblioref">Fairfield and Leymarie</a> (<a href="#ref-fairfield_drainage_1991" role="doc-biblioref">1991</a>)</span>, <span class="citation"><a href="#ref-seibert_new_2007" role="doc-biblioref">Seibert and McGlynn</a> (<a href="#ref-seibert_new_2007" role="doc-biblioref">2007</a>)</span>, <span class="citation"><a href="#ref-grabs_calculating_2010" role="doc-biblioref">Grabs <em>et al.</em></a> (<a href="#ref-grabs_calculating_2010" role="doc-biblioref">2010</a>)</span>) and each algorithm results in slightly different spatial patterns of water flow. As flow routing is fundamental to the modelling of surface water hydrology, it is important to familiarise yourself with several commonly used methods, although it can be difficult to decide when or where it is appropriate to use a particular routing algorithm. In this section of the practical, we will compare the output of three flow routing algorithms including:</p>
+<p>So far we have used the most simplistic flow algorithm (D8) to model specific catchment area (SCA). However, there are many flow algorithms available (e.g. <span class="citation">Fairfield and Leymarie (<a href="#ref-fairfield_drainage_1991" role="doc-biblioref">1991</a>)</span>, <span class="citation">Seibert and McGlynn (<a href="#ref-seibert_new_2007" role="doc-biblioref">2007</a>)</span>, <span class="citation">Grabs <em>et al.</em> (<a href="#ref-grabs_calculating_2010" role="doc-biblioref">2010</a>)</span>) and each algorithm results in slightly different spatial patterns of water flow. As flow routing is fundamental to the modelling of surface water hydrology, it is important to familiarise yourself with several commonly used methods, although it can be difficult to decide when or where it is appropriate to use a particular routing algorithm. In this section of the practical, we will compare the output of three flow routing algorithms including:</p>
 <ul>
-<li><strong>D8</strong>: see <span class="citation"><a href="#ref-ocallaghan_extraction_1984" role="doc-biblioref">O’Callaghan and Mark</a> (<a href="#ref-ocallaghan_extraction_1984" role="doc-biblioref">1984</a>)</span></li>
-<li><strong>FD8</strong>: see <span class="citation"><a href="#ref-freeman_calculating_1991" role="doc-biblioref">Freeman</a> (<a href="#ref-freeman_calculating_1991" role="doc-biblioref">1991</a>)</span>, <span class="citation"><a href="#ref-quinn_prediction_1991" role="doc-biblioref">Quinn <em>et al.</em></a> (<a href="#ref-quinn_prediction_1991" role="doc-biblioref">1991</a>)</span> and its modification by <span class="citation"><a href="#ref-quinn_tan_1995" role="doc-biblioref">Quinn <em>et al.</em></a> (<a href="#ref-quinn_tan_1995" role="doc-biblioref">1995</a>)</span></li>
-<li><strong>D-infinity</strong>: see <span class="citation"><a href="#ref-tarboton_new_1997" role="doc-biblioref">Tarboton</a> (<a href="#ref-tarboton_new_1997" role="doc-biblioref">1997</a>)</span>;</li>
+<li><strong>D8</strong>: see <span class="citation">O’Callaghan and Mark (<a href="#ref-ocallaghan_extraction_1984" role="doc-biblioref">1984</a>)</span></li>
+<li><strong>FD8</strong>: see <span class="citation">Freeman (<a href="#ref-freeman_calculating_1991" role="doc-biblioref">1991</a>)</span>, <span class="citation">Quinn <em>et al.</em> (<a href="#ref-quinn_prediction_1991" role="doc-biblioref">1991</a>)</span> and its modification by <span class="citation">Quinn <em>et al.</em> (<a href="#ref-quinn_tan_1995" role="doc-biblioref">1995</a>)</span></li>
+<li><strong>D-infinity</strong>: see <span class="citation">Tarboton (<a href="#ref-tarboton_new_1997" role="doc-biblioref">1997</a>)</span>;</li>
 </ul>
 <p>Flow algorithms differ in the way in which they:</p>
 <ul>
@@ -564,24 +517,24 @@ Hydrological analysis in R
 <li>model flow divergence, i.e., partition flow between neighbouring downslope cells;</li>
 <li>handle streams.</li>
 </ul>
-<p>The D8 algorithm is incapable of modelling flow divergence (or dispersion) because the flow from a particular grid cell is directed to a single downslope neighbour. FD8 (i.e. fractional D8; <span class="citation"><a href="#ref-freeman_calculating_1991" role="doc-biblioref">Freeman</a> (<a href="#ref-freeman_calculating_1991" role="doc-biblioref">1991</a>)</span>, <span class="citation"><a href="#ref-quinn_prediction_1991" role="doc-biblioref">Quinn <em>et al.</em></a> (<a href="#ref-quinn_prediction_1991" role="doc-biblioref">1991</a>)</span>) divides flow to each downslope neighbour using a partitioning scheme that is based on the slope angle to neighbouring cells, while a later modification by <span class="citation"><a href="#ref-quinn_tan_1995" role="doc-biblioref">Quinn <em>et al.</em></a> (<a href="#ref-quinn_tan_1995" role="doc-biblioref">1995</a>)</span> increases the degree of flow convergence from the catchment divide to the channel head. Finally, D-infinity divide flows between a maximum of two downslope neighbours based on the direction of maximum downward slope. Of these, FD8-Quinn (<span class="citation"><a href="#ref-quinn_tan_1995" role="doc-biblioref">Quinn <em>et al.</em></a> (<a href="#ref-quinn_tan_1995" role="doc-biblioref">1995</a>)</span>) is the only algorithm of the three that explicitly recognises that flow on hillslopes should be divergent while flow along valley bottoms should be convergent.</p>
+<p>The D8 algorithm is incapable of modelling flow divergence (or dispersion) because the flow from a particular grid cell is directed to a single downslope neighbour. FD8 (i.e. fractional D8; <span class="citation">Freeman (<a href="#ref-freeman_calculating_1991" role="doc-biblioref">1991</a>)</span>, <span class="citation">Quinn <em>et al.</em> (<a href="#ref-quinn_prediction_1991" role="doc-biblioref">1991</a>)</span>) divides flow to each downslope neighbour using a partitioning scheme that is based on the slope angle to neighbouring cells, while a later modification by <span class="citation">Quinn <em>et al.</em> (<a href="#ref-quinn_tan_1995" role="doc-biblioref">1995</a>)</span> increases the degree of flow convergence from the catchment divide to the channel head. Finally, D-infinity divide flows between a maximum of two downslope neighbours based on the direction of maximum downward slope. Of these, FD8-Quinn (<span class="citation">Quinn <em>et al.</em> (<a href="#ref-quinn_tan_1995" role="doc-biblioref">1995</a>)</span>) is the only algorithm of the three that explicitly recognises that flow on hillslopes should be divergent while flow along valley bottoms should be convergent.</p>
 <p>In the final part of the practical, we will assess the specific catchment areas (SCA) derived from each of the flow algorithms discussed above.</p>
 </div>
-<div id="fd8-catchment-area" class="section level3" number="6.3.2">
+<div id="fd8-catchment-area" class="section level3">
 <h3><span class="header-section-number">6.3.2</span> FD8 catchment area</h3>
-<p>To calculate the catchment area using the FD8 algorithm (<span class="citation"><a href="#ref-freeman_calculating_1991" role="doc-biblioref">Freeman</a> (<a href="#ref-freeman_calculating_1991" role="doc-biblioref">1991</a>)</span>; <span class="citation"><a href="#ref-quinn_prediction_1991" role="doc-biblioref">Quinn <em>et al.</em></a> (<a href="#ref-quinn_prediction_1991" role="doc-biblioref">1991</a>)</span>; <span class="citation"><a href="#ref-quinn_tan_1995" role="doc-biblioref">Quinn <em>et al.</em></a> (<a href="#ref-quinn_tan_1995" role="doc-biblioref">1995</a>)</span>), use the <code>wbt_fd8_flow_accumulation</code> function.</p>
+<p>To calculate the catchment area using the FD8 algorithm (<span class="citation">Freeman (<a href="#ref-freeman_calculating_1991" role="doc-biblioref">1991</a>)</span>; <span class="citation">Quinn <em>et al.</em> (<a href="#ref-quinn_prediction_1991" role="doc-biblioref">1991</a>)</span>; <span class="citation">Quinn <em>et al.</em> (<a href="#ref-quinn_tan_1995" role="doc-biblioref">1995</a>)</span>), use the <code>wbt_fd8_flow_accumulation</code> function.</p>
 <blockquote>
-<p>Use the <code>wbt_fd8_flow_accumulation</code> function, making sure to select ‘specific contributing area’ and remembering to log-transform the values. The exponent parameter should be set to 1.1 (<code>exponent = 1.1</code>), as suggested by <span class="citation"><a href="#ref-freeman_calculating_1991" role="doc-biblioref">Freeman</a> (<a href="#ref-freeman_calculating_1991" role="doc-biblioref">1991</a>)</span>. Save with an appropriate name (e.g. <code>dem_10m_flow_accumulation_fd8.tif</code>). Load the raster in R and plot.</p>
+<p>Use the <code>wbt_fd8_flow_accumulation</code> function, making sure to select ‘specific contributing area’ and remembering to log-transform the values. The exponent parameter should be set to 1.1 (<code>exponent = 1.1</code>), as suggested by <span class="citation">Freeman (<a href="#ref-freeman_calculating_1991" role="doc-biblioref">1991</a>)</span>. Save with an appropriate name (e.g. <code>dem_10m_flow_accumulation_fd8.tif</code>). Load the raster in R and plot.</p>
 </blockquote>
 </div>
-<div id="d-infinity-catchment-area" class="section level3" number="6.3.3">
+<div id="d-infinity-catchment-area" class="section level3">
 <h3><span class="header-section-number">6.3.3</span> D-infinity catchment area</h3>
-<p>To calculate the catchment area using the D-infinity algorithm of <span class="citation"><a href="#ref-tarboton_new_1997" role="doc-biblioref">Tarboton</a> (<a href="#ref-tarboton_new_1997" role="doc-biblioref">1997</a>)</span>:</p>
+<p>To calculate the catchment area using the D-infinity algorithm of <span class="citation">Tarboton (<a href="#ref-tarboton_new_1997" role="doc-biblioref">1997</a>)</span>:</p>
 <blockquote>
 <p>Use <code>wbt_d_inf_flow_accumulation</code>. Use the same input parameters as above (i.e. SCA, log-transformed values). Save with an appropriate name (e.g. <code>dem_10m_flow_accumulation_d_inf.tif</code>). Load the raster in R and plot.</p>
 </blockquote>
 </div>
-<div id="comparing-the-outputs" class="section level3" number="6.3.4">
+<div id="comparing-the-outputs" class="section level3">
 <h3><span class="header-section-number">6.3.4</span> Comparing the outputs</h3>
 <p>The output of the algorithms should resemble the following:</p>
 <p align="center">
@@ -589,8 +542,8 @@ Hydrological analysis in R
 </p>
 <p><strong>Figure 7: Flow algorithm comparison</strong>. Results from the D8, FD8 and D-Infinity algorithms. Plot created using <code>ggplot2</code> and the <code>patchwork</code> package (useful for combining plots).</p>
 <p>When water flows over a hillslope, you would expect there to be some degree of divergence depending on the topography (i.e. some hillslopes are convergent and some are divergent). However, once water becomes channelised, you would no longer expect flow to be divergent. Once water is in a channel it stays there until it reaches a lake or ocean. Branching in channels is rather rare. So let’s assume that the pattern of SCA should display some degree of dispersion on hillslopes and no dispersion at all along valley bottoms (i.e. in streams). Flow divergence or dispersion is apparent in SCA images by a ‘fuzzy’ quality, almost like the SCA has been smudged. You can zoom into individual plots using the <strong>Zoom</strong> button in the Plot Window or edit the x- and y-axis limits of your plots by adding the following to your <code>ggplot2</code> call:</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="Eskdale_flow_algorithms.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sets x- and y-axis limits using coord_sf()</span></span>
-<span id="cb80-2"><a href="Eskdale_flow_algorithms.html#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> <span class="fu">coord_sf</span>(<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">504063</span>,<span class="dv">506727</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">320705</span>, <span class="dv">322255</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="Eskdale_flow_algorithms.html#cb80-1"></a><span class="co"># Sets x- and y-axis limits using coord_sf()</span></span>
+<span id="cb80-2"><a href="Eskdale_flow_algorithms.html#cb80-2"></a><span class="op">+</span><span class="st"> </span><span class="kw">coord_sf</span>(<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">504063</span>,<span class="dv">506727</span>), <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">320705</span>, <span class="dv">322255</span>))</span></code></pre></div>
 <p>The above code uses British National Grid coordinates (m), rather than decimal degrees.</p>
 <p><br/></p>
 <p><strong>To finish Practical 1</strong>, save your script and complete the following:</p>
@@ -611,59 +564,59 @@ Hydrological analysis in R
 <p><br/></p>
 </div>
 </div>
-<div id="practical-solution" class="section level2" number="6.4">
+<div id="practical-solution" class="section level2">
 <h2><span class="header-section-number">6.4</span> Practical solution</h2>
 <p>As with the introduction to R (Chapter 2 - 3), I will provide a code solution to the Eskdale practical (Chapters 4 - 6), outlining the major analytical steps.</p>
-<p>This will be released prior to the Week 10 class (scheduled for 3/12/2021).</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="Eskdale_flow_algorithms.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution to Practical 1 (Eskdale)</span></span>
-<span id="cb81-2"><a href="Eskdale_flow_algorithms.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Author: matt-tomkins</span></span>
-<span id="cb81-3"><a href="Eskdale_flow_algorithms.html#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Date of upload: xx-xx-xxxx</span></span></code></pre></div>
+<p>This will be released prior to the Week 10 class.</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="Eskdale_flow_algorithms.html#cb81-1"></a><span class="co"># Solution to Practical 1 (Eskdale)</span></span>
+<span id="cb81-2"><a href="Eskdale_flow_algorithms.html#cb81-2"></a><span class="co"># Author: matt-tomkins</span></span>
+<span id="cb81-3"><a href="Eskdale_flow_algorithms.html#cb81-3"></a><span class="co"># Date of upload: xx-xx-xxxx</span></span></code></pre></div>
 
 </div>
 </div>
 <h3>References</h3>
-<div id="refs" class="references csl-bib-body">
-<div id="ref-alcalde_framing_2017" class="csl-entry">
-Alcalde, J. <em>et al.</em> (2017) <span>‘Framing bias: <span>The</span> effect of figure presentation on seismic interpretation’</span>, <em>Interpretation</em>, 5(4), pp. T591–T605. doi:<a href="https://doi.org/10.1190/INT-2017-0083.1">10.1190/INT-2017-0083.1</a>.
+<div id="refs" class="references">
+<div id="ref-alcalde_framing_2017">
+<p>Alcalde, J. <em>et al.</em> (2017) ‘Framing bias: The effect of figure presentation on seismic interpretation’, <em>Interpretation</em>, 5(4), pp. T591–T605. doi:<a href="https://doi.org/10.1190/INT-2017-0083.1">10.1190/INT-2017-0083.1</a>.</p>
 </div>
-<div id="ref-crameri_geodynamic_2018" class="csl-entry">
-Crameri, F. (2018) <span>‘Geodynamic diagnostics, scientific visualisation and <span>StagLab</span> 3.0’</span>, <em>Geoscientific Model Development</em>, 11(6), pp. 2541–2562. doi:<a href="https://doi.org/10.5194/gmd-11-2541-2018">https://doi.org/10.5194/gmd-11-2541-2018</a>.
+<div id="ref-crameri_geodynamic_2018">
+<p>Crameri, F. (2018) ‘Geodynamic diagnostics, scientific visualisation and StagLab 3.0’, <em>Geoscientific Model Development</em>, 11(6), pp. 2541–2562. doi:<a href="https://doi.org/https://doi.org/10.5194/gmd-11-2541-2018">https://doi.org/10.5194/gmd-11-2541-2018</a>.</p>
 </div>
-<div id="ref-fairfield_drainage_1991" class="csl-entry">
-Fairfield, J. and Leymarie, P. (1991) <span>‘Drainage networks from grid digital elevation models’</span>, <em>Water Resources Research</em>, 27(5), pp. 709–717. doi:<a href="https://doi.org/10.1029/90WR02658">https://doi.org/10.1029/90WR02658</a>.
+<div id="ref-fairfield_drainage_1991">
+<p>Fairfield, J. and Leymarie, P. (1991) ‘Drainage networks from grid digital elevation models’, <em>Water Resources Research</em>, 27(5), pp. 709–717. doi:<a href="https://doi.org/https://doi.org/10.1029/90WR02658">https://doi.org/10.1029/90WR02658</a>.</p>
 </div>
-<div id="ref-freeman_calculating_1991" class="csl-entry">
-Freeman, T.G. (1991) <span>‘Calculating catchment area with divergent flow based on a regular grid’</span>, <em>Computers &amp; Geosciences</em>, 17(3), pp. 413–422. doi:<a href="https://doi.org/10.1016/0098-3004(91)90048-I">10.1016/0098-3004(91)90048-I</a>.
+<div id="ref-freeman_calculating_1991">
+<p>Freeman, T.G. (1991) ‘Calculating catchment area with divergent flow based on a regular grid’, <em>Computers &amp; Geosciences</em>, 17(3), pp. 413–422. doi:<a href="https://doi.org/10.1016/0098-3004(91)90048-I">10.1016/0098-3004(91)90048-I</a>.</p>
 </div>
-<div id="ref-geissbuehler_how_2013" class="csl-entry">
-Geissbuehler, M. and Lasser, T. (2013) <span>‘How to display data by color schemes compatible with red-green color perception deficiencies’</span>, <em>Optics Express</em>, 21(8), pp. 9862–9874. doi:<a href="https://doi.org/10.1364/OE.21.009862">10.1364/OE.21.009862</a>.
+<div id="ref-geissbuehler_how_2013">
+<p>Geissbuehler, M. and Lasser, T. (2013) ‘How to display data by color schemes compatible with red-green color perception deficiencies’, <em>Optics Express</em>, 21(8), pp. 9862–9874. doi:<a href="https://doi.org/10.1364/OE.21.009862">10.1364/OE.21.009862</a>.</p>
 </div>
-<div id="ref-grabs_calculating_2010" class="csl-entry">
-Grabs, T.J. <em>et al.</em> (2010) <span>‘Calculating terrain indices along streams: <span>A</span> new method for separating stream sides’</span>, <em>Water Resources Research</em>, 46(12). doi:<a href="https://doi.org/10.1029/2010WR009296">https://doi.org/10.1029/2010WR009296</a>.
+<div id="ref-grabs_calculating_2010">
+<p>Grabs, T.J. <em>et al.</em> (2010) ‘Calculating terrain indices along streams: A new method for separating stream sides’, <em>Water Resources Research</em>, 46(12). doi:<a href="https://doi.org/https://doi.org/10.1029/2010WR009296">https://doi.org/10.1029/2010WR009296</a>.</p>
 </div>
-<div id="ref-hawkins_scrap_2015" class="csl-entry">
-Hawkins, E. (2015) <span>‘Scrap rainbow colour scales’</span>, <em>Nature</em>, 519(7543), pp. 291–291. doi:<a href="https://doi.org/10.1038/519291d">10.1038/519291d</a>.
+<div id="ref-hawkins_scrap_2015">
+<p>Hawkins, E. (2015) ‘Scrap rainbow colour scales’, <em>Nature</em>, 519(7543), pp. 291–291. doi:<a href="https://doi.org/10.1038/519291d">10.1038/519291d</a>.</p>
 </div>
-<div id="ref-jenson_extracting_1988" class="csl-entry">
-Jenson, S.K. and Domingue, J.O. (1988) <span>‘Extracting topographic structure from digital elevation data for geographic information-system analysis’</span>, <em>Photogrammetric Engineering and Remote Sensing</em>, 54(11), p. 15931600. Available at: <a href="http://pubs.er.usgs.gov/publication/70142175">http://pubs.er.usgs.gov/publication/70142175</a> (Accessed: 2 December 2020).
+<div id="ref-jenson_extracting_1988">
+<p>Jenson, S.K. and Domingue, J.O. (1988) ‘Extracting topographic structure from digital elevation data for geographic information-system analysis’, <em>Photogrammetric Engineering and Remote Sensing</em>, 54(11), p. 15931600. Available at: <a href="http://pubs.er.usgs.gov/publication/70142175">http://pubs.er.usgs.gov/publication/70142175</a> (Accessed: 2 December 2020).</p>
 </div>
-<div id="ref-levine_using_2009" class="csl-entry">
-Levine, T. (2009) <span>‘Using colour in figures: Let’s agree to differ’</span>, <em>Traffic</em>, 10(3), pp. 344–347. doi:<a href="https://doi.org/10.1111/j.1600-0854.2008.00863.x">https://doi.org/10.1111/j.1600-0854.2008.00863.x</a>.
+<div id="ref-levine_using_2009">
+<p>Levine, T. (2009) ‘Using colour in figures: Let’s agree to differ’, <em>Traffic</em>, 10(3), pp. 344–347. doi:<a href="https://doi.org/https://doi.org/10.1111/j.1600-0854.2008.00863.x">https://doi.org/10.1111/j.1600-0854.2008.00863.x</a>.</p>
 </div>
-<div id="ref-ocallaghan_extraction_1984" class="csl-entry">
-O’Callaghan, J.F. and Mark, D.M. (1984) <span>‘The extraction of drainage networks from digital elevation data’</span>, <em>Computer Vision, Graphics, and Image Processing</em>, 28(3), pp. 323–344. doi:<a href="https://doi.org/10.1016/S0734-189X(84)80011-0">10.1016/S0734-189X(84)80011-0</a>.
+<div id="ref-ocallaghan_extraction_1984">
+<p>O’Callaghan, J.F. and Mark, D.M. (1984) ‘The extraction of drainage networks from digital elevation data’, <em>Computer Vision, Graphics, and Image Processing</em>, 28(3), pp. 323–344. doi:<a href="https://doi.org/10.1016/S0734-189X(84)80011-0">10.1016/S0734-189X(84)80011-0</a>.</p>
 </div>
-<div id="ref-quinn_prediction_1991" class="csl-entry">
-Quinn, P. <em>et al.</em> (1991) <span>‘The prediction of hillslope flow paths for distributed hydrological modelling using digital terrain models’</span>, <em>Hydrological Processes</em>, 5(1), pp. 59–79. doi:<a href="https://doi.org/10.1002/hyp.3360050106">https://doi.org/10.1002/hyp.3360050106</a>.
+<div id="ref-quinn_prediction_1991">
+<p>Quinn, P. <em>et al.</em> (1991) ‘The prediction of hillslope flow paths for distributed hydrological modelling using digital terrain models’, <em>Hydrological Processes</em>, 5(1), pp. 59–79. doi:<a href="https://doi.org/https://doi.org/10.1002/hyp.3360050106">https://doi.org/10.1002/hyp.3360050106</a>.</p>
 </div>
-<div id="ref-quinn_tan_1995" class="csl-entry">
-Quinn, P.F. <em>et al.</em> (1995) <span>‘The in(a/tan/β) index: <span>How</span> to calculate it and how to use it within the topmodel framework’</span>, <em>Hydrological Processes</em>, 9(2), pp. 161–182. doi:<a href="https://doi.org/10.1002/hyp.3360090204">https://doi.org/10.1002/hyp.3360090204</a>.
+<div id="ref-quinn_tan_1995">
+<p>Quinn, P.F. <em>et al.</em> (1995) ‘The in(a/tan/β) index: How to calculate it and how to use it within the topmodel framework’, <em>Hydrological Processes</em>, 9(2), pp. 161–182. doi:<a href="https://doi.org/https://doi.org/10.1002/hyp.3360090204">https://doi.org/10.1002/hyp.3360090204</a>.</p>
 </div>
-<div id="ref-seibert_new_2007" class="csl-entry">
-Seibert, J. and McGlynn, B.L. (2007) <span>‘A new triangular multiple flow direction algorithm for computing upslope areas from gridded digital elevation models’</span>, <em>Water Resources Research</em>, 43(4). doi:<a href="https://doi.org/10.1029/2006WR005128">https://doi.org/10.1029/2006WR005128</a>.
+<div id="ref-seibert_new_2007">
+<p>Seibert, J. and McGlynn, B.L. (2007) ‘A new triangular multiple flow direction algorithm for computing upslope areas from gridded digital elevation models’, <em>Water Resources Research</em>, 43(4). doi:<a href="https://doi.org/https://doi.org/10.1029/2006WR005128">https://doi.org/10.1029/2006WR005128</a>.</p>
 </div>
-<div id="ref-tarboton_new_1997" class="csl-entry">
-Tarboton, D.G. (1997) <span>‘A new method for the determination of flow directions and upslope areas in grid digital elevation models’</span>, <em>Water Resources Research</em>, 33(2), pp. 309–319. doi:<a href="https://doi.org/10.1029/96WR03137">https://doi.org/10.1029/96WR03137</a>.
+<div id="ref-tarboton_new_1997">
+<p>Tarboton, D.G. (1997) ‘A new method for the determination of flow directions and upslope areas in grid digital elevation models’, <em>Water Resources Research</em>, 33(2), pp. 309–319. doi:<a href="https://doi.org/https://doi.org/10.1029/96WR03137">https://doi.org/10.1029/96WR03137</a>.</p>
 </div>
 </div>
             </section>

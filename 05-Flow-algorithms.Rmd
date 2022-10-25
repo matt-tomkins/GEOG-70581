@@ -507,7 +507,7 @@ The above code uses British National Grid coordinates (m), rather than decimal d
 
 As with the introduction to R (Chapter 2 - 3), I will provide a code solution to the Eskdale practical (Chapters 4 - 6), outlining the major analytical steps. 
 
-This will be released prior to the Week 10 class (scheduled for 3/12/2021). 
+This will be released prior to the Week 10 class. 
 
 ```{r, echo = TRUE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
 
@@ -521,7 +521,7 @@ This will be released prior to the Week 10 class (scheduled for 3/12/2021).
 
 # Solution to Practical 1 (Eskdale)
 # Author: matt-tomkins
-# Date of upload: 29-11-2021
+# Date of upload: 28-11-2022
 
 # Function to check and install packages
 check.packages <- function(pkg){

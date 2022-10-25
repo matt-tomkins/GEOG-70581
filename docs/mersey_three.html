@@ -33,7 +33,6 @@ Hydrological analysis in R
   
 <link rel="prev" href="Mersy_set_up.html"/>
 <link rel="next" href="mersey_four.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,6 +50,7 @@ Hydrological analysis in R
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
@@ -66,17 +66,18 @@ Hydrological analysis in R
 
 
 <style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -96,7 +97,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -129,28 +130,6 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 </head>
 
@@ -164,60 +143,49 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
-<ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#practical-outline"><i class="fa fa-check"></i><b>1.1</b> Practical outline</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#objectives"><i class="fa fa-check"></i><b>1.2</b> Objectives</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>1.3</b> Schedule</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>2</b> Installation</a>
-<ul>
+<li class="chapter" data-level="2" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>2</b> Installation</a><ul>
 <li class="chapter" data-level="2.1" data-path="Installation.html"><a href="Installation.html#r"><i class="fa fa-check"></i><b>2.1</b> R</a></li>
 <li class="chapter" data-level="2.2" data-path="Installation.html"><a href="Installation.html#r-studio"><i class="fa fa-check"></i><b>2.2</b> R Studio</a></li>
 <li class="chapter" data-level="2.3" data-path="Installation.html"><a href="Installation.html#materials"><i class="fa fa-check"></i><b>2.3</b> Course materials</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="Intro_to_R.html"><a href="Intro_to_R.html"><i class="fa fa-check"></i><b>3</b> A (brief) introduction to R</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#overview"><i class="fa fa-check"></i><b>3.1</b> Overview</a>
-<ul>
+<li class="chapter" data-level="3" data-path="Intro_to_R.html"><a href="Intro_to_R.html"><i class="fa fa-check"></i><b>3</b> A (brief) introduction to R</a><ul>
+<li class="chapter" data-level="3.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#overview"><i class="fa fa-check"></i><b>3.1</b> Overview</a><ul>
 <li class="chapter" data-level="3.1.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#what-is-r"><i class="fa fa-check"></i><b>3.1.1</b> What is R?</a></li>
 <li class="chapter" data-level="3.1.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#why_code"><i class="fa fa-check"></i><b>3.1.2</b> Why code?</a></li>
 <li class="chapter" data-level="3.1.3" data-path="Intro_to_R.html"><a href="Intro_to_R.html#a-quick-note-on-the-practicals"><i class="fa fa-check"></i><b>3.1.3</b> A quick note on the practicals</a></li>
 <li class="chapter" data-level="3.1.4" data-path="Intro_to_R.html"><a href="Intro_to_R.html#dealing-with-errors"><i class="fa fa-check"></i><b>3.1.4</b> Dealing with errors</a></li>
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#loading-r"><i class="fa fa-check"></i><b>3.2</b> Loading R</a></li>
-<li class="chapter" data-level="3.3" data-path="Intro_to_R.html"><a href="Intro_to_R.html#variables-looping"><i class="fa fa-check"></i><b>3.3</b> Variables</a>
-<ul>
+<li class="chapter" data-level="3.3" data-path="Intro_to_R.html"><a href="Intro_to_R.html#variables-looping"><i class="fa fa-check"></i><b>3.3</b> Variables</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#variable-names"><i class="fa fa-check"></i><b>3.3.1</b> Variable names</a></li>
 <li class="chapter" data-level="3.3.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#variables_types"><i class="fa fa-check"></i><b>3.3.2</b> Variable types</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data-structures"><i class="fa fa-check"></i><b>3.4</b> Data structures</a>
-<ul>
+<li class="chapter" data-level="3.4" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data-structures"><i class="fa fa-check"></i><b>3.4</b> Data structures</a><ul>
 <li class="chapter" data-level="3.4.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#vectors"><i class="fa fa-check"></i><b>3.4.1</b> Vectors</a></li>
 <li class="chapter" data-level="3.4.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data_frames"><i class="fa fa-check"></i><b>3.4.2</b> Data frames</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="Intro_to_R.html"><a href="Intro_to_R.html#scripts"><i class="fa fa-check"></i><b>3.5</b> Scripts</a>
-<ul>
+<li class="chapter" data-level="3.5" data-path="Intro_to_R.html"><a href="Intro_to_R.html#scripts"><i class="fa fa-check"></i><b>3.5</b> Scripts</a><ul>
 <li class="chapter" data-level="3.5.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#comments"><i class="fa fa-check"></i><b>3.5.1</b> Comments</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="Intro_to_R.html"><a href="Intro_to_R.html#packages"><i class="fa fa-check"></i><b>3.6</b> Loading packages</a></li>
 <li class="chapter" data-level="3.7" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data_loading"><i class="fa fa-check"></i><b>3.7</b> Loading data</a></li>
 <li class="chapter" data-level="3.8" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data_plotting"><i class="fa fa-check"></i><b>3.8</b> Plotting</a></li>
-<li class="chapter" data-level="3.9" data-path="Intro_to_R.html"><a href="Intro_to_R.html#formative_task"><i class="fa fa-check"></i><b>3.9</b> Formative task</a>
-<ul>
+<li class="chapter" data-level="3.9" data-path="Intro_to_R.html"><a href="Intro_to_R.html#formative_task"><i class="fa fa-check"></i><b>3.9</b> Formative task</a><ul>
 <li class="chapter" data-level="3.9.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#formative-solution"><i class="fa fa-check"></i><b>3.9.1</b> Formative solution</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="FirstPractical.html"><a href="FirstPractical.html"><i class="fa fa-check"></i><b>4</b> Eskdale I - Introduction</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="FirstPractical.html"><a href="FirstPractical.html#overview-1"><i class="fa fa-check"></i><b>4.1</b> Overview</a>
-<ul>
+<li class="chapter" data-level="4" data-path="FirstPractical.html"><a href="FirstPractical.html"><i class="fa fa-check"></i><b>4</b> Eskdale I - Introduction</a><ul>
+<li class="chapter" data-level="4.1" data-path="FirstPractical.html"><a href="FirstPractical.html#overview-1"><i class="fa fa-check"></i><b>4.1</b> Overview</a><ul>
 <li class="chapter" data-level="4.1.1" data-path="FirstPractical.html"><a href="FirstPractical.html#intended-learning-outcomes"><i class="fa fa-check"></i><b>4.1.1</b> Intended learning outcomes</a></li>
 <li class="chapter" data-level="4.1.2" data-path="FirstPractical.html"><a href="FirstPractical.html#assessment"><i class="fa fa-check"></i><b>4.1.2</b> Assessment</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html"><i class="fa fa-check"></i><b>5</b> Eskdale II - Set-up</a>
-<ul>
+<li class="chapter" data-level="5" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html"><i class="fa fa-check"></i><b>5</b> Eskdale II - Set-up</a><ul>
 <li class="chapter" data-level="5.1" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#install-programs"><i class="fa fa-check"></i><b>5.1</b> Install programs</a></li>
 <li class="chapter" data-level="5.2" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#download_data"><i class="fa fa-check"></i><b>5.2</b> Download data</a></li>
 <li class="chapter" data-level="5.3" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#open-rstudio"><i class="fa fa-check"></i><b>5.3</b> Open RStudio</a></li>
@@ -226,17 +194,14 @@ div.csl-indent {
 <li class="chapter" data-level="5.6" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#install-whiteboxtools"><i class="fa fa-check"></i><b>5.6</b> Install WhiteboxTools</a></li>
 <li class="chapter" data-level="5.7" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#loading-packages"><i class="fa fa-check"></i><b>5.7</b> Loading packages</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html"><i class="fa fa-check"></i><b>6</b> Eskdale III - Flow routing</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#dem-pre-processing-flow-enforcement"><i class="fa fa-check"></i><b>6.1</b> DEM pre-processing: flow enforcement</a>
-<ul>
+<li class="chapter" data-level="6" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html"><i class="fa fa-check"></i><b>6</b> Eskdale III - Flow routing</a><ul>
+<li class="chapter" data-level="6.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#dem-pre-processing-flow-enforcement"><i class="fa fa-check"></i><b>6.1</b> DEM pre-processing: flow enforcement</a><ul>
 <li class="chapter" data-level="6.1.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#data-description"><i class="fa fa-check"></i><b>6.1.1</b> Data description</a></li>
 <li class="chapter" data-level="6.1.2" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#breaching-and-filling"><i class="fa fa-check"></i><b>6.1.2</b> Breaching and filling</a></li>
 <li class="chapter" data-level="6.1.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#choosing-a-colour-ramp"><i class="fa fa-check"></i><b>6.1.3</b> Choosing a colour ramp</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#flow-parameters-pointers"><i class="fa fa-check"></i><b>6.2</b> Flow Parameters: Pointers</a></li>
-<li class="chapter" data-level="6.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#flow-algorithms"><i class="fa fa-check"></i><b>6.3</b> Flow Algorithms</a>
-<ul>
+<li class="chapter" data-level="6.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#flow-algorithms"><i class="fa fa-check"></i><b>6.3</b> Flow Algorithms</a><ul>
 <li class="chapter" data-level="6.3.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#comparing-flow-algorithms"><i class="fa fa-check"></i><b>6.3.1</b> Comparing flow algorithms</a></li>
 <li class="chapter" data-level="6.3.2" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#fd8-catchment-area"><i class="fa fa-check"></i><b>6.3.2</b> FD8 catchment area</a></li>
 <li class="chapter" data-level="6.3.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#d-infinity-catchment-area"><i class="fa fa-check"></i><b>6.3.3</b> D-infinity catchment area</a></li>
@@ -244,53 +209,43 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#practical-solution"><i class="fa fa-check"></i><b>6.4</b> Practical solution</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="SecondPractical.html"><a href="SecondPractical.html"><i class="fa fa-check"></i><b>7</b> Mersey I - Introduction</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="SecondPractical.html"><a href="SecondPractical.html#overview-2"><i class="fa fa-check"></i><b>7.1</b> Overview</a>
-<ul>
+<li class="chapter" data-level="7" data-path="SecondPractical.html"><a href="SecondPractical.html"><i class="fa fa-check"></i><b>7</b> Mersey I - Introduction</a><ul>
+<li class="chapter" data-level="7.1" data-path="SecondPractical.html"><a href="SecondPractical.html#overview-2"><i class="fa fa-check"></i><b>7.1</b> Overview</a><ul>
 <li class="chapter" data-level="7.1.1" data-path="SecondPractical.html"><a href="SecondPractical.html#topics-covered-in-this-practical"><i class="fa fa-check"></i><b>7.1.1</b> Topics covered in this practical</a></li>
 <li class="chapter" data-level="7.1.2" data-path="SecondPractical.html"><a href="SecondPractical.html#intended-learning-outcomes-1"><i class="fa fa-check"></i><b>7.1.2</b> Intended Learning Outcomes</a></li>
 <li class="chapter" data-level="7.1.3" data-path="SecondPractical.html"><a href="SecondPractical.html#assessment-1"><i class="fa fa-check"></i><b>7.1.3</b> Assessment</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html"><i class="fa fa-check"></i><b>8</b> Mersey II - Set-up</a>
-<ul>
+<li class="chapter" data-level="8" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html"><i class="fa fa-check"></i><b>8</b> Mersey II - Set-up</a><ul>
 <li class="chapter" data-level="8.1" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#practical-overview"><i class="fa fa-check"></i><b>8.1</b> Practical overview</a></li>
 <li class="chapter" data-level="8.2" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#install-programs-1"><i class="fa fa-check"></i><b>8.2</b> Install programs</a></li>
 <li class="chapter" data-level="8.3" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#download_data_v2"><i class="fa fa-check"></i><b>8.3</b> Download data</a></li>
 <li class="chapter" data-level="8.4" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#practical-2-data"><i class="fa fa-check"></i><b>8.4</b> Data description</a></li>
 <li class="chapter" data-level="8.5" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#open-rstudio-1"><i class="fa fa-check"></i><b>8.5</b> Open RStudio</a></li>
-<li class="chapter" data-level="8.6" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#projects-and-scripts"><i class="fa fa-check"></i><b>8.6</b> Projects and Scripts</a>
-<ul>
+<li class="chapter" data-level="8.6" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#projects-and-scripts"><i class="fa fa-check"></i><b>8.6</b> Projects and Scripts</a><ul>
 <li class="chapter" data-level="8.6.1" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#Existing_R_Projects"><i class="fa fa-check"></i><b>8.6.1</b> Using an existing R project</a></li>
 <li class="chapter" data-level="8.6.2" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#creating-an-r-script-1"><i class="fa fa-check"></i><b>8.6.2</b> Creating an R script</a></li>
 </ul></li>
 <li class="chapter" data-level="8.7" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#loading-packages-1"><i class="fa fa-check"></i><b>8.7</b> Loading packages</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="mersey_three.html"><a href="mersey_three.html"><i class="fa fa-check"></i><b>9</b> Mersey III - Hydrology</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="mersey_three.html"><a href="mersey_three.html#task-1-flow-routing"><i class="fa fa-check"></i><b>9.1</b> Task 1: Flow routing</a>
-<ul>
+<li class="chapter" data-level="9" data-path="mersey_three.html"><a href="mersey_three.html"><i class="fa fa-check"></i><b>9</b> Mersey III - Hydrology</a><ul>
+<li class="chapter" data-level="9.1" data-path="mersey_three.html"><a href="mersey_three.html#task-1-flow-routing"><i class="fa fa-check"></i><b>9.1</b> Task 1: Flow routing</a><ul>
 <li class="chapter" data-level="9.1.1" data-path="mersey_three.html"><a href="mersey_three.html#creating-a-d8-pointer"><i class="fa fa-check"></i><b>9.1.1</b> Creating a D8 pointer</a></li>
 <li class="chapter" data-level="9.1.2" data-path="mersey_three.html"><a href="mersey_three.html#catchment-area"><i class="fa fa-check"></i><b>9.1.2</b> Catchment area</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="mersey_three.html"><a href="mersey_three.html#task-2-seed-points"><i class="fa fa-check"></i><b>9.2</b> Task 2: Seed points</a>
-<ul>
+<li class="chapter" data-level="9.2" data-path="mersey_three.html"><a href="mersey_three.html#task-2-seed-points"><i class="fa fa-check"></i><b>9.2</b> Task 2: Seed points</a><ul>
 <li class="chapter" data-level="9.2.1" data-path="mersey_three.html"><a href="mersey_three.html#seed-repositioning"><i class="fa fa-check"></i><b>9.2.1</b> Seed repositioning</a></li>
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="mersey_three.html"><a href="mersey_three.html#task-3-watershed-creation"><i class="fa fa-check"></i><b>9.3</b> Task 3: Watershed creation</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="mersey_four.html"><a href="mersey_four.html"><i class="fa fa-check"></i><b>10</b> Mersey IV - Surface derivatives</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="mersey_four.html"><a href="mersey_four.html#task-4-reclassification"><i class="fa fa-check"></i><b>10.1</b> Task 4: Reclassification</a>
-<ul>
+<li class="chapter" data-level="10" data-path="mersey_four.html"><a href="mersey_four.html"><i class="fa fa-check"></i><b>10</b> Mersey IV - Surface derivatives</a><ul>
+<li class="chapter" data-level="10.1" data-path="mersey_four.html"><a href="mersey_four.html#task-4-reclassification"><i class="fa fa-check"></i><b>10.1</b> Task 4: Reclassification</a><ul>
 <li class="chapter" data-level="10.1.1" data-path="mersey_four.html"><a href="mersey_four.html#land-cover"><i class="fa fa-check"></i><b>10.1.1</b> Land cover</a></li>
 <li class="chapter" data-level="10.1.2" data-path="mersey_four.html"><a href="mersey_four.html#hydrology-of-soil-types-host"><i class="fa fa-check"></i><b>10.1.2</b> Hydrology of Soil Types (HOST)</a></li>
 <li class="chapter" data-level="10.1.3" data-path="mersey_four.html"><a href="mersey_four.html#bedrock-geology"><i class="fa fa-check"></i><b>10.1.3</b> Bedrock geology</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="mersey_four.html"><a href="mersey_four.html#task-5-calculating-surface-derivatives"><i class="fa fa-check"></i><b>10.2</b> Task 5: Calculating surface derivatives</a></li>
-<li class="chapter" data-level="10.3" data-path="mersey_four.html"><a href="mersey_four.html#task-6-extracting-surface-derivatives"><i class="fa fa-check"></i><b>10.3</b> Task 6: Extracting surface derivatives</a>
-<ul>
+<li class="chapter" data-level="10.3" data-path="mersey_four.html"><a href="mersey_four.html#task-6-extracting-surface-derivatives"><i class="fa fa-check"></i><b>10.3</b> Task 6: Extracting surface derivatives</a><ul>
 <li class="chapter" data-level="10.3.1" data-path="mersey_four.html"><a href="mersey_four.html#water-quality-measurements"><i class="fa fa-check"></i><b>10.3.1</b> Water quality measurements</a></li>
 <li class="chapter" data-level="10.3.2" data-path="mersey_four.html"><a href="mersey_four.html#spatial-areas"><i class="fa fa-check"></i><b>10.3.2</b> Spatial areas</a></li>
 <li class="chapter" data-level="10.3.3" data-path="mersey_four.html"><a href="mersey_four.html#continuous-derivatives"><i class="fa fa-check"></i><b>10.3.3</b> Continuous derivatives</a></li>
@@ -298,10 +253,8 @@ div.csl-indent {
 <li class="chapter" data-level="10.3.5" data-path="mersey_four.html"><a href="mersey_four.html#normalising-categorical-derivatives"><i class="fa fa-check"></i><b>10.3.5</b> Normalising categorical derivatives</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="mersey_five.html"><a href="mersey_five.html"><i class="fa fa-check"></i><b>11</b> Mersey V - Statistical analysis</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="mersey_five.html"><a href="mersey_five.html#task-7-model-building"><i class="fa fa-check"></i><b>11.1</b> Task 7: Model building</a>
-<ul>
+<li class="chapter" data-level="11" data-path="mersey_five.html"><a href="mersey_five.html"><i class="fa fa-check"></i><b>11</b> Mersey V - Statistical analysis</a><ul>
+<li class="chapter" data-level="11.1" data-path="mersey_five.html"><a href="mersey_five.html#task-7-model-building"><i class="fa fa-check"></i><b>11.1</b> Task 7: Model building</a><ul>
 <li class="chapter" data-level="11.1.1" data-path="mersey_five.html"><a href="mersey_five.html#an-introduction-to-linear-models-in-r"><i class="fa fa-check"></i><b>11.1.1</b> An introduction to linear models in R</a></li>
 <li class="chapter" data-level="11.1.2" data-path="mersey_five.html"><a href="mersey_five.html#training-vs.-testing"><i class="fa fa-check"></i><b>11.1.2</b> Training vs. Testing</a></li>
 <li class="chapter" data-level="11.1.3" data-path="mersey_five.html"><a href="mersey_five.html#variable-selection-strategies"><i class="fa fa-check"></i><b>11.1.3</b> Variable selection strategies</a></li>
@@ -329,9 +282,9 @@ Hydrological analysis in R
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="mersey_three" class="section level1" number="9">
+<div id="mersey_three" class="section level1">
 <h1><span class="header-section-number">Chapter 9</span> Mersey III - Hydrology</h1>
-<div id="task-1-flow-routing" class="section level2" number="9.1">
+<div id="task-1-flow-routing" class="section level2">
 <h2><span class="header-section-number">9.1</span> Task 1: Flow routing</h2>
 <p>It should be evident from the lecture and the previous practical that DEMs have a great deal of potential for modelling surface water hydrology and related phenomena in drainage basins. Much of this work is based on the assumptions:</p>
 <ul>
@@ -340,7 +293,7 @@ Hydrological analysis in R
 </ul>
 <p>However, the first assumption is not met when the flow direction is undefined. This occurs when a single grid cell (pit), or group of grid cells (depression), is lower than all neighbouring cells. When these DEM sinks are encountered, and when there are no downslope neighbours, all water that enters a cell is unable to escape. While these sinks can reflect true features of the landscape, they are often DEM artefacts and can be removed using depression filling or breaching. For more information on DEM sinks and the methods used to remove them, see the previous practical.</p>
 <p>For this practical, we’ll be working with a DEM where sinks have already been removed, as indicated by the file name (<code>mersey_DEM_fill</code>). While it is not always practical to use file names which include all analytical steps, it is good practice to include the key analytical steps (e.g. <code>_fill</code>, <code>_slope</code>, <code>_hillshade</code>).</p>
-<div id="creating-a-d8-pointer" class="section level3" number="9.1.1">
+<div id="creating-a-d8-pointer" class="section level3">
 <h3><span class="header-section-number">9.1.1</span> Creating a D8 pointer</h3>
 <p>One key input for drainage network calculations is a <strong>pointer file</strong>, which stores the flow direction of each cell in a raster grid, and thus, the topology of the drainage network. The exact nature of these data depends on the method used to derive the flow directions. One common approach is the D8 algorithm, which sets the flow direction toward the lowest of the eight neighbouring cells, in relation to the centre cell (see <strong>Figure 1</strong>).</p>
 <p align="center">
@@ -354,7 +307,7 @@ Hydrological analysis in R
 </p>
 <p><strong>Figure 2: Pointer data format in Whitebox Tools</strong>. Flow directions (NE, E, SE, S, SW, W, NW, N) are stored as binary numbers in base-2 (<span class="math inline">\(2^0, 2^1, 2^2, 2^3, 2^4, 2^5, 2^6, 2^7\)</span>)</p>
 <p><br/></p>
-<p>Initially, this can seem unnecessarily complex, particularly when compared to a simple sequential storage method (e.g. <span class="math inline">\(N = 0, NE = 1, E = 2, ...\)</span>). However, the advantage of this approach is only apparent when multi-directional flow algorithms are considered such as <strong>FD8</strong> (<span class="citation"><a href="#ref-freeman_calculating_1991" role="doc-biblioref">Freeman</a> (<a href="#ref-freeman_calculating_1991" role="doc-biblioref">1991</a>)</span>; <span class="citation"><a href="#ref-quinn_prediction_1991" role="doc-biblioref">Quinn <em>et al.</em></a> (<a href="#ref-quinn_prediction_1991" role="doc-biblioref">1991</a>)</span>; <span class="citation"><a href="#ref-quinn_tan_1995" role="doc-biblioref">Quinn <em>et al.</em></a> (<a href="#ref-quinn_tan_1995" role="doc-biblioref">1995</a>)</span>) and <strong>D-infinity</strong> (<span class="citation"><a href="#ref-tarboton_new_1997" role="doc-biblioref">Tarboton</a> (<a href="#ref-tarboton_new_1997" role="doc-biblioref">1997</a>)</span>).</p>
+<p>Initially, this can seem unnecessarily complex, particularly when compared to a simple sequential storage method (e.g. <span class="math inline">\(N = 0, NE = 1, E = 2, ...\)</span>). However, the advantage of this approach is only apparent when multi-directional flow algorithms are considered such as <strong>FD8</strong> (<span class="citation">Freeman (<a href="#ref-freeman_calculating_1991" role="doc-biblioref">1991</a>)</span>; <span class="citation">Quinn <em>et al.</em> (<a href="#ref-quinn_prediction_1991" role="doc-biblioref">1991</a>)</span>; <span class="citation">Quinn <em>et al.</em> (<a href="#ref-quinn_tan_1995" role="doc-biblioref">1995</a>)</span>) and <strong>D-infinity</strong> (<span class="citation">Tarboton (<a href="#ref-tarboton_new_1997" role="doc-biblioref">1997</a>)</span>).</p>
 <p>While the D8 algorithm assigns all water flow to a single neighbouring cell, multi-directional algorithms split water flow into two or more neighbouring cells. For these methods, a binary base-2 approach enables this information to be stored efficiently as a single number (see <strong>Figure 3</strong>). With eight neighbouring cells, there are a total of 255 possible combinations<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
 <p align="center">
 <a name="Figure_binary"></a><img src="figures/Practical-2/binary-storage.png" style="width:100.0%" />
@@ -373,7 +326,7 @@ Hydrological analysis in R
 <p>Save your script before continuing.</p>
 </blockquote>
 </div>
-<div id="catchment-area" class="section level3" number="9.1.2">
+<div id="catchment-area" class="section level3">
 <h3><span class="header-section-number">9.1.2</span> Catchment area</h3>
 <p>Using this pointer information, we can calculate the number of grid cells that are connected to each cell in an upslope (catchment area) and downslope (dispersal area) direction. These data describe the spatial pattern of upslope (or downslope) area draining to (or away from) each pixel in a DEM.</p>
 <p>For now, we’ll be calculating the Specific Contributing Area (SCA), which utilises the Upslope Contributing Area (UCA) and Number of Upslope Elements (NUE) metrics:</p>
@@ -393,20 +346,20 @@ Hydrological analysis in R
 <p><img src="Practical_1_files/figure-html/unnamed-chunk-84-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
-<div id="task-2-seed-points" class="section level2" number="9.2">
+<div id="task-2-seed-points" class="section level2">
 <h2><span class="header-section-number">9.2</span> Task 2: Seed points</h2>
 <p>The UK Environment Agency (EA) collects river water quality data at a series of fixed locations across the Mersey Basin. The location of each of these sites is recorded using a GPS and locations have a unique identification number. Seed points are sometimes referred to as “pour points”, and are routinely used to delineate watersheds.</p>
 <p>The locations of the EA monitoring stations are shown below:</p>
-<div id="seed-repositioning" class="section level3" number="9.2.1">
+<div id="seed-repositioning" class="section level3">
 <h3><span class="header-section-number">9.2.1</span> Seed repositioning</h3>
 <p>However, before you can delineate the watershed for each of these outlet points, the seed point location must be checked, repositioned if necessary and given its own unique identifier. This is a very important part of any watershed delineation process.</p>
 <p>Below is a figure showing the flow accumulation raster (<code>mersey_dem_flow_accumulation.tif</code>) and the EA monitoring stations (<code>mersey_EA_sites.shp</code>). Here, we’re using the <strong>raster</strong> package to load the raster data, and the <code>st_read()</code> function from the <code>sf</code> package (<strong>S</strong>imple <strong>F</strong>eatures) to load the vector data.</p>
 <p>To add spatial data to our ggplot map, we are using the <code>annotation_spatial()</code> function which is designed for spatial geometries. Helpfully, this works across the main vector types; points, lines, and polygons can all be added using <code>geom_sf()</code>. For design reasons, we’ve modified the <a href="http://www.sthda.com/english/wiki/ggplot2-point-shapes">shape type</a> as well as the fill, colour and size of the point data.</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="mersey_three.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loads flow accumulation raster using the raster and here packages</span></span>
-<span id="cb84-2"><a href="mersey_three.html#cb84-2" aria-hidden="true" tabindex="-1"></a>mersey_accumulation <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_dem_flow_accumulation.tif&quot;</span>))</span>
-<span id="cb84-3"><a href="mersey_three.html#cb84-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb84-4"><a href="mersey_three.html#cb84-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Loads EA monitoring sites using the st_read function</span></span>
-<span id="cb84-5"><a href="mersey_three.html#cb84-5" aria-hidden="true" tabindex="-1"></a>seed_points <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_EA_sites.shp&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="mersey_three.html#cb84-1"></a><span class="co"># Loads flow accumulation raster using the raster and here packages</span></span>
+<span id="cb84-2"><a href="mersey_three.html#cb84-2"></a>mersey_accumulation &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_dem_flow_accumulation.tif&quot;</span>))</span>
+<span id="cb84-3"><a href="mersey_three.html#cb84-3"></a></span>
+<span id="cb84-4"><a href="mersey_three.html#cb84-4"></a><span class="co"># Loads EA monitoring sites using the st_read function</span></span>
+<span id="cb84-5"><a href="mersey_three.html#cb84-5"></a>seed_points &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_EA_sites.shp&quot;</span>))</span></code></pre></div>
 <pre><code>## Reading layer `mersey_EA_sites&#39; from data source 
 ##   `C:\Users\44797\Desktop\Repo\GEOG-70581\data\practical_2\mersey_EA_sites.shp&#39; 
 ##   using driver `ESRI Shapefile&#39;
@@ -415,15 +368,15 @@ Hydrological analysis in R
 ## Dimension:     XY
 ## Bounding box:  xmin: 345751 ymin: 368724 xmax: 404810 ymax: 427178
 ## Projected CRS: OSGB 1936 / British National Grid</code></pre>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="mersey_three.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plots using ggplot</span></span>
-<span id="cb86-2"><a href="mersey_three.html#cb86-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb86-3"><a href="mersey_three.html#cb86-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_spatial</span>(mersey_accumulation, <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">stat</span>(band1))) <span class="sc">+</span> <span class="co"># Adds raster layer</span></span>
-<span id="cb86-4"><a href="mersey_three.html#cb86-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotation_spatial</span>(<span class="at">data =</span> seed_points, <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&quot;#FFFFFF&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> <span class="co"># Adds vector layer</span></span>
-<span id="cb86-5"><a href="mersey_three.html#cb86-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
-<span id="cb86-6"><a href="mersey_three.html#cb86-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Log-transformed flow accumulation value&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Northing&quot;</span>) <span class="sc">+</span></span>
-<span id="cb86-7"><a href="mersey_three.html#cb86-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">type =</span> <span class="st">&quot;viridis&quot;</span>,  <span class="at">na.value =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb86-8"><a href="mersey_three.html#cb86-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span>
-<span id="cb86-9"><a href="mersey_three.html#cb86-9" aria-hidden="true" tabindex="-1"></a>p </span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="mersey_three.html#cb86-1"></a><span class="co"># Plots using ggplot</span></span>
+<span id="cb86-2"><a href="mersey_three.html#cb86-2"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb86-3"><a href="mersey_three.html#cb86-3"></a><span class="st">  </span><span class="kw">layer_spatial</span>(mersey_accumulation, <span class="kw">aes</span>(<span class="dt">fill =</span> <span class="kw">stat</span>(band1))) <span class="op">+</span><span class="st"> </span><span class="co"># Adds raster layer</span></span>
+<span id="cb86-4"><a href="mersey_three.html#cb86-4"></a><span class="st">  </span><span class="kw">annotation_spatial</span>(<span class="dt">data =</span> seed_points, <span class="dt">shape =</span> <span class="dv">21</span>, <span class="dt">fill =</span> <span class="st">&quot;#FFFFFF&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Adds vector layer</span></span>
+<span id="cb86-5"><a href="mersey_three.html#cb86-5"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb86-6"><a href="mersey_three.html#cb86-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill =</span> <span class="st">&quot;Log-transformed flow accumulation value&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Northing&quot;</span>) <span class="op">+</span></span>
+<span id="cb86-7"><a href="mersey_three.html#cb86-7"></a><span class="st">  </span><span class="kw">scale_fill_continuous</span>(<span class="dt">type =</span> <span class="st">&quot;viridis&quot;</span>,  <span class="dt">na.value =</span> <span class="ot">NA</span>) <span class="op">+</span></span>
+<span id="cb86-8"><a href="mersey_three.html#cb86-8"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span>
+<span id="cb86-9"><a href="mersey_three.html#cb86-9"></a>p </span></code></pre></div>
 <p><img src="Practical_1_files/figure-html/unnamed-chunk-86-1.png" width="672" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>Inspect the above code and implement it in your R script.</p>
@@ -432,8 +385,8 @@ Hydrological analysis in R
 <blockquote>
 <p>To address this, add the following code <strong>before</strong> your ggplot2 call and update the <code>layer_spatial()</code> argument to include this new raster. Here, we are cropping our flow accumulation raster using indexing, extracting rows 632 - 645 and columns 540 - 578. There are, however, more sophisticated approaches to cropping (e.g. using the extent of other spatial layers) but this is reasonably efficient for now.</p>
 </blockquote>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="mersey_three.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crops the accumulation raster based on a defined extent (row and col indexes) </span></span>
-<span id="cb87-2"><a href="mersey_three.html#cb87-2" aria-hidden="true" tabindex="-1"></a>mersey_accumulation_crop <span class="ot">&lt;-</span> <span class="fu">crop</span>(mersey_accumulation, <span class="fu">extent</span>(mersey_accumulation,  <span class="dv">632</span>, <span class="dv">645</span>, <span class="dv">540</span>, <span class="dv">578</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="mersey_three.html#cb87-1"></a><span class="co"># Crops the accumulation raster based on a defined extent (row and col indexes) </span></span>
+<span id="cb87-2"><a href="mersey_three.html#cb87-2"></a>mersey_accumulation_crop &lt;-<span class="st"> </span><span class="kw">crop</span>(mersey_accumulation, <span class="kw">extent</span>(mersey_accumulation,  <span class="dv">632</span>, <span class="dv">645</span>, <span class="dv">540</span>, <span class="dv">578</span>))</span></code></pre></div>
 <p>As the plot extent is determined by the extent of the feature/layer specified in the <code>layer_spatial()</code> argument, your map should now resemble the following:</p>
 <p><img src="Practical_1_files/figure-html/unnamed-chunk-88-1.png" width="672" style="display: block; margin: auto;" /></p>
 <blockquote>
@@ -441,13 +394,13 @@ Hydrological analysis in R
 </blockquote>
 <p>These errors could be due to imprecise GPS coordinates, the resolution of the DEM, or limitations of the analytical approach (i.e. flow routing), particularly in areas of low lying topography. To ensure accurate watershed creation, the sites that lie off the stream network need to be correctly repositioned.</p>
 <p>While it is possible to rectify these errors manually i.e. by checking each point in turn and assigning new coordinates if necessary, this approach would be extremely time consuming with large datasets and could introduce unnecessary bias or human error.</p>
-<p>One common approach to reposition individual points is known as pour point snapping, which relocates points to the nearest stream or area of high accumulation, within a specified threshold distance. See <span class="citation"><a href="#ref-lindsay_mapping_2008" role="doc-biblioref">Lindsay <em>et al.</em></a> (<a href="#ref-lindsay_mapping_2008" role="doc-biblioref">2008</a>)</span> for an overview of snapping approaches.</p>
+<p>One common approach to reposition individual points is known as pour point snapping, which relocates points to the nearest stream or area of high accumulation, within a specified threshold distance. See <span class="citation">Lindsay <em>et al.</em> (<a href="#ref-lindsay_mapping_2008" role="doc-biblioref">2008</a>)</span> for an overview of snapping approaches.</p>
 <p>Whitebox Tools provides two primary methods for snapping:</p>
 <ul>
 <li><a href="https://rdrr.io/cran/whitebox/man/wbt_snap_pour_points.html"><strong>Snap Pour Points</strong></a>, using the <code>wbt_snap_pour_points</code> function, which moves each point to the location coincident with the highest flow accumulation value within a specified distance;</li>
-<li><a href="https://rdrr.io/cran/whitebox/man/wbt_jenson_snap_pour_points.html"><strong>Jenson Snap Pour Points</strong></a>, using the <code>wbt_jenson_snap_pour_points</code> function, which moves each point the nearest stream grid cell within a specified distance following <span class="citation"><a href="#ref-jenson_applications_1991" role="doc-biblioref">Jenson</a> (<a href="#ref-jenson_applications_1991" role="doc-biblioref">1991</a>)</span>.</li>
+<li><a href="https://rdrr.io/cran/whitebox/man/wbt_jenson_snap_pour_points.html"><strong>Jenson Snap Pour Points</strong></a>, using the <code>wbt_jenson_snap_pour_points</code> function, which moves each point the nearest stream grid cell within a specified distance following <span class="citation">Jenson (<a href="#ref-jenson_applications_1991" role="doc-biblioref">1991</a>)</span>.</li>
 </ul>
-<p>Of these, the Jenson Snap Pour Points approach (<span class="citation"><a href="#ref-lindsay_mapping_2008" role="doc-biblioref">Lindsay <em>et al.</em></a> (<a href="#ref-lindsay_mapping_2008" role="doc-biblioref">2008</a>)</span>) is more sophisticated and has one clear advantage: when an initial outlet point is located on a stream cell, it will not be moved. For our EA dataset, which contains points of variable accuracy, this is beneficial because correctly placed points will retain their original positions, and only those incorrectly placed will be modified. In contrast, a standard snap pour points approach will often move all the points, even those which were located correctly!</p>
+<p>Of these, the Jenson Snap Pour Points approach (<span class="citation">Lindsay <em>et al.</em> (<a href="#ref-lindsay_mapping_2008" role="doc-biblioref">2008</a>)</span>) is more sophisticated and has one clear advantage: when an initial outlet point is located on a stream cell, it will not be moved. For our EA dataset, which contains points of variable accuracy, this is beneficial because correctly placed points will retain their original positions, and only those incorrectly placed will be modified. In contrast, a standard snap pour points approach will often move all the points, even those which were located correctly!</p>
 <p>However, the Jenson approach requires additional inputs and utilises a <strong>streams</strong> raster file, rather than an SCA accumulation file. To calculate this, the overall process is as follows:</p>
 <ol style="list-style-type: decimal">
 <li>Calculate the Number of Upslope Elements (<strong>NUE</strong>) using the <code>wbt_d8_flow_accumulation</code> function.</li>
@@ -458,13 +411,13 @@ Hydrological analysis in R
 <blockquote>
 <p>Save your script before continuing.</p>
 </blockquote>
-<div id="number-of-upslope-elements" class="section level4" number="9.2.1.1">
+<div id="number-of-upslope-elements" class="section level4">
 <h4><span class="header-section-number">9.2.1.1</span> Number of Upslope Elements</h4>
 <blockquote>
 <p>Run the <code>wbt_d8_flow_accumulation</code> tool, using the original filled DEM as the input file (<code>pntr = FALSE</code>) and saving with an appropriate name <code>mersey_dem_D8_flow_accumulation_NUE.tif</code> and in the correct location. Set the output type as <code>cells</code> (i.e. the number of upslope cells) and <strong>don’t</strong> log-transform values.</p>
 </blockquote>
 </div>
-<div id="stream-network" class="section level4" number="9.2.1.2">
+<div id="stream-network" class="section level4">
 <h4><span class="header-section-number">9.2.1.2</span> Stream network</h4>
 <p>Next, we are going to extract the stream network based on the NUE raster created in Step 1. To extract streams, we first need to set the <strong>channelization threshold</strong>. This threshold represents the minimum area required to initiate and maintain a channel. Small threshold values will result in more extensive stream networks, while larger threshold values will extract only the largest streams. Unfortunately, there is no widely accepted rule for determining the channelization threshold, which will be unique for each landscape and dataset, and may vary due to raster resolution. As a result, experimentation is required!</p>
 <p>For our dataset, we want to ensure that each EA measurement site is located on or near a digitised stream, so setting a large channelization threshold and focusing on the largest streams might not be appropriate, as some measurement sites are located on minor streams in small catchments. As such, we need to set the channelization threshold sufficiently low to mitigate against this. Feel free to experiment with this threshold and evaluate its effects on the delineated stream network. For our analysis, a channelization threshold of 200 upslope grid cells would be appropriate.</p>
@@ -474,7 +427,7 @@ Hydrological analysis in R
 <p>Your output should resemble the following, whether raster cells corresponding to streams are coded as “1” and non-stream regions are coded as “0”:</p>
 <p><img src="Practical_1_files/figure-html/unnamed-chunk-90-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
-<div id="snapping" class="section level4" number="9.2.1.3">
+<div id="snapping" class="section level4">
 <h4><span class="header-section-number">9.2.1.3</span> Snapping</h4>
 <p>Finally, we are going to reposition the EA seed points to match the stream network. <strong>Remember</strong>, seed points already located on the steam network will not be moved.</p>
 <p>Before we execute the tool, we need to decide on the <strong>Snap Distance</strong>, which is measured in the units of the input data and is the maximum distance that points can be moved to match the stream network. Our raster is measured in <strong>metres</strong> (m) with a grid resolution of 50 m<sup>2</sup>. Most points are incorrectly positioned by one to three grid cells (50 - 150 m). However, to ensure we include all points, we’ll set the snap distance to 500 m.</p>
@@ -484,56 +437,56 @@ Hydrological analysis in R
 <blockquote>
 <p>Run the following code to inspect the outputs of Jenson Snap Pour Points. The stream network is a Boolean (logical) raster, where stream cells = 1 (yellow) and non-stream cells = 0 (blue). The original pour points are shown in white, with the snapped points in red.</p>
 </blockquote>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="mersey_three.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loads streams raster using the raster and here packages</span></span>
-<span id="cb88-2"><a href="mersey_three.html#cb88-2" aria-hidden="true" tabindex="-1"></a>mersey_streams <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_dem_streams_act200.tif&quot;</span>))</span>
-<span id="cb88-3"><a href="mersey_three.html#cb88-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-4"><a href="mersey_three.html#cb88-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Crops the streams raster based on a defined extent (row and col indexes) </span></span>
-<span id="cb88-5"><a href="mersey_three.html#cb88-5" aria-hidden="true" tabindex="-1"></a>mersey_streams_crop <span class="ot">&lt;-</span> <span class="fu">crop</span>(mersey_streams, <span class="fu">extent</span>(mersey_streams,  <span class="dv">632</span>, <span class="dv">645</span>, <span class="dv">540</span>, <span class="dv">578</span>))</span>
-<span id="cb88-6"><a href="mersey_three.html#cb88-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-7"><a href="mersey_three.html#cb88-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Loads original and snapped EA monitoring sites using the st_read function</span></span>
-<span id="cb88-8"><a href="mersey_three.html#cb88-8" aria-hidden="true" tabindex="-1"></a>seed_points <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_EA_sites.shp&quot;</span>))</span>
-<span id="cb88-9"><a href="mersey_three.html#cb88-9" aria-hidden="true" tabindex="-1"></a>snapped_seed_points <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_EA_sites_snapped.shp&quot;</span>))</span>
-<span id="cb88-10"><a href="mersey_three.html#cb88-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-11"><a href="mersey_three.html#cb88-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plots using ggplot</span></span>
-<span id="cb88-12"><a href="mersey_three.html#cb88-12" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb88-13"><a href="mersey_three.html#cb88-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_spatial</span>(mersey_streams_crop, <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">stat</span>(band1))) <span class="sc">+</span> <span class="co"># Adds raster layer</span></span>
-<span id="cb88-14"><a href="mersey_three.html#cb88-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotation_spatial</span>(<span class="at">data =</span> seed_points, <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&quot;#FFFFFF&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> <span class="co"># Adds seeds layer</span></span>
-<span id="cb88-15"><a href="mersey_three.html#cb88-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotation_spatial</span>(<span class="at">data =</span> snapped_seed_points, <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&quot;#FB5858&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> <span class="co"># Adds snapped seeds layer</span></span>
-<span id="cb88-16"><a href="mersey_three.html#cb88-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
-<span id="cb88-17"><a href="mersey_three.html#cb88-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Stream network ID&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Northing&quot;</span>) <span class="sc">+</span></span>
-<span id="cb88-18"><a href="mersey_three.html#cb88-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">type =</span> <span class="st">&quot;viridis&quot;</span>,  <span class="at">na.value =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb88-19"><a href="mersey_three.html#cb88-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span>
-<span id="cb88-20"><a href="mersey_three.html#cb88-20" aria-hidden="true" tabindex="-1"></a>p </span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="mersey_three.html#cb88-1"></a><span class="co"># Loads streams raster using the raster and here packages</span></span>
+<span id="cb88-2"><a href="mersey_three.html#cb88-2"></a>mersey_streams &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_dem_streams_act200.tif&quot;</span>))</span>
+<span id="cb88-3"><a href="mersey_three.html#cb88-3"></a></span>
+<span id="cb88-4"><a href="mersey_three.html#cb88-4"></a><span class="co"># Crops the streams raster based on a defined extent (row and col indexes) </span></span>
+<span id="cb88-5"><a href="mersey_three.html#cb88-5"></a>mersey_streams_crop &lt;-<span class="st"> </span><span class="kw">crop</span>(mersey_streams, <span class="kw">extent</span>(mersey_streams,  <span class="dv">632</span>, <span class="dv">645</span>, <span class="dv">540</span>, <span class="dv">578</span>))</span>
+<span id="cb88-6"><a href="mersey_three.html#cb88-6"></a></span>
+<span id="cb88-7"><a href="mersey_three.html#cb88-7"></a><span class="co"># Loads original and snapped EA monitoring sites using the st_read function</span></span>
+<span id="cb88-8"><a href="mersey_three.html#cb88-8"></a>seed_points &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_EA_sites.shp&quot;</span>))</span>
+<span id="cb88-9"><a href="mersey_three.html#cb88-9"></a>snapped_seed_points &lt;-<span class="st"> </span><span class="kw">st_read</span>(<span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_EA_sites_snapped.shp&quot;</span>))</span>
+<span id="cb88-10"><a href="mersey_three.html#cb88-10"></a></span>
+<span id="cb88-11"><a href="mersey_three.html#cb88-11"></a><span class="co"># Plots using ggplot</span></span>
+<span id="cb88-12"><a href="mersey_three.html#cb88-12"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb88-13"><a href="mersey_three.html#cb88-13"></a><span class="st">  </span><span class="kw">layer_spatial</span>(mersey_streams_crop, <span class="kw">aes</span>(<span class="dt">fill =</span> <span class="kw">stat</span>(band1))) <span class="op">+</span><span class="st"> </span><span class="co"># Adds raster layer</span></span>
+<span id="cb88-14"><a href="mersey_three.html#cb88-14"></a><span class="st">  </span><span class="kw">annotation_spatial</span>(<span class="dt">data =</span> seed_points, <span class="dt">shape =</span> <span class="dv">21</span>, <span class="dt">fill =</span> <span class="st">&quot;#FFFFFF&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Adds seeds layer</span></span>
+<span id="cb88-15"><a href="mersey_three.html#cb88-15"></a><span class="st">  </span><span class="kw">annotation_spatial</span>(<span class="dt">data =</span> snapped_seed_points, <span class="dt">shape =</span> <span class="dv">21</span>, <span class="dt">fill =</span> <span class="st">&quot;#FB5858&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Adds snapped seeds layer</span></span>
+<span id="cb88-16"><a href="mersey_three.html#cb88-16"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb88-17"><a href="mersey_three.html#cb88-17"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill =</span> <span class="st">&quot;Stream network ID&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Northing&quot;</span>) <span class="op">+</span></span>
+<span id="cb88-18"><a href="mersey_three.html#cb88-18"></a><span class="st">  </span><span class="kw">scale_fill_continuous</span>(<span class="dt">type =</span> <span class="st">&quot;viridis&quot;</span>,  <span class="dt">na.value =</span> <span class="ot">NA</span>) <span class="op">+</span></span>
+<span id="cb88-19"><a href="mersey_three.html#cb88-19"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span>
+<span id="cb88-20"><a href="mersey_three.html#cb88-20"></a>p </span></code></pre></div>
 <p><img src="Practical_1_files/figure-html/unnamed-chunk-92-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 </div>
-<div id="task-3-watershed-creation" class="section level2" number="9.3">
+<div id="task-3-watershed-creation" class="section level2">
 <h2><span class="header-section-number">9.3</span> Task 3: Watershed creation</h2>
 <p>To finish the Week 10 class (Chapter 9), we are going to combine the previous outputs to create unique (non-overlapping) watersheds for each EA seed point.</p>
 <blockquote>
 <p>Use the <code>wbt_watershed</code> function with the D8 pointer raster (<code>mersey_dem_D8_pointer.tif</code>) and the snapped pour points vector (<code>mersey_EA_sites_snapped.shp</code>) as inputs. Save in the <code>output/practical_2</code> directory as <code>mersey_watersheds.tif</code>. Your output should resemble the following:</p>
 </blockquote>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="mersey_three.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loads streams raster using the raster and here packages</span></span>
-<span id="cb89-2"><a href="mersey_three.html#cb89-2" aria-hidden="true" tabindex="-1"></a>mersey_watersheds <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_watersheds.tif&quot;</span>))</span>
-<span id="cb89-3"><a href="mersey_three.html#cb89-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-4"><a href="mersey_three.html#cb89-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plots using ggplot</span></span>
-<span id="cb89-5"><a href="mersey_three.html#cb89-5" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb89-6"><a href="mersey_three.html#cb89-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_spatial</span>(mersey_watersheds, <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">stat</span>(band1))) <span class="sc">+</span> <span class="co"># Adds raster layer</span></span>
-<span id="cb89-7"><a href="mersey_three.html#cb89-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotation_spatial</span>(<span class="at">data =</span> snapped_seed_points, <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&quot;#FB5858&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> <span class="co"># Adds snapped seeds layer</span></span>
-<span id="cb89-8"><a href="mersey_three.html#cb89-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
-<span id="cb89-9"><a href="mersey_three.html#cb89-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Stream network&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Northing&quot;</span>) <span class="sc">+</span></span>
-<span id="cb89-10"><a href="mersey_three.html#cb89-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">type =</span> <span class="st">&quot;viridis&quot;</span>,  <span class="at">na.value =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb89-11"><a href="mersey_three.html#cb89-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span>
-<span id="cb89-12"><a href="mersey_three.html#cb89-12" aria-hidden="true" tabindex="-1"></a>p </span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="mersey_three.html#cb89-1"></a><span class="co"># Loads streams raster using the raster and here packages</span></span>
+<span id="cb89-2"><a href="mersey_three.html#cb89-2"></a>mersey_watersheds &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_watersheds.tif&quot;</span>))</span>
+<span id="cb89-3"><a href="mersey_three.html#cb89-3"></a></span>
+<span id="cb89-4"><a href="mersey_three.html#cb89-4"></a><span class="co"># Plots using ggplot</span></span>
+<span id="cb89-5"><a href="mersey_three.html#cb89-5"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb89-6"><a href="mersey_three.html#cb89-6"></a><span class="st">  </span><span class="kw">layer_spatial</span>(mersey_watersheds, <span class="kw">aes</span>(<span class="dt">fill =</span> <span class="kw">stat</span>(band1))) <span class="op">+</span><span class="st"> </span><span class="co"># Adds raster layer</span></span>
+<span id="cb89-7"><a href="mersey_three.html#cb89-7"></a><span class="st">  </span><span class="kw">annotation_spatial</span>(<span class="dt">data =</span> snapped_seed_points, <span class="dt">shape =</span> <span class="dv">21</span>, <span class="dt">fill =</span> <span class="st">&quot;#FB5858&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Adds snapped seeds layer</span></span>
+<span id="cb89-8"><a href="mersey_three.html#cb89-8"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb89-9"><a href="mersey_three.html#cb89-9"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill =</span> <span class="st">&quot;Stream network&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Northing&quot;</span>) <span class="op">+</span></span>
+<span id="cb89-10"><a href="mersey_three.html#cb89-10"></a><span class="st">  </span><span class="kw">scale_fill_continuous</span>(<span class="dt">type =</span> <span class="st">&quot;viridis&quot;</span>,  <span class="dt">na.value =</span> <span class="ot">NA</span>) <span class="op">+</span></span>
+<span id="cb89-11"><a href="mersey_three.html#cb89-11"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span>
+<span id="cb89-12"><a href="mersey_three.html#cb89-12"></a>p </span></code></pre></div>
 <p><img src="Practical_1_files/figure-html/unnamed-chunk-94-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The watersheds are currently stored as rasters, but it is often easier to work with vectors, especially when dealing with attributes and spatial relationships (topology).</p>
 <blockquote>
 <p>Use the following code to convert your watersheds raster (<code>.tif</code>) to vector format (<code>.shp</code>)</p>
 </blockquote>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="mersey_three.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Converts watershed to vector format (polygon)</span></span>
-<span id="cb90-2"><a href="mersey_three.html#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wbt_raster_to_vector_polygons</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_watersheds.tif&quot;</span>),</span>
-<span id="cb90-3"><a href="mersey_three.html#cb90-3" aria-hidden="true" tabindex="-1"></a>                              <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_watersheds.shp&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="mersey_three.html#cb90-1"></a><span class="co"># Converts watershed to vector format (polygon)</span></span>
+<span id="cb90-2"><a href="mersey_three.html#cb90-2"></a><span class="kw">wbt_raster_to_vector_polygons</span>(<span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_watersheds.tif&quot;</span>),</span>
+<span id="cb90-3"><a href="mersey_three.html#cb90-3"></a>                              <span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_watersheds.shp&quot;</span>))</span></code></pre></div>
 <p>These delineated watersheds can now be used for further analysis. However, it is important that we carefully assess them for any errors. This typically requires in-depth knowledge to assess whether the correct watershed(s) has been extracted. In turn, the position of seed points is critical, as placing seeds points above/below stream confluences can have a major impact on the extracted watershed(s), as shown in <strong>Figure 4</strong>:</p>
 <p align="center">
 <a name="Figure_watersheds"></a><img src="figures/Practical-2/confluences.png" style="width:70.0%" />
@@ -549,24 +502,24 @@ Hydrological analysis in R
 </div>
 </div>
 <h3>References</h3>
-<div id="refs" class="references csl-bib-body">
-<div id="ref-freeman_calculating_1991" class="csl-entry">
-Freeman, T.G. (1991) <span>‘Calculating catchment area with divergent flow based on a regular grid’</span>, <em>Computers &amp; Geosciences</em>, 17(3), pp. 413–422. doi:<a href="https://doi.org/10.1016/0098-3004(91)90048-I">10.1016/0098-3004(91)90048-I</a>.
+<div id="refs" class="references">
+<div id="ref-freeman_calculating_1991">
+<p>Freeman, T.G. (1991) ‘Calculating catchment area with divergent flow based on a regular grid’, <em>Computers &amp; Geosciences</em>, 17(3), pp. 413–422. doi:<a href="https://doi.org/10.1016/0098-3004(91)90048-I">10.1016/0098-3004(91)90048-I</a>.</p>
 </div>
-<div id="ref-jenson_applications_1991" class="csl-entry">
-Jenson, S.K. (1991) <span>‘Applications of hydrologic information automatically extracted from digital elevation models’</span>, <em>Hydrological Processes</em>, 5(1), pp. 31–44. doi:<a href="https://doi.org/10.1002/hyp.3360050104">https://doi.org/10.1002/hyp.3360050104</a>.
+<div id="ref-jenson_applications_1991">
+<p>Jenson, S.K. (1991) ‘Applications of hydrologic information automatically extracted from digital elevation models’, <em>Hydrological Processes</em>, 5(1), pp. 31–44. doi:<a href="https://doi.org/https://doi.org/10.1002/hyp.3360050104">https://doi.org/10.1002/hyp.3360050104</a>.</p>
 </div>
-<div id="ref-lindsay_mapping_2008" class="csl-entry">
-Lindsay, J.B. <em>et al.</em> (2008) <span>‘Mapping outlet points used for watershed delineation onto <span>DEM</span>-derived stream networks’</span>, <em>Water Resources Research</em>, 44(8). doi:<a href="https://doi.org/10.1029/2007WR006507">https://doi.org/10.1029/2007WR006507</a>.
+<div id="ref-lindsay_mapping_2008">
+<p>Lindsay, J.B. <em>et al.</em> (2008) ‘Mapping outlet points used for watershed delineation onto DEM-derived stream networks’, <em>Water Resources Research</em>, 44(8). doi:<a href="https://doi.org/https://doi.org/10.1029/2007WR006507">https://doi.org/10.1029/2007WR006507</a>.</p>
 </div>
-<div id="ref-quinn_prediction_1991" class="csl-entry">
-Quinn, P. <em>et al.</em> (1991) <span>‘The prediction of hillslope flow paths for distributed hydrological modelling using digital terrain models’</span>, <em>Hydrological Processes</em>, 5(1), pp. 59–79. doi:<a href="https://doi.org/10.1002/hyp.3360050106">https://doi.org/10.1002/hyp.3360050106</a>.
+<div id="ref-quinn_prediction_1991">
+<p>Quinn, P. <em>et al.</em> (1991) ‘The prediction of hillslope flow paths for distributed hydrological modelling using digital terrain models’, <em>Hydrological Processes</em>, 5(1), pp. 59–79. doi:<a href="https://doi.org/https://doi.org/10.1002/hyp.3360050106">https://doi.org/10.1002/hyp.3360050106</a>.</p>
 </div>
-<div id="ref-quinn_tan_1995" class="csl-entry">
-Quinn, P.F. <em>et al.</em> (1995) <span>‘The in(a/tan/β) index: <span>How</span> to calculate it and how to use it within the topmodel framework’</span>, <em>Hydrological Processes</em>, 9(2), pp. 161–182. doi:<a href="https://doi.org/10.1002/hyp.3360090204">https://doi.org/10.1002/hyp.3360090204</a>.
+<div id="ref-quinn_tan_1995">
+<p>Quinn, P.F. <em>et al.</em> (1995) ‘The in(a/tan/β) index: How to calculate it and how to use it within the topmodel framework’, <em>Hydrological Processes</em>, 9(2), pp. 161–182. doi:<a href="https://doi.org/https://doi.org/10.1002/hyp.3360090204">https://doi.org/10.1002/hyp.3360090204</a>.</p>
 </div>
-<div id="ref-tarboton_new_1997" class="csl-entry">
-Tarboton, D.G. (1997) <span>‘A new method for the determination of flow directions and upslope areas in grid digital elevation models’</span>, <em>Water Resources Research</em>, 33(2), pp. 309–319. doi:<a href="https://doi.org/10.1029/96WR03137">https://doi.org/10.1029/96WR03137</a>.
+<div id="ref-tarboton_new_1997">
+<p>Tarboton, D.G. (1997) ‘A new method for the determination of flow directions and upslope areas in grid digital elevation models’, <em>Water Resources Research</em>, 33(2), pp. 309–319. doi:<a href="https://doi.org/https://doi.org/10.1029/96WR03137">https://doi.org/10.1029/96WR03137</a>.</p>
 </div>
 </div>
 <div class="footnotes">

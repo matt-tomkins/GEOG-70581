@@ -811,7 +811,7 @@ A code solution to the formative task will be uploaded here on the Monday after 
 
 # Solution to the Chapter 3 formative task
 # Author: matt-tomkins
-# Date of upload: 22-11-2021
+# Date of upload: 21-11-2023
 
 # Function to check and install packages
 check.packages <- function(pkg){
