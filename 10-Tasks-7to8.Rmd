@@ -265,18 +265,21 @@ Plots of measured vs. modelled values (as well as Q-Q plots and histograms) can 
 ```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
 
 # ggplot of measured vs. modelled (predicted) NO2 values
-no2_plot <- ggplot(data = testing, aes(x = predicted_no2, y = NO2)) +
+no2_plot <- ggplot(data = testing, aes(x = NO2, y = predicted_no2)) +
   # Adding a linear regression ("lm"), removing standard error bars (se = FALSE)
-  geom_smooth(method = "lm", se = FALSE, colour="#5695FF") +
+  geom_smooth(method = "lm", se = FALSE, colour="#FF953C") +
   # Adds a 1:1 line for comparison
   geom_abline(intercept = 0, slope = 1, lty = "dashed") +
   # Adds the point data, modifying the shape, size, colour and fill
-  geom_point(shape = 21, colour = "white", fill = "#5695FF", size = 2) +
+  geom_point(shape = 21, colour = "white", fill = "#5695FF", size = 2.5) +
   # Setting the theme and aspect ratio
   theme_classic() +
   theme(aspect.ratio = 1) +
+  # Axis limits
+  scale_x_continuous(limits = c(0,0.3)) +
+  scale_y_continuous(limits = c(0,0.3)) +
   # Add axis labels and a title
-  labs(x = Modelled~NO[2], y = Measured~NO[2], 
+  labs(x = Measured~NO[2], y = Modelled~NO[2], 
        title = Plot~of~measured~vs.~modelled~NO[2]~values)
 
 no2_plot
