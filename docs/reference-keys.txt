@@ -14,7 +14,7 @@ a-quick-note-on-the-practicals
 dealing-with-errors
 loading-r
 variables-looping
-variable-names
+object-names
 variables_types
 data-structures
 vectors

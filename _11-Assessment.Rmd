@@ -4,6 +4,10 @@
 
 **Word Limit:** 1500. The guidelines provided in the CO<sub>2</sub> flux practical, which outline what is and what is not included in the word count, as well penalties for exceeding the word count, also apply here. 
 
+**Intended Learning Outcomes**: see [Mersey I - Introduction](#SecondPractical)
+
+**Assessment Criteria**: see the [Assessment Guidance](https://online.manchester.ac.uk/webapps/blackboard/content/listContentEditable.jsp?content_id=_14414662_1&course_id=_74713_1) section on Blackboard, which includes a marking rubric and hints-and-tips presentation. 
+
 **Format:** Report 
 
 **Structure:** Your report should be a coherent document, as opposed to a list of Q&As as with the CO<sub>2</sub> flux practical. Within this, how you structure the report is your decision. However, there are certain items that must be included in the main body of the report. These are the regression equations (and associated information i.e. significance values, R<sup>2</sup> etc) for all ten water quality indicators. 

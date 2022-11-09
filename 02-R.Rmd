@@ -26,7 +26,7 @@ To test your understanding, there is a short **formative task** (non-assessed) a
 
 ### What is R?
 
-R was originally focused on statistical data analysis, but has evolved into a general-purpose high level programming language. High level languages are typically less complicated and more user friendly than low level languages (e.g. C, C++, Java), but this comes at the expense of being slightly slower to execute. 
+R was originally developed in the 1990s for statistical data analysis. While it is still optimized for statistical analysis and data visualization, it has been utilised for a much wider range of applications. As a high-level programming language, it is less complicated and more user friendly than low level languages (e.g. C, C++, Java), but this comes at the expense of being slightly slower to execute. 
 
 Importantly, R is free and open-source and its core functionality can be extended using **packages**. These are available through the **C**omprehensive **R** **A**rchive **N**etwork ([CRAN](https://cran.r-project.org/web/packages/)) and allow the user to perform a range of tasks (e.g. reading and writing files, rendering images), without the requirement to delve into the underlying source code. 
 
@@ -57,13 +57,13 @@ As we progress through this course, make sure to read the content carefully. How
 
 Before we load R and take our first steps towards coding excellence, it is worth noting that errors are an **inevitable** aspect of coding. Irrespective of how good you are, you will spend more time fixing your code (i.e. debugging) than writing it! 
 
-Luckily, when R encounters an error, it will try and help you out. For example, shown below is some simple R code. Here, we are tying to create a new variable called **a**, which is the product (+) of variable **b** and the number **1**:
+Luckily, when R encounters an error, it will try and help you out. For example, shown below is some simple R code. Here, we are tying to create a new object called **a**, which is the product (+) of object **b** and the numeric value **1**:
 
 ```{r, error=TRUE}
 a <- b + 1
 ```
 
-In this example, the code fails and prints the error message `object 'b' not found` because the variable **b** does not exist! We could solve this by defining **b** beforehand as follows:
+In this example, the code fails and prints the error message `object 'b' not found` because the object **b** does not exist! We could solve this by defining **b** beforehand as follows:
 
 ```{r, error=TRUE}
 b <- 3
@@ -113,26 +113,26 @@ In the **Workspace window**, you can see all the objects that you have created i
 
 At it's most basic, R can operate as a powerful calculator. We can add `+`, subtract `-`, multiply `*` and divide `/`, take the exponent `^`, calculate the square root `sqrt()` or the logarithm of a number `log10()`, or melt our computers by using the `factorial()` function. Operators can also be combined to produce more complicated mathematical functions. 
 
-## Variables {#variables-looping}
+## Objects {#variables-looping}
 
-One of the most important things to know about in R is the **variable** or **object**. In this set of practicals, we use the term "variable", which is more common across different programming languages. Variables are containers that you can store values in, and then refer to again later. 
-R creates variables for you automatically, so all that is required is to name it and then use the **assignment operator** `<-` to assign a value to it. 
+One of the most important things to know about in R is the **variable** or **object**. In this set of practicals, we use the term "object", although variable is also used commonly across different programming languages. Objects are containers that you can store values in, and then refer to again later. 
+R creates objects for you automatically, so all that is required is to name it and then use the **assignment operator** `<-` to assign a value to it. 
 
-As a general rule (and because of complicated reasons), use `<-` for assignment, as shown below, and **don't** use `=`:
+As a general rule (and for [historical](https://colinfay.me/r-assignment/) and other [complicated](http://uc-r.github.io/assignment/) reasons), use `<-` for assignment, as shown below, and **don't** use `=`:
 
 ```{r}
 b <- 3
 ```
 
-> Run the above code. This assigns the value of "3" to a variable named "b": 
+> Run the above code. This assigns the value of "3" to an object named "b": 
 
-You should now see that under the [**Workspace window**](#workspace), the variable **b** has been added to the Environment tab: 
+You should now see that under the [**Workspace window**](#workspace), the object **b** has been added to the Environment tab: 
 
 <p align="center">
 ![](figures/Practical-1/RStudio_environment.png){width=50%}
 </p>
 
-The variable **b** can now be called again by the user. 
+The object **b** can now be called again by the user. 
 
 > Run the following in the console. Does it work as expected? 
 
@@ -140,7 +140,7 @@ The variable **b** can now be called again by the user.
 b + 5
 ```
 
-There are number of benefits to using variables. For example, take the following:
+There are number of benefits to using objects. For example, take the following:
 
 ```{r}
 
@@ -148,11 +148,11 @@ a <- 5
 b <- 10
 
 result <- (sqrt(a) + log(b))^a + 2*b
-result # Typing the name of a variable ('result') prints it in the Console Window
+result # Typing the name of an object ('result') prints it in the Console Window
 
 ```
 
-This is a relatively complicated mathematical formula! It uses a square root `sqrt()` and logarithm `log()` function, as well as multiplication `*` and powers `^`. We could replicate this result by substituting each value of **a** for 5 and each value of **b** for 10, but this would be time consuming and prone to error, and would be very frustrating if we wanted to re-calculate the result for `a = 6` and `b = 11`! Using variables allows us to use and modify values multiple times within the code. 
+This is a relatively complicated mathematical formula! It uses a square root `sqrt()` and logarithm `log()` function, as well as multiplication `*` and powers `^`. We could replicate this result by substituting each value of **a** for 5 and each value of **b** for 10, but this would be time consuming and prone to error, and would be very frustrating if we wanted to re-calculate the result for `a = 6` and `b = 11`! Using objects allows us to use and modify values multiple times within the code. 
 
 > Modify the code above to test for `a = 6` and `b = 11`. Compare your answer with a colleague in class or on Zoom. Did you get the same result?
 
@@ -166,7 +166,7 @@ result
 
 ```
 
-Using variables is also important for [**repeatability**](#why_code).
+Using objects is also important for [**repeatability**](#why_code).
 
 Let's say we want to calculate the sum of the squares from 1 to 5 i.e. $1^2 + 2^2 + 3^2 + 4^2 +5^2$. We could write this numerically in R as follows:
 
@@ -188,11 +188,11 @@ However, what if wanted to perform this calculation for all the numbers from 1 t
 
 What if we wanted to cube each value (i.e. $n^3$), rather than squaring? Either change would require a great deal of manual editing, with lots of potential for error.  
 
-By comparison, using variables allows us to **loop** (or iterate) through a series of calculations. The code below creates a variable called `result` and loops through a sequence of numbers using `seq()` to perform the above calculation, where the variable `i` is updated each iteration. 
+By comparison, using objects allows us to **loop** (or iterate) through a series of calculations. The code below creates a object called `result` and loops through a sequence of numbers using `seq()` to perform the above calculation, where the object `i` is updated each iteration. 
 
 ```{r}
 
-# Initialises a variable called result, with a value of 0
+# Initialises an object called result, with a value of 0
 result <- 0
 
 # Loops through a sequence from 1 to 5 in increments of 1 (i.e. 1, 2, 3, 4, 5)
@@ -201,7 +201,7 @@ for(i in seq(from = 1, to = 5, by = 1)){
   result <- result + i^2
 }
 
-# Prints variable 'result' to the Console Window
+# Prints object 'result' to the Console Window
 result
 
 
@@ -209,11 +209,11 @@ result
 
 > Run the above code in the console. Try to modify the code to perform the calculation for 1 - 50; this should equal $42925$
 
-At this stage, **don't worry** about understanding the syntax of the code above. The important thing to remember is that using variables allows to us to perform more complex and repeatable analyses.
+At this stage, **don't worry** about understanding the syntax of the code above. The important thing to remember is that using objects allows to us to perform more complex and repeatable analyses.
 
-### Variable names
+### Object names
 
-When defining a variable name, you can't use spaces or characters that are not a-z, A-Z or 0-9. As a general rule, variables in R should be written in “snake case” (as opposed to “upper case” or “lower case”) where all words are in lower case and are separated by underscores (_). All of these are valid variable names in snake case:
+When defining a object name, you can't use spaces or characters that are not a-z, A-Z or 0-9. As a general rule, objects in R should be written in “snake case” (as opposed to “upper case” or “lower case”) where all words are in lower case and are separated by underscores (_). All of these are valid object names in snake case:
 
 - snake_case
 - a_really_long_snake_case_name
@@ -222,9 +222,9 @@ When defining a variable name, you can't use spaces or characters that are not a
 
 Other popular naming conventions include camelCase, UPPER_CASE or hyphen-case (among many others). Pick one and use it consistently. 
 
-### Variable types {#variables_types}
+### Object types {#variables_types}
 
-Each variable will have a particular **type**, which specifies what kind of a value it can hold. Whilst this is handled automatically for you by R, it is important that you understand what the different types are. Here are some common examples:
+Each object will have a particular **type**, which specifies what kind of a value it can hold. Whilst this is handled automatically for you by R, it is important that you understand what the different types are. Here are some common examples:
 
 ```{r}
 
@@ -242,7 +242,7 @@ d <- TRUE
 
 ```
 
-> Run the above code. If successful, your workspace should now include the variables `a, b, c, d`. 
+> Run the above code. If successful, your workspace should now include the objects `a, b, c, d`. 
 
 Some data types are compatible e.g. 
 
@@ -266,7 +266,7 @@ b + a
 
 ## Data structures
 
-In the previous examples, each variable has consisted of a **single** element. This could be a  name (`bill`), a decimal number (`3.567`), an integer (`3`), and so on. 
+In the previous examples, each object has consisted of a **single** element. This could be a  name (`bill`), a decimal number (`3.567`), an integer (`3`), and so on. 
 
 However, R can store data in a range of different structures, some of which you will encounter as we progress through the course. 
 
@@ -348,7 +348,7 @@ df[,2:3]
 
 ```
 
-We can also extract rows and columns based on the values within the data frame, for example using the `subset()` function. This can be used to select and exclude variables and observations as follows:
+We can also extract rows and columns based on the values within the data frame, for example using the `subset()` function. This can be used to select and exclude observations as follows:
 
 ```{r}
 # Extract data frame rows where height is more than or equal to (>=) 1.8 m. 
@@ -362,7 +362,7 @@ subset(df, bereft_of_life == FALSE)
 
 ```
 
-> Using the above code as an example, extract all the rows where `name` is equal to Terry. Assign the result to a new variable. You can calculate the number of rows using the function `nrow()`. Did you get the following answer? 
+> Using the above code as an example, extract all the rows where `name` is equal to Terry. Assign the result to a new object. You can calculate the number of rows using the function `nrow()`. Did you get the following answer? 
 
 ```{r, echo = FALSE}
 # Subsets based on the name Terry, counts the number of rows
@@ -380,7 +380,7 @@ However, the R functionality outlined here will cover all the steps required for
 
 ## Scripts {#scripts}
 
-So far we've been typing commands into the **console**. This works as expected; we can print results, store variables in the **workspace** and create plots in the **plots** window. 
+So far we've been typing commands into the **console**. This works as expected; we can print results, store objects in the **workspace** and create plots in the **plots** window. 
 
 However, it is often more convenient to store our code in a **script**, which is simply a file containing a set of commands and comments. For example, a single R script could contain commands to load data, perform statistical analysis, and output the results to a new file. This can be run in a single keystroke, which is much simpler than typing each command in one after another. 
 
@@ -420,7 +420,7 @@ plot(c, a)
 
 ```
  
-> The above code is our first encounter with `plot()` which (as you may have guessed), is used to plot variables in base R [^1]. The new plot you've created should now appear in the **plots window** and should resemble the following figure. There are lots of more exciting ways to plot data in R, some of which are described [below](#data_plotting).
+> The above code is our first encounter with `plot()` which (as you may have guessed), is used to plot objects in base R [^1]. The new plot you've created should now appear in the **plots window** and should resemble the following figure. There are lots of more exciting ways to plot data in R, some of which are described [below](#data_plotting).
 
 [^1]: **Base R** is used to refer to the functions that are part of the core packages deployed with R, such as `plot()`, `sqrt()` or `seq()`. As we install and utilise user-created [packages](#packages), we are moving away from base R. 
 
@@ -515,7 +515,7 @@ Finally, packages should typically be installed and loaded at the **start** of a
 
 In the final two sections of this chapter, we will load some data from a external file and plot using ggplot2. 
 
-In the previous examples, we've been creating variables, vectors and data frames from scratch, but most data you will work with will be saved in another file format. This could be a comma-separated file (`.csv`), tab-delimited (`.txt`) or in an Excel format (`.xls`), or could be a spatial data type, such as a raster (`.tif`, `.asc`, `.img`) or vector (`.shp`). Being able to load and manipulate different data types is a key programming skill. 
+In the previous examples, we've been creating objects, vectors and data frames from scratch, but most data you will work with will be saved in another file format. This could be a comma-separated file (`.csv`), tab-delimited (`.txt`) or in an Excel format (`.xls`), or could be a spatial data type, such as a raster (`.tif`, `.asc`, `.img`) or vector (`.shp`). Being able to load and manipulate different data types is a key programming skill. 
 
 We'll use one of the most well-used formats as an example; the comma-separated file (.csv). This consists of rows and columns of data, where columns are delineated by commas. For example, here is an example of some comma-separated data:
 
@@ -605,7 +605,7 @@ To load this file into R:
 
 ```{r, eval = FALSE}
 
-# Load data
+# Loading data (ensure file path is updated)
 df <- read.csv("C:/Users/Bill/Documents/GEOG-70581/data/flow_data.csv")
 
 ```
@@ -618,7 +618,7 @@ df <- read.csv("C:/Users/44797/Desktop/Repo/GEOG-70581/data/flow_data.csv")
 
 ```
 
-If this has worked successfully, a new variable `df` will have been loaded into the **workspace**:
+If this has worked successfully, a new object `df` will have been loaded into the **workspace**:
 
 <p align="center">
 ![](figures/Using-R/loading_data_from_csv.png)
@@ -694,7 +694,7 @@ Next, we specify which data set we are going to plot. **Note**: ggplot2 works al
 ggplot(data = df)
 ```
 
-With the data frame defined, we now need to specify which columns of date we wish to plot. The code below uses the function `mapping=aes()`to do so, where the date variable is assigned to the x-axis `x=date` and the flow rate variable is assigned to the y-axis `y=flow` using their column names:
+With the data frame defined, we now need to specify which columns of date we wish to plot. The code below uses the function `mapping=aes()`to do so, where the date variable (within the `df` object) is assigned to the x-axis `x=date` and the flow rate variable is assigned to the y-axis `y=flow` using their column names:
 
 ```{r, fig.align="center"}
 # Which data frame columns do we want to plot?
@@ -737,10 +737,31 @@ ggplot(data = df, mapping=aes(x=date, y=flow)) +
 
 ```
 
-Using the above plot, we could start to identify periods of above or below average flow. As a final step, we will probably want to export our figure so that it can be used elsewhere e.g. in the [assessment](#Assessment). To do so, we simply assign our ggplot object to a variable using the assignment operator: `<-` as normal:
+Using the above plot, we could start to identify periods of above or below average flow. Adding a trend line could also be useful to identify patterns in the data. 
+
+> Add a trendline to your plot using the geom_smooth() argument. You can experiment with different smoothing methods e.g. method = "lm", "glm", "gam" or "loess".
+
+```{r, fig.align="center", echo = FALSE, warning = FALSE, message = FALSE}
+# Specifying data frame and columns
+ggplot(data = df, mapping=aes(x=date, y=flow)) +
+  # Specifying colours
+  geom_line(colour = "#56ACFF") +
+  geom_point(colour = "#767676") +
+  # Adding a ggplot theme
+  theme_classic() +
+  # Add a trendline
+  geom_smooth(method = "gam") + 
+  # Setting the aspect ratio
+  theme(aspect.ratio = 1) +
+  # Updating axis labels (including superscript elements)
+  labs(x = "Date (January - October 2019)", y = bquote('Average daily flow'~(m^3~'per second')))
+
+```
+
+As a final step, we will probably want to export our figure so that it can be used elsewhere e.g. in the assessment. To do so, we simply assign our ggplot object to an object using the assignment operator: `<-` as normal:
 
 ```{r, eval = FALSE, fig.align="center"}
-# Assign our ggplot object to the variable "g"
+# Assign our ggplot object to the object "g"
 g <- ggplot(data = df, mapping=aes(x=date, y=flow)) + ...
 ```
 
@@ -752,7 +773,7 @@ ggsave(plot = g, "C:/Users/Bill/Documents/GEOG-70581/images/flow_data_2019.png",
 ```
 
 ```{r, echo = FALSE, fig.align="center"}
-# Assigning to a variable
+# Assigning to an object
 g <- ggplot(data = df, mapping=aes(x=date, y=flow)) +
   geom_line(colour = "#56ACFF") +
   geom_point(colour = "#767676") +
@@ -763,13 +784,13 @@ g <- ggplot(data = df, mapping=aes(x=date, y=flow)) +
 ggsave(plot = g, "C:/Users/44797/Desktop/Repo/GEOG-70581/images/flow_data_2019.png", dpi = 150)
 ```
 
-> Run the above code to assign your plot to the variable `g` and export it to your images folder, **making sure** to update the file path! 
+> Run the above code to assign your plot to the object `g` and export it to your images folder, **making sure** to update the file path! 
 
 We have now exported our plot and should be able to see it in the **images** sub-directory of GEOG-70581. **Importantly**, and for future plots, you don't need to run the commands in the sequence shown above e.g. first creating a canvas `ggplot()`, then defining a data frame `ggplot(data = df)`, and so on. This sequence was used to show you how we can add elements to the ggplot object, building from the blank canvas to exporting the final figure. 
 
 ## Formative task {#formative_task}
 
-**Congratulations!** You have now completed the guided portion of Chapter 3: the (not-so) brief introduction to R. While this may have been challenging, we have covered most of the core skills which you will need. You should now have an appreciation of the the different data types and structures that are available in R, experience running code in the console and within scripts, and the ability to install packages, load data and create plots. We'll use many of these techniques in Practicals 1 and 2. 
+**Congratulations!** You have now completed the guided portion of Chapter 3: the (not-so) brief introduction to R. While this may have been challenging, we have covered most of the core skills which you will need. You should now have an appreciation of the different data types and structures that are available in R, experience running code in the console and within scripts, and the ability to install packages, load data and create plots. We'll use many of these techniques in Practicals 1 and 2. 
 
 To finish the practical, please complete the **formative task** outlined below. 
 
