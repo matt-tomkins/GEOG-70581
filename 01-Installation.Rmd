@@ -6,7 +6,9 @@ To run WhiteboxTools functions (**WBT**), we'll be using R as a front-end interf
 
 ## R
 
-To Install R on a personal computer:
+If you're working on a **university-managed computer** (HBS 2.88 or Mansfield Cooper 2.01) or accessing the course via *Citrix*, both R and RStudio (described below) should already be installed or can be accessed through the Software Centre. 
+
+To Install R on a **personal computer**:
 
 - Open an internet browser and go to https://www.r-project.org/.
 - Click the "download R" link in the middle of the page under "Getting Started."
@@ -15,15 +17,13 @@ To Install R on a personal computer:
 - Click on 'base' and then `Download R [Version Number] for Windows`. The current version is 4.2.1. 
 - Once downloaded, double click the application file (.exe) and follow the installation instructions.
 
-If you're working on a university-managed computer or accessing the course via *Citrix*, both R and RStudio (described below) can be accessed through the Software Centre. 
-
 ## R Studio
 
 While R is now installed, it is good practice to use an integrated development environment (IDE) to access and run R functions. The most well known IDE for R is [RStudio](https://www.rstudio.com/), which includes a console, higher quality graphics, as well as tools for plotting, history, debugging and workspace management.
 
 **Note**: R may be used without RStudio, but RStudio cannot be used without R. 
 
-To Install RStudio on a personal computer:
+To Install RStudio on a **personal computer**:
 
 - Go to https://www.rstudio.com/products/rstudio/download/ and click on `Download RStudio for Windows`. Installers for macOS and other operating systems are available below.
 <p align="center">

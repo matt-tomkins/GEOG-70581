@@ -127,7 +127,7 @@ summits_sf <- st_as_sf(x = summits,
 # Plots using ggplot
 g <- ggplot() +
   layer_spatial(dem, aes(fill = stat(band1))) +
-  layer_spatial(hillshade, aes(fill = stat(band1)), alpha = 2/10) +
+  layer_spatial(hillshade, aes(fill = after_stat(band1)), alpha = 2/10) +
   geom_sf(data = outlet, shape = 21, size = 3, fill = "white", colour = "black") +
   geom_sf(data = summits_sf, shape = 24, size = 2, fill = "black", colour = "black") +
   theme_classic() + 
@@ -142,7 +142,7 @@ To accentuate areas of relief, the DEM has been combined with a semi-transparent
 
 # Plots using ggplot
 g <- ggplot() +
-  layer_spatial(hillshade, aes(fill = stat(band1))) +
+  layer_spatial(hillshade, aes(fill = after_stat(band1))) +
   theme_classic() +
   labs(fill = "Hillshade") +
   scale_fill_gradient(low = "black", high = "white",  na.value = NA)
@@ -234,7 +234,7 @@ maximum_value <- max(values(eskdale_dem))
 
 # Plots using ggplot
 g <- ggplot() +
-  layer_spatial(eskdale_dem, aes(fill = stat(band1))) +
+  layer_spatial(eskdale_dem, aes(fill = after_stat(band1))) +
   theme_classic() + 
   labs(fill = "Elevation difference (m)", x = "Easting", y = "Northing") +
   scale_fill_continuous(type = "viridis",  na.value = NA, 
@@ -276,7 +276,7 @@ eskdale_slope <- raster(here("output", "practical_1", "dem_10m_slope.tif"))
 
 # Plots using ggplot
 s <- ggplot() +
-  layer_spatial(eskdale_slope, aes(fill = stat(band1))) +
+  layer_spatial(eskdale_slope, aes(fill = after_stat(band1))) +
   theme_classic() + 
   labs(fill = "Slope angle", x = "Easting", y = "Northing") +
   scale_fill_continuous(type = "viridis",  na.value = NA)
@@ -342,7 +342,7 @@ eskdale_pointer <- raster(here("output", "practical_1", "dem_10m_D8_pointer.tif"
 
 # Plots using ggplot
 p <- ggplot() +
-  layer_spatial(eskdale_pointer, aes(fill = stat(band1))) +
+  layer_spatial(eskdale_pointer, aes(fill = after_stat(band1))) +
   theme_classic() + 
   labs(fill = "Pointer value", x = "Easting", y = "Northing") +
   scale_fill_continuous(type = "viridis",  na.value = NA)
@@ -426,7 +426,7 @@ eskdale_d8 <- raster(here("output", "practical_1", "dem_10m_flow_accumulation.ti
 
 # Plots using ggplot
 p <- ggplot() +
-  layer_spatial(eskdale_d8, aes(fill = stat(band1))) +
+  layer_spatial(eskdale_d8, aes(fill = after_stat(band1))) +
   theme_classic() + 
   labs(fill = "Log-transformed flow accumulation value", x = "Easting", y = "Northing") +
   scale_fill_continuous(type = "viridis",  na.value = NA)
@@ -573,7 +573,7 @@ eskdale_d_inf <- raster(here("output", "practical_1", "dem_10m_flow_accumulation
 # Plots D8 using ggplot2
 p_d8 <- ggplot() +
   # Adds raster layer using layer_spatial
-  layer_spatial(eskdale_d8, aes(fill = stat(band1))) +
+  layer_spatial(eskdale_d8, aes(fill = after_stat(band1))) +
   # Sets ggplot theme
   theme_classic() + 
   # Axis and legend labeling
@@ -588,7 +588,7 @@ p_d8 <- ggplot() +
 # Plots FD8 using ggplot2
 p_fd8 <- ggplot() +
   # Adds raster layer using layer_spatial
-  layer_spatial(eskdale_fd8, aes(fill = stat(band1))) +
+  layer_spatial(eskdale_fd8, aes(fill = after_stat(band1))) +
   # Sets ggplot theme
   theme_classic() + 
   # Axis and legend labeling
@@ -606,7 +606,7 @@ p_fd8 <- ggplot() +
 # Plots D-Infinity using ggplot2
 p_dinf <- ggplot() +
   # Adds raster layer using layer_spatial
-  layer_spatial(eskdale_d_inf, aes(fill = stat(band1))) +
+  layer_spatial(eskdale_d_inf, aes(fill = after_stat(band1))) +
   # Sets ggplot theme
   theme_classic() + 
   # Axis and legend labeling

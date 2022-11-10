@@ -122,28 +122,26 @@ For Practical 1, we are going to use the following packages:
 - [`whitebox`](https://giswqs.github.io/whiteboxR/)
     - for geospatial analysis (a front-end for [WhiteboxTools](https://www.whiteboxgeo.com/manual/wbt_book/preface.html));
 
-Most of these packages can be installed as normal using the `install.packages()` and `library()` functions. The **exception** to this is whitebox, because (for complicated reasons) it is not currently available on the **C**omprehensive **R** **A**rchive **N**etwork ([CRAN](https://cran.r-project.org/web/packages/)). 
+These packages can be installed as normal using the `install.packages()` and `library()` functions. In previous versions of this course, `whitebox` was not available (because of complicated reasons) on the **C**omprehensive **R** **A**rchive **N**etwork ([CRAN](https://cran.r-project.org/web/packages/)). 
 
-However, it is available on [R-Forge](https://r-forge.r-project.org/projects/whitebox/). While **CRAN** is the official package repository for R and generally features "release" versions of packages, **R-Forge** provides candidate, beta or "work-in-progress" packages or packages which don't meet the criteria for inclusion on CRAN. 
+Instead, it had to be installed using [R-Forge](https://r-forge.r-project.org/projects/whitebox/). While **CRAN** is the official package repository for R and generally features "release" versions of packages, **R-Forge** provides candidate, beta or "work-in-progress" packages or packages which don't meet the criteria for inclusion on CRAN. 
 
-We can install R-forge packages as normal using the `install.packages()` function, but have to specify the repository (web location) where it is stored, in this case: `http://R-Forge.R-project.org`. 
+However, as of the [27th October](https://cran.r-project.org/web/packages/whitebox/index.html), `whitebox` is now back on CRAN so we can install as normal using the `install.packages()` function. 
 
-> Paste the following code into your R script and run to install whitebox
+It is worth noting, however, that you can install packages from **R-Forge** by simply specifying the repository (web location) where the package is stored, in this case: `http://R-Forge.R-project.org`. 
 
 ```{r, eval = FALSE, warning= FALSE, message = FALSE}
 
-# Installs whitebox from R-Forge
-install.packages("whitebox", repos="http://R-Forge.R-project.org")
+# Installing a package via R-Forge
+install.packages("insert package name here", repos="http://R-Forge.R-project.org")
 ```
 
-If successful, the console window should update as the installation progresses and should finish by printing the directory where the package is saved e.g. `The downloaded source packages are in ‘C:\file-path-here\downloaded_packages`. 
-
-One additional step, which is different from "normal" R package installation, is to use the function `whitebox::wbt_init()`, which initialises WhiteboxTools:
+One additional step, which is different from "normal" R package installation, is to use the function `whitebox::install_whitebox()`, which initialises WhiteboxTools:
 
 ```{r, eval = FALSE, warning= FALSE, message = FALSE}
 
 # Initialise WBT 
-whitebox::wbt_init()
+whitebox::install_whitebox()
 ```
 
 ```{r, eval = FALSE, warning= FALSE, message = FALSE}
@@ -156,7 +154,7 @@ You can now start using whitebox
     > wbt_version()
 ```
 
-This code checks if a suitable WhiteboxTools **executable** is present (.exe) and installs if missing. The WhiteboxTools executable contains all the code used for geospatial analysis, which we then access using R via the whitebox R package. This is a slightly different configuration from normal R packages but enables WhiteboxTools to be used **cross-platform** i.e. WhiteboxTools functionality stored in the executable can be assessed through R, Python, ArcGIS or QGIS etc, depending on the user needs. 
+This code checks if a suitable WhiteboxTools **executable** is present (.exe) and installs if missing. The WhiteboxTools executable contains all the code used for geospatial analysis, which we then access using R via the `whitebox` R package. This is a slightly different configuration from normal R packages but enables WhiteboxTools to be used **cross-platform** i.e. WhiteboxTools functionality stored in the executable can be assessed through R, Python, ArcGIS or QGIS etc, depending on the user needs. 
 
 > Run the above code to initialise WhiteboxTools, which should perform a one-time download of the WhiteboxTools binary (executable)
 
@@ -166,13 +164,12 @@ However, to avoid re-installing and re-initialisng WBT every time we run our scr
 
 ```{r, warning= FALSE, message = FALSE}
 
-# Code to install whitebox from R-forge and initialise
-# install.packages("whitebox", repos="http://R-Forge.R-project.org")
-# whitebox::wbt_init()
+# Code to install WhiteboxTools
+# whitebox::install_whitebox()
 
 ```
 
-> Either delete or comment-out the previous commands (`install.packages()`, `wbt_init`). `Ctrl + Shift + C` is a useful shortcut for adding or removing comments from multiple lines of highlighted code. 
+> Either delete or comment-out the previous command (`install_whitebox()`). `Ctrl + Shift + C` is a useful shortcut for adding or removing comments from multiple lines of highlighted code. 
 
 ## Loading packages
 
