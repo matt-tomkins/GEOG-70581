@@ -6,7 +6,7 @@ To run WhiteboxTools functions (**WBT**), we'll be using R as a front-end interf
 
 ## R
 
-If you're working on a **university-managed computer** (HBS 2.88 or Mansfield Cooper 2.01) or accessing the course via *Citrix*, both R and RStudio (described below) should already be installed or can be accessed through the Software Centre. 
+If you're working on a **university-managed computer** (in HBS 2.2, HBS 2.88 or Mansfield Cooper 2.01) or accessing the course via *Citrix*, both R and RStudio (described below) should already be installed or can be accessed through the Software Centre. 
 
 To Install R on a **personal computer**:
 
