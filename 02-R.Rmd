@@ -22,11 +22,11 @@ The following chapter provides a basic introduction to coding in R. If you alrea
 
 You should aim to work through this Chapter by the end of Week 8, making sure you understand the concepts and code before moving on to the next sub-section. 
 
-To test your understanding, there is a short **formative task** (non-assessed) at the end of this chapter [here](#formative_task). This covers many of the techniques covered here, as well as unfamiliar ones, so you may have to do some independent research to complete it. I'll post the solution on the Monday after the class (22/11/2021) so you can check your working.   
+To test your understanding, there is a short **formative task** (non-assessed) at the end of this [chapter](#formative_task). This covers many of the techniques covered here, as well as unfamiliar ones, so you may have to do some independent research to complete it. I'll post the solution on the Monday after the class (22/11/2021) so you can check your working.   
 
 ### What is R?
 
-R was originally developed in the 1990s for statistical data analysis. While it is still optimized for statistical analysis and data visualization, it has been utilised for a much wider range of applications. As a high-level programming language, it is less complicated and more user friendly than low level languages (e.g. C, C++, Java), but this comes at the expense of being slightly slower to execute. 
+R was originally developed in the 1990s for statistical data analysis. While it is still optimized for statistical analysis and data visualization, it has been utilised for a much wider range of applications. As a high-level programming language, it is less complicated and more user friendly than lower-level languages (e.g. C, C++, Java, Rust), but this comes at the expense of being slightly slower to execute. 
 
 Importantly, R is free and open-source and its core functionality can be extended using **packages**. These are available through the **C**omprehensive **R** **A**rchive **N**etwork ([CRAN](https://cran.r-project.org/web/packages/)) and allow the user to perform a range of tasks (e.g. reading and writing files, rendering images), without the requirement to delve into the underlying source code. 
 
