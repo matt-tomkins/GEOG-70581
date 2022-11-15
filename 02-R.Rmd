@@ -11,7 +11,7 @@ check.packages <- function(pkg){
 
 # Checks and installs packages
 packages <- c("ggplot2", "ggspatial", "here", "raster", "sf", "whitebox", # Practical-1
-              "data.table", "dplyr", "forcats", "MASS", "units", "patchwork", "leaflet", "gridExtra", "rgdal") # Practical-2 
+              "data.table", "dplyr", "forcats", "MASS", "units", "patchwork", "leaflet", "gridExtra", "rgdal") # Practical-2
 check.packages(packages)
 ```
 
@@ -263,6 +263,7 @@ b + a
 ```
 
 > Can you understand the error message above? Why does b + a produces an error?
+
 
 ## Data structures
 
