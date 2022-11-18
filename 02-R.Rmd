@@ -819,9 +819,9 @@ To extract the month from each record, you may want to use the `months()` functi
 
 ### Formative solution
 
-A code solution to the formative task will be uploaded here on the Monday after the class.
+A code solution to the formative task will be uploaded here after the class.
 
-```{r, eval = FALSE, echo = TRUE, warning = FALSE, message = FALSE}
+```{r, eval = FALSE, echo = FALSE, warning = FALSE, message = FALSE}
 
 # Solution to the Chapter 3 formative task
 # Author: matt-tomkins
@@ -829,11 +829,11 @@ A code solution to the formative task will be uploaded here on the Monday after 
 
 ```
 
-```{r, eval = FALSE, echo = FALSE, warning = FALSE, message = FALSE}
+```{r, eval = TRUE, echo = TRUE, warning = FALSE, message = FALSE}
 
 # Solution to the Chapter 3 formative task
 # Author: matt-tomkins
-# Date of upload: 21-11-2023
+# Date of upload: 17-11-2023
 
 # Function to check and install packages
 check.packages <- function(pkg){

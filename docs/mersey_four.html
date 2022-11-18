@@ -161,9 +161,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1.4" data-path="Intro_to_R.html"><a href="Intro_to_R.html#dealing-with-errors"><i class="fa fa-check"></i><b>3.1.4</b> Dealing with errors</a></li>
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#loading-r"><i class="fa fa-check"></i><b>3.2</b> Loading R</a></li>
-<li class="chapter" data-level="3.3" data-path="Intro_to_R.html"><a href="Intro_to_R.html#variables-looping"><i class="fa fa-check"></i><b>3.3</b> Variables</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#variable-names"><i class="fa fa-check"></i><b>3.3.1</b> Variable names</a></li>
-<li class="chapter" data-level="3.3.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#variables_types"><i class="fa fa-check"></i><b>3.3.2</b> Variable types</a></li>
+<li class="chapter" data-level="3.3" data-path="Intro_to_R.html"><a href="Intro_to_R.html#variables-looping"><i class="fa fa-check"></i><b>3.3</b> Objects</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#object-names"><i class="fa fa-check"></i><b>3.3.1</b> Object names</a></li>
+<li class="chapter" data-level="3.3.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#variables_types"><i class="fa fa-check"></i><b>3.3.2</b> Object types</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data-structures"><i class="fa fa-check"></i><b>3.4</b> Data structures</a><ul>
 <li class="chapter" data-level="3.4.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#vectors"><i class="fa fa-check"></i><b>3.4.1</b> Vectors</a></li>
@@ -383,7 +383,7 @@ Hydrological analysis in R
 <span id="cb100-9"><a href="mersey_four.html#cb100-9"></a><span class="st">  </span><span class="kw">scale_fill_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;RdYlBu&quot;</span>, <span class="dt">na.value =</span> <span class="ot">NA</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Updated fill aesthetic</span></span>
 <span id="cb100-10"><a href="mersey_four.html#cb100-10"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span>
 <span id="cb100-11"><a href="mersey_four.html#cb100-11"></a>p </span></code></pre></div>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-105-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-106-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>In the above image, the land cover classes are shown as follows:</p>
 <ul>
 <li><strong>Arable</strong> = 1 (dark blue)</li>
@@ -442,7 +442,7 @@ Hydrological analysis in R
 <h2><span class="header-section-number">10.2</span> Task 5: Calculating surface derivatives</h2>
 <p>As well as the factors outlined above, other catchment characteristics may affect river hydrochemistry. Here, we are interested in the effects of elevation (the raw data from <code>mersey_DEM_fill</code>) and rainfall (<code>mersey_rainfall</code>), as well as topographic slope and aspect. These are known as <strong>surface derivatives</strong> as they are calculated (derived) from the DEM.</p>
 <p>To calculate <strong>slope</strong> and <strong>aspect</strong> rasters, use the <code>wbt_slope</code> and <code>wbt_aspect</code> functions, using the original filled DEM as the input data (<code>mersey_dem_fill.tif</code>) and using appropriate output names (e.g. <code>mersey_dem_slope</code> and <code>mersey_dem_aspect</code>). Your outputs should resemble the following:</p>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-108-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-109-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="task-6-extracting-surface-derivatives" class="section level2">
 <h2><span class="header-section-number">10.3</span> Task 6: Extracting surface derivatives</h2>

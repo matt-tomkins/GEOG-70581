@@ -161,9 +161,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1.4" data-path="Intro_to_R.html"><a href="Intro_to_R.html#dealing-with-errors"><i class="fa fa-check"></i><b>3.1.4</b> Dealing with errors</a></li>
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#loading-r"><i class="fa fa-check"></i><b>3.2</b> Loading R</a></li>
-<li class="chapter" data-level="3.3" data-path="Intro_to_R.html"><a href="Intro_to_R.html#variables-looping"><i class="fa fa-check"></i><b>3.3</b> Variables</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#variable-names"><i class="fa fa-check"></i><b>3.3.1</b> Variable names</a></li>
-<li class="chapter" data-level="3.3.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#variables_types"><i class="fa fa-check"></i><b>3.3.2</b> Variable types</a></li>
+<li class="chapter" data-level="3.3" data-path="Intro_to_R.html"><a href="Intro_to_R.html#variables-looping"><i class="fa fa-check"></i><b>3.3</b> Objects</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#object-names"><i class="fa fa-check"></i><b>3.3.1</b> Object names</a></li>
+<li class="chapter" data-level="3.3.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#variables_types"><i class="fa fa-check"></i><b>3.3.2</b> Object types</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data-structures"><i class="fa fa-check"></i><b>3.4</b> Data structures</a><ul>
 <li class="chapter" data-level="3.4.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#vectors"><i class="fa fa-check"></i><b>3.4.1</b> Vectors</a></li>
@@ -321,7 +321,7 @@ Hydrological analysis in R
 <blockquote>
 <p>Load the raster into R using the <strong>raster</strong> package and plot using <strong>ggplot2</strong> and <strong>ggspatial</strong>. Your output should resemble the following, where each cell value has been reclassified according to the D8 flow.</p>
 </blockquote>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-82-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-83-1.png" width="672" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>Save your script before continuing.</p>
 </blockquote>
@@ -343,7 +343,7 @@ Hydrological analysis in R
 <blockquote>
 <p>Make sure to set the output type (<code>out_type</code>) as ‘specific contributing area’ (in quotation marks). As SCA data typically have a very large range of values, we can also log-transform the flow accumulation values (<code>log = "TRUE"</code>) to improve plot readability. Save the output file with a logical name (e.g. <code>mersey_dem_flow_accumulation.tif</code>) and to the correct sub-directory (<code>output/practical_2</code>). Load the raster to R and plot, and your output should resemble the following:</p>
 </blockquote>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-84-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-85-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="task-2-seed-points" class="section level2">
@@ -377,7 +377,7 @@ Hydrological analysis in R
 <span id="cb86-7"><a href="mersey_three.html#cb86-7"></a><span class="st">  </span><span class="kw">scale_fill_continuous</span>(<span class="dt">type =</span> <span class="st">&quot;viridis&quot;</span>,  <span class="dt">na.value =</span> <span class="ot">NA</span>) <span class="op">+</span></span>
 <span id="cb86-8"><a href="mersey_three.html#cb86-8"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span>
 <span id="cb86-9"><a href="mersey_three.html#cb86-9"></a>p </span></code></pre></div>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-86-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-87-1.png" width="672" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>Inspect the above code and implement it in your R script.</p>
 </blockquote>
@@ -388,7 +388,7 @@ Hydrological analysis in R
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="mersey_three.html#cb87-1"></a><span class="co"># Crops the accumulation raster based on a defined extent (row and col indexes) </span></span>
 <span id="cb87-2"><a href="mersey_three.html#cb87-2"></a>mersey_accumulation_crop &lt;-<span class="st"> </span><span class="kw">crop</span>(mersey_accumulation, <span class="kw">extent</span>(mersey_accumulation,  <span class="dv">632</span>, <span class="dv">645</span>, <span class="dv">540</span>, <span class="dv">578</span>))</span></code></pre></div>
 <p>As the plot extent is determined by the extent of the feature/layer specified in the <code>layer_spatial()</code> argument, your map should now resemble the following:</p>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-88-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-89-1.png" width="672" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>Inspect the map. You should notice that while some vector points sit directly on raster cells with high accumulation values, others are located just off, often by only one or two grid cells.</p>
 </blockquote>
@@ -425,7 +425,7 @@ Hydrological analysis in R
 <p>Using the output of Step 1, we are going to extract the stream network using <code>wbt_extract_streams</code> with a channelization threshold of 200 upslope grid cells (<code>threshold = 200</code>). Set the background value to 0 (<code>zero_background = TRUE</code>). As usual, save with an appropriate name (e.g. <code>mersey_dem_streams_act200.tif</code>) and in the correct location.</p>
 </blockquote>
 <p>Your output should resemble the following, whether raster cells corresponding to streams are coded as “1” and non-stream regions are coded as “0”:</p>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-90-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-91-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="snapping" class="section level4">
 <h4><span class="header-section-number">9.2.1.3</span> Snapping</h4>
@@ -457,7 +457,7 @@ Hydrological analysis in R
 <span id="cb88-18"><a href="mersey_three.html#cb88-18"></a><span class="st">  </span><span class="kw">scale_fill_continuous</span>(<span class="dt">type =</span> <span class="st">&quot;viridis&quot;</span>,  <span class="dt">na.value =</span> <span class="ot">NA</span>) <span class="op">+</span></span>
 <span id="cb88-19"><a href="mersey_three.html#cb88-19"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span>
 <span id="cb88-20"><a href="mersey_three.html#cb88-20"></a>p </span></code></pre></div>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-92-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-93-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 </div>
@@ -479,7 +479,7 @@ Hydrological analysis in R
 <span id="cb89-10"><a href="mersey_three.html#cb89-10"></a><span class="st">  </span><span class="kw">scale_fill_continuous</span>(<span class="dt">type =</span> <span class="st">&quot;viridis&quot;</span>,  <span class="dt">na.value =</span> <span class="ot">NA</span>) <span class="op">+</span></span>
 <span id="cb89-11"><a href="mersey_three.html#cb89-11"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span>
 <span id="cb89-12"><a href="mersey_three.html#cb89-12"></a>p </span></code></pre></div>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-94-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-95-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The watersheds are currently stored as rasters, but it is often easier to work with vectors, especially when dealing with attributes and spatial relationships (topology).</p>
 <blockquote>
 <p>Use the following code to convert your watersheds raster (<code>.tif</code>) to vector format (<code>.shp</code>)</p>
