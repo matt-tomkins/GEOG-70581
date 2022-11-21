@@ -11,6 +11,8 @@ Overland and near-surface water flow can be modelled using DEMs if we assume tha
 
 Using this method, water flow is allowed in one of eight possible directions (↑ ↗ → ↘ ↓ ↙ ← ↖), assuming that water will travel along the steepest downslope path. In turn, the method is sometimes referred to as the steepest descent method. Based on the $3 * 3$ cell neighbourhood shown in **Figure 1**, flow would be directed from the centre cell (8 m elevation) to the southwest cell (4 m elevation).
 
+> **Reminder**: you don't have to run every bit of code in this document. Indented text (such as this) is an instruction that tells you something to either think about, or do.
+
 ## DEM pre-processing: flow enforcement
 
 One common issue encountered when performing hydrological analyses is the presence of sinks, which interrupt the drainage network. When sinks are encountered, flow direction is undefined when a grid cell, or group of grid cells, is lower than all neighbouring cells (see **Figure 2**). When sinks are encountered, and when there are no downslope neighbours, all water that enters a cell is unable to escape. These features are referred to as pits if they are a single cell in size, and depressions if they consist of groups of cells.
@@ -521,7 +523,7 @@ This will be released prior to the Week 10 class.
 
 # Solution to Practical 1 (Eskdale)
 # Author: matt-tomkins
-# Date of upload: 28-11-2022
+# Date of upload: XX-XX-XXXX
 
 # Function to check and install packages
 check.packages <- function(pkg){
@@ -559,13 +561,13 @@ wbt_fd8_flow_accumulation(here("output", "practical_1", "dem_10m_fill.tif"),
                          log	= "TRUE", 
                          exponent = 1.1)
 
-# Calculates D-Infinity accumulation file (SCA), with log-transformed value 
+# Calculates D-Infinity accumulation file (SCA), with log-transformed values
 wbt_d_inf_flow_accumulation(here("output", "practical_1", "dem_10m_fill.tif"), 
                           here("output", "practical_1", "dem_10m_flow_accumulation_d_inf.tif"), 
                           out_type = "specific contributing area", 
                           log	= "TRUE")
 
-# Loads acccumulation files using raster and here packages
+# Loads accumulation files using raster and here packages
 eskdale_d8 <- raster(here("output", "practical_1", "dem_10m_flow_accumulation.tif"))
 eskdale_fd8 <- raster(here("output", "practical_1", "dem_10m_flow_accumulation_fd8.tif"))
 eskdale_d_inf <- raster(here("output", "practical_1", "dem_10m_flow_accumulation_d_inf.tif"))
