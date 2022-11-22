@@ -136,6 +136,8 @@ It is worth noting, however, that you can install packages from **R-Forge** by s
 install.packages("insert package name here", repos="http://R-Forge.R-project.org")
 ```
 
+> **Note** You don't need to run the above code - this is just an example of how to install via an alternative repository.
+
 One additional step, which is different from "normal" R package installation, is to use the function `whitebox::install_whitebox()`, which initialises WhiteboxTools:
 
 ```{r, eval = FALSE, warning= FALSE, message = FALSE}
@@ -143,6 +145,8 @@ One additional step, which is different from "normal" R package installation, is
 # Initialise WBT 
 whitebox::install_whitebox()
 ```
+
+This should print the following to your console:
 
 ```{r, eval = FALSE, warning= FALSE, message = FALSE}
 Performing one-time download of WhiteboxTools binary from
@@ -156,7 +160,22 @@ You can now start using whitebox
 
 This code checks if a suitable WhiteboxTools **executable** is present (.exe) and installs if missing. The WhiteboxTools executable contains all the code used for geospatial analysis, which we then access using R via the `whitebox` R package. This is a slightly different configuration from normal R packages but enables WhiteboxTools to be used **cross-platform** i.e. WhiteboxTools functionality stored in the executable can be assessed through R, Python, ArcGIS or QGIS etc, depending on the user needs. 
 
-> Run the above code to initialise WhiteboxTools, which should perform a one-time download of the WhiteboxTools binary (executable)
+> Run the below code to install the `whitebox` package, initialise WhiteboxTools (which should perform a one-time download of the WhiteboxTools executable) and check it is installed correctly.
+
+```{r, eval = FALSE, warning= FALSE, message = FALSE}
+
+# Install the whitebox R package
+install.packages("whitebox")
+
+# Initialise WhiteboxTools 
+whitebox::install_whitebox()
+
+# Add the whitebox R package to library
+library(whitebox)
+
+# Check the version is correct
+wbt_version()
+```
 
 When complete, WhiteboxTools has now been successfully installed and initialised and is almost ready to be used. 
 

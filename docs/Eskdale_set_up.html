@@ -352,9 +352,13 @@ Select <strong>Create new project</strong></p>
 <p>It is worth noting, however, that you can install packages from <strong>R-Forge</strong> by simply specifying the repository (web location) where the package is stored, in this case: <code>http://R-Forge.R-project.org</code>.</p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="Eskdale_set_up.html#cb73-1"></a><span class="co"># Installing a package via R-Forge</span></span>
 <span id="cb73-2"><a href="Eskdale_set_up.html#cb73-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;insert package name here&quot;</span>, <span class="dt">repos=</span><span class="st">&quot;http://R-Forge.R-project.org&quot;</span>)</span></code></pre></div>
+<blockquote>
+<p><strong>Note</strong> You don’t need to run the above code - this is just an example of how to install via an alternative repository.</p>
+</blockquote>
 <p>One additional step, which is different from “normal” R package installation, is to use the function <code>whitebox::install_whitebox()</code>, which initialises WhiteboxTools:</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="Eskdale_set_up.html#cb74-1"></a><span class="co"># Initialise WBT </span></span>
 <span id="cb74-2"><a href="Eskdale_set_up.html#cb74-2"></a>whitebox<span class="op">::</span><span class="kw">install_whitebox</span>()</span></code></pre></div>
+<p>This should print the following to your console:</p>
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="Eskdale_set_up.html#cb75-1"></a>Performing one<span class="op">-</span>time download of WhiteboxTools binary from</span>
 <span id="cb75-2"><a href="Eskdale_set_up.html#cb75-2"></a>     https<span class="op">:</span><span class="er">//</span>jblindsay.github.io<span class="op">/</span>ghrg<span class="op">/</span>WhiteboxTools<span class="op">/</span>WhiteboxTools_win_amd64.zip </span>
 <span id="cb75-3"><a href="Eskdale_set_up.html#cb75-3"></a>(This could take a few minutes, please be patient...)</span>
@@ -364,12 +368,23 @@ Select <strong>Create new project</strong></p>
 <span id="cb75-7"><a href="Eskdale_set_up.html#cb75-7"></a>    <span class="op">&gt;</span><span class="st"> </span><span class="kw">wbt_version</span>()</span></code></pre></div>
 <p>This code checks if a suitable WhiteboxTools <strong>executable</strong> is present (.exe) and installs if missing. The WhiteboxTools executable contains all the code used for geospatial analysis, which we then access using R via the <code>whitebox</code> R package. This is a slightly different configuration from normal R packages but enables WhiteboxTools to be used <strong>cross-platform</strong> i.e. WhiteboxTools functionality stored in the executable can be assessed through R, Python, ArcGIS or QGIS etc, depending on the user needs.</p>
 <blockquote>
-<p>Run the above code to initialise WhiteboxTools, which should perform a one-time download of the WhiteboxTools binary (executable)</p>
+<p>Run the below code to install the <code>whitebox</code> package, initialise WhiteboxTools (which should perform a one-time download of the WhiteboxTools executable) and check it is installed correctly.</p>
 </blockquote>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="Eskdale_set_up.html#cb76-1"></a><span class="co"># Install the whitebox R package</span></span>
+<span id="cb76-2"><a href="Eskdale_set_up.html#cb76-2"></a><span class="kw">install.packages</span>(<span class="st">&quot;whitebox&quot;</span>)</span>
+<span id="cb76-3"><a href="Eskdale_set_up.html#cb76-3"></a></span>
+<span id="cb76-4"><a href="Eskdale_set_up.html#cb76-4"></a><span class="co"># Initialise WhiteboxTools </span></span>
+<span id="cb76-5"><a href="Eskdale_set_up.html#cb76-5"></a>whitebox<span class="op">::</span><span class="kw">install_whitebox</span>()</span>
+<span id="cb76-6"><a href="Eskdale_set_up.html#cb76-6"></a></span>
+<span id="cb76-7"><a href="Eskdale_set_up.html#cb76-7"></a><span class="co"># Add the whitebox R package to library</span></span>
+<span id="cb76-8"><a href="Eskdale_set_up.html#cb76-8"></a><span class="kw">library</span>(whitebox)</span>
+<span id="cb76-9"><a href="Eskdale_set_up.html#cb76-9"></a></span>
+<span id="cb76-10"><a href="Eskdale_set_up.html#cb76-10"></a><span class="co"># Check the version is correct</span></span>
+<span id="cb76-11"><a href="Eskdale_set_up.html#cb76-11"></a><span class="kw">wbt_version</span>()</span></code></pre></div>
 <p>When complete, WhiteboxTools has now been successfully installed and initialised and is almost ready to be used.</p>
 <p>However, to avoid re-installing and re-initialisng WBT every time we run our script, we can either delete the code or <strong>comment-out</strong> <code>#</code> each line. Remember that R ignores any line of code that begins with <code>#</code>:</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="Eskdale_set_up.html#cb76-1"></a><span class="co"># Code to install WhiteboxTools</span></span>
-<span id="cb76-2"><a href="Eskdale_set_up.html#cb76-2"></a><span class="co"># whitebox::install_whitebox()</span></span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="Eskdale_set_up.html#cb77-1"></a><span class="co"># Code to install WhiteboxTools</span></span>
+<span id="cb77-2"><a href="Eskdale_set_up.html#cb77-2"></a><span class="co"># whitebox::install_whitebox()</span></span></code></pre></div>
 <blockquote>
 <p>Either delete or comment-out the previous command (<code>install_whitebox()</code>). <code>Ctrl + Shift + C</code> is a useful shortcut for adding or removing comments from multiple lines of highlighted code.</p>
 </blockquote>
@@ -382,8 +397,8 @@ Select <strong>Create new project</strong></p>
 <p>Referring back to the instructions <a href="Intro_to_R.html#packages">here</a>, install and load <code>ggplot2</code>, <code>here</code>, <code>raster</code>, <code>sf</code>, <code>ggspatial</code> and <code>whitebox</code>. <strong>Hint 1</strong> - we’ve already installed whitebox, so this can be excluded if you’re using install.packages() and the library() commands. <strong>Hint 2</strong> - the user-defined function <code>check.packages</code> might be useful here.</p>
 </blockquote>
 <p>If the package has been installed and loaded correctly, the console should print the following:</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="Eskdale_set_up.html#cb77-1"></a> ggplot2     here   raster       sf whitebox   ggspatial</span>
-<span id="cb77-2"><a href="Eskdale_set_up.html#cb77-2"></a>    <span class="ot">TRUE</span>     <span class="ot">TRUE</span>     <span class="ot">TRUE</span>     <span class="ot">TRUE</span>     <span class="ot">TRUE</span>   <span class="ot">TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="Eskdale_set_up.html#cb78-1"></a> ggplot2     here   raster       sf whitebox   ggspatial</span>
+<span id="cb78-2"><a href="Eskdale_set_up.html#cb78-2"></a>    <span class="ot">TRUE</span>     <span class="ot">TRUE</span>     <span class="ot">TRUE</span>     <span class="ot">TRUE</span>     <span class="ot">TRUE</span>   <span class="ot">TRUE</span></span></code></pre></div>
 <p>where the <strong>logical</strong> value <code>TRUE</code> equates to a successful installation (and vice versa for <code>FALSE</code>).</p>
 
 </div>
