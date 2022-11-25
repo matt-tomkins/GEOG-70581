@@ -214,9 +214,9 @@ Our original model, based upon 16 independent variables had an R<sup>2</sup> of 
 
 Our model coefficients are now as follows:
 
-- `intercept` = 0.0435188, *p* = 0.00115 (*p* < 0.01)
-- `average_slope` = -0.0040031, *p* = 0.02040 (*p* < 0.05)
-- `Urban_percent` = 0.0009819, *p* = 0.00186 (*p* < 0.01)
+- `intercept` = 0.0435410, *p* = 0.00118 (*p* < 0.01)
+- `average_slope` = -0.0039045, *p* = 0.02076 (*p* < 0.05)
+- `Urban_percent` = 0.0009823, *p* = 0.00187 (*p* < 0.01)
 
 Coefficients are important because they are used in **regression equations**, which can then be used to predict values. 
 

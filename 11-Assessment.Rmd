@@ -1,6 +1,15 @@
 # Assessment {#Assessment}
 
-**Title:** Modelling River Hydrochemistry 
+**Title:** Modelling River Hydrochemistry in the Mersey Basin, UK
+
+**Primary aims**
+
+In addition to the specific points outlined below, your report should:
+
+- **Explore** the controls on river water quality in the Mersey Basin.
+- **Develop** empirical models which link river water quality (e.g. pH, Mg, Ca...) to catchment characteristics (e.g. land cover, topography, soils, bedrock).
+- **Explain** the trends shown in these models, with reference to relevant hydrological literature and hydrological-environmental processes.
+- **Assess** the quality of the models, with reference to key concepts covered in the course so far. 
 
 **Word Limit:** 1500. The guidelines provided in the CO<sub>2</sub> flux practical, which outline what is and what is not included in the word count, as well penalties for exceeding the word count, also apply here. 
 
