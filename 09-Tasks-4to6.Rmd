@@ -1,0 +1,605 @@
+# Mersey IV - Surface derivatives {#mersey_four}
+
+## Task 4: Reclassification
+
+We know from the lecture that some of the factors which influence river hydrochemistry include land cover, soil type and bedrock geology. Information on these characteristics for the Mersey region under study is contained in the categorical files `mersey_LC` (based on LCM2000 data), `mersey_HOST` (Hydrology of Soil Types) and `mersey_bedrock` respectively. These datasets contain many different detailed classes, some of which are not applicable to the study region. Therefore, the datasets need to be simplified by aggregating some classes and omitting unnecessary classes.
+
+We'll illustrate the process for the land cover raster, which you can then repeat for the soil type and bedrock rasters.
+
+### Land cover
+
+There are 26 classes in LCM2000 data, each with a unique numeric identifier. We are going to simplify these into the following five macro-classes, alongside their numeric identifiers:
+
+- **Arable** = 41, 42, 43;
+- **Heath** = 91, 101, 102; 
+- **Grassland** = 51, 52, 61, 71, 81;
+- **Urban** = 171, 172;
+- **Wetland** = 111, 121.
+
+To do so, we're going to use the `fct_collapse` function from the `forcats` package.
+
+> First, load the land cover raster into R as normal:
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+
+# Loads land cover raster
+land_cover <- raster(here("data", "practical_2", "mersey_LC.tif"))
+```
+
+Because our raster is categorical (rather than continuous), it makes sense to convert the data format to a **factor**. In R, these are used to represent categorical variables.
+
+> Convert the land cover raster to a factor as follows:
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+
+# Converts the land cover raster to a factor, overwriting the original variable
+land_cover <- as.factor(land_cover)
+```
+
+To assess the values stored in the `land_cover` raster, use the `unique` function, which should produce the following:
+
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+# Prints the unique values in the raster
+unique(land_cover)
+
+```
+
+As not all categories are applicable to our study area, we are next going to create a data frame of the land cover categories of interest.
+
+> Inspect the code below. Many of the code elements should be familiar to you. We are creating a vector called `categories` using the `c()` function, which contains all the classes of interest `c(41, 42, 43, ...)`). Next, we have converted that to a data frame using `as.data.frame()` and assigned a column name (`ID`). When you understand what is happening, add to your script and run.
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', cache = TRUE}
+# Categories of interest
+categories <- as.data.frame(c(41, 42, 43, 91, 101, 102, 51, 52, 61, 71, 81, 171, 172, 111, 121))
+colnames(categories) <- "ID"
+
+```
+
+> If you want to inspect the output, you can use `head(categories)` to print out the first 6 rows: 
+
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+head(categories)
+```
+
+Using this new data frame, we are going to create a new column called `name`, which corresponds to the name of the land cover class (e.g. $Arable = 41$)
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', cache = TRUE}
+
+# Collapse categories into groups based on ID
+categories$name <- fct_collapse(as.factor(categories$ID),
+             "Arable" = c("41", "42", "43"),
+             "Heath" = c("91", "101", "102"),
+             "Grassland" = c("51", "52", "61", "71", "81"),
+             "Urban" = c("171", "172"), 
+             "Wetland" = c("111", "121"))
+
+```
+
+> Inspect the above code. The syntax is reasonably complex, but you should understand what is happening if you inspect the output:
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+# Prints categories data frame
+categories
+```
+
+Finally, we can use this updated data frame to replace (or substitute) values in the land cover raster (i.e. $41, 91, ...$) with the land cover class it represents. In this case, values are stored numerically (i.e. $Arable =1,Heath =2, ...$). One way to achieve this is using the [`subs`](https://rdrr.io/cran/raster/man/subs.html) function from the `raster` package. 
+
+> Inspect the following code, which substitutes (reclassifies) the raster layer and saves to a new raster (`.tif`) using the `writeRaster` function. 
+
+```{r, echo = TRUE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center', cache = TRUE}
+# Substitutes raster values with new categories
+land_cover_classified <- subs(land_cover, categories)
+
+# Write to new raster
+writeRaster(land_cover_classified, here("output", "practical_2", "mersey_LC_reclass.tif"))
+```
+
+> When you understand it, run the code, load the new raster into R and plot. Use the code below to visualise the reclassified raster, taking note of the updated fill aesthetic (`scale_fill_distiller`):
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+# Loads land cover raster using the raster and here packages
+mersey_land_cover <- raster(here("output", "practical_2", "mersey_LC_reclass.tif"))
+
+# Plots using ggplot
+p <- ggplot() +
+  layer_spatial(mersey_land_cover, aes(fill = stat(band1))) + # Adds raster layer
+  theme_classic() + 
+  labs(fill = "Land cover class", x = "Easting", y = "Northing") +
+  scale_fill_distiller(palette = "RdYlBu", na.value = NA) + # Updated fill aesthetic
+  theme(legend.position = "top")
+p 
+```
+
+In the above image, the land cover classes are shown as follows:
+
+- **Arable** = 1 (dark blue)
+- **Heath** = 2 (light blue)
+- **Grassland** = 3 (yellow)
+- **Urban** = 4 (orange)
+- **Wetland** = 5 (red)
+
+<br/> 
+
+> First, save your script before continuing. 
+
+> Next, using the methodology outlined above, repeat this process for the soil type (`mersey_HOST`) and bedrock geology rasters (`mersey_bedrock`). Make sure to use a consistent approach to file naming e.g. `mersey_HOST_reclass.tif` and `mersey_bedrock_reclass.tif`. 
+
+<br/> 
+
+### Hydrology of Soil Types (HOST)
+
+```{r, echo = FALSE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center', cache = FALSE}
+# Loads land cover raster
+soils <- as.factor(raster(here("data", "practical_2", "mersey_HOST.tif")))
+
+# Categories of interest
+categories <- as.data.frame(c(1, 3, 4, 5, 6, 7, 15, 16, 12, 17, 18, 19, 21, 22, 8, 9, 13, 24, 10, 11, 14, 25, 26, 27, 29))
+colnames(categories) <- "ID"
+
+# Collapse categories into broad groups
+categories$name <- fct_collapse(as.factor(categories$ID),
+                                "Permeable" = c("1", "3", "4", "5", "6", "7", "15", "16"),
+                                "Impermeable" = c("12", "17", "18", "19", "21", "22"),
+                                "Gleyed" = c("8", "9", "13", "24"),
+                                "Peats" = c("10", "11", "14", "25", "26", "27", "29"))
+
+# Substitute raster values for new categories
+soils_classified <- subs(soils, categories)
+
+# Write to new raster
+writeRaster(soils_classified, here("output", "practical_2", "mersey_HOST_reclass.tif"))
+
+# Removes object(s) from memory
+rm(soils, soils_classified)
+```
+
+There are 29 classes in HOST, each with a unique numeric identifier. Reclassify these into the following four new classes:
+
+- **Permeable** = 1, 3, 4, 5, 6, 7, 15, 16;
+- **Impermeable**  = 12, 17, 18, 19, 21, 22;
+- **Gleyed** = 8, 9, 13, 24;
+- **Peats** = 10, 11, 14, 25, 26, 27, 29.
+
+Utilising the order above, the values of the output raster should be as follows:
+
+- **Permeable** = 1
+- **Impermeable** = 2
+- **Gleyed** = 3
+- **Peats** = 4
+
+<br/> 
+
+### Bedrock geology
+
+```{r, echo = FALSE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center', cache = TRUE}
+
+# Loads land cover raster
+bedrock <- as.factor(raster(here("data", "practical_2", "mersey_bedrock.tif")))
+
+# Categories of interest
+categories <- as.data.frame(c(5, 16, 18, 24, 28, 34, 10, 11, 17, 19, 9, 15, 22))
+colnames(categories) <- "ID"
+
+# Collapse categories into broad groups
+categories$name <- fct_collapse(as.factor(categories$ID),
+                                "Sands_and_Muds" = c("5", "16", "18", "24", "28", "34"),
+                                "Limestone" = c("10", "11", "17", "19"),
+                                "Coal" = c("9", "15", "22"))
+
+# Substitute raster values for new categories
+bedrock_classified <- subs(bedrock, categories)
+
+# Write to new raster
+writeRaster(bedrock_classified, here("output", "practical_2", "mersey_bedrock_reclass.tif"))
+
+# Removes object(s) from memory
+rm(bedrock, bedrock_classified)
+```
+
+There are 34 bedrock geology classes in Mersey Basin region, each with a unique numeric identifier. Reclassify into the following three new classes listed below:
+
+- **Sands_and_Muds** (sands and muds) = 5, 16, 18, 24, 28, 34;
+- **Limestone** = 10, 11, 17, 19;
+- **Coal** = 9, 15, 22.
+
+Utilising the order above, the values of the output raster should be as follows:
+
+- **Sands_and_Muds** = 1
+- **Limestone** = 2
+- **Coal** = 3
+
+> When complete, save your script before continuing. 
+
+
+## Task 5: Calculating surface derivatives
+
+As well as the factors outlined above, other catchment characteristics may affect river hydrochemistry. Here, we are interested in the effects of elevation (the raw data from `mersey_DEM_fill`) and rainfall (`mersey_rainfall`), as well as topographic slope and aspect. These are known as **surface derivatives** as they are calculated (derived) from the DEM.  
+
+To calculate **slope** and **aspect** rasters, use the `wbt_slope` and `wbt_aspect` functions, using the original filled DEM as the input data (`mersey_dem_fill.tif`) and using appropriate output names (e.g. `mersey_dem_slope` and `mersey_dem_aspect`). Your outputs should resemble the following: 
+
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+# Sets file path for DEM
+dem <- here("data", "practical_2", "mersey_dem_fill.tif")
+
+# Slope and aspect
+wbt_slope(dem, here("output", "practical_2", "mersey_dem_slope.tif")) 
+wbt_aspect(dem, here("output", "practical_2", "mersey_dem_aspect.tif")) 
+
+# Loads slope and aspect rasters
+mersey_slope <- raster(here("output", "practical_2", "mersey_dem_slope.tif"))
+mersey_aspect <- raster(here("output", "practical_2", "mersey_dem_aspect.tif"))
+
+# Creates ggplot for slope
+slope <- ggplot() +
+  layer_spatial(mersey_slope, aes(fill = stat(band1))) + # Adds raster layer
+  #annotation_spatial(data = snapped_seed_points, shape = 21, fill = "#FB5858", colour = "black", size = 3) + # Adds snapped seeds layer
+  theme_classic() + 
+  labs(fill = "Slope angle", x = "Easting", y = "Northing") +
+  scale_fill_continuous(type = "viridis",  na.value = NA) +
+  #scale_fill_distiller(palette = "RdYlBu", na.value = NA) +
+  theme(legend.position = "top")
+
+# Creates ggplot for aspect
+aspect <- ggplot() +
+  layer_spatial(mersey_aspect, aes(fill = stat(band1))) + # Adds raster layer
+  #annotation_spatial(data = snapped_seed_points, shape = 21, fill = "#FB5858", colour = "black", size = 3) + # Adds snapped seeds layer
+  theme_classic() + 
+  labs(fill = "Aspect", x = "Easting", y = "Northing") +
+  #scale_fill_continuous(type = "viridis",  na.value = NA) +
+  scale_fill_distiller(palette = "RdYlBu", na.value = NA) +
+  theme(legend.position = "top")
+
+
+slope+aspect
+```
+
+## Task 6: Extracting surface derivatives
+
+At this stage of the analysis we have all the relevant spatial datasets compiled. The next step is to derive the characteristics for each of the 70 catchments in the `mersey_watersheds` file (`.shp`), so we can relate these to the water quality data collected at each of the 70 monitoring sites. 
+
+For each catchment we want to extract the:
+
+- The area (km<sup>2</sup>);
+- The number of raster cells;
+- Average elevation;
+- Average slope;
+- Average aspect;
+- Average rainfall;
+- Percentage of the each of the five land cover classes present;
+- Percentage of the each of the four soil types present;
+- Percentage of the each of the three bedrock geology types present.
+
+Overall, we will calculate the average of the continuous datasets (elevation, slope, aspect, rainfall), and percentages of the categorical datasets (land cover, soil types, geology).
+
+First, however, we need to link our `mersey_watersheds` file with the measurements of water quality, currently stored in a comma-separated file (`mersey_EA_chemisty.csv`).
+
+### Water quality measurements
+
+To begin:
+
+> Load the `mersey_watersheds.shp` file into R using the `st_read` function, storing in a variable called `watersheds`.
+
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+# Load watersheds (vector, sf, VALUE column is important) and renames
+watersheds <- st_read(here("output", "practical_2", "mersey_watersheds.shp"))
+```
+
+> Next, print out attribute names for the shapefile as follows:
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+colnames(watersheds)
+```
+
+For our analysis, the attribute of interest is `VALUE`, which contains the unique Environment Agency ID for each watershed. **Importantly**, this is also found in the `mersey_EA_chemisty.csv` file. This will enable us to join the two datasets, populating the attribute table of the `watersheds` variable with the water quality measurements stored in the csv. 
+
+> To simplify this, use the following code to replace the column name `VALUE` with a new name `Seed_Point_ID`. The latter is used in the  `mersey_EA_chemisty.csv`.
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+# Replaces column name 'VALUE' with 'SEED_Point_ID'
+names(watersheds)[names(watersheds) == 'VALUE'] <- 'Seed_Point_ID'
+```
+
+> You can re-use the `colnames` function to check it worked correctly:
+
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+colnames(watersheds)
+```
+
+With this updated:
+
+> We can now load the Environment Agency data using `read.csv()`, as shown in [Chapter 3](#Intro_to_R):
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+
+# Loads csv using read.csv
+ea_data <- read.csv(here("data", "practical_2", "mersey_EA_chemistry.csv"))
+```
+
+> and **merge** using the `merge` function:
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+# Merge based upon matching Seed_Point_IDs
+watersheds_ea <- merge(watersheds, ea_data, by = "Seed_Point_ID")
+```
+
+> Use the `head()` function to inspect the first few rows of our new data frame.
+
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+head(watersheds_ea)
+```
+
+> Save your script before continuing. 
+
+### Spatial areas
+
+With our datasets now linked, we may want to calculate the **area** of our watersheds, expressed as either km<sup>2</sup> or as a count of raster cells. 
+
+To calculate the km<sup>2</sup> area, we can use the `st_area()` function. At it's most simple, it could be written as follows:
+
+```{r, echo = TRUE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+
+# Calculates area geometry using st_area()
+watersheds_ea$area <- st_area(watersheds_ea)
+
+```
+
+However, because our vector data is measured in metres (due to the British National Grid), our calculated area would also be in metres. Given the size of the watersheds, this could result in large, unwieldy values. 
+
+To simplify, we'll use the `set_units` function from the `units` package as follows, which will store our area in a more manageable km<sup>2</sup> format:
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+# Calculates area geometry using st_area(), converting to km^2 using the units package
+watersheds_ea$area <- set_units(st_area(watersheds_ea), km^2)
+
+```
+
+> Read the above code, add to your script and run. 
+
+The procedure for calculating the count of raster cells is slightly more complicated, because this depends on the spatial resolution of the raster layer. Our raster layer contains cells of approximately ~50 m<sup>2</sup>. 
+
+Here we can use the `extract` function from the **raster** package, which is described [here](https://www.rdocumentation.org/packages/raster/versions/3.5-2/topics/extract). We'll be using this function on a number of occasions in the remainder of this practical, so it's important that you understand what it's doing. 
+
+Broadly, the function extracts values from a raster object at the locations of spatial vector data, where the value of interest is user-defined. For example, this could be the mean (e.g. the average elevation of a DEM within a vector polygon), the count (e.g. the number of cells within a vector polygon), or a minimum or maximum (e.g. the maximum elevation within a vector polygon). 
+
+> To calculate the number of raster cells within each watershed, we first need to load the DEM into R:
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+# Load elevation raster
+mersey_dem <- raster(here("data", "practical_2", "mersey_dem_fill.tif"))
+```
+
+> before using the `extract` function as follows. This takes in both raster (`mersey_dem`) and vector input data (`watersheds_ea`), where the value of interest is determined by the `fun` parameter (i.e. a function). Normally, we can specify an existing base R function (e.g. mean) but here we are using a user-defined function `fun=function(x, ...) length(x)` to **count** the length (or number) of raster cells for each watershed.
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+# Calculates the number of raster cells per watershed 
+watersheds_ea$count <- extract(mersey_dem, watersheds_ea, fun=function(x, ...) length(x)) 
+```
+
+> Run the above code, which should create a new attribute column called `count`. This can be previewed using `head()`, specifying the column of interest (`$count`):
+
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+head(watersheds_ea$count)
+```
+
+### Continuous derivatives
+
+Before we move on to extract our continuous derivatives (average elevation, rainfall, slope and aspect), it is worth noting that R variables can be removed from the environment as follows: 
+
+```{r, echo = TRUE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+# Removes object(s) from memory
+rm(mersey_dem)
+```
+
+This can be useful if R is running slowly. 
+
+To extract continuous derivatives, we are going to use the `extract` function again.
+
+> First, ensure the DEM, rainfall, slope and aspect rasters are loaded into R and stored with sensible variable names (e.g. `mersey_dem`, `mersey_rainfall`, `mersey_slope`, `mersey_aspect`). 
+
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+# Load raster data
+mersey_dem <- raster(here("data", "practical_2", "mersey_dem_fill.tif"))
+mersey_rainfall <- raster(here("data", "practical_2", "mersey_rainfall.tif"))
+mersey_slope <- raster(here("output", "practical_2", "mersey_dem_slope.tif"))
+mersey_aspect <- raster(here("output", "practical_2", "mersey_dem_aspect.tif"))
+```
+
+> The code to extract the average elevation for each watershed is shown here, using the function `mean`:
+
+```{r, echo = TRUE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+# Extracts raster values for each watershed, calculates mean (fun=mean), and stores in attribute table ($average_elevation)
+watersheds_ea$average_elevation <- extract(mersey_dem, watersheds_ea, fun=mean, na.rm=TRUE)
+```
+
+> When you're happy you understand it, copy to your script and run, before repeating the process for the other continuous variables, and storing the data using sensible attribute names e.g. `watersheds_ea$average_elevation`, `$average_rainfall`, `$average_slope`, `$average_aspect`.
+
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide',  cache = FALSE}
+# Extract derivatives, calculate mean, and store in attribute table
+watersheds_ea$average_elevation <- extract(mersey_dem, watersheds_ea, fun=mean, na.rm=TRUE)
+watersheds_ea$average_rainfall  <- extract(mersey_rainfall, watersheds_ea, fun=mean, na.rm=TRUE)
+watersheds_ea$average_slope <- extract(mersey_slope, watersheds_ea, fun=mean, na.rm=TRUE)
+watersheds_ea$average_aspect  <- extract(mersey_aspect, watersheds_ea, fun=mean, na.rm=TRUE)
+
+# Removes object(s) from memory
+rm(dem, rainfall, slope, aspect)
+
+```
+
+> Use the `head()` function to inspect the output.
+
+### Calculating categorical derivatives
+
+As we approach the end of this part of Practical 2, we are going to extract and normalise (convert to %) the categorical derivatives (land cover, soil types, bedrock).
+
+> First, ensure the **reclassified** land cover, soil type and bedrock rasters are loaded into R and stored with sensible variable names (e.g. `land_cover`, `soils`, `bedrock`). 
+
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+# Load raster data
+land_cover <- raster(here("output", "practical_2", "mersey_LC_reclass.tif"))
+soils <- raster(here("output", "practical_2", "mersey_HOST_reclass.tif"))
+bedrock <- raster(here("output", "practical_2", "mersey_bedrock_reclass.tif"))
+
+```
+
+> Next, we are going to use the `extract` function again, but this time returning the count of each category (e.g. Arable, Heath, Grassland, Urban, Wetland) for each watershed area, as shown here:
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide',  cache = TRUE}
+# Extract land cover counts (5 classes so levels = 1:5)
+land_cover_classes <- extract(land_cover, watersheds_ea, fun=function(i,...) table(factor(i, levels = 1:5)))
+
+```
+
+> Rather than trying to decipher the code straight away, copy to your script, run and use `head()` to inspect the output, which should be as follows. This may take a little while (~30 seconds on a i7 computer with 16 Gb of RAM):
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+head(land_cover_classes)
+```
+
+We have produced a data frame with 5 columns (representing the 5 land cover classes) and 70 rows (representing the 70 watersheds), where the row-column values represent the number of raster cells corresponding to each land cover class. 
+
+This is based upon a user-defined function, incorporating the `table` function from the **data.table** package. **Important**: as the land cover dataset contains 5 classes, the function splits the underlying data into five groups using `levels = 1:5`. This needs to be updated when applying to the soils and bedrock datasets.
+
+> To improve the readability of the data frame, update its column names as follows:
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+colnames(land_cover_classes) <- c("Arable", "Heath", "Grassland", "Urban", "Wetland")
+```
+
+> Use `head()` to inspect the output:
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+head(land_cover_classes)
+```
+
+<br/>
+
+> Replicate this approach for the soil type and bedrock datasets, using sensible variable names (e.g. `soils_classes` and `bedrock_classes`), remembering to update the `extract` function used (i.e. `levels = 1:4` for the soil data and `levels = 1:3` for the bedrock data). 
+
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', cache = TRUE}
+# Extract soils counts (4 classes, 1:4)
+soils_classes <- extract(soils, watersheds_ea, fun=function(i,...) table(factor(i, levels = 1:4)))
+colnames(soils_classes) <- c("Permeable", "Impermeable", "Gleyed", "Peats")
+
+# Extract bedrock counts (3 classes, 1:3)
+bedrock_classes <- extract(bedrock, watersheds_ea, fun=function(i,...) table(factor(i, levels = 1:3)))
+colnames(bedrock_classes) <- c("Sands_and_Muds", "Limestone", "Coal")
+```
+
+<br/>
+
+When complete, you should have the following data frames in your R environment:
+
+- `watersheds_ea`:
+  - containing the water quality measurements, the spatial areas and the continuous derivatives; 
+- `land_cover_classes`:
+  - containing the count (number of cells) for each land cover class;
+- `soils_classes`:
+  - containing the count (number of cells) for each soil type;
+- `bedrock_classes`:
+  - containing the count (number of cells) for each bedrock type;
+  
+> To simplify your R environment, remove all other variables using the `rm()` function.
+
+To merge the remaining files, we can use `cbind()`, which binds data frames together based on their columns:
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+# Combines watersheds data frame with categorical counts
+watersheds_ea <- cbind(watersheds_ea, land_cover_classes, soils_classes, bedrock_classes)
+
+```
+
+### Normalising categorical derivatives
+
+In the **final** step of the practical, we are going to normalise our categorical derivatives i.e. to establish the percentage cover of each category, rather than a raw count of raster cells. The former is more informative as it allows us to compare watersheds of differing sizes. 
+
+This is a relatively simple calculation and involves dividing the total number of raster cells in each watershed (stored in `$count`) by the number corresponding to each category (stored in `$Arable`, `$Heath`, `$Grassland`, ...), before multiplying by 100. 
+
+However, we have **12** categorical variables to normalise. We *could* type out each calculation manually e.g.
+
+```{r, echo = TRUE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
+# Normalising categorical variables
+watersheds_ea$Arable_percent <- watersheds_ea$Arable/watersheds_ea$count*100
+watersheds_ea$Heath_percent <- watersheds_ea$Heath/watersheds_ea$count*100
+atersheds_ea$Grassland_percent <- watersheds_ea$Grassland/watersheds_ea$count*100
+...
+
+```
+
+However, we don't want to waste time or effort if we could perform these calculations iteratively.
+
+To that end, we'll start by:
+
+> Creating a vector of the column names we want to normalise:
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+# Creates vector of categorical variables
+categorical_names <- c("Arable", "Heath", "Grassland", "Urban", "Wetland", "Permeable", "Impermeable", "Gleyed", "Peats", "Sands_and_Muds", "Limestone", "Coal")
+
+# Prints vector
+categorical_names
+```
+
+Next, we are going to **iterate** through this vector using a **for** loop. This was illustrated briefly in Chapter 3 [here](#variables-looping), but we'll explain it more fully now:
+
+> Copy the following code to your script and run:
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+# Loops through each element of categorical_names and stores it in variable "i"
+for (i in categorical_names){
+  # Prints element stored in i
+  print(i)
+}
+
+```
+
+The code works by looping (or iterating) through each element of the `categorical_names` vector. On every iteration, the variable `i` (short for iterator) is updated with the next element of `categorical_names`. On the first iteration, `i = "Arable"`, on the second iteration `i = "Heath"`, and so on. 
+
+> Now copy and run the following updated version:
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+
+# Loops through each element of categorical_names and stores it in variable "i"
+for (i in categorical_names){
+  # Creates a new column name using the variable "i" and the string "percent", separated by an underscore.
+  col <- paste(i, "percent", sep="_")
+  # Prints new column name
+  print(col)
+}
+```
+
+Here we are iteratively creating a column name based on the element stored in the variable `i` i.e. `"Arable_percent"`, `"Heath_percent"`, `"Grassland_percent"`.
+
+> In this final version of the **for loop**, we are creating new columns in the `watersheds_ea` data frame based on the column name (`col`) and the normalisation approach described above (i.e. Arable/count*100). However, rather than having to specify the input and output columns manually, this is handled for us iteratively using the `col` and `i` variables:
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+# Loops through each element of categorical_names and stores it in variable "i"
+for (i in categorical_names){
+  # Creates a new column name using the variable "i" and the string "percent", separated by an underscore.
+  col <- paste(i, "percent", sep="_")
+  # Updates watersheds_ea with the percentage cover of each category
+  watersheds_ea[col] <- as.numeric(watersheds_ea[[i]]/watersheds_ea$count*100)
+}
+
+```
+
+> When you're happy you understand the above code, run it. To finish the practical, we're going to remove the geometry stored in the data frame (not required for subsequent analysis) before saving as a comma-separated file:
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+
+# Drops geometry attribute from watersheds_ea
+watersheds_ea <- st_drop_geometry(watersheds_ea)
+
+# Writes data frame to comma-separated file
+write.csv(x = watersheds_ea, here("output", "practical_2", "mersey_watersheds_ea.csv"), row.names=FALSE)
+
+```
+
+Use `head()` to inspect the final output, which should resemble the following:
+
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+head(watersheds_ea)
+```
+
+In the final week of Environmental Modelling and Monitoring Concepts (Week 12, **Mersey V**), we'll use this data frame to evaluate the environmental controls on water quality. 
+
+

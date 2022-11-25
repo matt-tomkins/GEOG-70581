@@ -307,34 +307,34 @@ Hydrological analysis in R
 <blockquote>
 <p>Inspect the code below:</p>
 </blockquote>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="Hints.html#cb154-1"></a><span class="co"># Function to check and install packages</span></span>
-<span id="cb154-2"><a href="Hints.html#cb154-2"></a>check.packages &lt;-<span class="st"> </span><span class="cf">function</span>(pkg){</span>
-<span id="cb154-3"><a href="Hints.html#cb154-3"></a>  new.pkg &lt;-<span class="st"> </span>pkg[<span class="op">!</span>(pkg <span class="op">%in%</span><span class="st"> </span><span class="kw">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
-<span id="cb154-4"><a href="Hints.html#cb154-4"></a>  <span class="cf">if</span> (<span class="kw">length</span>(new.pkg))</span>
-<span id="cb154-5"><a href="Hints.html#cb154-5"></a>    <span class="kw">install.packages</span>(new.pkg, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb154-6"><a href="Hints.html#cb154-6"></a>  <span class="kw">sapply</span>(pkg, require, <span class="dt">character.only =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb154-7"><a href="Hints.html#cb154-7"></a>}</span>
-<span id="cb154-8"><a href="Hints.html#cb154-8"></a></span>
-<span id="cb154-9"><a href="Hints.html#cb154-9"></a><span class="co"># Checks and installs packages</span></span>
-<span id="cb154-10"><a href="Hints.html#cb154-10"></a>packages &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;here&quot;</span>, <span class="st">&quot;raster&quot;</span>, <span class="st">&quot;whitebox&quot;</span>, <span class="st">&quot;ggspatial&quot;</span>, <span class="st">&quot;patchwork&quot;</span>)</span>
-<span id="cb154-11"><a href="Hints.html#cb154-11"></a><span class="kw">check.packages</span>(packages)</span>
-<span id="cb154-12"><a href="Hints.html#cb154-12"></a></span>
-<span id="cb154-13"><a href="Hints.html#cb154-13"></a><span class="co"># Sets file path for DEM</span></span>
-<span id="cb154-14"><a href="Hints.html#cb154-14"></a>dem &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m.tif&quot;</span>)</span>
-<span id="cb154-15"><a href="Hints.html#cb154-15"></a></span>
-<span id="cb154-16"><a href="Hints.html#cb154-16"></a><span class="co"># Breach and fills depressions</span></span>
-<span id="cb154-17"><a href="Hints.html#cb154-17"></a><span class="kw">wbt_fill_depressions</span>(dem, <span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span>
-<span id="cb154-18"><a href="Hints.html#cb154-18"></a><span class="kw">wbt_breach_depressions</span>(dem, <span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_breach.tif&quot;</span>))</span>
-<span id="cb154-19"><a href="Hints.html#cb154-19"></a></span>
-<span id="cb154-20"><a href="Hints.html#cb154-20"></a><span class="co"># Calculates D8 pointer</span></span>
-<span id="cb154-21"><a href="Hints.html#cb154-21"></a><span class="kw">wbt_d8_pointer</span>(<span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>),</span>
-<span id="cb154-22"><a href="Hints.html#cb154-22"></a>               <span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_D8_pointer.tif&quot;</span>))</span>
-<span id="cb154-23"><a href="Hints.html#cb154-23"></a></span>
-<span id="cb154-24"><a href="Hints.html#cb154-24"></a><span class="co"># Calculates D8 accumulation file (SCA), with log-transformed values</span></span>
-<span id="cb154-25"><a href="Hints.html#cb154-25"></a><span class="kw">wbt_d8_flow_accumulation</span>(<span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>),</span>
-<span id="cb154-26"><a href="Hints.html#cb154-26"></a>                         <span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_flow_accumulation.tif&quot;</span>),</span>
-<span id="cb154-27"><a href="Hints.html#cb154-27"></a>                         <span class="dt">out_type =</span> <span class="st">&quot;specific contributing area&quot;</span>,</span>
-<span id="cb154-28"><a href="Hints.html#cb154-28"></a>                         <span class="dt">log =</span> <span class="st">&quot;TRUE&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="Hints.html#cb163-1"></a><span class="co"># Function to check and install packages</span></span>
+<span id="cb163-2"><a href="Hints.html#cb163-2"></a>check.packages &lt;-<span class="st"> </span><span class="cf">function</span>(pkg){</span>
+<span id="cb163-3"><a href="Hints.html#cb163-3"></a>  new.pkg &lt;-<span class="st"> </span>pkg[<span class="op">!</span>(pkg <span class="op">%in%</span><span class="st"> </span><span class="kw">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
+<span id="cb163-4"><a href="Hints.html#cb163-4"></a>  <span class="cf">if</span> (<span class="kw">length</span>(new.pkg))</span>
+<span id="cb163-5"><a href="Hints.html#cb163-5"></a>    <span class="kw">install.packages</span>(new.pkg, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb163-6"><a href="Hints.html#cb163-6"></a>  <span class="kw">sapply</span>(pkg, require, <span class="dt">character.only =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb163-7"><a href="Hints.html#cb163-7"></a>}</span>
+<span id="cb163-8"><a href="Hints.html#cb163-8"></a></span>
+<span id="cb163-9"><a href="Hints.html#cb163-9"></a><span class="co"># Checks and installs packages</span></span>
+<span id="cb163-10"><a href="Hints.html#cb163-10"></a>packages &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;here&quot;</span>, <span class="st">&quot;raster&quot;</span>, <span class="st">&quot;whitebox&quot;</span>, <span class="st">&quot;ggspatial&quot;</span>, <span class="st">&quot;patchwork&quot;</span>)</span>
+<span id="cb163-11"><a href="Hints.html#cb163-11"></a><span class="kw">check.packages</span>(packages)</span>
+<span id="cb163-12"><a href="Hints.html#cb163-12"></a></span>
+<span id="cb163-13"><a href="Hints.html#cb163-13"></a><span class="co"># Sets file path for DEM</span></span>
+<span id="cb163-14"><a href="Hints.html#cb163-14"></a>dem &lt;-<span class="st"> </span><span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m.tif&quot;</span>)</span>
+<span id="cb163-15"><a href="Hints.html#cb163-15"></a></span>
+<span id="cb163-16"><a href="Hints.html#cb163-16"></a><span class="co"># Breach and fills depressions</span></span>
+<span id="cb163-17"><a href="Hints.html#cb163-17"></a><span class="kw">wbt_fill_depressions</span>(dem, <span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span>
+<span id="cb163-18"><a href="Hints.html#cb163-18"></a><span class="kw">wbt_breach_depressions</span>(dem, <span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_breach.tif&quot;</span>))</span>
+<span id="cb163-19"><a href="Hints.html#cb163-19"></a></span>
+<span id="cb163-20"><a href="Hints.html#cb163-20"></a><span class="co"># Calculates D8 pointer</span></span>
+<span id="cb163-21"><a href="Hints.html#cb163-21"></a><span class="kw">wbt_d8_pointer</span>(<span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>),</span>
+<span id="cb163-22"><a href="Hints.html#cb163-22"></a>               <span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_D8_pointer.tif&quot;</span>))</span>
+<span id="cb163-23"><a href="Hints.html#cb163-23"></a></span>
+<span id="cb163-24"><a href="Hints.html#cb163-24"></a><span class="co"># Calculates D8 accumulation file (SCA), with log-transformed values</span></span>
+<span id="cb163-25"><a href="Hints.html#cb163-25"></a><span class="kw">wbt_d8_flow_accumulation</span>(<span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>),</span>
+<span id="cb163-26"><a href="Hints.html#cb163-26"></a>                         <span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_flow_accumulation.tif&quot;</span>),</span>
+<span id="cb163-27"><a href="Hints.html#cb163-27"></a>                         <span class="dt">out_type =</span> <span class="st">&quot;specific contributing area&quot;</span>,</span>
+<span id="cb163-28"><a href="Hints.html#cb163-28"></a>                         <span class="dt">log =</span> <span class="st">&quot;TRUE&quot;</span>)</span></code></pre></div>
 <p>This code includes comments for each main code block, line spaces to distinguish different parts of the code, and is written in a logical order (e.g. first loading packages, then loading/selecting data, running tools). Any non-essential code has been removed e.g. additional calls to install.packages() or library().</p>
 <p>If there are any other questions, please do get in touch.</p>
 

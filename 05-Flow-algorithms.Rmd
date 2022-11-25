@@ -153,7 +153,7 @@ g
 
 ### Breaching and filling
 
-To evaluate the effects of depression **breaching** and **filling**, we're going to use the `whitebox` package and the `wbt_fill_depressions` and `wbt_breach_depressions` functions. One of the advantages of using `whitebox` is that functions can be applied to spatial data without having to load files into the R environment (and assign them to variables), which can be an issue when working with large files (e.g. high spatial resolution rasters) or when working on computers with limited available memory. 
+To evaluate the effects of depression **breaching** and **filling**, we're going to use the `whitebox` package and the `wbt_fill_depressions` and `wbt_breach_depressions` functions. One of the advantages of using `whitebox` is that functions can be applied to spatial data without having to load files into the R environment (and assign them to objects), which can be an issue when working with large files (e.g. high spatial resolution rasters) or when working on computers with limited available memory. 
 
 We can **call** `whitebox` functions by simply naming the function, specifying the names of the input and output layers, and deciding on parameters (if required). For example, the code to fill depressions, might resemble the following:
 
@@ -511,7 +511,7 @@ As with the introduction to R (Chapter 2 - 3), I will provide a code solution to
 
 This will be released prior to the Week 10 class. 
 
-```{r, echo = TRUE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
+```{r, echo = FALSE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
 
 # Solution to Practical 1 (Eskdale)
 # Author: matt-tomkins
@@ -519,11 +519,11 @@ This will be released prior to the Week 10 class.
 
 ```
 
-```{r, echo = FALSE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
 
 # Solution to Practical 1 (Eskdale)
 # Author: matt-tomkins
-# Date of upload: XX-XX-XXXX
+# Date of upload: 25/11/2022
 
 # Function to check and install packages
 check.packages <- function(pkg){
@@ -554,7 +554,7 @@ wbt_d8_flow_accumulation(here("output", "practical_1", "dem_10m_fill.tif"),
                          out_type = "specific contributing area", 
                          log = "TRUE")
 
-# Calculates FD8 accumulation file (SCA), with log-transformed values
+# Calculates FD8 accumulation file (SCA), with log-transformed values and an exponent of 1.1
 wbt_fd8_flow_accumulation(here("output", "practical_1", "dem_10m_fill.tif"), 
                          here("output", "practical_1", "dem_10m_flow_accumulation_fd8.tif"), 
                          out_type = "specific contributing area", 
