@@ -286,6 +286,8 @@ Before we execute the tool, we need to decide on the **Snap Distance**, which is
 
 > Using the output of Step 2 (`mersey_dem_streams_act200.tif`) and the EA monitoring stations shapefile `mersey_EA_sites.shp`, run the `wbt_jenson_snap_pour_points` function, using a snap distance of 500 m (`snap_dist = 500`). Save with an appropriate name `mersey_EA_sites_snapped.shp`. 
 
+> As we're using **two** inputs to a Whitebox function (rather than just one), it can be useful to specify inputs directly in R e.g. `streams = mersey_dem_streams_act200.tif`, `pour_pts = mersey_EA_sites.shp`, `output = ...`. You can check the names of the inputs by reading the [documentation](https://rdrr.io/github/giswqs/whiteboxR/man/wbt_jenson_snap_pour_points.html), by hovering the mouse over the name of the function, or pressing the `tab` button.
+
 ```{r, echo = FALSE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
 # Snaps pour points to stream network, snap distance in map units. 
 wbt_jenson_snap_pour_points(here("data", "practical_2", "mersey_EA_sites.shp"),

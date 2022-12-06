@@ -445,6 +445,9 @@ Hydrological analysis in R
 <p>Using the output of Step 2 (<code>mersey_dem_streams_act200.tif</code>) and the EA monitoring stations shapefile <code>mersey_EA_sites.shp</code>, run the <code>wbt_jenson_snap_pour_points</code> function, using a snap distance of 500 m (<code>snap_dist = 500</code>). Save with an appropriate name <code>mersey_EA_sites_snapped.shp</code>.</p>
 </blockquote>
 <blockquote>
+<p>As we’re using <strong>two</strong> inputs to a Whitebox function (rather than just one), it can be useful to specify inputs directly in R e.g. <code>streams = mersey_dem_streams_act200.tif</code>, <code>pour_pts = mersey_EA_sites.shp</code>, <code>output = ...</code>. You can check the names of the inputs by reading the <a href="https://rdrr.io/github/giswqs/whiteboxR/man/wbt_jenson_snap_pour_points.html">documentation</a>, by hovering the mouse over the name of the function, or pressing the <code>tab</code> button.</p>
+</blockquote>
+<blockquote>
 <p>Run the following code to inspect the outputs of Jenson Snap Pour Points. The stream network is a Boolean (logical) raster, where stream cells = 1 (yellow) and non-stream cells = 0 (blue). The original pour points are shown in white, with the snapped points in red.</p>
 </blockquote>
 <div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="mersey_three.html#cb97-1"></a><span class="co"># Loads streams raster using the raster and here packages</span></span>
