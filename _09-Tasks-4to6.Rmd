@@ -128,7 +128,7 @@ In the above image, the land cover classes are shown as follows:
 
 ### Hydrology of Soil Types (HOST)
 
-```{r, echo = FALSE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center, cache = FALSE'}
+```{r, echo = FALSE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center', cache = FALSE}
 # Loads land cover raster
 soils <- as.factor(raster(here("data", "practical_2", "mersey_HOST.tif")))
 
@@ -443,7 +443,7 @@ bedrock <- raster(here("output", "practical_2", "mersey_bedrock_reclass.tif"))
 
 > Next, we are going to use the `extract` function again, but this time returning the count of each category (e.g. Arable, Heath, Grassland, Urban, Wetland) for each watershed area, as shown here:
 
-```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide',  cache = FALSE}
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide',  cache = TRUE}
 # Extract land cover counts (5 classes so levels = 1:5)
 land_cover_classes <- extract(land_cover, watersheds_ea, fun=function(i,...) table(factor(i, levels = 1:5)))
 
@@ -475,7 +475,7 @@ head(land_cover_classes)
 
 > Replicate this approach for the soil type and bedrock datasets, using sensible variable names (e.g. `soils_classes` and `bedrock_classes`), remembering to update the `extract` function used (i.e. `levels = 1:4` for the soil data and `levels = 1:3` for the bedrock data). 
 
-```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', cache = FALSE}
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', cache = TRUE}
 # Extract soils counts (4 classes, 1:4)
 soils_classes <- extract(soils, watersheds_ea, fun=function(i,...) table(factor(i, levels = 1:4)))
 colnames(soils_classes) <- c("Permeable", "Impermeable", "Gleyed", "Peats")

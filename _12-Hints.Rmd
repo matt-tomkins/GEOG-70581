@@ -4,23 +4,186 @@ This chapter contains a few handy hints which may be useful if you're having any
 
 If there are any questions regarding Assessment 2 or the practical instructions, please do get in touch at my `@manchester` email. 
 
-- **Tip 1**: Make sure to initialise an R project for your work ([Section 5.4](#R_Projects)) and ensure this is created for your GEOG70581 directory. This should resemble the following, with the R **project file** and a separate **R script** for the Eskdale and Mersey Basin practicals:
+### Dealing with errors {-}
+
+Errors are an **inevitable** aspect of coding, irrespective of how experienced you are! As we gain programming experience, these errors increase in difficulty from initially simple problems, such as incorrect file paths or errors in code syntax, to the more complex.
+
+Being able to deal with errors is therefore an essential programming skill. My top tips for fixing errors are:
+
+1. **Read the error message** (red text in the R console). If this appears, it usually means that something has gone wrong! Error messages can vary in quality, but at the very least they should tell you:
+
+    - **where** the error was encountered i.e. which line of code failed.
+    - some indication as to **why** the error occurred e.g. `No such file or directory`
+</p>
+
+2. If the error message doesn't provide a simple solution to the problem, then the next step should be to work through your code step-by-step, testing each line or code block to ensure it is working correctly (usually using `print()` statements). 
+
+To illustrate this, here is some code which has failed: 
+
+```{r, echo = TRUE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
+# Function to check and install packages
+check.packages <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if (length(new.pkg)) 
+    install.packages(new.pkg, dependencies = TRUE)
+  sapply(pkg, require, character.only = TRUE)
+}
+
+# Checks and installs packages
+packages <- c("ggplot2", "here", "raster", "whitebox")
+check.packages(packages)
+
+# Fill depressions in a DEM
+wbt_fill_depressions(dem = here("data", "practical_2", "dem_10m.tif"),
+                     output = here("output", "practical_2", "dem_10m_fill.tif"))
+
+# Loads raster
+filled_dem <- raster(here("data", "practical_2", "dem_10m_fill.tif"))
+
+# Plots using ggplot
+g <- ggplot() +
+  # Adds raster layer using layer_spatial
+  layer_spatial(filed_dem, aes(fill = after_stat(band1))) +
+  # Sets ggplot theme
+  theme_classic() + 
+  # Axis and legend labeling
+  labs(fill = "Elevation (m)", x = "Easting", y = "Northing" +
+  theme(legend.position = "top") +
+  # Sets fill symbology
+  scale_fill_continuous(type = "viridis"  na.value = NA)
+
+# Shows plot
+g
+
+```
+
+I would first inspect the error message (`No such file or directory`) but if I didn't understand it, I would then troubleshoot by:
+
+1. First running the `check.packages(packages)` function. Were all the packages installed correctly i.e. `TRUE`?
+
+2. Then checking the `wbt_fill_depressions()` function. Does this produce an error? Does it correctly produce an output raster in the intended location? Does the output look sensible? Plotting the raster might be useful here to check.
+
+3. Then running the `raster()` function to load the raster into R. Here the code would fail and I could then start to investigate further:
+
+    - Are there any syntax errors? e.g. use of commas, correct number of brackets, spelling errors?
+  
+    - Are the inputs defined correctly? 
+  
+In the above example, the code fails because the `raster` package is trying to load `dem_10m_fill.tif` from `data/practical_1` when it was actually saved in `output/practical_1`. 
+
+Running the code again might produce **another** error, in which case I would repeat the above process, checking the code step-by-step until the error can be located and fixed.
+
+> Can you spot any errors in the code below? There are three to find... 
+
+```{r, echo = TRUE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
+
+# Plots using ggplot
+g <- ggplot() +
+  # Adds raster layer using layer_spatial
+  layer_spatial(filed_dem, aes(fill = after_stat(band1))) +
+  # Sets ggplot theme
+  theme_classic() + 
+  # Axis and legend labeling
+  labs(fill = "Elevation (m)", x = "Easting", y = "Northing" +
+  theme(legend.position = "top") +
+  # Sets fill symbology
+  scale_fill_continuous(type = "viridis"  na.value = NA)
+  
+```
+
+**TLDR**: the best way to fix errors is to be **systematic** in your approach.
+
+Work your way through the code step-by-step, checking it is producing the **intended** outputs at each stage - just because the code doesn't produce an error, it doesn't mean it is producing the output that you want! 
+
+### Whitebox functions vs. the `raster` package {-}
+
+So far, there has been some confusion regarding the role of `whitebox` functions, the `raster` package and `ggplot2`. Each of these has a unique role, as visualised below, while analysis needs to be conducted in the correct order to avoid errors. 
+
+<p align="center">
+<a name="Analysis_order"></a>![](figures/Practical-2/wbt_raster_ggplot.png){width=100%}
+</p>
+
+**Analysis structure**. [1] Create output files using `whitebox` [2] Load outputs into R using `raster` [3] Plot them using `ggplot`
+
+</p>
+
+To illustrate this, below we have an example of the `wbt_d8_pointer` function, which creates a D8 pointer file based on an input digital elevation model (dem):
+
+```{r, echo = TRUE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
+
+# Creates a D8 pointer file (.tif) at the output location, based on the input dem
+wbt_d8_pointer(dem = here("data", "practical_2", "mersey_dem_fill.tif"),
+               output = here("output", "practical_2", "mersey_dem_D8_pointer.tif"))
+```
+
+This uses the `here` package for locating the input file (`mersey_dem_fill.tif`), which is stored in `data/practical_2`, and for saving the output, which is stored as `mersey_dem_D8_pointer.tif` in `output/practical_2`. 
+
+If this runs successfully (make sure to carefully check file paths, file names, use of commas), then an output raster will be created at the specified location.
+
+**Crucially**, this does **not** load the raster into the R environment, so any attempt to plot the raster using `ggplot2` would fail. 
+
+To achieve this, a raster must be first loaded into the R environment as follows: 
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+
+# Loads D8 pointer raster using the raster and here packages
+mersey_pointer <- raster(here("output", "practical_2", "mersey_dem_D8_pointer.tif"))
+
+```
+
+Again, we have determined the input file location using `here` package (`output/practical_2/mersey_dem_D8_pointer.tif`) and stored the raster as an object in the R environment called `mersey_pointer`. 
+
+With this stored, it can then be plotted using `ggplot`, setting  `layer_spatial` to the `mersey_pointer` object name:
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+
+# Plots using ggplot
+p <- ggplot() +
+  layer_spatial(mersey_pointer, aes(fill = stat(band1))) +
+  theme_classic() + 
+  labs(fill = "Pointer value", x = "Easting", y = "Northing") +
+  scale_fill_continuous(type = "viridis",  na.value = NA)
+p 
+```
+
+**TLDR**: for subsequent analysis, make sure to adhere to the following structure:
+
+1. Create output files using `whitebox` functions.
+
+2. Load those output files into R using the `raster` package (stored as objects)
+
+3. Plot the R objects using `ggplot2`
+
+Any deviation from this order (e.g. plotting without loading using `raster`, loading files that have not yet been created using `whitebox`) will cause errors!
+
+### R Projects {-}
+
+Make sure to initialise an R project for your work ([Section 5.4](#R_Projects)) and ensure this is created for your GEOG70581 directory. This should resemble the following, with the R **project file** and a separate **R script** for the Eskdale and Mersey Basin practicals:
 
 <p align="center">
 ![](figures/Using-R/R-project-visualisation.png){width=65%}
 </p>
 
-- **Tip 2**: Remove spaces in directories or file paths. As a rule, avoid using spaces when naming files or folders as this can cause issues, particularly when coding: 
-  - "P:/GIS and Environmental Applications/GEOG70581/..." *Bad*
-  - "P:/GIS_and_Environmental_Applications/GEOG70581/..." *Good*
+### File paths {-}
+
+Remove spaces in directories or file paths. As a rule, avoid using spaces when naming files or folders as this can cause issues, particularly when coding: 
+
+- "P:/Environmental Monitoring Concepts/GEOG70581/..." *Bad*
+- "P:/Environmental_Monitoring_Concepts/GEOG70581/..." *Good*
+  
 </p>
-- **Tip 3**: Make sure to read error messages (red text in the R console). If this appears, it usually means that something has gone wrong! 
 
-- **Tip 4**: Make sure to inspect output files. When you run a command (e.g. a Whitebox function), check that it produces the intended output (e.g. a raster file (.tif) in the output directory). If there is an error or the output hasn't been created, subsequent code will fail. 
+### Output files {-}
 
-- **Tip 5**: If you're having difficulty loading the `raster` or `sf` packages on a University managed computer, this is due to multiple package installs. Go to the packages window, identify the **older** version of each package, and tick the check box to load it into your R library. 
+Make sure to inspect output files. When you run a command (e.g. a Whitebox function), check that it produces the intended output (e.g. a raster file (.tif) in the output directory). If there is an error or the output hasn't been created, subsequent code will fail. 
 
-- **Tip 6**: While you will **not** be assessed on the quality of your code (you do **not** have to submit your code for the assessment), remember that well-formatted code (with comments and good structure) is easier to read and understand and will be less prone to error. 
+### Packages {-}
+
+If you're having difficulty loading the `raster` or `sf` packages on a University managed computer, this is due to multiple package installs. Go to the packages window, identify the **older** version of each package, and tick the check box to load it into your R library. 
+
+### Code structure {-}
+
+While you will **not** be assessed on the quality of your code (you do **not** have to submit your code for the assessment), remember that well-formatted code (with comments and good structure) is easier to read and understand and will be less prone to error. 
 
 > Inspect the code below:
 

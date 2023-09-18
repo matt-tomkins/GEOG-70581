@@ -129,9 +129,10 @@ The UK Environment Agency (EA) collects river water quality data at a series of 
 
 The locations of the EA monitoring stations are shown below:
 
-```{r, echo = FALSE, fig.align="center", warning = FALSE, message = FALSE, results='hide'}
+```{r, echo = FALSE, fig.align="center", warning = FALSE, message = FALSE}
 
-# Loads library and shapefile
+
+# Loads shapefiles
 mersey_points <- readOGR(here("data", "practical_2", "mersey_EA_sites.shp"), verbose = FALSE)
 
 # Transform to WGS 84
@@ -142,11 +143,9 @@ m <- leaflet() %>%
   setView(lat=53.47722932957252, lng = -2.243114768566372, zoom = 9) %>%
   # Adds default tiles
   addTiles()  %>%
-  # Add polygon
-  #addPolygons(data=mersey_watershed, color = "#444444", fillColor = "#33b9ff", 
-  #            weight = 1, smoothFactor = 0.5, opacity = 0.9, fillOpacity = 0.3) %>%
-  # Adds marker for the catchment outlet
-  addMarkers(data = mersey_points, label = ~as.character(EA_ID))
+  # Add markers
+  addCircleMarkers(data = mersey_points, label = ~as.character(EA_ID), 
+                   stroke = FALSE, fillOpacity = 0.5, radius = 5)
 
 m
 ```
@@ -286,6 +285,8 @@ Finally, we are going to reposition the EA seed points to match the stream netwo
 Before we execute the tool, we need to decide on the **Snap Distance**, which is measured in the units of the input data and is the maximum distance that points can be moved to match the stream network. Our raster is measured in **metres** (m) with a grid resolution of 50 m<sup>2</sup>. Most points are incorrectly positioned by one to three grid cells (50 - 150 m). However, to ensure we include all points, we'll set the snap distance to 500 m. 
 
 > Using the output of Step 2 (`mersey_dem_streams_act200.tif`) and the EA monitoring stations shapefile `mersey_EA_sites.shp`, run the `wbt_jenson_snap_pour_points` function, using a snap distance of 500 m (`snap_dist = 500`). Save with an appropriate name `mersey_EA_sites_snapped.shp`. 
+
+> As we're using **two** inputs to a Whitebox function (rather than just one), it can be useful to specify inputs directly in R e.g. `streams = mersey_dem_streams_act200.tif`, `pour_pts = mersey_EA_sites.shp`, `output = ...`. You can check the names of the inputs by reading the [documentation](https://rdrr.io/github/giswqs/whiteboxR/man/wbt_jenson_snap_pour_points.html), by hovering the mouse over the name of the function, or pressing the `tab` button.
 
 ```{r, echo = FALSE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
 # Snaps pour points to stream network, snap distance in map units. 
