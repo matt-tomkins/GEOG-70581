@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 10 Mersey IV - Surface derivatives | Practical_1.knit</title>
-  <meta name="description" content="<center>
-Hydrological analysis in R
+  <title>Chapter 10 Mersey IV - Surface derivatives |  Hydrological analysis in R </title>
+  <meta name="description" content="<br />
+Hydrological analysis in R<br />
 </center>" />
   <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 10 Mersey IV - Surface derivatives | Practical_1.knit" />
+  <meta property="og:title" content="Chapter 10 Mersey IV - Surface derivatives |  Hydrological analysis in R " />
   <meta property="og:type" content="book" />
   
   
@@ -18,7 +18,7 @@ Hydrological analysis in R
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 10 Mersey IV - Surface derivatives | Practical_1.knit" />
+  <meta name="twitter:title" content="Chapter 10 Mersey IV - Surface derivatives |  Hydrological analysis in R " />
   
   
   
@@ -33,6 +33,7 @@ Hydrological analysis in R
   
 <link rel="prev" href="mersey_three.html"/>
 <link rel="next" href="mersey_five.html"/>
+<script src="libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,9 +51,9 @@ Hydrological analysis in R
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
@@ -66,18 +67,18 @@ Hydrological analysis in R
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -97,13 +98,13 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -116,7 +117,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -130,6 +131,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 </head>
 
@@ -143,133 +166,160 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#practical-outline"><i class="fa fa-check"></i><b>1.1</b> Practical outline</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#objectives"><i class="fa fa-check"></i><b>1.2</b> Objectives</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>1.3</b> Schedule</a></li>
+<li><a href="index.html#introduction" id="toc-introduction"><span class="toc-section-number">1</span> Introduction</a>
+<ul>
+<li><a href="index.html#practical-outline" id="toc-practical-outline"><span class="toc-section-number">1.1</span> Practical outline</a></li>
+<li><a href="index.html#objectives" id="toc-objectives"><span class="toc-section-number">1.2</span> Objectives</a></li>
+<li><a href="index.html#schedule" id="toc-schedule"><span class="toc-section-number">1.3</span> Schedule</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>2</b> Installation</a><ul>
-<li class="chapter" data-level="2.1" data-path="Installation.html"><a href="Installation.html#r"><i class="fa fa-check"></i><b>2.1</b> R</a></li>
-<li class="chapter" data-level="2.2" data-path="Installation.html"><a href="Installation.html#r-studio"><i class="fa fa-check"></i><b>2.2</b> R Studio</a></li>
-<li class="chapter" data-level="2.3" data-path="Installation.html"><a href="Installation.html#materials"><i class="fa fa-check"></i><b>2.3</b> Course materials</a></li>
+<li><a href="Installation.html#Installation" id="toc-Installation"><span class="toc-section-number">2</span> Installation</a>
+<ul>
+<li><a href="Installation.html#r" id="toc-r"><span class="toc-section-number">2.1</span> R</a></li>
+<li><a href="Installation.html#r-studio" id="toc-r-studio"><span class="toc-section-number">2.2</span> R Studio</a></li>
+<li><a href="Installation.html#materials" id="toc-materials"><span class="toc-section-number">2.3</span> Course materials</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="Intro_to_R.html"><a href="Intro_to_R.html"><i class="fa fa-check"></i><b>3</b> A (brief) introduction to R</a><ul>
-<li class="chapter" data-level="3.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#overview"><i class="fa fa-check"></i><b>3.1</b> Overview</a><ul>
-<li class="chapter" data-level="3.1.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#what-is-r"><i class="fa fa-check"></i><b>3.1.1</b> What is R?</a></li>
-<li class="chapter" data-level="3.1.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#why_code"><i class="fa fa-check"></i><b>3.1.2</b> Why code?</a></li>
-<li class="chapter" data-level="3.1.3" data-path="Intro_to_R.html"><a href="Intro_to_R.html#a-quick-note-on-the-practicals"><i class="fa fa-check"></i><b>3.1.3</b> A quick note on the practicals</a></li>
-<li class="chapter" data-level="3.1.4" data-path="Intro_to_R.html"><a href="Intro_to_R.html#dealing-with-errors"><i class="fa fa-check"></i><b>3.1.4</b> Dealing with errors</a></li>
+<li><a href="Intro_to_R.html#Intro_to_R" id="toc-Intro_to_R"><span class="toc-section-number">3</span> A (brief) introduction to R</a>
+<ul>
+<li><a href="Intro_to_R.html#overview" id="toc-overview"><span class="toc-section-number">3.1</span> Overview</a>
+<ul>
+<li><a href="Intro_to_R.html#what-is-r" id="toc-what-is-r"><span class="toc-section-number">3.1.1</span> What is R?</a></li>
+<li><a href="Intro_to_R.html#why_code" id="toc-why_code"><span class="toc-section-number">3.1.2</span> Why code?</a></li>
+<li><a href="Intro_to_R.html#a-quick-note-on-the-practicals" id="toc-a-quick-note-on-the-practicals"><span class="toc-section-number">3.1.3</span> A quick note on the practicals</a></li>
+<li><a href="Intro_to_R.html#dealing-with-errors" id="toc-dealing-with-errors"><span class="toc-section-number">3.1.4</span> Dealing with errors</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#loading-r"><i class="fa fa-check"></i><b>3.2</b> Loading R</a></li>
-<li class="chapter" data-level="3.3" data-path="Intro_to_R.html"><a href="Intro_to_R.html#variables-looping"><i class="fa fa-check"></i><b>3.3</b> Objects</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#object-names"><i class="fa fa-check"></i><b>3.3.1</b> Object names</a></li>
-<li class="chapter" data-level="3.3.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#variables_types"><i class="fa fa-check"></i><b>3.3.2</b> Object types</a></li>
+<li><a href="Intro_to_R.html#loading-r" id="toc-loading-r"><span class="toc-section-number">3.2</span> Loading R</a></li>
+<li><a href="Intro_to_R.html#variables-looping" id="toc-variables-looping"><span class="toc-section-number">3.3</span> Objects</a>
+<ul>
+<li><a href="Intro_to_R.html#object-names" id="toc-object-names"><span class="toc-section-number">3.3.1</span> Object names</a></li>
+<li><a href="Intro_to_R.html#variables_types" id="toc-variables_types"><span class="toc-section-number">3.3.2</span> Object types</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data-structures"><i class="fa fa-check"></i><b>3.4</b> Data structures</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#vectors"><i class="fa fa-check"></i><b>3.4.1</b> Vectors</a></li>
-<li class="chapter" data-level="3.4.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data_frames"><i class="fa fa-check"></i><b>3.4.2</b> Data frames</a></li>
+<li><a href="Intro_to_R.html#data-structures" id="toc-data-structures"><span class="toc-section-number">3.4</span> Data structures</a>
+<ul>
+<li><a href="Intro_to_R.html#vectors" id="toc-vectors"><span class="toc-section-number">3.4.1</span> Vectors</a></li>
+<li><a href="Intro_to_R.html#data_frames" id="toc-data_frames"><span class="toc-section-number">3.4.2</span> Data frames</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="Intro_to_R.html"><a href="Intro_to_R.html#scripts"><i class="fa fa-check"></i><b>3.5</b> Scripts</a><ul>
-<li class="chapter" data-level="3.5.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#comments"><i class="fa fa-check"></i><b>3.5.1</b> Comments</a></li>
+<li><a href="Intro_to_R.html#scripts" id="toc-scripts"><span class="toc-section-number">3.5</span> Scripts</a>
+<ul>
+<li><a href="Intro_to_R.html#comments" id="toc-comments"><span class="toc-section-number">3.5.1</span> Comments</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="Intro_to_R.html"><a href="Intro_to_R.html#packages"><i class="fa fa-check"></i><b>3.6</b> Loading packages</a></li>
-<li class="chapter" data-level="3.7" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data_loading"><i class="fa fa-check"></i><b>3.7</b> Loading data</a></li>
-<li class="chapter" data-level="3.8" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data_plotting"><i class="fa fa-check"></i><b>3.8</b> Plotting</a></li>
-<li class="chapter" data-level="3.9" data-path="Intro_to_R.html"><a href="Intro_to_R.html#formative_task"><i class="fa fa-check"></i><b>3.9</b> Formative task</a><ul>
-<li class="chapter" data-level="3.9.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#formative-solution"><i class="fa fa-check"></i><b>3.9.1</b> Formative solution</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="FirstPractical.html"><a href="FirstPractical.html"><i class="fa fa-check"></i><b>4</b> Eskdale I - Introduction</a><ul>
-<li class="chapter" data-level="4.1" data-path="FirstPractical.html"><a href="FirstPractical.html#overview-1"><i class="fa fa-check"></i><b>4.1</b> Overview</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="FirstPractical.html"><a href="FirstPractical.html#intended-learning-outcomes"><i class="fa fa-check"></i><b>4.1.1</b> Intended learning outcomes</a></li>
-<li class="chapter" data-level="4.1.2" data-path="FirstPractical.html"><a href="FirstPractical.html#assessment"><i class="fa fa-check"></i><b>4.1.2</b> Assessment</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html"><i class="fa fa-check"></i><b>5</b> Eskdale II - Set-up</a><ul>
-<li class="chapter" data-level="5.1" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#install-programs"><i class="fa fa-check"></i><b>5.1</b> Install programs</a></li>
-<li class="chapter" data-level="5.2" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#download_data"><i class="fa fa-check"></i><b>5.2</b> Download data</a></li>
-<li class="chapter" data-level="5.3" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#open-rstudio"><i class="fa fa-check"></i><b>5.3</b> Open RStudio</a></li>
-<li class="chapter" data-level="5.4" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#R_Projects"><i class="fa fa-check"></i><b>5.4</b> Initialise an R project</a></li>
-<li class="chapter" data-level="5.5" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#creating-an-r-script"><i class="fa fa-check"></i><b>5.5</b> Creating an R script</a></li>
-<li class="chapter" data-level="5.6" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#install-whiteboxtools"><i class="fa fa-check"></i><b>5.6</b> Install WhiteboxTools</a></li>
-<li class="chapter" data-level="5.7" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#loading-packages"><i class="fa fa-check"></i><b>5.7</b> Loading packages</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html"><i class="fa fa-check"></i><b>6</b> Eskdale III - Flow routing</a><ul>
-<li class="chapter" data-level="6.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#dem-pre-processing-flow-enforcement"><i class="fa fa-check"></i><b>6.1</b> DEM pre-processing: flow enforcement</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#data-description"><i class="fa fa-check"></i><b>6.1.1</b> Data description</a></li>
-<li class="chapter" data-level="6.1.2" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#breaching-and-filling"><i class="fa fa-check"></i><b>6.1.2</b> Breaching and filling</a></li>
-<li class="chapter" data-level="6.1.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#choosing-a-colour-ramp"><i class="fa fa-check"></i><b>6.1.3</b> Choosing a colour ramp</a></li>
-</ul></li>
-<li class="chapter" data-level="6.2" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#flow-parameters-pointers"><i class="fa fa-check"></i><b>6.2</b> Flow Parameters: Pointers</a></li>
-<li class="chapter" data-level="6.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#flow-algorithms"><i class="fa fa-check"></i><b>6.3</b> Flow Algorithms</a><ul>
-<li class="chapter" data-level="6.3.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#comparing-flow-algorithms"><i class="fa fa-check"></i><b>6.3.1</b> Comparing flow algorithms</a></li>
-<li class="chapter" data-level="6.3.2" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#fd8-catchment-area"><i class="fa fa-check"></i><b>6.3.2</b> FD8 catchment area</a></li>
-<li class="chapter" data-level="6.3.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#d-infinity-catchment-area"><i class="fa fa-check"></i><b>6.3.3</b> D-infinity catchment area</a></li>
-<li class="chapter" data-level="6.3.4" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#comparing-the-outputs"><i class="fa fa-check"></i><b>6.3.4</b> Comparing the outputs</a></li>
-</ul></li>
-<li class="chapter" data-level="6.4" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#practical-solution"><i class="fa fa-check"></i><b>6.4</b> Practical solution</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="SecondPractical.html"><a href="SecondPractical.html"><i class="fa fa-check"></i><b>7</b> Mersey I - Introduction</a><ul>
-<li class="chapter" data-level="7.1" data-path="SecondPractical.html"><a href="SecondPractical.html#overview-2"><i class="fa fa-check"></i><b>7.1</b> Overview</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="SecondPractical.html"><a href="SecondPractical.html#topics-covered-in-this-practical"><i class="fa fa-check"></i><b>7.1.1</b> Topics covered in this practical</a></li>
-<li class="chapter" data-level="7.1.2" data-path="SecondPractical.html"><a href="SecondPractical.html#intended-learning-outcomes-1"><i class="fa fa-check"></i><b>7.1.2</b> Intended Learning Outcomes</a></li>
-<li class="chapter" data-level="7.1.3" data-path="SecondPractical.html"><a href="SecondPractical.html#assessment-1"><i class="fa fa-check"></i><b>7.1.3</b> Assessment</a></li>
+<li><a href="Intro_to_R.html#packages" id="toc-packages"><span class="toc-section-number">3.6</span> Loading packages</a></li>
+<li><a href="Intro_to_R.html#data_loading" id="toc-data_loading"><span class="toc-section-number">3.7</span> Loading data</a></li>
+<li><a href="Intro_to_R.html#data_plotting" id="toc-data_plotting"><span class="toc-section-number">3.8</span> Plotting</a></li>
+<li><a href="Intro_to_R.html#formative_task" id="toc-formative_task"><span class="toc-section-number">3.9</span> Formative task</a>
+<ul>
+<li><a href="Intro_to_R.html#formative-solution" id="toc-formative-solution"><span class="toc-section-number">3.9.1</span> Formative solution</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html"><i class="fa fa-check"></i><b>8</b> Mersey II - Set-up</a><ul>
-<li class="chapter" data-level="8.1" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#practical-overview"><i class="fa fa-check"></i><b>8.1</b> Practical overview</a></li>
-<li class="chapter" data-level="8.2" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#install-programs-1"><i class="fa fa-check"></i><b>8.2</b> Install programs</a></li>
-<li class="chapter" data-level="8.3" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#download_data_v2"><i class="fa fa-check"></i><b>8.3</b> Download data</a></li>
-<li class="chapter" data-level="8.4" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#practical-2-data"><i class="fa fa-check"></i><b>8.4</b> Data description</a></li>
-<li class="chapter" data-level="8.5" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#open-rstudio-1"><i class="fa fa-check"></i><b>8.5</b> Open RStudio</a></li>
-<li class="chapter" data-level="8.6" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#projects-and-scripts"><i class="fa fa-check"></i><b>8.6</b> Projects and Scripts</a><ul>
-<li class="chapter" data-level="8.6.1" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#Existing_R_Projects"><i class="fa fa-check"></i><b>8.6.1</b> Using an existing R project</a></li>
-<li class="chapter" data-level="8.6.2" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#creating-an-r-script-1"><i class="fa fa-check"></i><b>8.6.2</b> Creating an R script</a></li>
-</ul></li>
-<li class="chapter" data-level="8.7" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#loading-packages-1"><i class="fa fa-check"></i><b>8.7</b> Loading packages</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="mersey_three.html"><a href="mersey_three.html"><i class="fa fa-check"></i><b>9</b> Mersey III - Hydrology</a><ul>
-<li class="chapter" data-level="9.1" data-path="mersey_three.html"><a href="mersey_three.html#task-1-flow-routing"><i class="fa fa-check"></i><b>9.1</b> Task 1: Flow routing</a><ul>
-<li class="chapter" data-level="9.1.1" data-path="mersey_three.html"><a href="mersey_three.html#creating-a-d8-pointer"><i class="fa fa-check"></i><b>9.1.1</b> Creating a D8 pointer</a></li>
-<li class="chapter" data-level="9.1.2" data-path="mersey_three.html"><a href="mersey_three.html#catchment-area"><i class="fa fa-check"></i><b>9.1.2</b> Catchment area</a></li>
-</ul></li>
-<li class="chapter" data-level="9.2" data-path="mersey_three.html"><a href="mersey_three.html#task-2-seed-points"><i class="fa fa-check"></i><b>9.2</b> Task 2: Seed points</a><ul>
-<li class="chapter" data-level="9.2.1" data-path="mersey_three.html"><a href="mersey_three.html#seed-repositioning"><i class="fa fa-check"></i><b>9.2.1</b> Seed repositioning</a></li>
-</ul></li>
-<li class="chapter" data-level="9.3" data-path="mersey_three.html"><a href="mersey_three.html#task-3-watershed-creation"><i class="fa fa-check"></i><b>9.3</b> Task 3: Watershed creation</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="mersey_four.html"><a href="mersey_four.html"><i class="fa fa-check"></i><b>10</b> Mersey IV - Surface derivatives</a><ul>
-<li class="chapter" data-level="10.1" data-path="mersey_four.html"><a href="mersey_four.html#task-4-reclassification"><i class="fa fa-check"></i><b>10.1</b> Task 4: Reclassification</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="mersey_four.html"><a href="mersey_four.html#land-cover"><i class="fa fa-check"></i><b>10.1.1</b> Land cover</a></li>
-<li class="chapter" data-level="10.1.2" data-path="mersey_four.html"><a href="mersey_four.html#hydrology-of-soil-types-host"><i class="fa fa-check"></i><b>10.1.2</b> Hydrology of Soil Types (HOST)</a></li>
-<li class="chapter" data-level="10.1.3" data-path="mersey_four.html"><a href="mersey_four.html#bedrock-geology"><i class="fa fa-check"></i><b>10.1.3</b> Bedrock geology</a></li>
-</ul></li>
-<li class="chapter" data-level="10.2" data-path="mersey_four.html"><a href="mersey_four.html#task-5-calculating-surface-derivatives"><i class="fa fa-check"></i><b>10.2</b> Task 5: Calculating surface derivatives</a></li>
-<li class="chapter" data-level="10.3" data-path="mersey_four.html"><a href="mersey_four.html#task-6-extracting-surface-derivatives"><i class="fa fa-check"></i><b>10.3</b> Task 6: Extracting surface derivatives</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="mersey_four.html"><a href="mersey_four.html#water-quality-measurements"><i class="fa fa-check"></i><b>10.3.1</b> Water quality measurements</a></li>
-<li class="chapter" data-level="10.3.2" data-path="mersey_four.html"><a href="mersey_four.html#spatial-areas"><i class="fa fa-check"></i><b>10.3.2</b> Spatial areas</a></li>
-<li class="chapter" data-level="10.3.3" data-path="mersey_four.html"><a href="mersey_four.html#continuous-derivatives"><i class="fa fa-check"></i><b>10.3.3</b> Continuous derivatives</a></li>
-<li class="chapter" data-level="10.3.4" data-path="mersey_four.html"><a href="mersey_four.html#calculating-categorical-derivatives"><i class="fa fa-check"></i><b>10.3.4</b> Calculating categorical derivatives</a></li>
-<li class="chapter" data-level="10.3.5" data-path="mersey_four.html"><a href="mersey_four.html#normalising-categorical-derivatives"><i class="fa fa-check"></i><b>10.3.5</b> Normalising categorical derivatives</a></li>
+<li><a href="FirstPractical.html#FirstPractical" id="toc-FirstPractical"><span class="toc-section-number">4</span> Eskdale I - Introduction</a>
+<ul>
+<li><a href="FirstPractical.html#overview-1" id="toc-overview-1"><span class="toc-section-number">4.1</span> Overview</a>
+<ul>
+<li><a href="FirstPractical.html#intended-learning-outcomes" id="toc-intended-learning-outcomes"><span class="toc-section-number">4.1.1</span> Intended learning outcomes</a></li>
+<li><a href="FirstPractical.html#assessment" id="toc-assessment"><span class="toc-section-number">4.1.2</span> Assessment</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="mersey_five.html"><a href="mersey_five.html"><i class="fa fa-check"></i><b>11</b> Mersey V - Statistical analysis</a><ul>
-<li class="chapter" data-level="11.1" data-path="mersey_five.html"><a href="mersey_five.html#task-7-model-building"><i class="fa fa-check"></i><b>11.1</b> Task 7: Model building</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="mersey_five.html"><a href="mersey_five.html#an-introduction-to-linear-models-in-r"><i class="fa fa-check"></i><b>11.1.1</b> An introduction to linear models in R</a></li>
-<li class="chapter" data-level="11.1.2" data-path="mersey_five.html"><a href="mersey_five.html#training-vs.-testing"><i class="fa fa-check"></i><b>11.1.2</b> Training vs. Testing</a></li>
-<li class="chapter" data-level="11.1.3" data-path="mersey_five.html"><a href="mersey_five.html#variable-selection-strategies"><i class="fa fa-check"></i><b>11.1.3</b> Variable selection strategies</a></li>
+<li><a href="Eskdale_set_up.html#Eskdale_set_up" id="toc-Eskdale_set_up"><span class="toc-section-number">5</span> Eskdale II - Set-up</a>
+<ul>
+<li><a href="Eskdale_set_up.html#install-programs" id="toc-install-programs"><span class="toc-section-number">5.1</span> Install programs</a></li>
+<li><a href="Eskdale_set_up.html#download_data" id="toc-download_data"><span class="toc-section-number">5.2</span> Download data</a></li>
+<li><a href="Eskdale_set_up.html#open-rstudio" id="toc-open-rstudio"><span class="toc-section-number">5.3</span> Open RStudio</a></li>
+<li><a href="Eskdale_set_up.html#R_Projects" id="toc-R_Projects"><span class="toc-section-number">5.4</span> Initialise an R project</a></li>
+<li><a href="Eskdale_set_up.html#creating-an-r-script" id="toc-creating-an-r-script"><span class="toc-section-number">5.5</span> Creating an R script</a></li>
+<li><a href="Eskdale_set_up.html#install-whiteboxtools" id="toc-install-whiteboxtools"><span class="toc-section-number">5.6</span> Install WhiteboxTools</a></li>
+<li><a href="Eskdale_set_up.html#loading-packages" id="toc-loading-packages"><span class="toc-section-number">5.7</span> Loading packages</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="mersey_five.html"><a href="mersey_five.html#task-8-model-evaluation"><i class="fa fa-check"></i><b>11.2</b> Task 8: Model evaluation</a></li>
+<li><a href="Eskdale_flow_algorithms.html#Eskdale_flow_algorithms" id="toc-Eskdale_flow_algorithms"><span class="toc-section-number">6</span> Eskdale III - Flow routing</a>
+<ul>
+<li><a href="Eskdale_flow_algorithms.html#dem-pre-processing-flow-enforcement" id="toc-dem-pre-processing-flow-enforcement"><span class="toc-section-number">6.1</span> DEM pre-processing: flow enforcement</a>
+<ul>
+<li><a href="Eskdale_flow_algorithms.html#data-description" id="toc-data-description"><span class="toc-section-number">6.1.1</span> Data description</a></li>
+<li><a href="Eskdale_flow_algorithms.html#breaching-and-filling" id="toc-breaching-and-filling"><span class="toc-section-number">6.1.2</span> Breaching and filling</a></li>
+<li><a href="Eskdale_flow_algorithms.html#choosing-a-colour-ramp" id="toc-choosing-a-colour-ramp"><span class="toc-section-number">6.1.3</span> Choosing a colour ramp</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="Assessment.html"><a href="Assessment.html"><i class="fa fa-check"></i><b>12</b> Assessment</a></li>
-<li class="chapter" data-level="13" data-path="Hints.html"><a href="Hints.html"><i class="fa fa-check"></i><b>13</b> Handy Hints</a><ul>
-<li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#dealing-with-errors-1"><i class="fa fa-check"></i>Dealing with errors</a></li>
-<li><a href="Hints.html#whitebox-functions-vs.-the-raster-package">Whitebox functions vs. the <code>raster</code> package</a></li>
-<li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#r-projects"><i class="fa fa-check"></i>R Projects</a></li>
-<li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#file-paths"><i class="fa fa-check"></i>File paths</a></li>
-<li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#output-files"><i class="fa fa-check"></i>Output files</a></li>
-<li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#packages-1"><i class="fa fa-check"></i>Packages</a></li>
-<li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#code-structure"><i class="fa fa-check"></i>Code structure</a></li>
+<li><a href="Eskdale_flow_algorithms.html#flow-parameters-pointers" id="toc-flow-parameters-pointers"><span class="toc-section-number">6.2</span> Flow Parameters: Pointers</a></li>
+<li><a href="Eskdale_flow_algorithms.html#flow-algorithms" id="toc-flow-algorithms"><span class="toc-section-number">6.3</span> Flow Algorithms</a>
+<ul>
+<li><a href="Eskdale_flow_algorithms.html#comparing-flow-algorithms" id="toc-comparing-flow-algorithms"><span class="toc-section-number">6.3.1</span> Comparing flow algorithms</a></li>
+<li><a href="Eskdale_flow_algorithms.html#fd8-catchment-area" id="toc-fd8-catchment-area"><span class="toc-section-number">6.3.2</span> FD8 catchment area</a></li>
+<li><a href="Eskdale_flow_algorithms.html#d-infinity-catchment-area" id="toc-d-infinity-catchment-area"><span class="toc-section-number">6.3.3</span> D-infinity catchment area</a></li>
+<li><a href="Eskdale_flow_algorithms.html#comparing-the-outputs" id="toc-comparing-the-outputs"><span class="toc-section-number">6.3.4</span> Comparing the outputs</a></li>
+</ul></li>
+<li><a href="Eskdale_flow_algorithms.html#practical-solution" id="toc-practical-solution"><span class="toc-section-number">6.4</span> Practical solution</a></li>
+</ul></li>
+<li><a href="SecondPractical.html#SecondPractical" id="toc-SecondPractical"><span class="toc-section-number">7</span> Mersey I - Introduction</a>
+<ul>
+<li><a href="SecondPractical.html#overview-2" id="toc-overview-2"><span class="toc-section-number">7.1</span> Overview</a>
+<ul>
+<li><a href="SecondPractical.html#topics-covered-in-this-practical" id="toc-topics-covered-in-this-practical"><span class="toc-section-number">7.1.1</span> Topics covered in this practical</a></li>
+<li><a href="SecondPractical.html#intended-learning-outcomes-1" id="toc-intended-learning-outcomes-1"><span class="toc-section-number">7.1.2</span> Intended Learning Outcomes</a></li>
+<li><a href="SecondPractical.html#assessment-1" id="toc-assessment-1"><span class="toc-section-number">7.1.3</span> Assessment</a></li>
+</ul></li>
+</ul></li>
+<li><a href="Mersy_set_up.html#Mersy_set_up" id="toc-Mersy_set_up"><span class="toc-section-number">8</span> Mersey II - Set-up</a>
+<ul>
+<li><a href="Mersy_set_up.html#practical-overview" id="toc-practical-overview"><span class="toc-section-number">8.1</span> Practical overview</a></li>
+<li><a href="Mersy_set_up.html#install-programs-1" id="toc-install-programs-1"><span class="toc-section-number">8.2</span> Install programs</a></li>
+<li><a href="Mersy_set_up.html#download_data_v2" id="toc-download_data_v2"><span class="toc-section-number">8.3</span> Download data</a></li>
+<li><a href="Mersy_set_up.html#practical-2-data" id="toc-practical-2-data"><span class="toc-section-number">8.4</span> Data description</a></li>
+<li><a href="Mersy_set_up.html#open-rstudio-1" id="toc-open-rstudio-1"><span class="toc-section-number">8.5</span> Open RStudio</a></li>
+<li><a href="Mersy_set_up.html#projects-and-scripts" id="toc-projects-and-scripts"><span class="toc-section-number">8.6</span> Projects and Scripts</a>
+<ul>
+<li><a href="Mersy_set_up.html#Existing_R_Projects" id="toc-Existing_R_Projects"><span class="toc-section-number">8.6.1</span> Using an existing R project</a></li>
+<li><a href="Mersy_set_up.html#creating-an-r-script-1" id="toc-creating-an-r-script-1"><span class="toc-section-number">8.6.2</span> Creating an R script</a></li>
+</ul></li>
+<li><a href="Mersy_set_up.html#loading-packages-1" id="toc-loading-packages-1"><span class="toc-section-number">8.7</span> Loading packages</a></li>
+</ul></li>
+<li><a href="mersey_three.html#mersey_three" id="toc-mersey_three"><span class="toc-section-number">9</span> Mersey III - Hydrology</a>
+<ul>
+<li><a href="mersey_three.html#task-1-flow-routing" id="toc-task-1-flow-routing"><span class="toc-section-number">9.1</span> Task 1: Flow routing</a>
+<ul>
+<li><a href="mersey_three.html#creating-a-d8-pointer" id="toc-creating-a-d8-pointer"><span class="toc-section-number">9.1.1</span> Creating a D8 pointer</a></li>
+<li><a href="mersey_three.html#catchment-area" id="toc-catchment-area"><span class="toc-section-number">9.1.2</span> Catchment area</a></li>
+</ul></li>
+<li><a href="mersey_three.html#task-2-seed-points" id="toc-task-2-seed-points"><span class="toc-section-number">9.2</span> Task 2: Seed points</a>
+<ul>
+<li><a href="mersey_three.html#seed-repositioning" id="toc-seed-repositioning"><span class="toc-section-number">9.2.1</span> Seed repositioning</a></li>
+</ul></li>
+<li><a href="mersey_three.html#task-3-watershed-creation" id="toc-task-3-watershed-creation"><span class="toc-section-number">9.3</span> Task 3: Watershed creation</a></li>
+</ul></li>
+<li><a href="mersey_four.html#mersey_four" id="toc-mersey_four"><span class="toc-section-number">10</span> Mersey IV - Surface derivatives</a>
+<ul>
+<li><a href="mersey_four.html#task-4-reclassification" id="toc-task-4-reclassification"><span class="toc-section-number">10.1</span> Task 4: Reclassification</a>
+<ul>
+<li><a href="mersey_four.html#land-cover" id="toc-land-cover"><span class="toc-section-number">10.1.1</span> Land cover</a></li>
+<li><a href="mersey_four.html#hydrology-of-soil-types-host" id="toc-hydrology-of-soil-types-host"><span class="toc-section-number">10.1.2</span> Hydrology of Soil Types (HOST)</a></li>
+<li><a href="mersey_four.html#bedrock-geology" id="toc-bedrock-geology"><span class="toc-section-number">10.1.3</span> Bedrock geology</a></li>
+</ul></li>
+<li><a href="mersey_four.html#task-5-calculating-surface-derivatives" id="toc-task-5-calculating-surface-derivatives"><span class="toc-section-number">10.2</span> Task 5: Calculating surface derivatives</a></li>
+<li><a href="mersey_four.html#task-6-extracting-surface-derivatives" id="toc-task-6-extracting-surface-derivatives"><span class="toc-section-number">10.3</span> Task 6: Extracting surface derivatives</a>
+<ul>
+<li><a href="mersey_four.html#water-quality-measurements" id="toc-water-quality-measurements"><span class="toc-section-number">10.3.1</span> Water quality measurements</a></li>
+<li><a href="mersey_four.html#spatial-areas" id="toc-spatial-areas"><span class="toc-section-number">10.3.2</span> Spatial areas</a></li>
+<li><a href="mersey_four.html#continuous-derivatives" id="toc-continuous-derivatives"><span class="toc-section-number">10.3.3</span> Continuous derivatives</a></li>
+<li><a href="mersey_four.html#calculating-categorical-derivatives" id="toc-calculating-categorical-derivatives"><span class="toc-section-number">10.3.4</span> Calculating categorical derivatives</a></li>
+<li><a href="mersey_four.html#normalising-categorical-derivatives" id="toc-normalising-categorical-derivatives"><span class="toc-section-number">10.3.5</span> Normalising categorical derivatives</a></li>
+</ul></li>
+</ul></li>
+<li><a href="mersey_five.html#mersey_five" id="toc-mersey_five"><span class="toc-section-number">11</span> Mersey V - Statistical analysis</a>
+<ul>
+<li><a href="mersey_five.html#task-7-model-building" id="toc-task-7-model-building"><span class="toc-section-number">11.1</span> Task 7: Model building</a>
+<ul>
+<li><a href="mersey_five.html#an-introduction-to-linear-models-in-r" id="toc-an-introduction-to-linear-models-in-r"><span class="toc-section-number">11.1.1</span> An introduction to linear models in R</a></li>
+<li><a href="mersey_five.html#training-vs.-testing" id="toc-training-vs.-testing"><span class="toc-section-number">11.1.2</span> Training vs. Testing</a></li>
+<li><a href="mersey_five.html#variable-selection-strategies" id="toc-variable-selection-strategies"><span class="toc-section-number">11.1.3</span> Variable selection strategies</a></li>
+</ul></li>
+<li><a href="mersey_five.html#task-8-model-evaluation" id="toc-task-8-model-evaluation"><span class="toc-section-number">11.2</span> Task 8: Model evaluation</a></li>
+</ul></li>
+<li><a href="Assessment.html#Assessment" id="toc-Assessment"><span class="toc-section-number">12</span> Assessment</a></li>
+<li><a href="Hints.html#Hints" id="toc-Hints"><span class="toc-section-number">13</span> Handy Hints</a>
+<ul>
+<li><a href="Hints.html#dealing-with-errors-1" id="toc-dealing-with-errors-1">Dealing with errors</a></li>
+<li><a href="Hints.html#whitebox-functions-vs.-the-raster-package" id="toc-whitebox-functions-vs.-the-raster-package">Whitebox functions vs. the <code>raster</code> package</a></li>
+<li><a href="Hints.html#r-projects" id="toc-r-projects">R Projects</a></li>
+<li><a href="Hints.html#file-paths" id="toc-file-paths">File paths</a></li>
+<li><a href="Hints.html#output-files" id="toc-output-files">Output files</a></li>
+<li><a href="Hints.html#packages-1" id="toc-packages-1">Packages</a></li>
+<li><a href="Hints.html#code-structure" id="toc-code-structure">Code structure</a></li>
 </ul></li>
 </ul>
 
@@ -280,8 +330,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><center>
-Hydrological analysis in R
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><center><br />
+Hydrological analysis in R<br />
 </center></a>
           </h1>
         </div>
@@ -290,14 +340,14 @@ Hydrological analysis in R
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="mersey_four" class="section level1">
-<h1><span class="header-section-number">Chapter 10</span> Mersey IV - Surface derivatives</h1>
-<div id="task-4-reclassification" class="section level2">
-<h2><span class="header-section-number">10.1</span> Task 4: Reclassification</h2>
+<div id="mersey_four" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Mersey IV - Surface derivatives<a href="mersey_four.html#mersey_four" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="task-4-reclassification" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Task 4: Reclassification<a href="mersey_four.html#task-4-reclassification" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We know from the lecture that some of the factors which influence river hydrochemistry include land cover, soil type and bedrock geology. Information on these characteristics for the Mersey region under study is contained in the categorical files <code>mersey_LC</code> (based on LCM2000 data), <code>mersey_HOST</code> (Hydrology of Soil Types) and <code>mersey_bedrock</code> respectively. These datasets contain many different detailed classes, some of which are not applicable to the study region. Therefore, the datasets need to be simplified by aggregating some classes and omitting unnecessary classes.</p>
 <p>We’ll illustrate the process for the land cover raster, which you can then repeat for the soil type and bedrock rasters.</p>
-<div id="land-cover" class="section level3">
-<h3><span class="header-section-number">10.1.1</span> Land cover</h3>
+<div id="land-cover" class="section level3 hasAnchor" number="10.1.1">
+<h3><span class="header-section-number">10.1.1</span> Land cover<a href="mersey_four.html#land-cover" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There are 26 classes in LCM2000 data, each with a unique numeric identifier. We are going to simplify these into the following five macro-classes, alongside their numeric identifiers:</p>
 <ul>
 <li><strong>Arable</strong> = 41, 42, 43;</li>
@@ -310,14 +360,14 @@ Hydrological analysis in R
 <blockquote>
 <p>First, load the land cover raster into R as normal:</p>
 </blockquote>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="mersey_four.html#cb100-1"></a><span class="co"># Loads land cover raster</span></span>
-<span id="cb100-2"><a href="mersey_four.html#cb100-2"></a>land_cover &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_LC.tif&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="mersey_four.html#cb100-1" tabindex="-1"></a><span class="co"># Loads land cover raster</span></span>
+<span id="cb100-2"><a href="mersey_four.html#cb100-2" tabindex="-1"></a>land_cover <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_LC.tif&quot;</span>))</span></code></pre></div>
 <p>Because our raster is categorical (rather than continuous), it makes sense to convert the data format to a <strong>factor</strong>. In R, these are used to represent categorical variables.</p>
 <blockquote>
 <p>Convert the land cover raster to a factor as follows:</p>
 </blockquote>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="mersey_four.html#cb101-1"></a><span class="co"># Converts the land cover raster to a factor, overwriting the original variable</span></span>
-<span id="cb101-2"><a href="mersey_four.html#cb101-2"></a>land_cover &lt;-<span class="st"> </span><span class="kw">as.factor</span>(land_cover)</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="mersey_four.html#cb101-1" tabindex="-1"></a><span class="co"># Converts the land cover raster to a factor, overwriting the original variable</span></span>
+<span id="cb101-2"><a href="mersey_four.html#cb101-2" tabindex="-1"></a>land_cover <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(land_cover)</span></code></pre></div>
 <p>To assess the values stored in the <code>land_cover</code> raster, use the <code>unique</code> function, which should produce the following:</p>
 <pre><code>##  [1] -9999     0    11    21    41    42    43    51    52    61    71    81
 ## [13]    91   101   102   111   121   131   161   171   172   191   211   212
@@ -326,9 +376,9 @@ Hydrological analysis in R
 <blockquote>
 <p>Inspect the code below. Many of the code elements should be familiar to you. We are creating a vector called <code>categories</code> using the <code>c()</code> function, which contains all the classes of interest <code>c(41, 42, 43, ...)</code>). Next, we have converted that to a data frame using <code>as.data.frame()</code> and assigned a column name (<code>ID</code>). When you understand what is happening, add to your script and run.</p>
 </blockquote>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="mersey_four.html#cb103-1"></a><span class="co"># Categories of interest</span></span>
-<span id="cb103-2"><a href="mersey_four.html#cb103-2"></a>categories &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">c</span>(<span class="dv">41</span>, <span class="dv">42</span>, <span class="dv">43</span>, <span class="dv">91</span>, <span class="dv">101</span>, <span class="dv">102</span>, <span class="dv">51</span>, <span class="dv">52</span>, <span class="dv">61</span>, <span class="dv">71</span>, <span class="dv">81</span>, <span class="dv">171</span>, <span class="dv">172</span>, <span class="dv">111</span>, <span class="dv">121</span>))</span>
-<span id="cb103-3"><a href="mersey_four.html#cb103-3"></a><span class="kw">colnames</span>(categories) &lt;-<span class="st"> &quot;ID&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="mersey_four.html#cb103-1" tabindex="-1"></a><span class="co"># Categories of interest</span></span>
+<span id="cb103-2"><a href="mersey_four.html#cb103-2" tabindex="-1"></a>categories <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">c</span>(<span class="dv">41</span>, <span class="dv">42</span>, <span class="dv">43</span>, <span class="dv">91</span>, <span class="dv">101</span>, <span class="dv">102</span>, <span class="dv">51</span>, <span class="dv">52</span>, <span class="dv">61</span>, <span class="dv">71</span>, <span class="dv">81</span>, <span class="dv">171</span>, <span class="dv">172</span>, <span class="dv">111</span>, <span class="dv">121</span>))</span>
+<span id="cb103-3"><a href="mersey_four.html#cb103-3" tabindex="-1"></a><span class="fu">colnames</span>(categories) <span class="ot">&lt;-</span> <span class="st">&quot;ID&quot;</span></span></code></pre></div>
 <blockquote>
 <p>If you want to inspect the output, you can use <code>head(categories)</code> to print out the first 6 rows:</p>
 </blockquote>
@@ -340,18 +390,18 @@ Hydrological analysis in R
 ## 5 101
 ## 6 102</code></pre>
 <p>Using this new data frame, we are going to create a new column called <code>name</code>, which corresponds to the name of the land cover class (e.g. <span class="math inline">\(Arable = 41\)</span>)</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="mersey_four.html#cb105-1"></a><span class="co"># Collapse categories into groups based on ID</span></span>
-<span id="cb105-2"><a href="mersey_four.html#cb105-2"></a>categories<span class="op">$</span>name &lt;-<span class="st"> </span><span class="kw">fct_collapse</span>(<span class="kw">as.factor</span>(categories<span class="op">$</span>ID),</span>
-<span id="cb105-3"><a href="mersey_four.html#cb105-3"></a>             <span class="st">&quot;Arable&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;41&quot;</span>, <span class="st">&quot;42&quot;</span>, <span class="st">&quot;43&quot;</span>),</span>
-<span id="cb105-4"><a href="mersey_four.html#cb105-4"></a>             <span class="st">&quot;Heath&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;91&quot;</span>, <span class="st">&quot;101&quot;</span>, <span class="st">&quot;102&quot;</span>),</span>
-<span id="cb105-5"><a href="mersey_four.html#cb105-5"></a>             <span class="st">&quot;Grassland&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;51&quot;</span>, <span class="st">&quot;52&quot;</span>, <span class="st">&quot;61&quot;</span>, <span class="st">&quot;71&quot;</span>, <span class="st">&quot;81&quot;</span>),</span>
-<span id="cb105-6"><a href="mersey_four.html#cb105-6"></a>             <span class="st">&quot;Urban&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;171&quot;</span>, <span class="st">&quot;172&quot;</span>), </span>
-<span id="cb105-7"><a href="mersey_four.html#cb105-7"></a>             <span class="st">&quot;Wetland&quot;</span> =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;111&quot;</span>, <span class="st">&quot;121&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="mersey_four.html#cb105-1" tabindex="-1"></a><span class="co"># Collapse categories into groups based on ID</span></span>
+<span id="cb105-2"><a href="mersey_four.html#cb105-2" tabindex="-1"></a>categories<span class="sc">$</span>name <span class="ot">&lt;-</span> <span class="fu">fct_collapse</span>(<span class="fu">as.factor</span>(categories<span class="sc">$</span>ID),</span>
+<span id="cb105-3"><a href="mersey_four.html#cb105-3" tabindex="-1"></a>             <span class="st">&quot;Arable&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;41&quot;</span>, <span class="st">&quot;42&quot;</span>, <span class="st">&quot;43&quot;</span>),</span>
+<span id="cb105-4"><a href="mersey_four.html#cb105-4" tabindex="-1"></a>             <span class="st">&quot;Heath&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;91&quot;</span>, <span class="st">&quot;101&quot;</span>, <span class="st">&quot;102&quot;</span>),</span>
+<span id="cb105-5"><a href="mersey_four.html#cb105-5" tabindex="-1"></a>             <span class="st">&quot;Grassland&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;51&quot;</span>, <span class="st">&quot;52&quot;</span>, <span class="st">&quot;61&quot;</span>, <span class="st">&quot;71&quot;</span>, <span class="st">&quot;81&quot;</span>),</span>
+<span id="cb105-6"><a href="mersey_four.html#cb105-6" tabindex="-1"></a>             <span class="st">&quot;Urban&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;171&quot;</span>, <span class="st">&quot;172&quot;</span>), </span>
+<span id="cb105-7"><a href="mersey_four.html#cb105-7" tabindex="-1"></a>             <span class="st">&quot;Wetland&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;111&quot;</span>, <span class="st">&quot;121&quot;</span>))</span></code></pre></div>
 <blockquote>
 <p>Inspect the above code. The syntax is reasonably complex, but you should understand what is happening if you inspect the output:</p>
 </blockquote>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="mersey_four.html#cb106-1"></a><span class="co"># Prints categories data frame</span></span>
-<span id="cb106-2"><a href="mersey_four.html#cb106-2"></a>categories</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="mersey_four.html#cb106-1" tabindex="-1"></a><span class="co"># Prints categories data frame</span></span>
+<span id="cb106-2"><a href="mersey_four.html#cb106-2" tabindex="-1"></a>categories</span></code></pre></div>
 <pre><code>##     ID      name
 ## 1   41    Arable
 ## 2   42    Arable
@@ -372,25 +422,25 @@ Hydrological analysis in R
 <blockquote>
 <p>Inspect the following code, which substitutes (reclassifies) the raster layer and saves to a new raster (<code>.tif</code>) using the <code>writeRaster</code> function.</p>
 </blockquote>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="mersey_four.html#cb108-1"></a><span class="co"># Substitutes raster values with new categories</span></span>
-<span id="cb108-2"><a href="mersey_four.html#cb108-2"></a>land_cover_classified &lt;-<span class="st"> </span><span class="kw">subs</span>(land_cover, categories)</span>
-<span id="cb108-3"><a href="mersey_four.html#cb108-3"></a></span>
-<span id="cb108-4"><a href="mersey_four.html#cb108-4"></a><span class="co"># Write to new raster</span></span>
-<span id="cb108-5"><a href="mersey_four.html#cb108-5"></a><span class="kw">writeRaster</span>(land_cover_classified, <span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_LC_reclass.tif&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="mersey_four.html#cb108-1" tabindex="-1"></a><span class="co"># Substitutes raster values with new categories</span></span>
+<span id="cb108-2"><a href="mersey_four.html#cb108-2" tabindex="-1"></a>land_cover_classified <span class="ot">&lt;-</span> <span class="fu">subs</span>(land_cover, categories)</span>
+<span id="cb108-3"><a href="mersey_four.html#cb108-3" tabindex="-1"></a></span>
+<span id="cb108-4"><a href="mersey_four.html#cb108-4" tabindex="-1"></a><span class="co"># Write to new raster</span></span>
+<span id="cb108-5"><a href="mersey_four.html#cb108-5" tabindex="-1"></a><span class="fu">writeRaster</span>(land_cover_classified, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_LC_reclass.tif&quot;</span>))</span></code></pre></div>
 <blockquote>
 <p>When you understand it, run the code, load the new raster into R and plot. Use the code below to visualise the reclassified raster, taking note of the updated fill aesthetic (<code>scale_fill_distiller</code>):</p>
 </blockquote>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="mersey_four.html#cb109-1"></a><span class="co"># Loads land cover raster using the raster and here packages</span></span>
-<span id="cb109-2"><a href="mersey_four.html#cb109-2"></a>mersey_land_cover &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_LC_reclass.tif&quot;</span>))</span>
-<span id="cb109-3"><a href="mersey_four.html#cb109-3"></a></span>
-<span id="cb109-4"><a href="mersey_four.html#cb109-4"></a><span class="co"># Plots using ggplot</span></span>
-<span id="cb109-5"><a href="mersey_four.html#cb109-5"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
-<span id="cb109-6"><a href="mersey_four.html#cb109-6"></a><span class="st">  </span><span class="kw">layer_spatial</span>(mersey_land_cover, <span class="kw">aes</span>(<span class="dt">fill =</span> <span class="kw">stat</span>(band1))) <span class="op">+</span><span class="st"> </span><span class="co"># Adds raster layer</span></span>
-<span id="cb109-7"><a href="mersey_four.html#cb109-7"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb109-8"><a href="mersey_four.html#cb109-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">fill =</span> <span class="st">&quot;Land cover class&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Northing&quot;</span>) <span class="op">+</span></span>
-<span id="cb109-9"><a href="mersey_four.html#cb109-9"></a><span class="st">  </span><span class="kw">scale_fill_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;RdYlBu&quot;</span>, <span class="dt">na.value =</span> <span class="ot">NA</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Updated fill aesthetic</span></span>
-<span id="cb109-10"><a href="mersey_four.html#cb109-10"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span>
-<span id="cb109-11"><a href="mersey_four.html#cb109-11"></a>p </span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="mersey_four.html#cb109-1" tabindex="-1"></a><span class="co"># Loads land cover raster using the raster and here packages</span></span>
+<span id="cb109-2"><a href="mersey_four.html#cb109-2" tabindex="-1"></a>mersey_land_cover <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_LC_reclass.tif&quot;</span>))</span>
+<span id="cb109-3"><a href="mersey_four.html#cb109-3" tabindex="-1"></a></span>
+<span id="cb109-4"><a href="mersey_four.html#cb109-4" tabindex="-1"></a><span class="co"># Plots using ggplot</span></span>
+<span id="cb109-5"><a href="mersey_four.html#cb109-5" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb109-6"><a href="mersey_four.html#cb109-6" tabindex="-1"></a>  <span class="fu">layer_spatial</span>(mersey_land_cover, <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">stat</span>(band1))) <span class="sc">+</span> <span class="co"># Adds raster layer</span></span>
+<span id="cb109-7"><a href="mersey_four.html#cb109-7" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb109-8"><a href="mersey_four.html#cb109-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Land cover class&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Northing&quot;</span>) <span class="sc">+</span></span>
+<span id="cb109-9"><a href="mersey_four.html#cb109-9" tabindex="-1"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">&quot;RdYlBu&quot;</span>, <span class="at">na.value =</span> <span class="cn">NA</span>) <span class="sc">+</span> <span class="co"># Updated fill aesthetic</span></span>
+<span id="cb109-10"><a href="mersey_four.html#cb109-10" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span>
+<span id="cb109-11"><a href="mersey_four.html#cb109-11" tabindex="-1"></a>p </span></code></pre></div>
 <p><img src="Practical_1_files/figure-html/unnamed-chunk-107-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>In the above image, the land cover classes are shown as follows:</p>
 <ul>
@@ -409,8 +459,8 @@ Hydrological analysis in R
 </blockquote>
 <p><br/></p>
 </div>
-<div id="hydrology-of-soil-types-host" class="section level3">
-<h3><span class="header-section-number">10.1.2</span> Hydrology of Soil Types (HOST)</h3>
+<div id="hydrology-of-soil-types-host" class="section level3 hasAnchor" number="10.1.2">
+<h3><span class="header-section-number">10.1.2</span> Hydrology of Soil Types (HOST)<a href="mersey_four.html#hydrology-of-soil-types-host" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There are 29 classes in HOST, each with a unique numeric identifier. Reclassify these into the following four new classes:</p>
 <ul>
 <li><strong>Permeable</strong> = 1, 3, 4, 5, 6, 7, 15, 16;</li>
@@ -427,8 +477,8 @@ Hydrological analysis in R
 </ul>
 <p><br/></p>
 </div>
-<div id="bedrock-geology" class="section level3">
-<h3><span class="header-section-number">10.1.3</span> Bedrock geology</h3>
+<div id="bedrock-geology" class="section level3 hasAnchor" number="10.1.3">
+<h3><span class="header-section-number">10.1.3</span> Bedrock geology<a href="mersey_four.html#bedrock-geology" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There are 34 bedrock geology classes in Mersey Basin region, each with a unique numeric identifier. Reclassify into the following three new classes listed below:</p>
 <ul>
 <li><strong>Sands_and_Muds</strong> (sands and muds) = 5, 16, 18, 24, 28, 34;</li>
@@ -446,14 +496,14 @@ Hydrological analysis in R
 </blockquote>
 </div>
 </div>
-<div id="task-5-calculating-surface-derivatives" class="section level2">
-<h2><span class="header-section-number">10.2</span> Task 5: Calculating surface derivatives</h2>
+<div id="task-5-calculating-surface-derivatives" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Task 5: Calculating surface derivatives<a href="mersey_four.html#task-5-calculating-surface-derivatives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>As well as the factors outlined above, other catchment characteristics may affect river hydrochemistry. Here, we are interested in the effects of elevation (the raw data from <code>mersey_DEM_fill</code>) and rainfall (<code>mersey_rainfall</code>), as well as topographic slope and aspect. These are known as <strong>surface derivatives</strong> as they are calculated (derived) from the DEM.</p>
 <p>To calculate <strong>slope</strong> and <strong>aspect</strong> rasters, use the <code>wbt_slope</code> and <code>wbt_aspect</code> functions, using the original filled DEM as the input data (<code>mersey_dem_fill.tif</code>) and using appropriate output names (e.g. <code>mersey_dem_slope</code> and <code>mersey_dem_aspect</code>). Your outputs should resemble the following:</p>
 <p><img src="Practical_1_files/figure-html/unnamed-chunk-110-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
-<div id="task-6-extracting-surface-derivatives" class="section level2">
-<h2><span class="header-section-number">10.3</span> Task 6: Extracting surface derivatives</h2>
+<div id="task-6-extracting-surface-derivatives" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Task 6: Extracting surface derivatives<a href="mersey_four.html#task-6-extracting-surface-derivatives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>At this stage of the analysis we have all the relevant spatial datasets compiled. The next step is to derive the characteristics for each of the 70 catchments in the <code>mersey_watersheds</code> file (<code>.shp</code>), so we can relate these to the water quality data collected at each of the 70 monitoring sites.</p>
 <p>For each catchment we want to extract the:</p>
 <ul>
@@ -469,8 +519,8 @@ Hydrological analysis in R
 </ul>
 <p>Overall, we will calculate the average of the continuous datasets (elevation, slope, aspect, rainfall), and percentages of the categorical datasets (land cover, soil types, geology).</p>
 <p>First, however, we need to link our <code>mersey_watersheds</code> file with the measurements of water quality, currently stored in a comma-separated file (<code>mersey_EA_chemisty.csv</code>).</p>
-<div id="water-quality-measurements" class="section level3">
-<h3><span class="header-section-number">10.3.1</span> Water quality measurements</h3>
+<div id="water-quality-measurements" class="section level3 hasAnchor" number="10.3.1">
+<h3><span class="header-section-number">10.3.1</span> Water quality measurements<a href="mersey_four.html#water-quality-measurements" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To begin:</p>
 <blockquote>
 <p>Load the <code>mersey_watersheds.shp</code> file into R using the <code>st_read</code> function, storing in a variable called <code>watersheds</code>.</p>
@@ -478,14 +528,14 @@ Hydrological analysis in R
 <blockquote>
 <p>Next, print out attribute names for the shapefile as follows:</p>
 </blockquote>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="mersey_four.html#cb110-1"></a><span class="kw">colnames</span>(watersheds)</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="mersey_four.html#cb110-1" tabindex="-1"></a><span class="fu">colnames</span>(watersheds)</span></code></pre></div>
 <pre><code>## [1] &quot;FID&quot;      &quot;VALUE&quot;    &quot;geometry&quot;</code></pre>
 <p>For our analysis, the attribute of interest is <code>VALUE</code>, which contains the unique Environment Agency ID for each watershed. <strong>Importantly</strong>, this is also found in the <code>mersey_EA_chemisty.csv</code> file. This will enable us to join the two datasets, populating the attribute table of the <code>watersheds</code> variable with the water quality measurements stored in the csv.</p>
 <blockquote>
 <p>To simplify this, use the following code to replace the column name <code>VALUE</code> with a new name <code>Seed_Point_ID</code>. The latter is used in the <code>mersey_EA_chemisty.csv</code>.</p>
 </blockquote>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="mersey_four.html#cb112-1"></a><span class="co"># Replaces column name &#39;VALUE&#39; with &#39;SEED_Point_ID&#39;</span></span>
-<span id="cb112-2"><a href="mersey_four.html#cb112-2"></a><span class="kw">names</span>(watersheds)[<span class="kw">names</span>(watersheds) <span class="op">==</span><span class="st"> &#39;VALUE&#39;</span>] &lt;-<span class="st"> &#39;Seed_Point_ID&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="mersey_four.html#cb112-1" tabindex="-1"></a><span class="co"># Replaces column name &#39;VALUE&#39; with &#39;SEED_Point_ID&#39;</span></span>
+<span id="cb112-2"><a href="mersey_four.html#cb112-2" tabindex="-1"></a><span class="fu">names</span>(watersheds)[<span class="fu">names</span>(watersheds) <span class="sc">==</span> <span class="st">&#39;VALUE&#39;</span>] <span class="ot">&lt;-</span> <span class="st">&#39;Seed_Point_ID&#39;</span></span></code></pre></div>
 <blockquote>
 <p>You can re-use the <code>colnames</code> function to check it worked correctly:</p>
 </blockquote>
@@ -493,13 +543,13 @@ Hydrological analysis in R
 <blockquote>
 <p>We can now load the Environment Agency data using <code>read.csv()</code>, as shown in <a href="Intro_to_R.html#Intro_to_R">Chapter 3</a>:</p>
 </blockquote>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="mersey_four.html#cb113-1"></a><span class="co"># Loads csv using read.csv</span></span>
-<span id="cb113-2"><a href="mersey_four.html#cb113-2"></a>ea_data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_EA_chemistry.csv&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="mersey_four.html#cb113-1" tabindex="-1"></a><span class="co"># Loads csv using read.csv</span></span>
+<span id="cb113-2"><a href="mersey_four.html#cb113-2" tabindex="-1"></a>ea_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_EA_chemistry.csv&quot;</span>))</span></code></pre></div>
 <blockquote>
 <p>and <strong>merge</strong> using the <code>merge</code> function:</p>
 </blockquote>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="mersey_four.html#cb114-1"></a><span class="co"># Merge based upon matching Seed_Point_IDs</span></span>
-<span id="cb114-2"><a href="mersey_four.html#cb114-2"></a>watersheds_ea &lt;-<span class="st"> </span><span class="kw">merge</span>(watersheds, ea_data, <span class="dt">by =</span> <span class="st">&quot;Seed_Point_ID&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="mersey_four.html#cb114-1" tabindex="-1"></a><span class="co"># Merge based upon matching Seed_Point_IDs</span></span>
+<span id="cb114-2"><a href="mersey_four.html#cb114-2" tabindex="-1"></a>watersheds_ea <span class="ot">&lt;-</span> <span class="fu">merge</span>(watersheds, ea_data, <span class="at">by =</span> <span class="st">&quot;Seed_Point_ID&quot;</span>)</span></code></pre></div>
 <blockquote>
 <p>Use the <code>head()</code> function to inspect the first few rows of our new data frame.</p>
 </blockquote>
@@ -526,16 +576,16 @@ Hydrological analysis in R
 <p>Save your script before continuing.</p>
 </blockquote>
 </div>
-<div id="spatial-areas" class="section level3">
-<h3><span class="header-section-number">10.3.2</span> Spatial areas</h3>
+<div id="spatial-areas" class="section level3 hasAnchor" number="10.3.2">
+<h3><span class="header-section-number">10.3.2</span> Spatial areas<a href="mersey_four.html#spatial-areas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>With our datasets now linked, we may want to calculate the <strong>area</strong> of our watersheds, expressed as either km<sup>2</sup> or as a count of raster cells.</p>
 <p>To calculate the km<sup>2</sup> area, we can use the <code>st_area()</code> function. At it’s most simple, it could be written as follows:</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="mersey_four.html#cb116-1"></a><span class="co"># Calculates area geometry using st_area()</span></span>
-<span id="cb116-2"><a href="mersey_four.html#cb116-2"></a>watersheds_ea<span class="op">$</span>area &lt;-<span class="st"> </span><span class="kw">st_area</span>(watersheds_ea)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="mersey_four.html#cb116-1" tabindex="-1"></a><span class="co"># Calculates area geometry using st_area()</span></span>
+<span id="cb116-2"><a href="mersey_four.html#cb116-2" tabindex="-1"></a>watersheds_ea<span class="sc">$</span>area <span class="ot">&lt;-</span> <span class="fu">st_area</span>(watersheds_ea)</span></code></pre></div>
 <p>However, because our vector data is measured in metres (due to the British National Grid), our calculated area would also be in metres. Given the size of the watersheds, this could result in large, unwieldy values.</p>
 <p>To simplify, we’ll use the <code>set_units</code> function from the <code>units</code> package as follows, which will store our area in a more manageable km<sup>2</sup> format:</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="mersey_four.html#cb117-1"></a><span class="co"># Calculates area geometry using st_area(), converting to km^2 using the units package</span></span>
-<span id="cb117-2"><a href="mersey_four.html#cb117-2"></a>watersheds_ea<span class="op">$</span>area &lt;-<span class="st"> </span><span class="kw">set_units</span>(<span class="kw">st_area</span>(watersheds_ea), km<span class="op">^</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="mersey_four.html#cb117-1" tabindex="-1"></a><span class="co"># Calculates area geometry using st_area(), converting to km^2 using the units package</span></span>
+<span id="cb117-2"><a href="mersey_four.html#cb117-2" tabindex="-1"></a>watersheds_ea<span class="sc">$</span>area <span class="ot">&lt;-</span> <span class="fu">set_units</span>(<span class="fu">st_area</span>(watersheds_ea), km<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
 <blockquote>
 <p>Read the above code, add to your script and run.</p>
 </blockquote>
@@ -545,22 +595,22 @@ Hydrological analysis in R
 <blockquote>
 <p>To calculate the number of raster cells within each watershed, we first need to load the DEM into R:</p>
 </blockquote>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="mersey_four.html#cb118-1"></a><span class="co"># Load elevation raster</span></span>
-<span id="cb118-2"><a href="mersey_four.html#cb118-2"></a>mersey_dem &lt;-<span class="st"> </span><span class="kw">raster</span>(<span class="kw">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_dem_fill.tif&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="mersey_four.html#cb118-1" tabindex="-1"></a><span class="co"># Load elevation raster</span></span>
+<span id="cb118-2"><a href="mersey_four.html#cb118-2" tabindex="-1"></a>mersey_dem <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_dem_fill.tif&quot;</span>))</span></code></pre></div>
 <blockquote>
 <p>before using the <code>extract</code> function as follows. This takes in both raster (<code>mersey_dem</code>) and vector input data (<code>watersheds_ea</code>), where the value of interest is determined by the <code>fun</code> parameter (i.e. a function). Normally, we can specify an existing base R function (e.g. mean) but here we are using a user-defined function <code>fun=function(x, ...) length(x)</code> to <strong>count</strong> the length (or number) of raster cells for each watershed.</p>
 </blockquote>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="mersey_four.html#cb119-1"></a><span class="co"># Calculates the number of raster cells per watershed </span></span>
-<span id="cb119-2"><a href="mersey_four.html#cb119-2"></a>watersheds_ea<span class="op">$</span>count &lt;-<span class="st"> </span><span class="kw">extract</span>(mersey_dem, watersheds_ea, <span class="dt">fun=</span><span class="cf">function</span>(x, ...) <span class="kw">length</span>(x)) </span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="mersey_four.html#cb119-1" tabindex="-1"></a><span class="co"># Calculates the number of raster cells per watershed </span></span>
+<span id="cb119-2"><a href="mersey_four.html#cb119-2" tabindex="-1"></a>watersheds_ea<span class="sc">$</span>count <span class="ot">&lt;-</span> <span class="fu">extract</span>(mersey_dem, watersheds_ea, <span class="at">fun=</span><span class="cf">function</span>(x, ...) <span class="fu">length</span>(x)) </span></code></pre></div>
 <blockquote>
 <p>Run the above code, which should create a new attribute column called <code>count</code>. This can be previewed using <code>head()</code>, specifying the column of interest (<code>$count</code>):</p>
 </blockquote>
 </div>
-<div id="continuous-derivatives" class="section level3">
-<h3><span class="header-section-number">10.3.3</span> Continuous derivatives</h3>
+<div id="continuous-derivatives" class="section level3 hasAnchor" number="10.3.3">
+<h3><span class="header-section-number">10.3.3</span> Continuous derivatives<a href="mersey_four.html#continuous-derivatives" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Before we move on to extract our continuous derivatives (average elevation, rainfall, slope and aspect), it is worth noting that R variables can be removed from the environment as follows:</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="mersey_four.html#cb120-1"></a><span class="co"># Removes object(s) from memory</span></span>
-<span id="cb120-2"><a href="mersey_four.html#cb120-2"></a><span class="kw">rm</span>(mersey_dem)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="mersey_four.html#cb120-1" tabindex="-1"></a><span class="co"># Removes object(s) from memory</span></span>
+<span id="cb120-2"><a href="mersey_four.html#cb120-2" tabindex="-1"></a><span class="fu">rm</span>(mersey_dem)</span></code></pre></div>
 <p>This can be useful if R is running slowly.</p>
 <p>To extract continuous derivatives, we are going to use the <code>extract</code> function again.</p>
 <blockquote>
@@ -569,8 +619,8 @@ Hydrological analysis in R
 <blockquote>
 <p>The code to extract the average elevation for each watershed is shown here, using the function <code>mean</code>:</p>
 </blockquote>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="mersey_four.html#cb121-1"></a><span class="co"># Extracts raster values for each watershed, calculates mean (fun=mean), and stores in attribute table ($average_elevation)</span></span>
-<span id="cb121-2"><a href="mersey_four.html#cb121-2"></a>watersheds_ea<span class="op">$</span>average_elevation &lt;-<span class="st"> </span><span class="kw">extract</span>(mersey_dem, watersheds_ea, <span class="dt">fun=</span>mean, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="mersey_four.html#cb121-1" tabindex="-1"></a><span class="co"># Extracts raster values for each watershed, calculates mean (fun=mean), and stores in attribute table ($average_elevation)</span></span>
+<span id="cb121-2"><a href="mersey_four.html#cb121-2" tabindex="-1"></a>watersheds_ea<span class="sc">$</span>average_elevation <span class="ot">&lt;-</span> <span class="fu">extract</span>(mersey_dem, watersheds_ea, <span class="at">fun=</span>mean, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <blockquote>
 <p>When you’re happy you understand it, copy to your script and run, before repeating the process for the other continuous variables, and storing the data using sensible attribute names e.g. <code>watersheds_ea$average_elevation</code>, <code>$average_rainfall</code>, <code>$average_slope</code>, <code>$average_aspect</code>.</p>
 </blockquote>
@@ -578,8 +628,8 @@ Hydrological analysis in R
 <p>Use the <code>head()</code> function to inspect the output.</p>
 </blockquote>
 </div>
-<div id="calculating-categorical-derivatives" class="section level3">
-<h3><span class="header-section-number">10.3.4</span> Calculating categorical derivatives</h3>
+<div id="calculating-categorical-derivatives" class="section level3 hasAnchor" number="10.3.4">
+<h3><span class="header-section-number">10.3.4</span> Calculating categorical derivatives<a href="mersey_four.html#calculating-categorical-derivatives" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As we approach the end of this part of Practical 2, we are going to extract and normalise (convert to %) the categorical derivatives (land cover, soil types, bedrock).</p>
 <blockquote>
 <p>First, ensure the <strong>reclassified</strong> land cover, soil type and bedrock rasters are loaded into R and stored with sensible variable names (e.g. <code>land_cover</code>, <code>soils</code>, <code>bedrock</code>).</p>
@@ -587,12 +637,12 @@ Hydrological analysis in R
 <blockquote>
 <p>Next, we are going to use the <code>extract</code> function again, but this time returning the count of each category (e.g. Arable, Heath, Grassland, Urban, Wetland) for each watershed area, as shown here:</p>
 </blockquote>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="mersey_four.html#cb122-1"></a><span class="co"># Extract land cover counts (5 classes so levels = 1:5)</span></span>
-<span id="cb122-2"><a href="mersey_four.html#cb122-2"></a>land_cover_classes &lt;-<span class="st"> </span><span class="kw">extract</span>(land_cover, watersheds_ea, <span class="dt">fun=</span><span class="cf">function</span>(i,...) <span class="kw">table</span>(<span class="kw">factor</span>(i, <span class="dt">levels =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="mersey_four.html#cb122-1" tabindex="-1"></a><span class="co"># Extract land cover counts (5 classes so levels = 1:5)</span></span>
+<span id="cb122-2"><a href="mersey_four.html#cb122-2" tabindex="-1"></a>land_cover_classes <span class="ot">&lt;-</span> <span class="fu">extract</span>(land_cover, watersheds_ea, <span class="at">fun=</span><span class="cf">function</span>(i,...) <span class="fu">table</span>(<span class="fu">factor</span>(i, <span class="at">levels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)))</span></code></pre></div>
 <blockquote>
 <p>Rather than trying to decipher the code straight away, copy to your script, run and use <code>head()</code> to inspect the output, which should be as follows. This may take a little while (~30 seconds on a i7 computer with 16 Gb of RAM):</p>
 </blockquote>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="mersey_four.html#cb123-1"></a><span class="kw">head</span>(land_cover_classes)</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="mersey_four.html#cb123-1" tabindex="-1"></a><span class="fu">head</span>(land_cover_classes)</span></code></pre></div>
 <pre><code>##         1 2   3   4 5
 ## [1,]  379 0 340 785 0
 ## [2,] 1832 0 984 861 0
@@ -605,11 +655,11 @@ Hydrological analysis in R
 <blockquote>
 <p>To improve the readability of the data frame, update its column names as follows:</p>
 </blockquote>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="mersey_four.html#cb125-1"></a><span class="kw">colnames</span>(land_cover_classes) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Arable&quot;</span>, <span class="st">&quot;Heath&quot;</span>, <span class="st">&quot;Grassland&quot;</span>, <span class="st">&quot;Urban&quot;</span>, <span class="st">&quot;Wetland&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="mersey_four.html#cb125-1" tabindex="-1"></a><span class="fu">colnames</span>(land_cover_classes) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Arable&quot;</span>, <span class="st">&quot;Heath&quot;</span>, <span class="st">&quot;Grassland&quot;</span>, <span class="st">&quot;Urban&quot;</span>, <span class="st">&quot;Wetland&quot;</span>)</span></code></pre></div>
 <blockquote>
 <p>Use <code>head()</code> to inspect the output:</p>
 </blockquote>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="mersey_four.html#cb126-1"></a><span class="kw">head</span>(land_cover_classes)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="mersey_four.html#cb126-1" tabindex="-1"></a><span class="fu">head</span>(land_cover_classes)</span></code></pre></div>
 <pre><code>##      Arable Heath Grassland Urban Wetland
 ## [1,]    379     0       340   785       0
 ## [2,]   1832     0       984   861       0
@@ -645,29 +695,29 @@ Hydrological analysis in R
 <p>To simplify your R environment, remove all other variables using the <code>rm()</code> function.</p>
 </blockquote>
 <p>To merge the remaining files, we can use <code>cbind()</code>, which binds data frames together based on their columns:</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="mersey_four.html#cb128-1"></a><span class="co"># Combines watersheds data frame with categorical counts</span></span>
-<span id="cb128-2"><a href="mersey_four.html#cb128-2"></a>watersheds_ea &lt;-<span class="st"> </span><span class="kw">cbind</span>(watersheds_ea, land_cover_classes, soils_classes, bedrock_classes)</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="mersey_four.html#cb128-1" tabindex="-1"></a><span class="co"># Combines watersheds data frame with categorical counts</span></span>
+<span id="cb128-2"><a href="mersey_four.html#cb128-2" tabindex="-1"></a>watersheds_ea <span class="ot">&lt;-</span> <span class="fu">cbind</span>(watersheds_ea, land_cover_classes, soils_classes, bedrock_classes)</span></code></pre></div>
 </div>
-<div id="normalising-categorical-derivatives" class="section level3">
-<h3><span class="header-section-number">10.3.5</span> Normalising categorical derivatives</h3>
+<div id="normalising-categorical-derivatives" class="section level3 hasAnchor" number="10.3.5">
+<h3><span class="header-section-number">10.3.5</span> Normalising categorical derivatives<a href="mersey_four.html#normalising-categorical-derivatives" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In the <strong>final</strong> step of the practical, we are going to normalise our categorical derivatives i.e. to establish the percentage cover of each category, rather than a raw count of raster cells. The former is more informative as it allows us to compare watersheds of differing sizes.</p>
 <p>This is a relatively simple calculation and involves dividing the total number of raster cells in each watershed (stored in <code>$count</code>) by the number corresponding to each category (stored in <code>$Arable</code>, <code>$Heath</code>, <code>$Grassland</code>, …), before multiplying by 100.</p>
 <p>However, we have <strong>12</strong> categorical variables to normalise. We <em>could</em> type out each calculation manually e.g.</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="mersey_four.html#cb129-1"></a><span class="co"># Normalising categorical variables</span></span>
-<span id="cb129-2"><a href="mersey_four.html#cb129-2"></a>watersheds_ea<span class="op">$</span>Arable_percent &lt;-<span class="st"> </span>watersheds_ea<span class="op">$</span>Arable<span class="op">/</span>watersheds_ea<span class="op">$</span>count<span class="op">*</span><span class="dv">100</span></span>
-<span id="cb129-3"><a href="mersey_four.html#cb129-3"></a>watersheds_ea<span class="op">$</span>Heath_percent &lt;-<span class="st"> </span>watersheds_ea<span class="op">$</span>Heath<span class="op">/</span>watersheds_ea<span class="op">$</span>count<span class="op">*</span><span class="dv">100</span></span>
-<span id="cb129-4"><a href="mersey_four.html#cb129-4"></a>atersheds_ea<span class="op">$</span>Grassland_percent &lt;-<span class="st"> </span>watersheds_ea<span class="op">$</span>Grassland<span class="op">/</span>watersheds_ea<span class="op">$</span>count<span class="op">*</span><span class="dv">100</span></span>
-<span id="cb129-5"><a href="mersey_four.html#cb129-5"></a>...</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="mersey_four.html#cb129-1" tabindex="-1"></a><span class="co"># Normalising categorical variables</span></span>
+<span id="cb129-2"><a href="mersey_four.html#cb129-2" tabindex="-1"></a>watersheds_ea<span class="sc">$</span>Arable_percent <span class="ot">&lt;-</span> watersheds_ea<span class="sc">$</span>Arable<span class="sc">/</span>watersheds_ea<span class="sc">$</span>count<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb129-3"><a href="mersey_four.html#cb129-3" tabindex="-1"></a>watersheds_ea<span class="sc">$</span>Heath_percent <span class="ot">&lt;-</span> watersheds_ea<span class="sc">$</span>Heath<span class="sc">/</span>watersheds_ea<span class="sc">$</span>count<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb129-4"><a href="mersey_four.html#cb129-4" tabindex="-1"></a>atersheds_ea<span class="sc">$</span>Grassland_percent <span class="ot">&lt;-</span> watersheds_ea<span class="sc">$</span>Grassland<span class="sc">/</span>watersheds_ea<span class="sc">$</span>count<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb129-5"><a href="mersey_four.html#cb129-5" tabindex="-1"></a>...</span></code></pre></div>
 <p>However, we don’t want to waste time or effort if we could perform these calculations iteratively.</p>
 <p>To that end, we’ll start by:</p>
 <blockquote>
 <p>Creating a vector of the column names we want to normalise:</p>
 </blockquote>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="mersey_four.html#cb130-1"></a><span class="co"># Creates vector of categorical variables</span></span>
-<span id="cb130-2"><a href="mersey_four.html#cb130-2"></a>categorical_names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Arable&quot;</span>, <span class="st">&quot;Heath&quot;</span>, <span class="st">&quot;Grassland&quot;</span>, <span class="st">&quot;Urban&quot;</span>, <span class="st">&quot;Wetland&quot;</span>, <span class="st">&quot;Permeable&quot;</span>, <span class="st">&quot;Impermeable&quot;</span>, <span class="st">&quot;Gleyed&quot;</span>, <span class="st">&quot;Peats&quot;</span>, <span class="st">&quot;Sands_and_Muds&quot;</span>, <span class="st">&quot;Limestone&quot;</span>, <span class="st">&quot;Coal&quot;</span>)</span>
-<span id="cb130-3"><a href="mersey_four.html#cb130-3"></a></span>
-<span id="cb130-4"><a href="mersey_four.html#cb130-4"></a><span class="co"># Prints vector</span></span>
-<span id="cb130-5"><a href="mersey_four.html#cb130-5"></a>categorical_names</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="mersey_four.html#cb130-1" tabindex="-1"></a><span class="co"># Creates vector of categorical variables</span></span>
+<span id="cb130-2"><a href="mersey_four.html#cb130-2" tabindex="-1"></a>categorical_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Arable&quot;</span>, <span class="st">&quot;Heath&quot;</span>, <span class="st">&quot;Grassland&quot;</span>, <span class="st">&quot;Urban&quot;</span>, <span class="st">&quot;Wetland&quot;</span>, <span class="st">&quot;Permeable&quot;</span>, <span class="st">&quot;Impermeable&quot;</span>, <span class="st">&quot;Gleyed&quot;</span>, <span class="st">&quot;Peats&quot;</span>, <span class="st">&quot;Sands_and_Muds&quot;</span>, <span class="st">&quot;Limestone&quot;</span>, <span class="st">&quot;Coal&quot;</span>)</span>
+<span id="cb130-3"><a href="mersey_four.html#cb130-3" tabindex="-1"></a></span>
+<span id="cb130-4"><a href="mersey_four.html#cb130-4" tabindex="-1"></a><span class="co"># Prints vector</span></span>
+<span id="cb130-5"><a href="mersey_four.html#cb130-5" tabindex="-1"></a>categorical_names</span></code></pre></div>
 <pre><code>##  [1] &quot;Arable&quot;         &quot;Heath&quot;          &quot;Grassland&quot;      &quot;Urban&quot;         
 ##  [5] &quot;Wetland&quot;        &quot;Permeable&quot;      &quot;Impermeable&quot;    &quot;Gleyed&quot;        
 ##  [9] &quot;Peats&quot;          &quot;Sands_and_Muds&quot; &quot;Limestone&quot;      &quot;Coal&quot;</code></pre>
@@ -675,11 +725,11 @@ Hydrological analysis in R
 <blockquote>
 <p>Copy the following code to your script and run:</p>
 </blockquote>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="mersey_four.html#cb132-1"></a><span class="co"># Loops through each element of categorical_names and stores it in variable &quot;i&quot;</span></span>
-<span id="cb132-2"><a href="mersey_four.html#cb132-2"></a><span class="cf">for</span> (i <span class="cf">in</span> categorical_names){</span>
-<span id="cb132-3"><a href="mersey_four.html#cb132-3"></a>  <span class="co"># Prints element stored in i</span></span>
-<span id="cb132-4"><a href="mersey_four.html#cb132-4"></a>  <span class="kw">print</span>(i)</span>
-<span id="cb132-5"><a href="mersey_four.html#cb132-5"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="mersey_four.html#cb132-1" tabindex="-1"></a><span class="co"># Loops through each element of categorical_names and stores it in variable &quot;i&quot;</span></span>
+<span id="cb132-2"><a href="mersey_four.html#cb132-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> categorical_names){</span>
+<span id="cb132-3"><a href="mersey_four.html#cb132-3" tabindex="-1"></a>  <span class="co"># Prints element stored in i</span></span>
+<span id="cb132-4"><a href="mersey_four.html#cb132-4" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb132-5"><a href="mersey_four.html#cb132-5" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;Arable&quot;
 ## [1] &quot;Heath&quot;
 ## [1] &quot;Grassland&quot;
@@ -696,13 +746,13 @@ Hydrological analysis in R
 <blockquote>
 <p>Now copy and run the following updated version:</p>
 </blockquote>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="mersey_four.html#cb134-1"></a><span class="co"># Loops through each element of categorical_names and stores it in variable &quot;i&quot;</span></span>
-<span id="cb134-2"><a href="mersey_four.html#cb134-2"></a><span class="cf">for</span> (i <span class="cf">in</span> categorical_names){</span>
-<span id="cb134-3"><a href="mersey_four.html#cb134-3"></a>  <span class="co"># Creates a new column name using the variable &quot;i&quot; and the string &quot;percent&quot;, separated by an underscore.</span></span>
-<span id="cb134-4"><a href="mersey_four.html#cb134-4"></a>  col &lt;-<span class="st"> </span><span class="kw">paste</span>(i, <span class="st">&quot;percent&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;_&quot;</span>)</span>
-<span id="cb134-5"><a href="mersey_four.html#cb134-5"></a>  <span class="co"># Prints new column name</span></span>
-<span id="cb134-6"><a href="mersey_four.html#cb134-6"></a>  <span class="kw">print</span>(col)</span>
-<span id="cb134-7"><a href="mersey_four.html#cb134-7"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="mersey_four.html#cb134-1" tabindex="-1"></a><span class="co"># Loops through each element of categorical_names and stores it in variable &quot;i&quot;</span></span>
+<span id="cb134-2"><a href="mersey_four.html#cb134-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> categorical_names){</span>
+<span id="cb134-3"><a href="mersey_four.html#cb134-3" tabindex="-1"></a>  <span class="co"># Creates a new column name using the variable &quot;i&quot; and the string &quot;percent&quot;, separated by an underscore.</span></span>
+<span id="cb134-4"><a href="mersey_four.html#cb134-4" tabindex="-1"></a>  col <span class="ot">&lt;-</span> <span class="fu">paste</span>(i, <span class="st">&quot;percent&quot;</span>, <span class="at">sep=</span><span class="st">&quot;_&quot;</span>)</span>
+<span id="cb134-5"><a href="mersey_four.html#cb134-5" tabindex="-1"></a>  <span class="co"># Prints new column name</span></span>
+<span id="cb134-6"><a href="mersey_four.html#cb134-6" tabindex="-1"></a>  <span class="fu">print</span>(col)</span>
+<span id="cb134-7"><a href="mersey_four.html#cb134-7" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;Arable_percent&quot;
 ## [1] &quot;Heath_percent&quot;
 ## [1] &quot;Grassland_percent&quot;
@@ -719,21 +769,21 @@ Hydrological analysis in R
 <blockquote>
 <p>In this final version of the <strong>for loop</strong>, we are creating new columns in the <code>watersheds_ea</code> data frame based on the column name (<code>col</code>) and the normalisation approach described above (i.e. Arable/count*100). However, rather than having to specify the input and output columns manually, this is handled for us iteratively using the <code>col</code> and <code>i</code> variables:</p>
 </blockquote>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="mersey_four.html#cb136-1"></a><span class="co"># Loops through each element of categorical_names and stores it in variable &quot;i&quot;</span></span>
-<span id="cb136-2"><a href="mersey_four.html#cb136-2"></a><span class="cf">for</span> (i <span class="cf">in</span> categorical_names){</span>
-<span id="cb136-3"><a href="mersey_four.html#cb136-3"></a>  <span class="co"># Creates a new column name using the variable &quot;i&quot; and the string &quot;percent&quot;, separated by an underscore.</span></span>
-<span id="cb136-4"><a href="mersey_four.html#cb136-4"></a>  col &lt;-<span class="st"> </span><span class="kw">paste</span>(i, <span class="st">&quot;percent&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;_&quot;</span>)</span>
-<span id="cb136-5"><a href="mersey_four.html#cb136-5"></a>  <span class="co"># Updates watersheds_ea with the percentage cover of each category</span></span>
-<span id="cb136-6"><a href="mersey_four.html#cb136-6"></a>  watersheds_ea[col] &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(watersheds_ea[[i]]<span class="op">/</span>watersheds_ea<span class="op">$</span>count<span class="op">*</span><span class="dv">100</span>)</span>
-<span id="cb136-7"><a href="mersey_four.html#cb136-7"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="mersey_four.html#cb136-1" tabindex="-1"></a><span class="co"># Loops through each element of categorical_names and stores it in variable &quot;i&quot;</span></span>
+<span id="cb136-2"><a href="mersey_four.html#cb136-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> categorical_names){</span>
+<span id="cb136-3"><a href="mersey_four.html#cb136-3" tabindex="-1"></a>  <span class="co"># Creates a new column name using the variable &quot;i&quot; and the string &quot;percent&quot;, separated by an underscore.</span></span>
+<span id="cb136-4"><a href="mersey_four.html#cb136-4" tabindex="-1"></a>  col <span class="ot">&lt;-</span> <span class="fu">paste</span>(i, <span class="st">&quot;percent&quot;</span>, <span class="at">sep=</span><span class="st">&quot;_&quot;</span>)</span>
+<span id="cb136-5"><a href="mersey_four.html#cb136-5" tabindex="-1"></a>  <span class="co"># Updates watersheds_ea with the percentage cover of each category</span></span>
+<span id="cb136-6"><a href="mersey_four.html#cb136-6" tabindex="-1"></a>  watersheds_ea[col] <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(watersheds_ea[[i]]<span class="sc">/</span>watersheds_ea<span class="sc">$</span>count<span class="sc">*</span><span class="dv">100</span>)</span>
+<span id="cb136-7"><a href="mersey_four.html#cb136-7" tabindex="-1"></a>}</span></code></pre></div>
 <blockquote>
 <p>When you’re happy you understand the above code, run it. To finish the practical, we’re going to remove the geometry stored in the data frame (not required for subsequent analysis) before saving as a comma-separated file:</p>
 </blockquote>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="mersey_four.html#cb137-1"></a><span class="co"># Drops geometry attribute from watersheds_ea</span></span>
-<span id="cb137-2"><a href="mersey_four.html#cb137-2"></a>watersheds_ea &lt;-<span class="st"> </span><span class="kw">st_drop_geometry</span>(watersheds_ea)</span>
-<span id="cb137-3"><a href="mersey_four.html#cb137-3"></a></span>
-<span id="cb137-4"><a href="mersey_four.html#cb137-4"></a><span class="co"># Writes data frame to comma-separated file</span></span>
-<span id="cb137-5"><a href="mersey_four.html#cb137-5"></a><span class="kw">write.csv</span>(<span class="dt">x =</span> watersheds_ea, <span class="kw">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_watersheds_ea.csv&quot;</span>), <span class="dt">row.names=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="mersey_four.html#cb137-1" tabindex="-1"></a><span class="co"># Drops geometry attribute from watersheds_ea</span></span>
+<span id="cb137-2"><a href="mersey_four.html#cb137-2" tabindex="-1"></a>watersheds_ea <span class="ot">&lt;-</span> <span class="fu">st_drop_geometry</span>(watersheds_ea)</span>
+<span id="cb137-3"><a href="mersey_four.html#cb137-3" tabindex="-1"></a></span>
+<span id="cb137-4"><a href="mersey_four.html#cb137-4" tabindex="-1"></a><span class="co"># Writes data frame to comma-separated file</span></span>
+<span id="cb137-5"><a href="mersey_four.html#cb137-5" tabindex="-1"></a><span class="fu">write.csv</span>(<span class="at">x =</span> watersheds_ea, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_watersheds_ea.csv&quot;</span>), <span class="at">row.names=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Use <code>head()</code> to inspect the final output, which should resemble the following:</p>
 <pre><code>##   Seed_Point_ID FID   EA_ID    Group   Ph   SSC     Ca    Mg  NH4  NO3  NO2
 ## 1             1  54 1940214 Training 7.79 21.37  60.82 11.12 0.24 2.64 0.08
