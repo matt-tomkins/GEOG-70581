@@ -510,7 +510,7 @@ This is <strong>not</strong> an exhaustive list of R functions, and we’ll cove
 <blockquote>
 <p>The above code is our first encounter with <code>plot()</code> which (as you may have guessed), is used to plot objects in base R <a href="Intro_to_R.html#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. The new plot you’ve created should now appear in the <strong>plots window</strong> and should resemble the following figure. There are lots of more exciting ways to plot data in R, some of which are described <a href="Intro_to_R.html#data_plotting">below</a>.</p>
 </blockquote>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 <p>As a general rule, well-presented code would typically comprise:</p>
 <ul>
 <li>1/3 code;</li>
@@ -678,27 +678,27 @@ This is <strong>not</strong> an exhaustive list of R functions, and we’ll cove
 <p>To begin, we’re going to create an empty ggplot <strong>canvas</strong> i.e. the blank canvas upon which we can add ggplot elements, such as axes, legends, data, scale bars etc.</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="Intro_to_R.html#cb54-1" tabindex="-1"></a><span class="co"># Initialising an empty canvas</span></span>
 <span id="cb54-2"><a href="Intro_to_R.html#cb54-2" tabindex="-1"></a><span class="fu">ggplot</span>()</span></code></pre></div>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-38-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-39-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Next, we specify which data set we are going to plot. <strong>Note</strong>: ggplot2 works almost exclusively with <strong>data frames</strong>:</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="Intro_to_R.html#cb55-1" tabindex="-1"></a><span class="co"># Which data frame do we want to use?</span></span>
 <span id="cb55-2"><a href="Intro_to_R.html#cb55-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df)</span></code></pre></div>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-39-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-40-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>With the data frame defined, we now need to specify which columns of date we wish to plot. The code below uses the function <code>mapping=aes()</code>to do so, where the date variable (within the <code>df</code> object) is assigned to the x-axis <code>x=date</code> and the flow rate variable is assigned to the y-axis <code>y=flow</code> using their column names:</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="Intro_to_R.html#cb56-1" tabindex="-1"></a><span class="co"># Which data frame columns do we want to plot?</span></span>
 <span id="cb56-2"><a href="Intro_to_R.html#cb56-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>flow))</span></code></pre></div>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-40-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-41-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>However, our data are still not visible because we need to select a <strong>geom</strong> type, which is a complicated way of saying the type of geometric object we want to plot. We could plot our data as points, lines or polygons; we could choose a histogram, bar plot, or box and whiskers plot; there are <a href="https://ggplot2.tidyverse.org/reference/">many</a> to choose from!</p>
 <p>In this example, we are going to plot our data as points, which is done using the <code>geom_point()</code> command. As you can see from the code below, the structure differs slightly from normal code, in that ggplot elements are separated by the <code>+</code> operator. This allows the user to add each ggplot element on a separate line of code, thereby improving readability.</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="Intro_to_R.html#cb57-1" tabindex="-1"></a><span class="co"># What type of geom do we want?</span></span>
 <span id="cb57-2"><a href="Intro_to_R.html#cb57-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>flow)) <span class="sc">+</span></span>
 <span id="cb57-3"><a href="Intro_to_R.html#cb57-3" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-41-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-42-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>In the same way, we could also plot the same data as a line, using <code>geom_line()</code>. In this example, both <strong>geoms</strong> are using the same data frame as inputs <code>x=date, y=flow</code>. This is because the data frame and columns have been specified in the initial call to ggplot here: <code>data = df, mapping=aes(x=date, y=flow)</code>. All subsequent geom objects (e.g. points, lines, bar plots…) will use these inputs, unless an alternative is specified.</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="Intro_to_R.html#cb58-1" tabindex="-1"></a><span class="co"># Adding a line geom</span></span>
 <span id="cb58-2"><a href="Intro_to_R.html#cb58-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>flow)) <span class="sc">+</span></span>
 <span id="cb58-3"><a href="Intro_to_R.html#cb58-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb58-4"><a href="Intro_to_R.html#cb58-4" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-42-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-43-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The above code covers the basics of ggplot, but we can start to improve the design of our plots. For example, we can choose one of the available <strong>themes</strong>. We could re-order our geoms to show the data points above the line, while adding some colour using <a href="https://htmlcolorcodes.com/">HEX codes</a>. We could change the aspect ratio to produce a square plot and maybe add some axis labels:</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="Intro_to_R.html#cb59-1" tabindex="-1"></a><span class="co"># Specifying data frame and columns</span></span>
 <span id="cb59-2"><a href="Intro_to_R.html#cb59-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>flow)) <span class="sc">+</span></span>
@@ -711,12 +711,12 @@ This is <strong>not</strong> an exhaustive list of R functions, and we’ll cove
 <span id="cb59-9"><a href="Intro_to_R.html#cb59-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb59-10"><a href="Intro_to_R.html#cb59-10" tabindex="-1"></a>  <span class="co"># Updating axis labels (including superscript elements)</span></span>
 <span id="cb59-11"><a href="Intro_to_R.html#cb59-11" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Date (January - October 2019)&quot;</span>, <span class="at">y =</span> <span class="fu">bquote</span>(<span class="st">&#39;Average daily flow&#39;</span><span class="sc">~</span>(m<span class="sc">^</span><span class="dv">3</span><span class="sc">~</span><span class="st">&#39;per second&#39;</span>)))</span></code></pre></div>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-43-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-44-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Using the above plot, we could start to identify periods of above or below average flow. Adding a trend line could also be useful to identify patterns in the data.</p>
 <blockquote>
 <p>Add a trendline to your plot using the geom_smooth() argument. You can experiment with different smoothing methods e.g. method = “lm”, “glm”, “gam” or “loess”.</p>
 </blockquote>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-44-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-45-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>As a final step, we will probably want to export our figure so that it can be used elsewhere e.g. in the assessment. To do so, we simply assign our ggplot object to an object using the assignment operator: <code>&lt;-</code> as normal:</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="Intro_to_R.html#cb60-1" tabindex="-1"></a><span class="co"># Assign our ggplot object to the object &quot;g&quot;</span></span>
 <span id="cb60-2"><a href="Intro_to_R.html#cb60-2" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping=</span><span class="fu">aes</span>(<span class="at">x=</span>date, <span class="at">y=</span>flow)) <span class="sc">+</span> ...</span></code></pre></div>
@@ -765,7 +765,7 @@ This is <strong>not</strong> an exhaustive list of R functions, and we’ll cove
 </blockquote>
 <pre><code>## ggplot2 
 ##    TRUE</code></pre>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
 <pre><code>## [1] &quot;The month with the highest average daily flow is January&quot;</code></pre>
 <pre><code>## [1] &quot;The month with the lowest average daily flow is July&quot;</code></pre>
 

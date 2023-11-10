@@ -16,6 +16,27 @@ link-citations: true
 
 ![](figures/course-logo.png) 
 
+
+```{r, eval = TRUE, echo = FALSE, warning = FALSE, message = FALSE, results='hide'}
+
+# Clean the previous bookdown version
+
+# Function to check and install packages
+check.packages <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if (length(new.pkg))
+    install.packages(new.pkg, dependencies = TRUE)
+  sapply(pkg, require, character.only = TRUE)
+}
+
+# Checks and installs packages
+packages <- c("bookdown")
+check.packages(packages)
+
+# Clean the docs folder
+clean_book(clean = getOption("bookdown.clean_book", TRUE))
+
+```
 ## Practical outline
 
 In this set of practicals, we'll be using [R](https://www.r-project.org/), [RStudio](https://www.rstudio.com/) and [WhiteboxTools](https://jblindsay.github.io/wbt_book/intro.html) to perform hydrological analysis. 
