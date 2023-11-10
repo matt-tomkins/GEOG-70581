@@ -831,7 +831,7 @@ A code solution to the formative task will be uploaded here after the class.
 
 > **Note** If you're working on a personal computer with Chinese language settings, you may need to run `Sys.setlocale("LC_TIME", "English")` at the start of your code to fix language-related errors the in the `as.Date()` function. 
 
-```{r, eval = TRUE, echo = FALSE, warning = FALSE, message = FALSE}
+```{r, eval = FALSE, echo = FALSE, warning = FALSE, message = FALSE}
 
 # Solution to the Chapter 3 formative task
 # Author: matt-tomkins
