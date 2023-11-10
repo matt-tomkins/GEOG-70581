@@ -2,7 +2,7 @@
 
 Within a Geographical Information System (GIS) framework, readily available spatial datasets, such as land use and geology, have been used to explore the controls on river water quality. Understanding the relationships between catchment characteristics (or metrics) and river water quality provides a base for determining how future changes in both land use and climate will impact river water quality. Therefore, it is important to determine the processes that regulate river water quality in landscapes under increasing pressure from human population, whether from urbanisation or more intensive food production.
 
-The **Mersey Basin** is one of the UK’s most environmentally varied regions, with rich rural landscapes and urban-industrial centres. Industrial prosperity in the region over the last few hundred years resulted in severe pollution of the many rivers in the basin. Although there has been significant improvements in water quality in recent years (see [here](https://www.merseybasin.org.uk/)),  the rivers in the Mersey Basin are still subjected to a number of sewage and industrial inputs, and agricultural runoff.
+The **Mersey Basin** is one of the UK’s most environmentally varied regions, with rich rural landscapes and urban-industrial centres. Industrial prosperity in the region over the last few hundred years resulted in severe pollution of the many rivers in the basin. Although there has been significant improvements in water quality in recent years (see [The Mersey Basin Campaign](https://www.merseybasin.org.uk/)),  the rivers in the Mersey Basin are still subjected to a number of sewage and industrial inputs, and agricultural runoff.
 
 You can explore the basin below:
 
@@ -66,7 +66,7 @@ Basin and develop empirical models of river water quality across the region.
 
 ### Assessment
 
-This practical is assessed by completion of the tasks outlined in this document, full details of which are provided [here](#Assessment). You will need to write up the practical in the format of a report. This practical is worth 50% of your overall mark for GEOG70581. 
+This practical is assessed by completion of the tasks outlined in this document, full details of which are provided [here](#Assessment) and on [Blackboard](https://online.manchester.ac.uk/webapps/blackboard/content/listContentEditable.jsp?content_id=_15464511_1&course_id=_77840_1&content_id=_15464515_1). You will need to write up the practical in the format of a report. This practical is worth 50% of your overall mark for GEOG70581. 
 
 As well as the standard SEED PGT criteria, you will also be assessed on your ability to:
 
@@ -79,6 +79,6 @@ As well as the standard SEED PGT criteria, you will also be assessed on your abi
 - Use references to relevant academic literature to support your arguments;
 
 
-<div align="center">The **deadline** for this practical is 14:00 on Thursday 5th January 2023. 
+<div align="center">The **deadline** for this practical is 14:00 on Thursday 11th January 2024. 
 
 The **word count** for this practical is 1500.</div>

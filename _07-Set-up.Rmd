@@ -35,13 +35,11 @@ The data for this practical have already been downloaded [here](https://online.m
 
 In Practical 1, we used a single raster file (`dem_10m.tif`) and visualised and assessed the outputs of a number of WBT functions (e.g. fill, breach, slope, pointer, flow accumulation). 
 
-In Practical 2, we are going to use a much wider range of input data, all of which use the **British National Grid** (BNG), a **projected** coordinate Reference System [[EPSG:27700](https://epsg.io/27700)]. The data are described here:
+In Practical 2, we are going to use a much wider range of input data, all of which use the **British National Grid** (BNG), a **projected** coordinate Reference System [[EPSG:27700](https://epsg.io/27700)]. Alongside a few supplementary files (which you may wish to use for plotting), the key data are described here:
 
 - **Raster** data (`.tif`):
   - `mersey_dem_fill` 
       - a filled digital elevation model of the Mersey Basin;
-  - `mersey_basin` 
-      - a Boolean or logical raster (0 or 1) representing the extent of the Mersey Basin;
   - `mersey_rainfall` 
       - a raster of precipitation values; 
   - `mersey_bedrock` 
@@ -52,10 +50,6 @@ In Practical 2, we are going to use a much wider range of input data, all of whi
       - a categorical raster of land cover classes, based on LCM2000 data;
 
 - **Vector** data (`.shp`):
-  - `mersey_watershed_basin` 
-      - a polygon vector representing the extent of the Mersey Basin;
-  - `mersey_roads` 
-      - a line vector representing A roads and motorways;
   - `mersey_EA_sites` 
       - a point vector representing the locations of water quality monitoring stations. The attribute table contains a unique Environment Agency ID for each (`EA_ID`):
       
@@ -63,15 +57,15 @@ In Practical 2, we are going to use a much wider range of input data, all of whi
   - `mersey_EA_chemisty` 
       - a comma-delimited table containing measurements for the following water quality indicators, as well as corresponding Environment Agency IDs:
         - pH: acidity/alkalinity;
-        - SSC: suspended solids concentration;
-        - Ca: calcium;
-        - Mg: magnesium;
-        - NH<sub>4</sub>: ammonium;
-        - NO<sub>3</sub>: nitrate;
-        - NO<sub>2</sub>: nitrite;
-        - TON: total oxidised nitrogen;
-        - PO<sub>4</sub>: phosphate;
-        - Zn: zinc.
+        - SSC: suspended solids concentration (mg l<sup>−1</sup>);
+        - Ca: calcium (mg l<sup>−1</sup>);
+        - Mg: magnesium (mg l<sup>−1</sup>);
+        - NH<sub>4</sub>: ammonium (mg-N l<sup>−1</sup>);
+        - NO<sub>3</sub>: nitrate (mg-N l<sup>−1</sup>);
+        - NO<sub>2</sub>: nitrite (mg-N l<sup>−1</sup>);
+        - TON: total oxidised nitrogen (mg-N l<sup>−1</sup>);
+        - PO<sub>4</sub>: phosphate (mg-P l<sup>−1</sup>);
+        - Zn: zinc (μg l<sup>−1</sup>).
       
 > Read through the above descriptions carefully, making sure you understand the data we are using before moving on. We'll be combining the Environment Agency measurements of water quality (e.g. pH, SSC, ...) with spatial data representing the catchment (e.g. topography, rainfall, land cover, ...) to investigate the controls on water quality across the Mersey Basin. 
 

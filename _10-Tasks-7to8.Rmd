@@ -15,15 +15,15 @@ If you have any other variables in your R environment, these can be removed usin
 This data frame should contain the following 10 water quality indicators for each watershed:
 
   - pH: acidity/alkalinity;
-  - SSC: suspended solids concentration;
-  - Ca: calcium;
-  - Mg: magnesium;
-  - NH<sub>4</sub>: ammonium;
-  - NO<sub>3</sub>: nitrate;
-  - NO<sub>2</sub>: nitrite;
-  - TON: total oxidised nitrogen;
-  - PO<sub>4</sub>: phosphate;
-  - Zn: zinc.
+  - SSC: suspended solids concentration (mg l<sup>−1</sup>);
+  - Ca: calcium (mg l<sup>−1</sup>);
+  - Mg: magnesium (mg l<sup>−1</sup>);
+  - NH<sub>4</sub>: ammonium (mg-N l<sup>−1</sup>);
+  - NO<sub>3</sub>: nitrate (mg-N l<sup>−1</sup>);
+  - NO<sub>2</sub>: nitrite (mg-N l<sup>−1</sup>);
+  - TON: total oxidised nitrogen (mg-N l<sup>−1</sup>);
+  - PO<sub>4</sub>: phosphate (mg-P l<sup>−1</sup>);
+  - Zn: zinc (μg l<sup>−1</sup>).
 
 It should also contain the continuous derivatives (e.g. average elevation) and categorical derivatives (e.g. land cover percentage) for each watershed.
 

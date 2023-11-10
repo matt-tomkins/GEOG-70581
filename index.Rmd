@@ -43,14 +43,14 @@ These practicals will be completed across Weeks 8 to 12 as follows:
 
 - Week 8: 
   - Introductory lecture (~1 hr)
-  - Complete Chapters 1 - 3: An introduction to R (~1 hr)
+  - Complete Chapters 1 - 3: An introduction to R (~2 hr)
 - Weeks 9:
   - Lecture on Hydrological and Geomorphological models (~1 hr)
-  - Complete Chapters 4 - 6: **Eskdale** practical (~2 hr)
+  - Complete Chapters 4 - 6: **Eskdale** practical (~2 hr, plus independent work)
 - Weeks 10 - 12:
   - Lecture on Water Quality Modelling (~1 hr)
-  - Complete Chapters 7 - 11: **Mersey** practical (~8 hr)
+  - Complete Chapters 7 - 11: **Mersey** practical (~6 hr, plus independent work)
   
   
-The assessment, based upon Practical 2 (**Mersey**), is due 05/01/2023 (14:00). 
+The assessment, based upon Practical 2 (**Mersey**), is due 11/01/2024 (14:00). 
 

@@ -449,7 +449,7 @@ Now that we have our script set up, we need to understand is how to install and 
 
 > To begin, remove all the previous code from your script `learning_R.R` and save.
 
-For the remainder of this chapter, we are going to use just one package as an example, but more will be required for Practicals 1 and 2, as detailed [here](Eskdale_set_up). 
+For the remainder of this chapter, we are going to use just one package as an example, but more will be required for Practicals 1 and 2. 
 
 The package we are going to use is [ggplot2](https://ggplot2.tidyverse.org/), which is a widely used visualization package for R. If there's a figure, map or graphic you want to make, it's likely that **ggplot2** can do it for you. It's now even used by the [BBC](https://bbc.github.io/rcookbook/)!
 
@@ -625,7 +625,7 @@ If this has worked successfully, a new object `df` will have been loaded into th
 ![](figures/Using-R/loading_data_from_csv.png)
 </p>
 
-As you may have noticed, this is not the most elegant way to load data, as it requires us to copy, paste _**and**_ edit the full file path each time. This would quickly become tiring if we wanted to load multiple data sets. In Practical 1, we'll guide you through a solution using R **projects** and the [**here** package](#R_Projects) but as ever, it is important to understand the basics before moving on to more sophisticated solutions. 
+As you may have noticed, this is not the most elegant way to load data, as it requires us to copy, paste _**and**_ edit the full file path each time. This would quickly become tiring if we wanted to load multiple data sets. In Practical 1, we'll guide you through a solution using R **projects** and the [**here** package](https://here.r-lib.org/) but as ever, it is important to understand the basics before moving on to more sophisticated solutions. 
 
 We can use a variety of commands to inspect this new data set, including:
 
@@ -712,7 +712,7 @@ ggplot(data = df, mapping=aes(x=date, y=flow)) +
   geom_point()
 ```
 
-In the same way, we could also plot the same data as a line, using `geom_line()`. In this example, both **geoms** are using the same data frame as inputs `x=date, y=flow`. This is because the data frame and columns have been specified in the initial call to ggplot here: `data = df, mapping=aes(x=date, y=flow)`. All subsequent geom objects (e.g. points, lines, bar plots...) will these inputs, unless an alternative is specified.
+In the same way, we could also plot the same data as a line, using `geom_line()`. In this example, both **geoms** are using the same data frame as inputs `x=date, y=flow`. This is because the data frame and columns have been specified in the initial call to ggplot here: `data = df, mapping=aes(x=date, y=flow)`. All subsequent geom objects (e.g. points, lines, bar plots...) will use these inputs, unless an alternative is specified.
 
 ```{r, fig.align="center"}
 # Adding a line geom
@@ -821,7 +821,7 @@ To extract the month from each record, you may want to use the `months()` functi
 
 A code solution to the formative task will be uploaded here after the class.
 
-```{r, eval = FALSE, echo = FALSE, warning = FALSE, message = FALSE}
+```{r, eval = FALSE, echo = TRUE, warning = FALSE, message = FALSE}
 
 # Solution to the Chapter 3 formative task
 # Author: matt-tomkins
@@ -831,7 +831,7 @@ A code solution to the formative task will be uploaded here after the class.
 
 > **Note** If you're working on a personal computer with Chinese language settings, you may need to run `Sys.setlocale("LC_TIME", "English")` at the start of your code to fix language-related errors the in the `as.Date()` function. 
 
-```{r, eval = TRUE, echo = TRUE, warning = FALSE, message = FALSE}
+```{r, eval = TRUE, echo = FALSE, warning = FALSE, message = FALSE}
 
 # Solution to the Chapter 3 formative task
 # Author: matt-tomkins
@@ -865,7 +865,7 @@ df_post2000$month <- months(df_post2000$date)
 summary <- aggregate(flow ~ month, df_post2000, mean)
 
 # Determines plotting order by converting the month column to a 'factor'
-# The factor levels are determined by the base R month.name function
+# The factor levels are determined by the R month.name function
 summary$month <- factor(summary$month, levels = month.name)
 
 # Plotting using ggplot2

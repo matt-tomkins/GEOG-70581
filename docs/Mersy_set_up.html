@@ -375,17 +375,13 @@ Hydrological analysis in R<br />
 <div id="practical-2-data" class="section level2 hasAnchor" number="8.4">
 <h2><span class="header-section-number">8.4</span> Data description<a href="Mersy_set_up.html#practical-2-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In Practical 1, we used a single raster file (<code>dem_10m.tif</code>) and visualised and assessed the outputs of a number of WBT functions (e.g. fill, breach, slope, pointer, flow accumulation).</p>
-<p>In Practical 2, we are going to use a much wider range of input data, all of which use the <strong>British National Grid</strong> (BNG), a <strong>projected</strong> coordinate Reference System [<a href="https://epsg.io/27700">EPSG:27700</a>]. The data are described here:</p>
+<p>In Practical 2, we are going to use a much wider range of input data, all of which use the <strong>British National Grid</strong> (BNG), a <strong>projected</strong> coordinate Reference System [<a href="https://epsg.io/27700">EPSG:27700</a>]. Alongside a few supplementary files (which you may wish to use for plotting), the key data are described here:</p>
 <ul>
 <li><strong>Raster</strong> data (<code>.tif</code>):
 <ul>
 <li><code>mersey_dem_fill</code>
 <ul>
 <li>a filled digital elevation model of the Mersey Basin;</li>
-</ul></li>
-<li><code>mersey_basin</code>
-<ul>
-<li>a Boolean or logical raster (0 or 1) representing the extent of the Mersey Basin;</li>
 </ul></li>
 <li><code>mersey_rainfall</code>
 <ul>
@@ -406,14 +402,6 @@ Hydrological analysis in R<br />
 </ul></li>
 <li><strong>Vector</strong> data (<code>.shp</code>):
 <ul>
-<li><code>mersey_watershed_basin</code>
-<ul>
-<li>a polygon vector representing the extent of the Mersey Basin;</li>
-</ul></li>
-<li><code>mersey_roads</code>
-<ul>
-<li>a line vector representing A roads and motorways;</li>
-</ul></li>
 <li><code>mersey_EA_sites</code>
 <ul>
 <li>a point vector representing the locations of water quality monitoring stations. The attribute table contains a unique Environment Agency ID for each (<code>EA_ID</code>):</li>
@@ -426,15 +414,15 @@ Hydrological analysis in R<br />
 <li>a comma-delimited table containing measurements for the following water quality indicators, as well as corresponding Environment Agency IDs:
 <ul>
 <li>pH: acidity/alkalinity;</li>
-<li>SSC: suspended solids concentration;</li>
-<li>Ca: calcium;</li>
-<li>Mg: magnesium;</li>
-<li>NH<sub>4</sub>: ammonium;</li>
-<li>NO<sub>3</sub>: nitrate;</li>
-<li>NO<sub>2</sub>: nitrite;</li>
-<li>TON: total oxidised nitrogen;</li>
-<li>PO<sub>4</sub>: phosphate;</li>
-<li>Zn: zinc.</li>
+<li>SSC: suspended solids concentration (mg l<sup>−1</sup>);</li>
+<li>Ca: calcium (mg l<sup>−1</sup>);</li>
+<li>Mg: magnesium (mg l<sup>−1</sup>);</li>
+<li>NH<sub>4</sub>: ammonium (mg-N l<sup>−1</sup>);</li>
+<li>NO<sub>3</sub>: nitrate (mg-N l<sup>−1</sup>);</li>
+<li>NO<sub>2</sub>: nitrite (mg-N l<sup>−1</sup>);</li>
+<li>TON: total oxidised nitrogen (mg-N l<sup>−1</sup>);</li>
+<li>PO<sub>4</sub>: phosphate (mg-P l<sup>−1</sup>);</li>
+<li>Zn: zinc (μg l<sup>−1</sup>).</li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -491,13 +479,13 @@ Hydrological analysis in R<br />
 <blockquote>
 <p>Copy and paste the <code>check.packages</code> function into your new script, either from below or from <code>Practical-1-Eskdale.R</code>:</p>
 </blockquote>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="Mersy_set_up.html#cb91-1" tabindex="-1"></a><span class="co"># Function to check and install packages</span></span>
-<span id="cb91-2"><a href="Mersy_set_up.html#cb91-2" tabindex="-1"></a>check.packages <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg){</span>
-<span id="cb91-3"><a href="Mersy_set_up.html#cb91-3" tabindex="-1"></a>  new.pkg <span class="ot">&lt;-</span> pkg[<span class="sc">!</span>(pkg <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
-<span id="cb91-4"><a href="Mersy_set_up.html#cb91-4" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(new.pkg)) </span>
-<span id="cb91-5"><a href="Mersy_set_up.html#cb91-5" tabindex="-1"></a>    <span class="fu">install.packages</span>(new.pkg, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb91-6"><a href="Mersy_set_up.html#cb91-6" tabindex="-1"></a>  <span class="fu">sapply</span>(pkg, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb91-7"><a href="Mersy_set_up.html#cb91-7" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="Mersy_set_up.html#cb87-1" tabindex="-1"></a><span class="co"># Function to check and install packages</span></span>
+<span id="cb87-2"><a href="Mersy_set_up.html#cb87-2" tabindex="-1"></a>check.packages <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg){</span>
+<span id="cb87-3"><a href="Mersy_set_up.html#cb87-3" tabindex="-1"></a>  new.pkg <span class="ot">&lt;-</span> pkg[<span class="sc">!</span>(pkg <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
+<span id="cb87-4"><a href="Mersy_set_up.html#cb87-4" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(new.pkg)) </span>
+<span id="cb87-5"><a href="Mersy_set_up.html#cb87-5" tabindex="-1"></a>    <span class="fu">install.packages</span>(new.pkg, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb87-6"><a href="Mersy_set_up.html#cb87-6" tabindex="-1"></a>  <span class="fu">sapply</span>(pkg, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb87-7"><a href="Mersy_set_up.html#cb87-7" tabindex="-1"></a>}</span></code></pre></div>
 <p><br/></p>
 <p>In <strong>Practical 1</strong>, we used the following packages:</p>
 <ul>
@@ -552,10 +540,10 @@ Hydrological analysis in R<br />
 </ul>
 <p><br/></p>
 <p>To load new packages, you can either use the <code>install.packages()</code> and <code>library()</code> functions or more simply, add package names to the packages vector, as shown here:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="Mersy_set_up.html#cb92-1" tabindex="-1"></a><span class="co"># Checks and installs packages</span></span>
-<span id="cb92-2"><a href="Mersy_set_up.html#cb92-2" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;ggspatial&quot;</span>, <span class="st">&quot;here&quot;</span>, <span class="st">&quot;raster&quot;</span>, <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;whitebox&quot;</span>, <span class="co"># Practical-1</span></span>
-<span id="cb92-3"><a href="Mersy_set_up.html#cb92-3" tabindex="-1"></a>              <span class="st">&quot;data.table&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;forcats&quot;</span>, <span class="st">&quot;MASS&quot;</span>, <span class="st">&quot;units&quot;</span>) <span class="co"># Practical-2 </span></span>
-<span id="cb92-4"><a href="Mersy_set_up.html#cb92-4" tabindex="-1"></a><span class="fu">check.packages</span>(packages)</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="Mersy_set_up.html#cb88-1" tabindex="-1"></a><span class="co"># Checks and installs packages</span></span>
+<span id="cb88-2"><a href="Mersy_set_up.html#cb88-2" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;ggspatial&quot;</span>, <span class="st">&quot;here&quot;</span>, <span class="st">&quot;raster&quot;</span>, <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;whitebox&quot;</span>, <span class="co"># Practical-1</span></span>
+<span id="cb88-3"><a href="Mersy_set_up.html#cb88-3" tabindex="-1"></a>              <span class="st">&quot;data.table&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;forcats&quot;</span>, <span class="st">&quot;MASS&quot;</span>, <span class="st">&quot;units&quot;</span>) <span class="co"># Practical-2 </span></span>
+<span id="cb88-4"><a href="Mersy_set_up.html#cb88-4" tabindex="-1"></a><span class="fu">check.packages</span>(packages)</span></code></pre></div>
 <blockquote>
 <p>Use the above code to install and load the required packages.</p>
 </blockquote>

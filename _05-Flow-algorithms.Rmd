@@ -96,7 +96,7 @@ m
 
 The DEM we are working with was downloaded from [EDINA Digimap](https://digimap.edina.ac.uk/), has a cell size of 10 m and uses the **British National Grid** (BNG), a **projected** coordinate Reference System [[EPSG:27700](https://epsg.io/27700)]. 
 
-Unfortunately, we don't have time in this course to delve into the exciting world of map projections, although these are covered excellently by Dr. Jonny Huck in [**Understanding GIS**](https://www.manchester.ac.uk/study/masters/courses/list/07053/msc-geographical-information-science/course-details/GEOG71552#course-unit-details). However, it is important to know that different map projections have different uses and work more/less effectively in different regions. As we are working within the UK, it makes sense to use a map projection which is tailored to the UK (e.g. BNG) as this minimises different types of map distortion (length, shape, area). 
+Unfortunately, we don't have time in this course to delve into the exciting world of map projections, although these are covered in great detail in [**Understanding GIS**](https://www.manchester.ac.uk/study/masters/courses/list/07053/msc-geographical-information-science/course-details/GEOG71552#course-unit-details). However, it is important to know that different map projections have different uses and work more/less effectively in different regions. As we are working within the UK, it makes sense to use a map projection which is tailored to the UK (e.g. BNG) as this minimises different types of map distortion (length, shape, area). 
 
 When loaded into R using the `raster` package and plotted using `ggplot2` and `ggspatial`, our DEM can be visualised as follows, where the outlet point (white circle) and summits (black triangles) match those shown in Figure 5. 
 
@@ -511,7 +511,7 @@ As with the introduction to R (Chapter 2 - 3), I will provide a code solution to
 
 This will be released prior to the Week 10 class. 
 
-```{r, echo = FALSE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
+```{r, echo = TRUE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
 
 # Solution to Practical 1 (Eskdale)
 # Author: matt-tomkins
@@ -519,11 +519,11 @@ This will be released prior to the Week 10 class.
 
 ```
 
-```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
 
 # Solution to Practical 1 (Eskdale)
 # Author: matt-tomkins
-# Date of upload: 25/11/2022
+# Date of upload: 24/11/2023
 
 # Function to check and install packages
 check.packages <- function(pkg){
