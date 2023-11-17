@@ -22,7 +22,7 @@ The following chapter provides a basic introduction to coding in R. If you alrea
 
 You should aim to work through this Chapter by the end of Week 8, making sure you understand the concepts and code before moving on to the next sub-section. 
 
-To test your understanding, there is a short **formative task** (non-assessed) at the end of this [chapter](#formative_task). This covers many of the techniques covered here, as well as unfamiliar ones, so you may have to do some independent research to complete it. I'll post the solution on the Monday after the class (22/11/2021) so you can check your working.   
+To test your understanding, there is a short **formative task** (non-assessed) at the end of this [chapter](#formative_task). This covers many of the techniques covered here, as well as unfamiliar ones, so you may have to do some independent research to complete it. I'll post the [solution](#formative_solution_one) after the class so you can check your working.   
 
 ### What is R?
 
@@ -817,11 +817,11 @@ For general guidance on using ggplot2, see [here](https://ggplot2.tidyverse.org/
 
 To extract the month from each record, you may want to use the `months()` function from base R, while `aggregate()` (described [here](https://r-coder.com/aggregate-r/)) can be used to compute summary statistics (i.e. the mean) based on groups. 
 
-### Formative solution
+### Formative solution {#formative_solution_one}
 
 A code solution to the formative task will be uploaded here after the class.
 
-```{r, eval = FALSE, echo = TRUE, warning = FALSE, message = FALSE}
+```{r, eval = FALSE, echo = FALSE, warning = FALSE, message = FALSE}
 
 # Solution to the Chapter 3 formative task
 # Author: matt-tomkins
@@ -831,7 +831,7 @@ A code solution to the formative task will be uploaded here after the class.
 
 > **Note** If you're working on a personal computer with Chinese language settings, you may need to run `Sys.setlocale("LC_TIME", "English")` at the start of your code to fix language-related errors the in the `as.Date()` function. 
 
-```{r, eval = FALSE, echo = FALSE, warning = FALSE, message = FALSE}
+```{r, eval = TRUE, echo = TRUE, warning = FALSE, message = FALSE}
 
 # Solution to the Chapter 3 formative task
 # Author: matt-tomkins
