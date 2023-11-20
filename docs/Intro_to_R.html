@@ -32,7 +32,7 @@ Hydrological analysis in R<br />
   
   
 <link rel="prev" href="Installation.html"/>
-
+<link rel="next" href="FirstPractical.html"/>
 <script src="libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -131,6 +131,28 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 </head>
 
@@ -187,6 +209,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="Intro_to_R.html#formative_solution_one" id="toc-formative_solution_one"><span class="toc-section-number">3.9.1</span> Formative solution</a></li>
 </ul></li>
+</ul></li>
+<li><a href="FirstPractical.html#FirstPractical" id="toc-FirstPractical"><span class="toc-section-number">4</span> Eskdale I - Introduction</a>
+<ul>
+<li><a href="FirstPractical.html#overview-1" id="toc-overview-1"><span class="toc-section-number">4.1</span> Overview</a>
+<ul>
+<li><a href="FirstPractical.html#intended-learning-outcomes" id="toc-intended-learning-outcomes"><span class="toc-section-number">4.1.1</span> Intended learning outcomes</a></li>
+<li><a href="FirstPractical.html#assessment" id="toc-assessment"><span class="toc-section-number">4.1.2</span> Assessment</a></li>
+</ul></li>
+</ul></li>
+<li><a href="Eskdale_set_up.html#Eskdale_set_up" id="toc-Eskdale_set_up"><span class="toc-section-number">5</span> Eskdale II - Set-up</a>
+<ul>
+<li><a href="Eskdale_set_up.html#install-programs" id="toc-install-programs"><span class="toc-section-number">5.1</span> Install programs</a></li>
+<li><a href="Eskdale_set_up.html#download_data" id="toc-download_data"><span class="toc-section-number">5.2</span> Download data</a></li>
+<li><a href="Eskdale_set_up.html#open-rstudio" id="toc-open-rstudio"><span class="toc-section-number">5.3</span> Open RStudio</a></li>
+<li><a href="Eskdale_set_up.html#R_Projects" id="toc-R_Projects"><span class="toc-section-number">5.4</span> Initialise an R project</a></li>
+<li><a href="Eskdale_set_up.html#creating-an-r-script" id="toc-creating-an-r-script"><span class="toc-section-number">5.5</span> Creating an R script</a></li>
+<li><a href="Eskdale_set_up.html#install-whiteboxtools" id="toc-install-whiteboxtools"><span class="toc-section-number">5.6</span> Install WhiteboxTools</a></li>
+<li><a href="Eskdale_set_up.html#loading-packages" id="toc-loading-packages"><span class="toc-section-number">5.7</span> Loading packages</a></li>
+</ul></li>
+<li><a href="Eskdale_flow_algorithms.html#Eskdale_flow_algorithms" id="toc-Eskdale_flow_algorithms"><span class="toc-section-number">6</span> Eskdale III - Flow routing</a>
+<ul>
+<li><a href="Eskdale_flow_algorithms.html#dem-pre-processing-flow-enforcement" id="toc-dem-pre-processing-flow-enforcement"><span class="toc-section-number">6.1</span> DEM pre-processing: flow enforcement</a>
+<ul>
+<li><a href="Eskdale_flow_algorithms.html#data-description" id="toc-data-description"><span class="toc-section-number">6.1.1</span> Data description</a></li>
+<li><a href="Eskdale_flow_algorithms.html#breaching-and-filling" id="toc-breaching-and-filling"><span class="toc-section-number">6.1.2</span> Breaching and filling</a></li>
+<li><a href="Eskdale_flow_algorithms.html#choosing-a-colour-ramp" id="toc-choosing-a-colour-ramp"><span class="toc-section-number">6.1.3</span> Choosing a colour ramp</a></li>
+</ul></li>
+<li><a href="Eskdale_flow_algorithms.html#flow-parameters-pointers" id="toc-flow-parameters-pointers"><span class="toc-section-number">6.2</span> Flow Parameters: Pointers</a></li>
+<li><a href="Eskdale_flow_algorithms.html#flow-algorithms" id="toc-flow-algorithms"><span class="toc-section-number">6.3</span> Flow Algorithms</a>
+<ul>
+<li><a href="Eskdale_flow_algorithms.html#comparing-flow-algorithms" id="toc-comparing-flow-algorithms"><span class="toc-section-number">6.3.1</span> Comparing flow algorithms</a></li>
+<li><a href="Eskdale_flow_algorithms.html#fd8-catchment-area" id="toc-fd8-catchment-area"><span class="toc-section-number">6.3.2</span> FD8 catchment area</a></li>
+<li><a href="Eskdale_flow_algorithms.html#d-infinity-catchment-area" id="toc-d-infinity-catchment-area"><span class="toc-section-number">6.3.3</span> D-infinity catchment area</a></li>
+<li><a href="Eskdale_flow_algorithms.html#comparing-the-outputs" id="toc-comparing-the-outputs"><span class="toc-section-number">6.3.4</span> Comparing the outputs</a></li>
+</ul></li>
+<li><a href="Eskdale_flow_algorithms.html#practical-solution" id="toc-practical-solution"><span class="toc-section-number">6.4</span> Practical solution</a></li>
 </ul></li>
 </ul>
 
@@ -508,7 +566,7 @@ This is <strong>not</strong> an exhaustive list of R functions, and we’ll cove
 <span id="cb45-3"><a href="Intro_to_R.html#cb45-3" tabindex="-1"></a>c <span class="ot">&lt;-</span> b<span class="sc">*</span>a</span>
 <span id="cb45-4"><a href="Intro_to_R.html#cb45-4" tabindex="-1"></a><span class="fu">plot</span>(c, a)</span></code></pre></div>
 <blockquote>
-<p>The above code is our first encounter with <code>plot()</code> which (as you may have guessed), is used to plot objects in base R <a href="Intro_to_R.html#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. The new plot you’ve created should now appear in the <strong>plots window</strong> and should resemble the following figure. There are lots of more exciting ways to plot data in R, some of which are described <a href="Intro_to_R.html#data_plotting">below</a>.</p>
+<p>The above code is our first encounter with <code>plot()</code> which (as you may have guessed), is used to plot objects in base R <a href="Eskdale_flow_algorithms.html#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. The new plot you’ve created should now appear in the <strong>plots window</strong> and should resemble the following figure. There are lots of more exciting ways to plot data in R, some of which are described <a href="Intro_to_R.html#data_plotting">below</a>.</p>
 </blockquote>
 <p><img src="Practical_1_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 <p>As a general rule, well-presented code would typically comprise:</p>
@@ -818,23 +876,16 @@ This is <strong>not</strong> an exhaustive list of R functions, and we’ll cove
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="Intro_to_R.html#cb68-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;The month with the lowest average daily flow is &quot;</span>, summary<span class="sc">$</span>month[summary<span class="sc">$</span>flow <span class="sc">==</span> <span class="fu">min</span>(summary<span class="sc">$</span>flow)]))</span></code></pre></div>
 <pre><code>## [1] &quot;The month with the lowest average daily flow is July&quot;</code></pre>
 
-
 </div>
 </div>
-</div>
-<div class="footnotes footnotes-end-of-document">
-<hr />
-<ol>
-<li id="fn1"><p><strong>Base R</strong> is used to refer to the functions that are part of the core packages deployed with R, such as <code>plot()</code>, <code>sqrt()</code> or <code>seq()</code>. As we install and utilise user-created <a href="Intro_to_R.html#packages">packages</a>, we are moving away from base R.<a href="Intro_to_R.html#fnref1" class="footnote-back">↩︎</a></p></li>
-</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="Installation.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="Installation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="FirstPractical.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
