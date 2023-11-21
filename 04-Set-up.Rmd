@@ -221,3 +221,9 @@ If the package has been installed and loaded correctly, the console should print
 
 where the **logical** value `TRUE` equates to a successful installation (and vice versa for `FALSE`). 
 
+## Errors using R projects
+
+**IMPORTANT. Please read.** For the 2023/24 iteration of this course, there have been a few issues using `whitebox` functions. It took a while to solve, but I've eventually traced the problem back to how R projects and the `here` package are working (i.e., not working) on university-managed computers.
+
+If you're having issues using `whitebox` functions, or are struggling to access files using `here`, please see the [solution](#project_repair) on the Hints page.
+

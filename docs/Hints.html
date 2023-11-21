@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Handy Hints |  Hydrological analysis in R </title>
+  <meta name="description" content="<br />
+Hydrological analysis in R<br />
+</center>" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Handy Hints |  Hydrological analysis in R " />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Handy Hints |  Hydrological analysis in R " />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="Eskdale_flow_algorithms.html"/>
+
+<script src="libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="index.html#introduction" id="toc-introduction"><span class="toc-section-number">1</span> Introduction</a>
+<ul>
+<li><a href="index.html#practical-outline" id="toc-practical-outline"><span class="toc-section-number">1.1</span> Practical outline</a></li>
+<li><a href="index.html#objectives" id="toc-objectives"><span class="toc-section-number">1.2</span> Objectives</a></li>
+<li><a href="index.html#schedule" id="toc-schedule"><span class="toc-section-number">1.3</span> Schedule</a></li>
+</ul></li>
+<li><a href="Installation.html#Installation" id="toc-Installation"><span class="toc-section-number">2</span> Installation</a>
+<ul>
+<li><a href="Installation.html#r" id="toc-r"><span class="toc-section-number">2.1</span> R</a></li>
+<li><a href="Installation.html#r-studio" id="toc-r-studio"><span class="toc-section-number">2.2</span> R Studio</a></li>
+<li><a href="Installation.html#materials" id="toc-materials"><span class="toc-section-number">2.3</span> Course materials</a></li>
+</ul></li>
+<li><a href="Intro_to_R.html#Intro_to_R" id="toc-Intro_to_R"><span class="toc-section-number">3</span> A (brief) introduction to R</a>
+<ul>
+<li><a href="Intro_to_R.html#overview" id="toc-overview"><span class="toc-section-number">3.1</span> Overview</a>
+<ul>
+<li><a href="Intro_to_R.html#what-is-r" id="toc-what-is-r"><span class="toc-section-number">3.1.1</span> What is R?</a></li>
+<li><a href="Intro_to_R.html#why_code" id="toc-why_code"><span class="toc-section-number">3.1.2</span> Why code?</a></li>
+<li><a href="Intro_to_R.html#a-quick-note-on-the-practicals" id="toc-a-quick-note-on-the-practicals"><span class="toc-section-number">3.1.3</span> A quick note on the practicals</a></li>
+<li><a href="Intro_to_R.html#dealing-with-errors" id="toc-dealing-with-errors"><span class="toc-section-number">3.1.4</span> Dealing with errors</a></li>
+</ul></li>
+<li><a href="Intro_to_R.html#loading-r" id="toc-loading-r"><span class="toc-section-number">3.2</span> Loading R</a></li>
+<li><a href="Intro_to_R.html#variables-looping" id="toc-variables-looping"><span class="toc-section-number">3.3</span> Objects</a>
+<ul>
+<li><a href="Intro_to_R.html#object-names" id="toc-object-names"><span class="toc-section-number">3.3.1</span> Object names</a></li>
+<li><a href="Intro_to_R.html#variables_types" id="toc-variables_types"><span class="toc-section-number">3.3.2</span> Object types</a></li>
+</ul></li>
+<li><a href="Intro_to_R.html#data-structures" id="toc-data-structures"><span class="toc-section-number">3.4</span> Data structures</a>
+<ul>
+<li><a href="Intro_to_R.html#vectors" id="toc-vectors"><span class="toc-section-number">3.4.1</span> Vectors</a></li>
+<li><a href="Intro_to_R.html#data_frames" id="toc-data_frames"><span class="toc-section-number">3.4.2</span> Data frames</a></li>
+</ul></li>
+<li><a href="Intro_to_R.html#scripts" id="toc-scripts"><span class="toc-section-number">3.5</span> Scripts</a>
+<ul>
+<li><a href="Intro_to_R.html#comments" id="toc-comments"><span class="toc-section-number">3.5.1</span> Comments</a></li>
+</ul></li>
+<li><a href="Intro_to_R.html#packages" id="toc-packages"><span class="toc-section-number">3.6</span> Loading packages</a></li>
+<li><a href="Intro_to_R.html#data_loading" id="toc-data_loading"><span class="toc-section-number">3.7</span> Loading data</a></li>
+<li><a href="Intro_to_R.html#data_plotting" id="toc-data_plotting"><span class="toc-section-number">3.8</span> Plotting</a></li>
+<li><a href="Intro_to_R.html#formative_task" id="toc-formative_task"><span class="toc-section-number">3.9</span> Formative task</a>
+<ul>
+<li><a href="Intro_to_R.html#formative_solution_one" id="toc-formative_solution_one"><span class="toc-section-number">3.9.1</span> Formative solution</a></li>
+</ul></li>
+</ul></li>
+<li><a href="FirstPractical.html#FirstPractical" id="toc-FirstPractical"><span class="toc-section-number">4</span> Eskdale I - Introduction</a>
+<ul>
+<li><a href="FirstPractical.html#overview-1" id="toc-overview-1"><span class="toc-section-number">4.1</span> Overview</a>
+<ul>
+<li><a href="FirstPractical.html#intended-learning-outcomes" id="toc-intended-learning-outcomes"><span class="toc-section-number">4.1.1</span> Intended learning outcomes</a></li>
+<li><a href="FirstPractical.html#assessment" id="toc-assessment"><span class="toc-section-number">4.1.2</span> Assessment</a></li>
+</ul></li>
+</ul></li>
+<li><a href="Eskdale_set_up.html#Eskdale_set_up" id="toc-Eskdale_set_up"><span class="toc-section-number">5</span> Eskdale II - Set-up</a>
+<ul>
+<li><a href="Eskdale_set_up.html#install-programs" id="toc-install-programs"><span class="toc-section-number">5.1</span> Install programs</a></li>
+<li><a href="Eskdale_set_up.html#download_data" id="toc-download_data"><span class="toc-section-number">5.2</span> Download data</a></li>
+<li><a href="Eskdale_set_up.html#open-rstudio" id="toc-open-rstudio"><span class="toc-section-number">5.3</span> Open RStudio</a></li>
+<li><a href="Eskdale_set_up.html#R_Projects" id="toc-R_Projects"><span class="toc-section-number">5.4</span> Initialise an R project</a></li>
+<li><a href="Eskdale_set_up.html#creating-an-r-script" id="toc-creating-an-r-script"><span class="toc-section-number">5.5</span> Creating an R script</a></li>
+<li><a href="Eskdale_set_up.html#install-whiteboxtools" id="toc-install-whiteboxtools"><span class="toc-section-number">5.6</span> Install WhiteboxTools</a></li>
+<li><a href="Eskdale_set_up.html#loading-packages" id="toc-loading-packages"><span class="toc-section-number">5.7</span> Loading packages</a></li>
+<li><a href="Eskdale_set_up.html#errors-using-r-projects" id="toc-errors-using-r-projects"><span class="toc-section-number">5.8</span> Errors using R projects</a></li>
+</ul></li>
+<li><a href="Eskdale_flow_algorithms.html#Eskdale_flow_algorithms" id="toc-Eskdale_flow_algorithms"><span class="toc-section-number">6</span> Eskdale III - Flow routing</a>
+<ul>
+<li><a href="Eskdale_flow_algorithms.html#dem-pre-processing-flow-enforcement" id="toc-dem-pre-processing-flow-enforcement"><span class="toc-section-number">6.1</span> DEM pre-processing: flow enforcement</a>
+<ul>
+<li><a href="Eskdale_flow_algorithms.html#data-description" id="toc-data-description"><span class="toc-section-number">6.1.1</span> Data description</a></li>
+<li><a href="Eskdale_flow_algorithms.html#breaching-and-filling" id="toc-breaching-and-filling"><span class="toc-section-number">6.1.2</span> Breaching and filling</a></li>
+<li><a href="Eskdale_flow_algorithms.html#choosing-a-colour-ramp" id="toc-choosing-a-colour-ramp"><span class="toc-section-number">6.1.3</span> Choosing a colour ramp</a></li>
+</ul></li>
+<li><a href="Eskdale_flow_algorithms.html#flow-parameters-pointers" id="toc-flow-parameters-pointers"><span class="toc-section-number">6.2</span> Flow Parameters: Pointers</a></li>
+<li><a href="Eskdale_flow_algorithms.html#flow-algorithms" id="toc-flow-algorithms"><span class="toc-section-number">6.3</span> Flow Algorithms</a>
+<ul>
+<li><a href="Eskdale_flow_algorithms.html#comparing-flow-algorithms" id="toc-comparing-flow-algorithms"><span class="toc-section-number">6.3.1</span> Comparing flow algorithms</a></li>
+<li><a href="Eskdale_flow_algorithms.html#fd8-catchment-area" id="toc-fd8-catchment-area"><span class="toc-section-number">6.3.2</span> FD8 catchment area</a></li>
+<li><a href="Eskdale_flow_algorithms.html#d-infinity-catchment-area" id="toc-d-infinity-catchment-area"><span class="toc-section-number">6.3.3</span> D-infinity catchment area</a></li>
+<li><a href="Eskdale_flow_algorithms.html#comparing-the-outputs" id="toc-comparing-the-outputs"><span class="toc-section-number">6.3.4</span> Comparing the outputs</a></li>
+</ul></li>
+<li><a href="Eskdale_flow_algorithms.html#practical-solution" id="toc-practical-solution"><span class="toc-section-number">6.4</span> Practical solution</a></li>
+</ul></li>
+<li><a href="Hints.html#Hints" id="toc-Hints"><span class="toc-section-number">7</span> Handy Hints</a>
+<ul>
+<li><a href="Hints.html#project_repair" id="toc-project_repair">Errors with R projects and the <code>here</code> package</a></li>
+<li><a href="Hints.html#dealing-with-errors-1" id="toc-dealing-with-errors-1">Dealing with errors</a></li>
+<li><a href="Hints.html#whitebox-functions-vs.-the-raster-package" id="toc-whitebox-functions-vs.-the-raster-package">Whitebox functions vs. the <code>raster</code> package</a></li>
+<li><a href="Hints.html#r-projects" id="toc-r-projects">R Projects</a></li>
+<li><a href="Hints.html#file-paths" id="toc-file-paths">File paths</a></li>
+<li><a href="Hints.html#output-files" id="toc-output-files">Output files</a></li>
+<li><a href="Hints.html#packages-1" id="toc-packages-1">Packages</a></li>
+<li><a href="Hints.html#code-structure" id="toc-code-structure">Code structure</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><center><br />
+Hydrological analysis in R<br />
+</center></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="Hints" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Handy Hints<a href="Hints.html#Hints" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This chapter contains a few handy hints which may be useful if you’re having any issues loading R packages or running <code>Whitebox</code> tools. We covered most of these during our session in Week 9 but these are included here for reference.</p>
+<p>If there are any questions regarding Assessment 2 or the practical instructions, please do get in touch at my <code>@manchester</code> email.</p>
+<div id="project_repair" class="section level3 unnumbered hasAnchor">
+<h3>Errors with R projects and the <code>here</code> package<a href="Hints.html#project_repair" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If you’re working on a university-managed computer, it is likely that you’ve encountered errors during our Week 10 class while trying to use <code>whitebox</code> functions, such as <code>wbt_fill_depressions()</code>, or accessing files using relative file paths via the <code>here</code> package.</p>
+<p>This problem actually originates with our use of R projects (described <a href="Eskdale_set_up.html#R_Projects">here</a>). R projects are designed to make accessing files simple and to ensure our analyses are <strong>self-contained</strong> and <strong>portable</strong>. They do this by automatically setting the <strong>working directory</strong> in RStudio. You can test this by using the <code>getwd()</code> function, which should print your working directory to the console.</p>
+<p>If the R project is working, this should set your working directory to the directory where your R project is saved e.g., an R project file stored in <code>C:/Users/Bob/Documents/GEOG70581</code> should have an identical working directory.</p>
+<p>Unfortunately, R projects <strong>are not currently working</strong> as intended on university-managed computers: the working directory is <em>not</em> being automatically updated. In most cases, the working directory is stuck at <code>P:/</code>, even if the R project is saved elsewhere! This is a completely <strong>new</strong> problem for 2023/24 and we’re not sure why, but it is possibly due to changes in the way computers are managed after the recent <a href="https://www.manchester.ac.uk/cyber-incident/">cyber incident</a>)</p>
+<p>This explains why you are struggling to access files using <code>here</code>, but also why <code>whitebox</code> functions are failing, even when inelegant <em>absolute</em> file paths are used. In both cases, R is looking in the wrong place, either for the data files, or the WBT executable.</p>
+<p><strong>To fix this</strong>, there are two options.</p>
+<blockquote>
+<p>The simplest approach is to start from scratch, downloading the <a href="%5BWeek%208%20to%2012%5D(https://online.manchester.ac.uk/webapps/blackboard/content/listContentEditable.jsp?content_id=_15464511_1&amp;course_id=_77840_1)">course data</a>, and creating a new R project in the same directory. If successful, it should resemble the following:</p>
+</blockquote>
+<p align="center">
+<img src="figures/Using-R/R-project-visualisation.png" style="width:65.0%" />
+</p>
+<blockquote>
+<p>The next step is to set the working directory <strong>manually</strong> using the <code>setwd()</code> function (<strong>see below for an example</strong>). This should update the working directory to the correct location, such as <code>C:/Users/Bob/Documents/GEOG70581</code> or <code>P:/GEOG70581</code> depending on where you data are saved, and should be done <strong>before</strong> installing packages. The practical steps can then be following as normal and the <code>whitebox</code> functions should work as intended.</p>
+</blockquote>
+<blockquote>
+<p>Try running the code below, making sure to update the path to the correct working directory.</p>
+</blockquote>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="Hints.html#cb90-1" tabindex="-1"></a><span class="co"># FIRST, set your working directory manually</span></span>
+<span id="cb90-2"><a href="Hints.html#cb90-2" tabindex="-1"></a><span class="fu">setwd</span>(<span class="sc">---</span>YOUR PATH GOES HERE<span class="sc">---</span>) <span class="co"># e.g., &quot;C:/Users/Bob/Documents/GEOG70581&quot;</span></span>
+<span id="cb90-3"><a href="Hints.html#cb90-3" tabindex="-1"></a></span>
+<span id="cb90-4"><a href="Hints.html#cb90-4" tabindex="-1"></a><span class="co"># Function to check and install packages</span></span>
+<span id="cb90-5"><a href="Hints.html#cb90-5" tabindex="-1"></a>check.packages <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg){</span>
+<span id="cb90-6"><a href="Hints.html#cb90-6" tabindex="-1"></a>  new.pkg <span class="ot">&lt;-</span> pkg[<span class="sc">!</span>(pkg <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
+<span id="cb90-7"><a href="Hints.html#cb90-7" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(new.pkg)) </span>
+<span id="cb90-8"><a href="Hints.html#cb90-8" tabindex="-1"></a>    <span class="fu">install.packages</span>(new.pkg, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb90-9"><a href="Hints.html#cb90-9" tabindex="-1"></a>  <span class="fu">sapply</span>(pkg, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb90-10"><a href="Hints.html#cb90-10" tabindex="-1"></a>}</span>
+<span id="cb90-11"><a href="Hints.html#cb90-11" tabindex="-1"></a></span>
+<span id="cb90-12"><a href="Hints.html#cb90-12" tabindex="-1"></a><span class="co"># Checks and installs packages</span></span>
+<span id="cb90-13"><a href="Hints.html#cb90-13" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;here&quot;</span>, <span class="st">&quot;raster&quot;</span>, <span class="st">&quot;whitebox&quot;</span>, <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;ggspatial&quot;</span>)</span>
+<span id="cb90-14"><a href="Hints.html#cb90-14" tabindex="-1"></a><span class="fu">check.packages</span>(packages)</span>
+<span id="cb90-15"><a href="Hints.html#cb90-15" tabindex="-1"></a></span>
+<span id="cb90-16"><a href="Hints.html#cb90-16" tabindex="-1"></a><span class="co"># Initialise whitebox tools executable</span></span>
+<span id="cb90-17"><a href="Hints.html#cb90-17" tabindex="-1"></a>whitebox<span class="sc">::</span><span class="fu">install_whitebox</span>()</span>
+<span id="cb90-18"><a href="Hints.html#cb90-18" tabindex="-1"></a></span>
+<span id="cb90-19"><a href="Hints.html#cb90-19" tabindex="-1"></a><span class="co"># Check whitebox is in the library and the version</span></span>
+<span id="cb90-20"><a href="Hints.html#cb90-20" tabindex="-1"></a><span class="fu">library</span>(whitebox)</span>
+<span id="cb90-21"><a href="Hints.html#cb90-21" tabindex="-1"></a><span class="fu">wbt_version</span>()</span>
+<span id="cb90-22"><a href="Hints.html#cb90-22" tabindex="-1"></a></span>
+<span id="cb90-23"><a href="Hints.html#cb90-23" tabindex="-1"></a><span class="co"># Sets file path for DEM</span></span>
+<span id="cb90-24"><a href="Hints.html#cb90-24" tabindex="-1"></a>dem <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m.tif&quot;</span>)</span>
+<span id="cb90-25"><a href="Hints.html#cb90-25" tabindex="-1"></a></span>
+<span id="cb90-26"><a href="Hints.html#cb90-26" tabindex="-1"></a><span class="co"># Prints the file path to the console window</span></span>
+<span id="cb90-27"><a href="Hints.html#cb90-27" tabindex="-1"></a>dem</span>
+<span id="cb90-28"><a href="Hints.html#cb90-28" tabindex="-1"></a></span>
+<span id="cb90-29"><a href="Hints.html#cb90-29" tabindex="-1"></a><span class="co"># Fills depressions</span></span>
+<span id="cb90-30"><a href="Hints.html#cb90-30" tabindex="-1"></a><span class="fu">wbt_fill_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span>
+<span id="cb90-31"><a href="Hints.html#cb90-31" tabindex="-1"></a></span>
+<span id="cb90-32"><a href="Hints.html#cb90-32" tabindex="-1"></a><span class="co"># Subtract function; the difference between the processed DEM (filled) and the original DEM</span></span>
+<span id="cb90-33"><a href="Hints.html#cb90-33" tabindex="-1"></a><span class="fu">wbt_subtract</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>), <span class="co"># Input file 1</span></span>
+<span id="cb90-34"><a href="Hints.html#cb90-34" tabindex="-1"></a>              dem, <span class="co"># Input file 2</span></span>
+<span id="cb90-35"><a href="Hints.html#cb90-35" tabindex="-1"></a>              <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill_difference.tif&quot;</span>)) <span class="co"># Output file</span></span>
+<span id="cb90-36"><a href="Hints.html#cb90-36" tabindex="-1"></a></span>
+<span id="cb90-37"><a href="Hints.html#cb90-37" tabindex="-1"></a><span class="co"># Loads raster using the raster and here packages</span></span>
+<span id="cb90-38"><a href="Hints.html#cb90-38" tabindex="-1"></a>eskdale_dem <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill_difference.tif&quot;</span>))</span>
+<span id="cb90-39"><a href="Hints.html#cb90-39" tabindex="-1"></a></span>
+<span id="cb90-40"><a href="Hints.html#cb90-40" tabindex="-1"></a><span class="co"># Find minimum and maximum values</span></span>
+<span id="cb90-41"><a href="Hints.html#cb90-41" tabindex="-1"></a>minimum_value <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="fu">values</span>(eskdale_dem)[<span class="fu">which</span>(<span class="fu">values</span>(eskdale_dem) <span class="sc">&gt;</span> <span class="dv">0</span>)])</span>
+<span id="cb90-42"><a href="Hints.html#cb90-42" tabindex="-1"></a>maximum_value <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="fu">values</span>(eskdale_dem))</span>
+<span id="cb90-43"><a href="Hints.html#cb90-43" tabindex="-1"></a></span>
+<span id="cb90-44"><a href="Hints.html#cb90-44" tabindex="-1"></a><span class="co"># Plots using ggplot</span></span>
+<span id="cb90-45"><a href="Hints.html#cb90-45" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb90-46"><a href="Hints.html#cb90-46" tabindex="-1"></a>  <span class="fu">layer_spatial</span>(eskdale_dem, <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">after_stat</span>(band1))) <span class="sc">+</span></span>
+<span id="cb90-47"><a href="Hints.html#cb90-47" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb90-48"><a href="Hints.html#cb90-48" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Elevation difference (m)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Northing&quot;</span>) <span class="sc">+</span></span>
+<span id="cb90-49"><a href="Hints.html#cb90-49" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">type =</span> <span class="st">&quot;viridis&quot;</span>,  <span class="at">na.value =</span> <span class="cn">NA</span>, </span>
+<span id="cb90-50"><a href="Hints.html#cb90-50" tabindex="-1"></a>                        <span class="at">limits =</span> <span class="fu">c</span>(minimum_value, maximum_value))</span>
+<span id="cb90-51"><a href="Hints.html#cb90-51" tabindex="-1"></a>g</span></code></pre></div>
+<blockquote>
+<p><strong>If you want to continue</strong> with an existing directory/R Project, then you will need to set the working directory manually (<code>setwd()</code>) <strong>and</strong> set the origin for the <code>here</code> package, as shown below:</p>
+</blockquote>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="Hints.html#cb91-1" tabindex="-1"></a><span class="co"># Set the working directory manually</span></span>
+<span id="cb91-2"><a href="Hints.html#cb91-2" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;C:/Users/Bob/Documents/GEOG70581&quot;</span>) <span class="co"># UPDATE TO YOUR DIRECTORY</span></span>
+<span id="cb91-3"><a href="Hints.html#cb91-3" tabindex="-1"></a></span>
+<span id="cb91-4"><a href="Hints.html#cb91-4" tabindex="-1"></a><span class="co"># Manually set the origin for the &#39;here&#39; package</span></span>
+<span id="cb91-5"><a href="Hints.html#cb91-5" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">i_am</span>(<span class="st">&quot;practical-1-eskdale.R&quot;</span>) <span class="co"># UPDATE IF A DIFFERENT FILE NAME USED</span></span></code></pre></div>
+<p>The above solutions have been tested on a range of university-managed computers, working on both the <code>P:</code> and <code>C:</code> drive.</p>
+<p>For other installation issues, please contact me on my <code>@manchester</code> email. For other R issues, please post on the <a href="https://online.manchester.ac.uk/webapps/discussionboard/do/conference?toggle_mode=edit&amp;action=list_forums&amp;course_id=_77840_1&amp;nav=discussion_board_entry&amp;mode=cpview">forum</a>.</p>
+</div>
+<div id="dealing-with-errors-1" class="section level3 unnumbered hasAnchor">
+<h3>Dealing with errors<a href="Hints.html#dealing-with-errors-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Errors are an <strong>inevitable</strong> aspect of coding, irrespective of how experienced you are! As we gain programming experience, these errors increase in difficulty from initially simple problems, such as incorrect file paths or errors in code syntax, to the more complex.</p>
+<p>Being able to deal with errors is therefore an essential programming skill. My top tips for fixing errors are:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Read the error message</strong> (red text in the R console). If this appears, it usually means that something has gone wrong! Error messages can vary in quality, but at the very least they should tell you:</p>
+<ul>
+<li><strong>where</strong> the error was encountered i.e. which line of code failed.</li>
+<li>some indication as to <strong>why</strong> the error occurred e.g. <code>No such file or directory</code>
+</p></li>
+</ul></li>
+<li><p>If the error message doesn’t provide a simple solution to the problem, then the next step should be to work through your code step-by-step, testing each line or code block to ensure it is working correctly (usually using <code>print()</code> statements).</p></li>
+</ol>
+<p>To illustrate this, here is some code which has failed:</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="Hints.html#cb92-1" tabindex="-1"></a><span class="co"># Function to check and install packages</span></span>
+<span id="cb92-2"><a href="Hints.html#cb92-2" tabindex="-1"></a>check.packages <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg){</span>
+<span id="cb92-3"><a href="Hints.html#cb92-3" tabindex="-1"></a>  new.pkg <span class="ot">&lt;-</span> pkg[<span class="sc">!</span>(pkg <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
+<span id="cb92-4"><a href="Hints.html#cb92-4" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(new.pkg)) </span>
+<span id="cb92-5"><a href="Hints.html#cb92-5" tabindex="-1"></a>    <span class="fu">install.packages</span>(new.pkg, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb92-6"><a href="Hints.html#cb92-6" tabindex="-1"></a>  <span class="fu">sapply</span>(pkg, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb92-7"><a href="Hints.html#cb92-7" tabindex="-1"></a>}</span>
+<span id="cb92-8"><a href="Hints.html#cb92-8" tabindex="-1"></a></span>
+<span id="cb92-9"><a href="Hints.html#cb92-9" tabindex="-1"></a><span class="co"># Checks and installs packages</span></span>
+<span id="cb92-10"><a href="Hints.html#cb92-10" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;here&quot;</span>, <span class="st">&quot;raster&quot;</span>, <span class="st">&quot;whitebox&quot;</span>)</span>
+<span id="cb92-11"><a href="Hints.html#cb92-11" tabindex="-1"></a><span class="fu">check.packages</span>(packages)</span>
+<span id="cb92-12"><a href="Hints.html#cb92-12" tabindex="-1"></a></span>
+<span id="cb92-13"><a href="Hints.html#cb92-13" tabindex="-1"></a><span class="co"># Fill depressions in a DEM</span></span>
+<span id="cb92-14"><a href="Hints.html#cb92-14" tabindex="-1"></a><span class="fu">wbt_fill_depressions</span>(<span class="at">dem =</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;dem_10m.tif&quot;</span>),</span>
+<span id="cb92-15"><a href="Hints.html#cb92-15" tabindex="-1"></a>                     <span class="at">output =</span> <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span>
+<span id="cb92-16"><a href="Hints.html#cb92-16" tabindex="-1"></a></span>
+<span id="cb92-17"><a href="Hints.html#cb92-17" tabindex="-1"></a><span class="co"># Loads raster</span></span>
+<span id="cb92-18"><a href="Hints.html#cb92-18" tabindex="-1"></a>filled_dem <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span>
+<span id="cb92-19"><a href="Hints.html#cb92-19" tabindex="-1"></a></span>
+<span id="cb92-20"><a href="Hints.html#cb92-20" tabindex="-1"></a><span class="co"># Plots using ggplot</span></span>
+<span id="cb92-21"><a href="Hints.html#cb92-21" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb92-22"><a href="Hints.html#cb92-22" tabindex="-1"></a>  <span class="co"># Adds raster layer using layer_spatial</span></span>
+<span id="cb92-23"><a href="Hints.html#cb92-23" tabindex="-1"></a>  <span class="fu">layer_spatial</span>(filed_dem, <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">after_stat</span>(band1))) <span class="sc">+</span></span>
+<span id="cb92-24"><a href="Hints.html#cb92-24" tabindex="-1"></a>  <span class="co"># Sets ggplot theme</span></span>
+<span id="cb92-25"><a href="Hints.html#cb92-25" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb92-26"><a href="Hints.html#cb92-26" tabindex="-1"></a>  <span class="co"># Axis and legend labeling</span></span>
+<span id="cb92-27"><a href="Hints.html#cb92-27" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Elevation (m)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Northing&quot;</span> <span class="sc">+</span></span>
+<span id="cb92-28"><a href="Hints.html#cb92-28" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>) <span class="sc">+</span></span>
+<span id="cb92-29"><a href="Hints.html#cb92-29" tabindex="-1"></a>  <span class="co"># Sets fill symbology</span></span>
+<span id="cb92-30"><a href="Hints.html#cb92-30" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">type =</span> <span class="st">&quot;viridis&quot;</span>  <span class="at">na.value =</span> <span class="cn">NA</span>)</span>
+<span id="cb92-31"><a href="Hints.html#cb92-31" tabindex="-1"></a></span>
+<span id="cb92-32"><a href="Hints.html#cb92-32" tabindex="-1"></a><span class="co"># Shows plot</span></span>
+<span id="cb92-33"><a href="Hints.html#cb92-33" tabindex="-1"></a>g</span></code></pre></div>
+<p>I would first inspect the error message (<code>No such file or directory</code>) but if I didn’t understand it, I would then troubleshoot by:</p>
+<ol style="list-style-type: decimal">
+<li><p>First running the <code>check.packages(packages)</code> function. Were all the packages installed correctly i.e. <code>TRUE</code>?</p></li>
+<li><p>Then checking the <code>wbt_fill_depressions()</code> function. Does this produce an error? Does it correctly produce an output raster in the intended location? Does the output look sensible? Plotting the raster might be useful here to check.</p></li>
+<li><p>Then running the <code>raster()</code> function to load the raster into R. Here the code would fail and I could then start to investigate further:</p>
+<ul>
+<li><p>Are there any syntax errors? e.g. use of commas, correct number of brackets, spelling errors?</p></li>
+<li><p>Are the inputs defined correctly?</p></li>
+</ul></li>
+</ol>
+<p>In the above example, the code fails because the <code>raster</code> package is trying to load <code>dem_10m_fill.tif</code> from <code>data/practical_1</code> when it was actually saved in <code>output/practical_1</code>.</p>
+<p>Running the code again might produce <strong>another</strong> error, in which case I would repeat the above process, checking the code step-by-step until the error can be located and fixed.</p>
+<blockquote>
+<p>Can you spot any errors in the code below? There are three to find…</p>
+</blockquote>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="Hints.html#cb93-1" tabindex="-1"></a><span class="co"># Plots using ggplot</span></span>
+<span id="cb93-2"><a href="Hints.html#cb93-2" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb93-3"><a href="Hints.html#cb93-3" tabindex="-1"></a>  <span class="co"># Adds raster layer using layer_spatial</span></span>
+<span id="cb93-4"><a href="Hints.html#cb93-4" tabindex="-1"></a>  <span class="fu">layer_spatial</span>(filed_dem, <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">after_stat</span>(band1))) <span class="sc">+</span></span>
+<span id="cb93-5"><a href="Hints.html#cb93-5" tabindex="-1"></a>  <span class="co"># Sets ggplot theme</span></span>
+<span id="cb93-6"><a href="Hints.html#cb93-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb93-7"><a href="Hints.html#cb93-7" tabindex="-1"></a>  <span class="co"># Axis and legend labeling</span></span>
+<span id="cb93-8"><a href="Hints.html#cb93-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Elevation (m)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Northing&quot;</span> <span class="sc">+</span></span>
+<span id="cb93-9"><a href="Hints.html#cb93-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>) <span class="sc">+</span></span>
+<span id="cb93-10"><a href="Hints.html#cb93-10" tabindex="-1"></a>  <span class="co"># Sets fill symbology</span></span>
+<span id="cb93-11"><a href="Hints.html#cb93-11" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">type =</span> <span class="st">&quot;viridis&quot;</span>  <span class="at">na.value =</span> <span class="cn">NA</span>)</span></code></pre></div>
+<p><strong>TLDR</strong>: the best way to fix errors is to be <strong>systematic</strong> in your approach.</p>
+<p>Work your way through the code step-by-step, checking it is producing the <strong>intended</strong> outputs at each stage - just because the code doesn’t produce an error, it doesn’t mean it is producing the output that you want!</p>
+</div>
+<div id="whitebox-functions-vs.-the-raster-package" class="section level3 unnumbered hasAnchor">
+<h3>Whitebox functions vs. the <code>raster</code> package<a href="Hints.html#whitebox-functions-vs.-the-raster-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>So far, there has been some confusion regarding the role of <code>whitebox</code> functions, the <code>raster</code> package and <code>ggplot2</code>. Each of these has a unique role, as visualised below, while analysis needs to be conducted in the correct order to avoid errors.</p>
+<p align="center">
+<a name="Analysis_order"></a><img src="figures/Practical-2/wbt_raster_ggplot.png" style="width:100.0%" />
+</p>
+<p><strong>Analysis structure</strong>. [1] Create output files using <code>whitebox</code> [2] Load outputs into R using <code>raster</code> [3] Plot them using <code>ggplot</code></p>
+</p>
+<p>To illustrate this, below we have an example of the <code>wbt_d8_pointer</code> function, which creates a D8 pointer file based on an input digital elevation model (dem):</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="Hints.html#cb94-1" tabindex="-1"></a><span class="co"># Creates a D8 pointer file (.tif) at the output location, based on the input dem</span></span>
+<span id="cb94-2"><a href="Hints.html#cb94-2" tabindex="-1"></a><span class="fu">wbt_d8_pointer</span>(<span class="at">dem =</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_dem_fill.tif&quot;</span>),</span>
+<span id="cb94-3"><a href="Hints.html#cb94-3" tabindex="-1"></a>               <span class="at">output =</span> <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_dem_D8_pointer.tif&quot;</span>))</span></code></pre></div>
+<p>This uses the <code>here</code> package for locating the input file (<code>mersey_dem_fill.tif</code>), which is stored in <code>data/practical_2</code>, and for saving the output, which is stored as <code>mersey_dem_D8_pointer.tif</code> in <code>output/practical_2</code>.</p>
+<p>If this runs successfully (make sure to carefully check file paths, file names, use of commas), then an output raster will be created at the specified location.</p>
+<p><strong>Crucially</strong>, this does <strong>not</strong> load the raster into the R environment, so any attempt to plot the raster using <code>ggplot2</code> would fail.</p>
+<p>To achieve this, a raster must be first loaded into the R environment as follows:</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="Hints.html#cb95-1" tabindex="-1"></a><span class="co"># Loads D8 pointer raster using the raster and here packages</span></span>
+<span id="cb95-2"><a href="Hints.html#cb95-2" tabindex="-1"></a>mersey_pointer <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_dem_D8_pointer.tif&quot;</span>))</span></code></pre></div>
+<p>Again, we have determined the input file location using <code>here</code> package (<code>output/practical_2/mersey_dem_D8_pointer.tif</code>) and stored the raster as an object in the R environment called <code>mersey_pointer</code>.</p>
+<p>With this stored, it can then be plotted using <code>ggplot</code>, setting <code>layer_spatial</code> to the <code>mersey_pointer</code> object name:</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="Hints.html#cb96-1" tabindex="-1"></a><span class="co"># Plots using ggplot</span></span>
+<span id="cb96-2"><a href="Hints.html#cb96-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb96-3"><a href="Hints.html#cb96-3" tabindex="-1"></a>  <span class="fu">layer_spatial</span>(mersey_pointer, <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">stat</span>(band1))) <span class="sc">+</span></span>
+<span id="cb96-4"><a href="Hints.html#cb96-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb96-5"><a href="Hints.html#cb96-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Pointer value&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Northing&quot;</span>) <span class="sc">+</span></span>
+<span id="cb96-6"><a href="Hints.html#cb96-6" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">type =</span> <span class="st">&quot;viridis&quot;</span>,  <span class="at">na.value =</span> <span class="cn">NA</span>)</span>
+<span id="cb96-7"><a href="Hints.html#cb96-7" tabindex="-1"></a>p </span></code></pre></div>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-87-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>TLDR</strong>: for subsequent analysis, make sure to adhere to the following structure:</p>
+<ol style="list-style-type: decimal">
+<li><p>Create output files using <code>whitebox</code> functions.</p></li>
+<li><p>Load those output files into R using the <code>raster</code> package (stored as objects)</p></li>
+<li><p>Plot the R objects using <code>ggplot2</code></p></li>
+</ol>
+<p>Any deviation from this order (e.g. plotting without loading using <code>raster</code>, loading files that have not yet been created using <code>whitebox</code>) will cause errors!</p>
+</div>
+<div id="r-projects" class="section level3 unnumbered hasAnchor">
+<h3>R Projects<a href="Hints.html#r-projects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Make sure to initialise an R project for your work (<a href="Eskdale_set_up.html#R_Projects">Section 5.4</a>) and ensure this is created for your GEOG70581 directory. This should resemble the following, with the R <strong>project file</strong> and a separate <strong>R script</strong> for the Eskdale and Mersey Basin practicals:</p>
+<p align="center">
+<img src="figures/Using-R/R-project-visualisation.png" style="width:65.0%" />
+</p>
+</div>
+<div id="file-paths" class="section level3 unnumbered hasAnchor">
+<h3>File paths<a href="Hints.html#file-paths" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Remove spaces in directories or file paths. As a rule, avoid using spaces when naming files or folders as this can cause issues, particularly when coding:</p>
+<ul>
+<li>“P:/Environmental Monitoring Concepts/GEOG70581/…” <em>Bad</em></li>
+<li>“P:/Environmental_Monitoring_Concepts/GEOG70581/…” <em>Good</em></li>
+</ul>
+</p>
+</div>
+<div id="output-files" class="section level3 unnumbered hasAnchor">
+<h3>Output files<a href="Hints.html#output-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Make sure to inspect output files. When you run a command (e.g. a Whitebox function), check that it produces the intended output (e.g. a raster file (.tif) in the output directory). If there is an error or the output hasn’t been created, subsequent code will fail.</p>
+</div>
+<div id="packages-1" class="section level3 unnumbered hasAnchor">
+<h3>Packages<a href="Hints.html#packages-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If you’re having difficulty loading the <code>raster</code> or <code>sf</code> packages on a University managed computer, this is due to multiple package installs. Go to the packages window, identify the <strong>older</strong> version of each package, and tick the check box to load it into your R library.</p>
+</div>
+<div id="code-structure" class="section level3 unnumbered hasAnchor">
+<h3>Code structure<a href="Hints.html#code-structure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>While you will <strong>not</strong> be assessed on the quality of your code (you do <strong>not</strong> have to submit your code for the assessment), remember that well-formatted code (with comments and good structure) is easier to read and understand and will be less prone to error.</p>
+<blockquote>
+<p>Inspect the code below:</p>
+</blockquote>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="Hints.html#cb97-1" tabindex="-1"></a><span class="co"># Function to check and install packages</span></span>
+<span id="cb97-2"><a href="Hints.html#cb97-2" tabindex="-1"></a>check.packages <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg){</span>
+<span id="cb97-3"><a href="Hints.html#cb97-3" tabindex="-1"></a>  new.pkg <span class="ot">&lt;-</span> pkg[<span class="sc">!</span>(pkg <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
+<span id="cb97-4"><a href="Hints.html#cb97-4" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(new.pkg))</span>
+<span id="cb97-5"><a href="Hints.html#cb97-5" tabindex="-1"></a>    <span class="fu">install.packages</span>(new.pkg, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb97-6"><a href="Hints.html#cb97-6" tabindex="-1"></a>  <span class="fu">sapply</span>(pkg, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb97-7"><a href="Hints.html#cb97-7" tabindex="-1"></a>}</span>
+<span id="cb97-8"><a href="Hints.html#cb97-8" tabindex="-1"></a></span>
+<span id="cb97-9"><a href="Hints.html#cb97-9" tabindex="-1"></a><span class="co"># Checks and installs packages</span></span>
+<span id="cb97-10"><a href="Hints.html#cb97-10" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;here&quot;</span>, <span class="st">&quot;raster&quot;</span>, <span class="st">&quot;whitebox&quot;</span>, <span class="st">&quot;ggspatial&quot;</span>, <span class="st">&quot;patchwork&quot;</span>)</span>
+<span id="cb97-11"><a href="Hints.html#cb97-11" tabindex="-1"></a><span class="fu">check.packages</span>(packages)</span>
+<span id="cb97-12"><a href="Hints.html#cb97-12" tabindex="-1"></a></span>
+<span id="cb97-13"><a href="Hints.html#cb97-13" tabindex="-1"></a><span class="co"># Sets file path for DEM</span></span>
+<span id="cb97-14"><a href="Hints.html#cb97-14" tabindex="-1"></a>dem <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m.tif&quot;</span>)</span>
+<span id="cb97-15"><a href="Hints.html#cb97-15" tabindex="-1"></a></span>
+<span id="cb97-16"><a href="Hints.html#cb97-16" tabindex="-1"></a><span class="co"># Breach and fills depressions</span></span>
+<span id="cb97-17"><a href="Hints.html#cb97-17" tabindex="-1"></a><span class="fu">wbt_fill_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span>
+<span id="cb97-18"><a href="Hints.html#cb97-18" tabindex="-1"></a><span class="fu">wbt_breach_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_breach.tif&quot;</span>))</span>
+<span id="cb97-19"><a href="Hints.html#cb97-19" tabindex="-1"></a></span>
+<span id="cb97-20"><a href="Hints.html#cb97-20" tabindex="-1"></a><span class="co"># Calculates D8 pointer</span></span>
+<span id="cb97-21"><a href="Hints.html#cb97-21" tabindex="-1"></a><span class="fu">wbt_d8_pointer</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>),</span>
+<span id="cb97-22"><a href="Hints.html#cb97-22" tabindex="-1"></a>               <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_D8_pointer.tif&quot;</span>))</span>
+<span id="cb97-23"><a href="Hints.html#cb97-23" tabindex="-1"></a></span>
+<span id="cb97-24"><a href="Hints.html#cb97-24" tabindex="-1"></a><span class="co"># Calculates D8 accumulation file (SCA), with log-transformed values</span></span>
+<span id="cb97-25"><a href="Hints.html#cb97-25" tabindex="-1"></a><span class="fu">wbt_d8_flow_accumulation</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>),</span>
+<span id="cb97-26"><a href="Hints.html#cb97-26" tabindex="-1"></a>                         <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_flow_accumulation.tif&quot;</span>),</span>
+<span id="cb97-27"><a href="Hints.html#cb97-27" tabindex="-1"></a>                         <span class="at">out_type =</span> <span class="st">&quot;specific contributing area&quot;</span>,</span>
+<span id="cb97-28"><a href="Hints.html#cb97-28" tabindex="-1"></a>                         <span class="at">log =</span> <span class="st">&quot;TRUE&quot;</span>)</span></code></pre></div>
+<p>This code includes comments for each main code block, line spaces to distinguish different parts of the code, and is written in a logical order (e.g. first loading packages, then loading/selecting data, running tools). Any non-essential code has been removed e.g. additional calls to install.packages() or library().</p>
+<p>If there are any other questions, please do get in touch.</p>
+
+
+<div id="refs" class="references csl-bib-body">
+<div class="csl-entry">
+Alcalde, J. <em>et al.</em> (2017) <span>‘Framing bias: <span>The</span> effect of figure presentation on seismic interpretation’</span>, <em>Interpretation</em>, 5(4), pp. T591–T605. doi:<a href="https://doi.org/10.1190/INT-2017-0083.1">10.1190/INT-2017-0083.1</a>.
+</div>
+<div class="csl-entry">
+Crameri, F. (2018) <span>‘Geodynamic diagnostics, scientific visualisation and <span>StagLab</span> 3.0’</span>, <em>Geoscientific Model Development</em>, 11(6), pp. 2541–2562. doi:<a href="https://doi.org/10.5194/gmd-11-2541-2018">https://doi.org/10.5194/gmd-11-2541-2018</a>.
+</div>
+<div class="csl-entry">
+Fairfield, J. and Leymarie, P. (1991) <span>‘Drainage networks from grid digital elevation models’</span>, <em>Water Resources Research</em>, 27(5), pp. 709–717. doi:<a href="https://doi.org/10.1029/90WR02658">https://doi.org/10.1029/90WR02658</a>.
+</div>
+<div class="csl-entry">
+Freeman, T.G. (1991) <span>‘Calculating catchment area with divergent flow based on a regular grid’</span>, <em>Computers &amp; Geosciences</em>, 17(3), pp. 413–422. doi:<a href="https://doi.org/10.1016/0098-3004(91)90048-I">10.1016/0098-3004(91)90048-I</a>.
+</div>
+<div class="csl-entry">
+Geissbuehler, M. and Lasser, T. (2013) <span>‘How to display data by color schemes compatible with red-green color perception deficiencies’</span>, <em>Optics Express</em>, 21(8), pp. 9862–9874. doi:<a href="https://doi.org/10.1364/OE.21.009862">10.1364/OE.21.009862</a>.
+</div>
+<div class="csl-entry">
+Grabs, T.J. <em>et al.</em> (2010) <span>‘Calculating terrain indices along streams: <span>A</span> new method for separating stream sides’</span>, <em>Water Resources Research</em>, 46(12). doi:<a href="https://doi.org/10.1029/2010WR009296">https://doi.org/10.1029/2010WR009296</a>.
+</div>
+<div class="csl-entry">
+Hawkins, E. (2015) <span>‘Scrap rainbow colour scales’</span>, <em>Nature</em>, 519(7543), pp. 291–291. doi:<a href="https://doi.org/10.1038/519291d">10.1038/519291d</a>.
+</div>
+<div class="csl-entry">
+Jenson, S.K. and Domingue, J.O. (1988) <span>‘Extracting topographic structure from digital elevation data for geographic information-system analysis’</span>, <em>Photogrammetric Engineering and Remote Sensing</em>, 54(11), p. 15931600. Available at: <a href="http://pubs.er.usgs.gov/publication/70142175">http://pubs.er.usgs.gov/publication/70142175</a> (Accessed: 2 December 2020).
+</div>
+<div class="csl-entry">
+Levine, T. (2009) <span>‘Using colour in figures: Let’s agree to differ’</span>, <em>Traffic</em>, 10(3), pp. 344–347. doi:<a href="https://doi.org/10.1111/j.1600-0854.2008.00863.x">https://doi.org/10.1111/j.1600-0854.2008.00863.x</a>.
+</div>
+<div class="csl-entry">
+O’Callaghan, J.F. and Mark, D.M. (1984) <span>‘The extraction of drainage networks from digital elevation data’</span>, <em>Computer Vision, Graphics, and Image Processing</em>, 28(3), pp. 323–344. doi:<a href="https://doi.org/10.1016/S0734-189X(84)80011-0">10.1016/S0734-189X(84)80011-0</a>.
+</div>
+<div class="csl-entry">
+Quinn, P. <em>et al.</em> (1991) <span>‘The prediction of hillslope flow paths for distributed hydrological modelling using digital terrain models’</span>, <em>Hydrological Processes</em>, 5(1), pp. 59–79. doi:<a href="https://doi.org/10.1002/hyp.3360050106">https://doi.org/10.1002/hyp.3360050106</a>.
+</div>
+<div class="csl-entry">
+Quinn, P.F. <em>et al.</em> (1995) <span>‘The in(a/tan/β) index: <span>How</span> to calculate it and how to use it within the topmodel framework’</span>, <em>Hydrological Processes</em>, 9(2), pp. 161–182. doi:<a href="https://doi.org/10.1002/hyp.3360090204">https://doi.org/10.1002/hyp.3360090204</a>.
+</div>
+<div class="csl-entry">
+Seibert, J. and McGlynn, B.L. (2007) <span>‘A new triangular multiple flow direction algorithm for computing upslope areas from gridded digital elevation models’</span>, <em>Water Resources Research</em>, 43(4). doi:<a href="https://doi.org/10.1029/2006WR005128">https://doi.org/10.1029/2006WR005128</a>.
+</div>
+<div class="csl-entry">
+Tarboton, D.G. (1997) <span>‘A new method for the determination of flow directions and upslope areas in grid digital elevation models’</span>, <em>Water Resources Research</em>, 33(2), pp. 309–319. doi:<a href="https://doi.org/10.1029/96WR03137">https://doi.org/10.1029/96WR03137</a>.
+</div>
+</div>
+</div>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p><strong>Base R</strong> is used to refer to the functions that are part of the core packages deployed with R, such as <code>plot()</code>, <code>sqrt()</code> or <code>seq()</code>. As we install and utilise user-created <a href="Intro_to_R.html#packages">packages</a>, we are moving away from base R.<a href="Intro_to_R.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="Eskdale_flow_algorithms.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

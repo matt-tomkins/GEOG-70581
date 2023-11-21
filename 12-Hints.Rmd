@@ -4,6 +4,101 @@ This chapter contains a few handy hints which may be useful if you're having any
 
 If there are any questions regarding Assessment 2 or the practical instructions, please do get in touch at my `@manchester` email. 
 
+### Errors with R projects and the `here` package {-#project_repair}
+
+If you're working on a university-managed computer, it is likely that you've encountered errors during our Week 10 class while trying to use `whitebox` functions, such as `wbt_fill_depressions()`, or accessing files using relative file paths via the `here` package.
+
+This problem actually originates with our use of R projects (described [here](#R_Projects)). R projects are designed to make accessing files simple and to ensure our analyses are **self-contained** and **portable**. They do this by automatically setting the **working directory** in RStudio. You can test this by using the `getwd()` function, which should print your working directory to the console. 
+
+If the R project is working, this should set your working directory to the directory where your R project is saved e.g., an R project file stored in `C:/Users/Bob/Documents/GEOG70581` should have an identical working directory. 
+
+Unfortunately, R projects **are not currently working** as intended on university-managed computers: the working directory is *not* being automatically updated. In most cases, the working directory is stuck at `P:/`, even if the R project is saved elsewhere! This is a completely **new** problem for 2023/24 and we're not sure why, but it is possibly due to changes in the way  computers are managed after the recent [cyber incident](https://www.manchester.ac.uk/cyber-incident/))
+
+This explains why you are struggling to access files using `here`, but also why `whitebox` functions are failing, even when inelegant *absolute* file paths are used. In both cases, R is looking in the wrong place, either for the data files, or the WBT executable. 
+
+**To fix this**, there are two options. 
+
+> The simplest approach is to start from scratch, downloading the [course data]([Week 8 to 12](https://online.manchester.ac.uk/webapps/blackboard/content/listContentEditable.jsp?content_id=_15464511_1&course_id=_77840_1)), and creating a new R project in the same directory. If successful, it should resemble the following:
+
+<p align="center">
+![](figures/Using-R/R-project-visualisation.png){width=65%}
+</p>
+
+> The next step is to set the working directory **manually** using the `setwd()` function (**see below for an example**). This should update the working directory to the correct location, such as `C:/Users/Bob/Documents/GEOG70581` or `P:/GEOG70581` depending on where you data are saved, and should be done **before** installing packages. The practical steps can then be following as normal and the `whitebox` functions should work as intended. 
+
+> Try running the code below, making sure to update the path to the correct working directory.
+
+```{r, echo = TRUE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
+
+# FIRST, set your working directory manually
+setwd(---YOUR PATH GOES HERE---) # e.g., "C:/Users/Bob/Documents/GEOG70581"
+
+# Function to check and install packages
+check.packages <- function(pkg){
+  new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
+  if (length(new.pkg)) 
+    install.packages(new.pkg, dependencies = TRUE)
+  sapply(pkg, require, character.only = TRUE)
+}
+
+# Checks and installs packages
+packages <- c("ggplot2", "here", "raster", "whitebox", "sf", "ggspatial")
+check.packages(packages)
+
+# Initialise whitebox tools executable
+whitebox::install_whitebox()
+
+# Check whitebox is in the library and the version
+library(whitebox)
+wbt_version()
+
+# Sets file path for DEM
+dem <- here("data", "practical_1", "dem_10m.tif")
+
+# Prints the file path to the console window
+dem
+
+# Fills depressions
+wbt_fill_depressions(dem, here("output", "practical_1", "dem_10m_fill.tif"))
+
+# Subtract function; the difference between the processed DEM (filled) and the original DEM
+wbt_subtract(here("output", "practical_1", "dem_10m_fill.tif"), # Input file 1
+              dem, # Input file 2
+              here("output", "practical_1", "dem_10m_fill_difference.tif")) # Output file
+
+# Loads raster using the raster and here packages
+eskdale_dem <- raster(here("output", "practical_1", "dem_10m_fill_difference.tif"))
+
+# Find minimum and maximum values
+minimum_value <- min(values(eskdale_dem)[which(values(eskdale_dem) > 0)])
+maximum_value <- max(values(eskdale_dem))
+
+# Plots using ggplot
+g <- ggplot() +
+  layer_spatial(eskdale_dem, aes(fill = after_stat(band1))) +
+  theme_classic() + 
+  labs(fill = "Elevation difference (m)", x = "Easting", y = "Northing") +
+  scale_fill_continuous(type = "viridis",  na.value = NA, 
+                        limits = c(minimum_value, maximum_value))
+g
+
+```
+
+> **If you want to continue** with an existing directory/R Project, then you will need to set the working directory manually (`setwd()`) **and** set the origin for the `here` package, as shown below: 
+
+```{r, echo = TRUE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
+
+# Set the working directory manually
+setwd("C:/Users/Bob/Documents/GEOG70581") # UPDATE TO YOUR DIRECTORY
+
+# Manually set the origin for the 'here' package
+here::i_am("practical-1-eskdale.R") # UPDATE IF A DIFFERENT FILE NAME USED
+```
+
+The above solutions have been tested on a range of university-managed computers, working on both the `P:` and `C:` drive. 
+
+For other installation issues, please contact me on my `@manchester` email. For other R issues, please post on the [forum](https://online.manchester.ac.uk/webapps/discussionboard/do/conference?toggle_mode=edit&action=list_forums&course_id=_77840_1&nav=discussion_board_entry&mode=cpview).
+
 ### Dealing with errors {-}
 
 Errors are an **inevitable** aspect of coding, irrespective of how experienced you are! As we gain programming experience, these errors increase in difficulty from initially simple problems, such as incorrect file paths or errors in code syntax, to the more complex.

@@ -32,7 +32,7 @@ Hydrological analysis in R<br />
   
   
 <link rel="prev" href="Eskdale_set_up.html"/>
-
+<link rel="next" href="Hints.html"/>
 <script src="libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -227,6 +227,7 @@ div.csl-indent {
 <li><a href="Eskdale_set_up.html#creating-an-r-script" id="toc-creating-an-r-script"><span class="toc-section-number">5.5</span> Creating an R script</a></li>
 <li><a href="Eskdale_set_up.html#install-whiteboxtools" id="toc-install-whiteboxtools"><span class="toc-section-number">5.6</span> Install WhiteboxTools</a></li>
 <li><a href="Eskdale_set_up.html#loading-packages" id="toc-loading-packages"><span class="toc-section-number">5.7</span> Loading packages</a></li>
+<li><a href="Eskdale_set_up.html#errors-using-r-projects" id="toc-errors-using-r-projects"><span class="toc-section-number">5.8</span> Errors using R projects</a></li>
 </ul></li>
 <li><a href="Eskdale_flow_algorithms.html#Eskdale_flow_algorithms" id="toc-Eskdale_flow_algorithms"><span class="toc-section-number">6</span> Eskdale III - Flow routing</a>
 <ul>
@@ -245,6 +246,17 @@ div.csl-indent {
 <li><a href="Eskdale_flow_algorithms.html#comparing-the-outputs" id="toc-comparing-the-outputs"><span class="toc-section-number">6.3.4</span> Comparing the outputs</a></li>
 </ul></li>
 <li><a href="Eskdale_flow_algorithms.html#practical-solution" id="toc-practical-solution"><span class="toc-section-number">6.4</span> Practical solution</a></li>
+</ul></li>
+<li><a href="Hints.html#Hints" id="toc-Hints"><span class="toc-section-number">7</span> Handy Hints</a>
+<ul>
+<li><a href="Hints.html#project_repair" id="toc-project_repair">Errors with R projects and the <code>here</code> package</a></li>
+<li><a href="Hints.html#dealing-with-errors-1" id="toc-dealing-with-errors-1">Dealing with errors</a></li>
+<li><a href="Hints.html#whitebox-functions-vs.-the-raster-package" id="toc-whitebox-functions-vs.-the-raster-package">Whitebox functions vs. the <code>raster</code> package</a></li>
+<li><a href="Hints.html#r-projects" id="toc-r-projects">R Projects</a></li>
+<li><a href="Hints.html#file-paths" id="toc-file-paths">File paths</a></li>
+<li><a href="Hints.html#output-files" id="toc-output-files">Output files</a></li>
+<li><a href="Hints.html#packages-1" id="toc-packages-1">Packages</a></li>
+<li><a href="Hints.html#code-structure" id="toc-code-structure">Code structure</a></li>
 </ul></li>
 </ul>
 
@@ -561,58 +573,7 @@ Hydrological analysis in R<br />
 ##      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE</code></pre>
 <p><img src="Practical_1_files/figure-html/unnamed-chunk-80-1.png" width="672" style="display: block; margin: auto;" /></p>
 
-
-<div id="refs" class="references csl-bib-body">
-<div class="csl-entry">
-Alcalde, J. <em>et al.</em> (2017) <span>‘Framing bias: <span>The</span> effect of figure presentation on seismic interpretation’</span>, <em>Interpretation</em>, 5(4), pp. T591–T605. doi:<a href="https://doi.org/10.1190/INT-2017-0083.1">10.1190/INT-2017-0083.1</a>.
 </div>
-<div class="csl-entry">
-Crameri, F. (2018) <span>‘Geodynamic diagnostics, scientific visualisation and <span>StagLab</span> 3.0’</span>, <em>Geoscientific Model Development</em>, 11(6), pp. 2541–2562. doi:<a href="https://doi.org/10.5194/gmd-11-2541-2018">https://doi.org/10.5194/gmd-11-2541-2018</a>.
-</div>
-<div class="csl-entry">
-Fairfield, J. and Leymarie, P. (1991) <span>‘Drainage networks from grid digital elevation models’</span>, <em>Water Resources Research</em>, 27(5), pp. 709–717. doi:<a href="https://doi.org/10.1029/90WR02658">https://doi.org/10.1029/90WR02658</a>.
-</div>
-<div class="csl-entry">
-Freeman, T.G. (1991) <span>‘Calculating catchment area with divergent flow based on a regular grid’</span>, <em>Computers &amp; Geosciences</em>, 17(3), pp. 413–422. doi:<a href="https://doi.org/10.1016/0098-3004(91)90048-I">10.1016/0098-3004(91)90048-I</a>.
-</div>
-<div class="csl-entry">
-Geissbuehler, M. and Lasser, T. (2013) <span>‘How to display data by color schemes compatible with red-green color perception deficiencies’</span>, <em>Optics Express</em>, 21(8), pp. 9862–9874. doi:<a href="https://doi.org/10.1364/OE.21.009862">10.1364/OE.21.009862</a>.
-</div>
-<div class="csl-entry">
-Grabs, T.J. <em>et al.</em> (2010) <span>‘Calculating terrain indices along streams: <span>A</span> new method for separating stream sides’</span>, <em>Water Resources Research</em>, 46(12). doi:<a href="https://doi.org/10.1029/2010WR009296">https://doi.org/10.1029/2010WR009296</a>.
-</div>
-<div class="csl-entry">
-Hawkins, E. (2015) <span>‘Scrap rainbow colour scales’</span>, <em>Nature</em>, 519(7543), pp. 291–291. doi:<a href="https://doi.org/10.1038/519291d">10.1038/519291d</a>.
-</div>
-<div class="csl-entry">
-Jenson, S.K. and Domingue, J.O. (1988) <span>‘Extracting topographic structure from digital elevation data for geographic information-system analysis’</span>, <em>Photogrammetric Engineering and Remote Sensing</em>, 54(11), p. 15931600. Available at: <a href="http://pubs.er.usgs.gov/publication/70142175">http://pubs.er.usgs.gov/publication/70142175</a> (Accessed: 2 December 2020).
-</div>
-<div class="csl-entry">
-Levine, T. (2009) <span>‘Using colour in figures: Let’s agree to differ’</span>, <em>Traffic</em>, 10(3), pp. 344–347. doi:<a href="https://doi.org/10.1111/j.1600-0854.2008.00863.x">https://doi.org/10.1111/j.1600-0854.2008.00863.x</a>.
-</div>
-<div class="csl-entry">
-O’Callaghan, J.F. and Mark, D.M. (1984) <span>‘The extraction of drainage networks from digital elevation data’</span>, <em>Computer Vision, Graphics, and Image Processing</em>, 28(3), pp. 323–344. doi:<a href="https://doi.org/10.1016/S0734-189X(84)80011-0">10.1016/S0734-189X(84)80011-0</a>.
-</div>
-<div class="csl-entry">
-Quinn, P. <em>et al.</em> (1991) <span>‘The prediction of hillslope flow paths for distributed hydrological modelling using digital terrain models’</span>, <em>Hydrological Processes</em>, 5(1), pp. 59–79. doi:<a href="https://doi.org/10.1002/hyp.3360050106">https://doi.org/10.1002/hyp.3360050106</a>.
-</div>
-<div class="csl-entry">
-Quinn, P.F. <em>et al.</em> (1995) <span>‘The in(a/tan/β) index: <span>How</span> to calculate it and how to use it within the topmodel framework’</span>, <em>Hydrological Processes</em>, 9(2), pp. 161–182. doi:<a href="https://doi.org/10.1002/hyp.3360090204">https://doi.org/10.1002/hyp.3360090204</a>.
-</div>
-<div class="csl-entry">
-Seibert, J. and McGlynn, B.L. (2007) <span>‘A new triangular multiple flow direction algorithm for computing upslope areas from gridded digital elevation models’</span>, <em>Water Resources Research</em>, 43(4). doi:<a href="https://doi.org/10.1029/2006WR005128">https://doi.org/10.1029/2006WR005128</a>.
-</div>
-<div class="csl-entry">
-Tarboton, D.G. (1997) <span>‘A new method for the determination of flow directions and upslope areas in grid digital elevation models’</span>, <em>Water Resources Research</em>, 33(2), pp. 309–319. doi:<a href="https://doi.org/10.1029/96WR03137">https://doi.org/10.1029/96WR03137</a>.
-</div>
-</div>
-</div>
-</div>
-<div class="footnotes footnotes-end-of-document">
-<hr />
-<ol>
-<li id="fn1"><p><strong>Base R</strong> is used to refer to the functions that are part of the core packages deployed with R, such as <code>plot()</code>, <code>sqrt()</code> or <code>seq()</code>. As we install and utilise user-created <a href="Intro_to_R.html#packages">packages</a>, we are moving away from base R.<a href="Intro_to_R.html#fnref1" class="footnote-back">↩︎</a></p></li>
-</ol>
 </div>
 <h3>References</h3>
 <div id="refs" class="references csl-bib-body">
@@ -664,8 +625,8 @@ Tarboton, D.G. (1997) <span>‘A new method for the determination of flow direct
           </div>
         </div>
       </div>
-<a href="Eskdale_set_up.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="Eskdale_set_up.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="Hints.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
