@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Installation |  Hydrological analysis in R </title>
+  <title>Chapter 8 Mersey II - Set-up |  Hydrological analysis in R </title>
   <meta name="description" content="<br />
 Hydrological analysis in R<br />
 </center>" />
   <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Installation |  Hydrological analysis in R " />
+  <meta property="og:title" content="Chapter 8 Mersey II - Set-up |  Hydrological analysis in R " />
   <meta property="og:type" content="book" />
   
   
@@ -18,7 +18,7 @@ Hydrological analysis in R<br />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Installation |  Hydrological analysis in R " />
+  <meta name="twitter:title" content="Chapter 8 Mersey II - Set-up |  Hydrological analysis in R " />
   
   
   
@@ -31,8 +31,8 @@ Hydrological analysis in R<br />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="Intro_to_R.html"/>
+<link rel="prev" href="SecondPractical.html"/>
+<link rel="next" href="mersey_three.html"/>
 <script src="libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -313,66 +313,213 @@ Hydrological analysis in R<br />
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="Installation" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Installation<a href="Installation.html#Installation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>During this practical you will be using <a href="https://jblindsay.github.io/wbt_book/intro.html">WhiteboxTools</a>, an open-source GIS software package for hydro-geomorphic applications. While it contains much of the functionality found in a standard GIS software package, it also includes novel functionality specific to hydrological analysis. The tools are also computationally efficient (i.e. fast!), taking advantage of parallel processing and other advancements in computing power. Finally, the tools are developed for cross-platform use, so can be accessed through code (e.g. R, Python) or other GUIs (e.g. QGIS, ArcGIS) if required.</p>
-<p>To run WhiteboxTools functions (<strong>WBT</strong>), we’ll be using R as a front-end interface. This will allow us to access and run all of the relevant hydrological functions from WBT, while utilising the statistical and visualisation capabilities of R.</p>
-<div id="r" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> R<a href="Installation.html#r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>If you’re working on a <strong>university-managed computer</strong> (in HBS 2.2, HBS 2.88 or Mansfield Cooper 2.01) or accessing the course via <em>Citrix</em>, both R and RStudio (described below) should already be installed or can be accessed through the Software Centre.</p>
-<p>To Install R on a <strong>personal computer</strong>:</p>
+<div id="Mersy_set_up" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Mersey II - Set-up<a href="Mersy_set_up.html#Mersy_set_up" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="practical-overview" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Practical overview<a href="Mersy_set_up.html#practical-overview" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This practical is comprised of eight primary tasks, with three weeks of class time available (Weeks 10 - 12). Each of the steps is described in more detail in the remainder of this document. An outline of the key tasks is as follows:</p>
+<p><strong>Mersey III</strong> (Chapter 9): To complete in class in Week 10, and finish before the class in Week 11:</p>
 <ul>
-<li>Open an internet browser and go to <a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a>.</li>
-<li>Click the “download R” link in the middle of the page under “Getting Started.”</li>
-<li>Select a CRAN location (a mirror site) and click the corresponding link e.g. the site provided by <a href="https://cran.ma.imperial.ac.uk/">Imperial College London</a>.</li>
-<li>Click on the “Download R for Windows” link, or the relevant link for your operating system (macOS, Linux).</li>
-<li>Click on ‘base’ and then <code>Download R [Version Number] for Windows</code>. The current version is 4.2.2.</li>
-<li>Once downloaded, double click the application file (.exe) and follow the installation instructions.</li>
+<li>Task 1: Flow routing</li>
+<li>Task 2: Seed points</li>
+<li>Task 3: Watershed delineation</li>
 </ul>
-</div>
-<div id="r-studio" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> R Studio<a href="Installation.html#r-studio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>While R is now installed, it is good practice to use an integrated development environment (IDE) to access and run R functions. The most well known IDE for R is <a href="https://www.rstudio.com/">RStudio</a>, which includes a console, higher quality graphics, as well as tools for plotting, history, debugging and workspace management.</p>
-<p><strong>Note</strong>: R may be used without RStudio, but RStudio cannot be used without R.</p>
-<p>To Install RStudio on a <strong>personal computer</strong>:</p>
+<p><strong>Mersey IV</strong> (Chapter 10): To complete in class in Week 11, and finish before the class in Week 12:</p>
 <ul>
-<li>Go to <a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a> and click on <code>Download RStudio for Windows</code>. Installers for macOS and other operating systems are available below.
-<p align="center">
-<img src="figures/Using-R/download_RStudio.png" style="width:50.0%" />
-</p></li>
-<li>Once downloaded, double click the application file (.exe) and follow the installation instructions.</li>
+<li>Task 4: Reclassification of categorical datasets</li>
+<li>Task 5: Calculating surface derivatives</li>
+<li>Task 6: Extracting surface derivatives</li>
 </ul>
+<p><strong>Mersey V</strong> (Chapter 11): To complete in class in Week 12:</p>
+<ul>
+<li>Task 7: Model building i.e. relating river water quality to catchment metrics</li>
+<li>Task 8: Model evaluation</li>
+</ul>
+<p>Any class time remaining can be used to commence your practical report and ask any questions you may have before submission.</p>
 </div>
-<div id="materials" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> Course materials<a href="Installation.html#materials" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>All the data required for this sets of practicals are available on Blackboard under Course Content → <a href="https://online.manchester.ac.uk/webapps/blackboard/content/listContentEditable.jsp?content_id=_15464511_1&amp;course_id=_77840_1">Week 8 to 12</a>.</p>
+<div id="install-programs-1" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Install programs<a href="Mersy_set_up.html#install-programs-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You should have already installed R and RStudio. If not, please refer to the instructions <a href="Installation.html#Installation">here</a> before continuing.</p>
+</div>
+<div id="download_data_v2" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Download data<a href="Mersy_set_up.html#download_data_v2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The data for this practical have already been downloaded <a href="https://online.manchester.ac.uk/webapps/blackboard/content/listContentEditable.jsp?content_id=_13304460_1&amp;course_id=_68533_1">here</a> and can be found in <code>data/practical_2</code>. The directory structure is outlined in <a href="Installation.html#materials">Chapter 2</a>.</p>
+</div>
+<div id="practical-2-data" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Data description<a href="Mersy_set_up.html#practical-2-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In Practical 1, we used a single raster file (<code>dem_10m.tif</code>) and visualised and assessed the outputs of a number of WBT functions (e.g. fill, breach, slope, pointer, flow accumulation).</p>
+<p>In Practical 2, we are going to use a much wider range of input data, all of which use the <strong>British National Grid</strong> (BNG), a <strong>projected</strong> coordinate Reference System [<a href="https://epsg.io/27700">EPSG:27700</a>]. Alongside a few supplementary files (which you may wish to use for plotting), the key data are described here:</p>
+<ul>
+<li><strong>Raster</strong> data (<code>.tif</code>):
+<ul>
+<li><code>mersey_dem_fill</code>
+<ul>
+<li>a filled digital elevation model of the Mersey Basin;</li>
+</ul></li>
+<li><code>mersey_rainfall</code>
+<ul>
+<li>a raster of precipitation values;</li>
+</ul></li>
+<li><code>mersey_bedrock</code>
+<ul>
+<li>a categorical raster of bedrock geology types;</li>
+</ul></li>
+<li><code>mersey_HOST</code>
+<ul>
+<li>a categorical raster of soil types (<strong>H</strong>ydrology <strong>o</strong>f <strong>S</strong>oil <strong>T</strong>ypes);</li>
+</ul></li>
+<li><code>mersey_LC</code>
+<ul>
+<li>a categorical raster of land cover classes, based on LCM2000 data;</li>
+</ul></li>
+</ul></li>
+<li><strong>Vector</strong> data (<code>.shp</code>):
+<ul>
+<li><code>mersey_EA_sites</code>
+<ul>
+<li>a point vector representing the locations of water quality monitoring stations. The attribute table contains a unique Environment Agency ID for each (<code>EA_ID</code>):</li>
+</ul></li>
+</ul></li>
+<li><strong>Tables</strong> (<code>.csv</code>):
+<ul>
+<li><code>mersey_EA_chemisty</code>
+<ul>
+<li>a comma-delimited table containing measurements for the following water quality indicators, as well as corresponding Environment Agency IDs:
+<ul>
+<li>pH: acidity/alkalinity;</li>
+<li>SSC: suspended solids concentration (mg l<sup>−1</sup>);</li>
+<li>Ca: calcium (mg l<sup>−1</sup>);</li>
+<li>Mg: magnesium (mg l<sup>−1</sup>);</li>
+<li>NH<sub>4</sub>: ammonium (mg-N l<sup>−1</sup>);</li>
+<li>NO<sub>3</sub>: nitrate (mg-N l<sup>−1</sup>);</li>
+<li>NO<sub>2</sub>: nitrite (mg-N l<sup>−1</sup>);</li>
+<li>TON: total oxidised nitrogen (mg-N l<sup>−1</sup>);</li>
+<li>PO<sub>4</sub>: phosphate (mg-P l<sup>−1</sup>);</li>
+<li>Zn: zinc (μg l<sup>−1</sup>).</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
 <blockquote>
-<p>Download the folder, save it to an appropriate location and extract the contents (unzip).</p>
+<p>Read through the above descriptions carefully, making sure you understand the data we are using before moving on. We’ll be combining the Environment Agency measurements of water quality (e.g. pH, SSC, …) with spatial data representing the catchment (e.g. topography, rainfall, land cover, …) to investigate the controls on water quality across the Mersey Basin.</p>
 </blockquote>
-<p>The directory structure is as follows:</p>
+</div>
+<div id="open-rstudio-1" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> Open RStudio<a href="Mersy_set_up.html#open-rstudio-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<blockquote>
+<p>To begin, open RStudio.</p>
+</blockquote>
+</div>
+<div id="projects-and-scripts" class="section level2 hasAnchor" number="8.6">
+<h2><span class="header-section-number">8.6</span> Projects and Scripts<a href="Mersy_set_up.html#projects-and-scripts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="Existing_R_Projects" class="section level3 hasAnchor" number="8.6.1">
+<h3><span class="header-section-number">8.6.1</span> Using an existing R project<a href="Mersy_set_up.html#Existing_R_Projects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In Practical 2 (Eskdale), we utilised an <strong>R Project</strong> called GEOG70581. Your GEOG70581 directory should resemble the following:</p>
+<p align="center">
+<a name="Figure_scripts"></a><img src="figures/Practical-2/projects-and-scripts.png" style="width:20.0%" />
+</p>
+<p>Here we have sub-directories for the original data (<code>data</code>) and any spatial data files or images we might create (<code>output</code> and <code>images</code>). We can also see the <code>GEOG70581</code> <strong>project file</strong> and the <code>Practical-1-Eskdale</code> <strong>R script</strong>. The former is used to improve file access and to ensure our code is reproducible, self-contained and portable (see <a href="Eskdale_set_up.html#R_Projects">here</a> for a refresher). The latter contains all our code and comments relating to Practical 1.</p>
+<p>In this practical, we <strong>don’t</strong> need to create a new R project. We will simply use the existing R project as follows:</p>
+<blockquote>
+<p>Go to <strong>File</strong>, <strong>Open Project in New Session</strong>, and select the <strong>GEOG70581</strong> project file.</p>
+</blockquote>
+<p>If this has been successful, your console should have been updated to include the path to your project working directory as follows:</p>
+<p align="center">
+<img src="figures/Practical-2/Project_creation.png" style="width:50.0%" />
+</p>
+</div>
+<div id="creating-an-r-script-1" class="section level3 hasAnchor" number="8.6.2">
+<h3><span class="header-section-number">8.6.2</span> Creating an R script<a href="Mersy_set_up.html#creating-an-r-script-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As shown in the file directory image above, we already have an R script for the Eskdale practical (<code>Practical-1-Eskdale</code>). As we are now working on a separate practical, with different input data and analytical techniques, it makes sense to create a new script to store the code and comments.</p>
+<p>To create a new script for Practical 2:</p>
+<blockquote>
+<p>Navigate to <strong>File</strong>, <strong>New File</strong> and <strong>R Script</strong>.</p>
+</blockquote>
+<p>To save the script:</p>
+<blockquote>
+<p>Navigate to <strong>File</strong> and <strong>Save As</strong>, and save it in the GEOG70581 folder with an appropriate name (e.g. <code>Practical-2-Mersey</code>)</p>
+</blockquote>
+<p>This should now resemble the following:</p>
+<p align="center">
+<img src="figures/Practical-2/Practical2_New_Script.png" style="width:50.0%" />
+</p>
+</div>
+</div>
+<div id="loading-packages-1" class="section level2 hasAnchor" number="8.7">
+<h2><span class="header-section-number">8.7</span> Loading packages<a href="Mersy_set_up.html#loading-packages-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As we’re working in the same R project from Practical 1, we don’t need to re-install already utilised packages (e.g. <code>whitebox</code>).</p>
+<p>However, we will need to install some new packages and ensure that all packages are loaded into the R environment.</p>
+<blockquote>
+<p>Copy and paste the <code>check.packages</code> function into your new script, either from below or from <code>Practical-1-Eskdale.R</code>:</p>
+</blockquote>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="Mersy_set_up.html#cb91-1" tabindex="-1"></a><span class="co"># Function to check and install packages</span></span>
+<span id="cb91-2"><a href="Mersy_set_up.html#cb91-2" tabindex="-1"></a>check.packages <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg){</span>
+<span id="cb91-3"><a href="Mersy_set_up.html#cb91-3" tabindex="-1"></a>  new.pkg <span class="ot">&lt;-</span> pkg[<span class="sc">!</span>(pkg <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
+<span id="cb91-4"><a href="Mersy_set_up.html#cb91-4" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(new.pkg)) </span>
+<span id="cb91-5"><a href="Mersy_set_up.html#cb91-5" tabindex="-1"></a>    <span class="fu">install.packages</span>(new.pkg, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb91-6"><a href="Mersy_set_up.html#cb91-6" tabindex="-1"></a>  <span class="fu">sapply</span>(pkg, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb91-7"><a href="Mersy_set_up.html#cb91-7" tabindex="-1"></a>}</span></code></pre></div>
+<p><br/></p>
+<p>In <strong>Practical 1</strong>, we used the following packages:</p>
 <ul>
-<li>GEOG70581
+<li><a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a>
 <ul>
-<li>Data
-<ul>
-<li>Practical_1</li>
-<li>Practical_2</li>
+<li>for data visualisation;</li>
 </ul></li>
-<li>Images
+<li><a href="https://here.r-lib.org/"><code>here</code></a>
 <ul>
-<li>Practical_1</li>
-<li>Practical_2</li>
+<li>to construct paths to your project files;</li>
 </ul></li>
-<li>Output
+<li><a href="https://rspatial.org/raster/pkg/index.html"><code>raster</code></a>
 <ul>
-<li>Practical_1</li>
-<li>Practical_2</li>
+<li>for reading, analysing and writing of raster and vector data;</li>
 </ul></li>
+<li><a href="https://r-spatial.github.io/sf/"><code>sf</code></a>
+<ul>
+<li>for simple storage of vector data;</li>
+</ul></li>
+<li><a href="https://paleolimbot.github.io/ggspatial/articles/ggspatial.html"><code>ggspatial</code></a>
+<ul>
+<li>for simple plotting of raster data in ggplot2;</li>
+</ul></li>
+<li><a href="https://giswqs.github.io/whiteboxR/"><code>whitebox</code></a>
+<ul>
+<li>for geospatial analysis (a front-end for <a href="https://www.whiteboxgeo.com/manual/wbt_book/preface.html">WhiteboxTools</a>);</li>
 </ul></li>
 </ul>
-<p>All the required data files for Practicals 1 and 2 are stored in the associated sub-directory within <strong>Data</strong>.</p>
-<p>As we move through the practicals, we’ll be creating a number of additional GIS files and we encourage you to save these within the corresponding sub-directory within <strong>Output</strong>.</p>
-<p>Finally, maps and figures will be required for the assessment. These can be exported directly from R and stored in <strong>Images</strong>.</p>
+<p><br/></p>
+<p>In <strong>Practical 2</strong>, we are going to use a number of additional packages:</p>
+<ul>
+<li><a href="https://cran.r-project.org/web/packages/data.table/index.html"><code>data.table</code></a>
+<ul>
+<li>for easy manipulation of tables;</li>
+</ul></li>
+<li><a href="https://cran.r-project.org/web/packages/dplyr/index.html"><code>dplyr</code></a>
+<ul>
+<li>for easy manipulation of data frames;</li>
+</ul></li>
+<li><a href="https://forcats.tidyverse.org/"><code>forcats</code></a>
+<ul>
+<li>for working with categorical variables (factors);</li>
+</ul></li>
+<li><a href="https://rdrr.io/cran/MASS/"><code>MASS</code></a>
+<ul>
+<li>for statistical analysis, based upon Venables and Ripley (2002) “<strong>M</strong>odern <strong>A</strong>pplied <strong>S</strong>tatistics with <strong>S</strong>”;</li>
+</ul></li>
+<li><a href="https://cran.r-project.org/web/packages/units/index.html"><code>units</code></a>
+<ul>
+<li>for calculation of measurement units.</li>
+</ul></li>
+</ul>
+<p><br/></p>
+<p>To load new packages, you can either use the <code>install.packages()</code> and <code>library()</code> functions or more simply, add package names to the packages vector, as shown here:</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="Mersy_set_up.html#cb92-1" tabindex="-1"></a><span class="co"># Checks and installs packages</span></span>
+<span id="cb92-2"><a href="Mersy_set_up.html#cb92-2" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;ggspatial&quot;</span>, <span class="st">&quot;here&quot;</span>, <span class="st">&quot;raster&quot;</span>, <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;whitebox&quot;</span>, <span class="co"># Practical-1</span></span>
+<span id="cb92-3"><a href="Mersy_set_up.html#cb92-3" tabindex="-1"></a>              <span class="st">&quot;data.table&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;forcats&quot;</span>, <span class="st">&quot;MASS&quot;</span>, <span class="st">&quot;units&quot;</span>) <span class="co"># Practical-2 </span></span>
+<span id="cb92-4"><a href="Mersy_set_up.html#cb92-4" tabindex="-1"></a><span class="fu">check.packages</span>(packages)</span></code></pre></div>
+<blockquote>
+<p>Use the above code to install and load the required packages.</p>
+</blockquote>
 
 </div>
 </div>
@@ -381,8 +528,8 @@ Hydrological analysis in R<br />
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="Intro_to_R.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="SecondPractical.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="mersey_three.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
