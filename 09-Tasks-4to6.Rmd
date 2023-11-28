@@ -94,9 +94,35 @@ land_cover_classified <- subs(land_cover, categories)
 writeRaster(land_cover_classified, here("output", "practical_2", "mersey_LC_reclass.tif"))
 ```
 
-> When you understand it, run the code, load the new raster into R and plot. Use the code below to visualise the reclassified raster, taking note of the updated fill aesthetic (`scale_fill_distiller`):
+> When you understand it, run the code, load the new raster into R and plot. Use the code below to visualise the reclassified raster, taking note of the manual fill aesthetic (`scale_fill_manual`):
 
 ```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+
+# Loads land cover raster using the raster and here packages
+mersey_land_cover <- raster(here("output", "practical_2", "mersey_LC_reclass.tif"))
+
+# Manually defined colours for land cover categories
+# (1=Arable, 2=Heath, 3=Grassland, 4=Urban, 5=Wetland)
+colours <- c("Arable" = "#D1F5D8",
+             "Heath" = "#87C292",
+             "Grassland" = "#498955",
+             "Urban" = "#FFA888",
+             "Wetland" = "#4575B4")
+
+# Plots using ggplot
+p <- ggplot() +
+  layer_spatial(mersey_land_cover, aes(fill = factor(after_stat(band1)))) + # Adds raster layer
+  theme_classic() + 
+  labs(fill = "Land cover class", x = "Easting", y = "Northing") +
+  scale_fill_manual(values = colours, na.value = NA) + # Updated fill aesthetic
+  theme(legend.position = "top")
+p 
+```
+
+```{r, echo = FALSE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
+
+# Old version, pre-update
+
 # Loads land cover raster using the raster and here packages
 mersey_land_cover <- raster(here("output", "practical_2", "mersey_LC_reclass.tif"))
 

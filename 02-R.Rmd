@@ -5,13 +5,14 @@
 check.packages <- function(pkg){
   new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
   if (length(new.pkg)) 
-    install.packages(new.pkg, dependencies = TRUE)
+    install.packages(new.pkg, dependencies = TRUE, repos = "http://cran.us.r-project.org")
   sapply(pkg, require, character.only = TRUE)
 }
 
 # Checks and installs packages
 packages <- c("ggplot2", "ggspatial", "here", "raster", "sf", "whitebox", # Practical-1
-              "data.table", "dplyr", "forcats", "MASS", "units", "patchwork", "leaflet", "gridExtra", "rgdal") # Practical-2
+              "data.table", "dplyr", "forcats", "MASS", "units", "patchwork", "leaflet",
+              "gridExtra", "rgdal") # Practical-2
 check.packages(packages)
 ```
 
@@ -567,11 +568,19 @@ content <- paste(sep = "<br/>",
                  "Scotland"
                  )
 
-# Loads shapefiles
-nevis_watershed_polygons <- readOGR(here("output", "introduction", "nevis_fill_watersheds.shp"), verbose = FALSE)
+# Loads shapefiles using rgdal (deprecated)
+#nevis_watershed_polygons <- readOGR(here("output", "introduction", "nevis_fill_watersheds.shp"), verbose = FALSE)
+
+# Read using sf
+nevis_watershed_polygons <- st_read(here("output", "introduction",
+                                         "nevis_fill_watersheds.shp"),
+                                    quiet = TRUE)
 
 # Transform to WGS 84
-nevis_watershed_polygons <- spTransform(nevis_watershed_polygons, CRS("+proj=longlat +datum=WGS84"))
+#nevis_watershed_polygons <- spTransform(nevis_watershed_polygons, CRS("+proj=longlat +datum=WGS84"))
+
+# Transform using sf
+nevis_watershed_polygons <- st_transform(nevis_watershed_polygons, 4326)
 
 m <- leaflet() %>%
   # Sets views

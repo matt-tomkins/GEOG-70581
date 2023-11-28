@@ -8,11 +8,10 @@
   <meta name="description" content="<br />
 Hydrological analysis in R<br />
 </center>" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 13 Handy Hints |  Hydrological analysis in R " />
   <meta property="og:type" content="book" />
-  
   
   
   
@@ -33,8 +32,8 @@ Hydrological analysis in R<br />
   
 <link rel="prev" href="Assessment.html"/>
 
-<script src="libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,20 +49,19 @@ Hydrological analysis in R<br />
 
 
 
-
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.6.3/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
-<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-binding-2.2.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -132,6 +130,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
 div.csl-entry {
@@ -166,162 +168,162 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="index.html#introduction" id="toc-introduction"><span class="toc-section-number">1</span> Introduction</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
-<li><a href="index.html#practical-outline" id="toc-practical-outline"><span class="toc-section-number">1.1</span> Practical outline</a></li>
-<li><a href="index.html#objectives" id="toc-objectives"><span class="toc-section-number">1.2</span> Objectives</a></li>
-<li><a href="index.html#schedule" id="toc-schedule"><span class="toc-section-number">1.3</span> Schedule</a></li>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#practical-outline"><i class="fa fa-check"></i><b>1.1</b> Practical outline</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#objectives"><i class="fa fa-check"></i><b>1.2</b> Objectives</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>1.3</b> Schedule</a></li>
 </ul></li>
-<li><a href="Installation.html#Installation" id="toc-Installation"><span class="toc-section-number">2</span> Installation</a>
+<li class="chapter" data-level="2" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>2</b> Installation</a>
 <ul>
-<li><a href="Installation.html#r" id="toc-r"><span class="toc-section-number">2.1</span> R</a></li>
-<li><a href="Installation.html#r-studio" id="toc-r-studio"><span class="toc-section-number">2.2</span> R Studio</a></li>
-<li><a href="Installation.html#materials" id="toc-materials"><span class="toc-section-number">2.3</span> Course materials</a></li>
+<li class="chapter" data-level="2.1" data-path="Installation.html"><a href="Installation.html#r"><i class="fa fa-check"></i><b>2.1</b> R</a></li>
+<li class="chapter" data-level="2.2" data-path="Installation.html"><a href="Installation.html#r-studio"><i class="fa fa-check"></i><b>2.2</b> R Studio</a></li>
+<li class="chapter" data-level="2.3" data-path="Installation.html"><a href="Installation.html#materials"><i class="fa fa-check"></i><b>2.3</b> Course materials</a></li>
 </ul></li>
-<li><a href="Intro_to_R.html#Intro_to_R" id="toc-Intro_to_R"><span class="toc-section-number">3</span> A (brief) introduction to R</a>
+<li class="chapter" data-level="3" data-path="Intro_to_R.html"><a href="Intro_to_R.html"><i class="fa fa-check"></i><b>3</b> A (brief) introduction to R</a>
 <ul>
-<li><a href="Intro_to_R.html#overview" id="toc-overview"><span class="toc-section-number">3.1</span> Overview</a>
+<li class="chapter" data-level="3.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#overview"><i class="fa fa-check"></i><b>3.1</b> Overview</a>
 <ul>
-<li><a href="Intro_to_R.html#what-is-r" id="toc-what-is-r"><span class="toc-section-number">3.1.1</span> What is R?</a></li>
-<li><a href="Intro_to_R.html#why_code" id="toc-why_code"><span class="toc-section-number">3.1.2</span> Why code?</a></li>
-<li><a href="Intro_to_R.html#a-quick-note-on-the-practicals" id="toc-a-quick-note-on-the-practicals"><span class="toc-section-number">3.1.3</span> A quick note on the practicals</a></li>
-<li><a href="Intro_to_R.html#dealing-with-errors" id="toc-dealing-with-errors"><span class="toc-section-number">3.1.4</span> Dealing with errors</a></li>
+<li class="chapter" data-level="3.1.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#what-is-r"><i class="fa fa-check"></i><b>3.1.1</b> What is R?</a></li>
+<li class="chapter" data-level="3.1.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#why_code"><i class="fa fa-check"></i><b>3.1.2</b> Why code?</a></li>
+<li class="chapter" data-level="3.1.3" data-path="Intro_to_R.html"><a href="Intro_to_R.html#a-quick-note-on-the-practicals"><i class="fa fa-check"></i><b>3.1.3</b> A quick note on the practicals</a></li>
+<li class="chapter" data-level="3.1.4" data-path="Intro_to_R.html"><a href="Intro_to_R.html#dealing-with-errors"><i class="fa fa-check"></i><b>3.1.4</b> Dealing with errors</a></li>
 </ul></li>
-<li><a href="Intro_to_R.html#loading-r" id="toc-loading-r"><span class="toc-section-number">3.2</span> Loading R</a></li>
-<li><a href="Intro_to_R.html#variables-looping" id="toc-variables-looping"><span class="toc-section-number">3.3</span> Objects</a>
+<li class="chapter" data-level="3.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#loading-r"><i class="fa fa-check"></i><b>3.2</b> Loading R</a></li>
+<li class="chapter" data-level="3.3" data-path="Intro_to_R.html"><a href="Intro_to_R.html#variables-looping"><i class="fa fa-check"></i><b>3.3</b> Objects</a>
 <ul>
-<li><a href="Intro_to_R.html#object-names" id="toc-object-names"><span class="toc-section-number">3.3.1</span> Object names</a></li>
-<li><a href="Intro_to_R.html#variables_types" id="toc-variables_types"><span class="toc-section-number">3.3.2</span> Object types</a></li>
+<li class="chapter" data-level="3.3.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#object-names"><i class="fa fa-check"></i><b>3.3.1</b> Object names</a></li>
+<li class="chapter" data-level="3.3.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#variables_types"><i class="fa fa-check"></i><b>3.3.2</b> Object types</a></li>
 </ul></li>
-<li><a href="Intro_to_R.html#data-structures" id="toc-data-structures"><span class="toc-section-number">3.4</span> Data structures</a>
+<li class="chapter" data-level="3.4" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data-structures"><i class="fa fa-check"></i><b>3.4</b> Data structures</a>
 <ul>
-<li><a href="Intro_to_R.html#vectors" id="toc-vectors"><span class="toc-section-number">3.4.1</span> Vectors</a></li>
-<li><a href="Intro_to_R.html#data_frames" id="toc-data_frames"><span class="toc-section-number">3.4.2</span> Data frames</a></li>
+<li class="chapter" data-level="3.4.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#vectors"><i class="fa fa-check"></i><b>3.4.1</b> Vectors</a></li>
+<li class="chapter" data-level="3.4.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data_frames"><i class="fa fa-check"></i><b>3.4.2</b> Data frames</a></li>
 </ul></li>
-<li><a href="Intro_to_R.html#scripts" id="toc-scripts"><span class="toc-section-number">3.5</span> Scripts</a>
+<li class="chapter" data-level="3.5" data-path="Intro_to_R.html"><a href="Intro_to_R.html#scripts"><i class="fa fa-check"></i><b>3.5</b> Scripts</a>
 <ul>
-<li><a href="Intro_to_R.html#comments" id="toc-comments"><span class="toc-section-number">3.5.1</span> Comments</a></li>
+<li class="chapter" data-level="3.5.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#comments"><i class="fa fa-check"></i><b>3.5.1</b> Comments</a></li>
 </ul></li>
-<li><a href="Intro_to_R.html#packages" id="toc-packages"><span class="toc-section-number">3.6</span> Loading packages</a></li>
-<li><a href="Intro_to_R.html#data_loading" id="toc-data_loading"><span class="toc-section-number">3.7</span> Loading data</a></li>
-<li><a href="Intro_to_R.html#data_plotting" id="toc-data_plotting"><span class="toc-section-number">3.8</span> Plotting</a></li>
-<li><a href="Intro_to_R.html#formative_task" id="toc-formative_task"><span class="toc-section-number">3.9</span> Formative task</a>
+<li class="chapter" data-level="3.6" data-path="Intro_to_R.html"><a href="Intro_to_R.html#packages"><i class="fa fa-check"></i><b>3.6</b> Loading packages</a></li>
+<li class="chapter" data-level="3.7" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data_loading"><i class="fa fa-check"></i><b>3.7</b> Loading data</a></li>
+<li class="chapter" data-level="3.8" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data_plotting"><i class="fa fa-check"></i><b>3.8</b> Plotting</a></li>
+<li class="chapter" data-level="3.9" data-path="Intro_to_R.html"><a href="Intro_to_R.html#formative_task"><i class="fa fa-check"></i><b>3.9</b> Formative task</a>
 <ul>
-<li><a href="Intro_to_R.html#formative_solution_one" id="toc-formative_solution_one"><span class="toc-section-number">3.9.1</span> Formative solution</a></li>
-</ul></li>
-</ul></li>
-<li><a href="FirstPractical.html#FirstPractical" id="toc-FirstPractical"><span class="toc-section-number">4</span> Eskdale I - Introduction</a>
-<ul>
-<li><a href="FirstPractical.html#overview-1" id="toc-overview-1"><span class="toc-section-number">4.1</span> Overview</a>
-<ul>
-<li><a href="FirstPractical.html#intended-learning-outcomes" id="toc-intended-learning-outcomes"><span class="toc-section-number">4.1.1</span> Intended learning outcomes</a></li>
-<li><a href="FirstPractical.html#assessment" id="toc-assessment"><span class="toc-section-number">4.1.2</span> Assessment</a></li>
+<li class="chapter" data-level="3.9.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#formative_solution_one"><i class="fa fa-check"></i><b>3.9.1</b> Formative solution</a></li>
 </ul></li>
 </ul></li>
-<li><a href="Eskdale_set_up.html#Eskdale_set_up" id="toc-Eskdale_set_up"><span class="toc-section-number">5</span> Eskdale II - Set-up</a>
+<li class="chapter" data-level="4" data-path="FirstPractical.html"><a href="FirstPractical.html"><i class="fa fa-check"></i><b>4</b> Eskdale I - Introduction</a>
 <ul>
-<li><a href="Eskdale_set_up.html#install-programs" id="toc-install-programs"><span class="toc-section-number">5.1</span> Install programs</a></li>
-<li><a href="Eskdale_set_up.html#download_data" id="toc-download_data"><span class="toc-section-number">5.2</span> Download data</a></li>
-<li><a href="Eskdale_set_up.html#open-rstudio" id="toc-open-rstudio"><span class="toc-section-number">5.3</span> Open RStudio</a></li>
-<li><a href="Eskdale_set_up.html#R_Projects" id="toc-R_Projects"><span class="toc-section-number">5.4</span> Initialise an R project</a></li>
-<li><a href="Eskdale_set_up.html#creating-an-r-script" id="toc-creating-an-r-script"><span class="toc-section-number">5.5</span> Creating an R script</a></li>
-<li><a href="Eskdale_set_up.html#install-whiteboxtools" id="toc-install-whiteboxtools"><span class="toc-section-number">5.6</span> Install WhiteboxTools</a></li>
-<li><a href="Eskdale_set_up.html#loading-packages" id="toc-loading-packages"><span class="toc-section-number">5.7</span> Loading packages</a></li>
-<li><a href="Eskdale_set_up.html#errors-using-r-projects" id="toc-errors-using-r-projects"><span class="toc-section-number">5.8</span> Errors using R projects</a></li>
-</ul></li>
-<li><a href="Eskdale_flow_algorithms.html#Eskdale_flow_algorithms" id="toc-Eskdale_flow_algorithms"><span class="toc-section-number">6</span> Eskdale III - Flow routing</a>
+<li class="chapter" data-level="4.1" data-path="FirstPractical.html"><a href="FirstPractical.html#overview-1"><i class="fa fa-check"></i><b>4.1</b> Overview</a>
 <ul>
-<li><a href="Eskdale_flow_algorithms.html#dem-pre-processing-flow-enforcement" id="toc-dem-pre-processing-flow-enforcement"><span class="toc-section-number">6.1</span> DEM pre-processing: flow enforcement</a>
-<ul>
-<li><a href="Eskdale_flow_algorithms.html#data-description" id="toc-data-description"><span class="toc-section-number">6.1.1</span> Data description</a></li>
-<li><a href="Eskdale_flow_algorithms.html#breaching-and-filling" id="toc-breaching-and-filling"><span class="toc-section-number">6.1.2</span> Breaching and filling</a></li>
-<li><a href="Eskdale_flow_algorithms.html#choosing-a-colour-ramp" id="toc-choosing-a-colour-ramp"><span class="toc-section-number">6.1.3</span> Choosing a colour ramp</a></li>
-</ul></li>
-<li><a href="Eskdale_flow_algorithms.html#flow-parameters-pointers" id="toc-flow-parameters-pointers"><span class="toc-section-number">6.2</span> Flow Parameters: Pointers</a></li>
-<li><a href="Eskdale_flow_algorithms.html#flow-algorithms" id="toc-flow-algorithms"><span class="toc-section-number">6.3</span> Flow Algorithms</a>
-<ul>
-<li><a href="Eskdale_flow_algorithms.html#comparing-flow-algorithms" id="toc-comparing-flow-algorithms"><span class="toc-section-number">6.3.1</span> Comparing flow algorithms</a></li>
-<li><a href="Eskdale_flow_algorithms.html#fd8-catchment-area" id="toc-fd8-catchment-area"><span class="toc-section-number">6.3.2</span> FD8 catchment area</a></li>
-<li><a href="Eskdale_flow_algorithms.html#d-infinity-catchment-area" id="toc-d-infinity-catchment-area"><span class="toc-section-number">6.3.3</span> D-infinity catchment area</a></li>
-<li><a href="Eskdale_flow_algorithms.html#comparing-the-outputs" id="toc-comparing-the-outputs"><span class="toc-section-number">6.3.4</span> Comparing the outputs</a></li>
-</ul></li>
-<li><a href="Eskdale_flow_algorithms.html#practical-solution" id="toc-practical-solution"><span class="toc-section-number">6.4</span> Practical solution</a></li>
-</ul></li>
-<li><a href="SecondPractical.html#SecondPractical" id="toc-SecondPractical"><span class="toc-section-number">7</span> Mersey I - Introduction</a>
-<ul>
-<li><a href="SecondPractical.html#overview-2" id="toc-overview-2"><span class="toc-section-number">7.1</span> Overview</a>
-<ul>
-<li><a href="SecondPractical.html#topics-covered-in-this-practical" id="toc-topics-covered-in-this-practical"><span class="toc-section-number">7.1.1</span> Topics covered in this practical</a></li>
-<li><a href="SecondPractical.html#intended-learning-outcomes-1" id="toc-intended-learning-outcomes-1"><span class="toc-section-number">7.1.2</span> Intended Learning Outcomes</a></li>
-<li><a href="SecondPractical.html#assessment-1" id="toc-assessment-1"><span class="toc-section-number">7.1.3</span> Assessment</a></li>
+<li class="chapter" data-level="4.1.1" data-path="FirstPractical.html"><a href="FirstPractical.html#intended-learning-outcomes"><i class="fa fa-check"></i><b>4.1.1</b> Intended learning outcomes</a></li>
+<li class="chapter" data-level="4.1.2" data-path="FirstPractical.html"><a href="FirstPractical.html#assessment"><i class="fa fa-check"></i><b>4.1.2</b> Assessment</a></li>
 </ul></li>
 </ul></li>
-<li><a href="Mersy_set_up.html#Mersy_set_up" id="toc-Mersy_set_up"><span class="toc-section-number">8</span> Mersey II - Set-up</a>
+<li class="chapter" data-level="5" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html"><i class="fa fa-check"></i><b>5</b> Eskdale II - Set-up</a>
 <ul>
-<li><a href="Mersy_set_up.html#practical-overview" id="toc-practical-overview"><span class="toc-section-number">8.1</span> Practical overview</a></li>
-<li><a href="Mersy_set_up.html#install-programs-1" id="toc-install-programs-1"><span class="toc-section-number">8.2</span> Install programs</a></li>
-<li><a href="Mersy_set_up.html#download_data_v2" id="toc-download_data_v2"><span class="toc-section-number">8.3</span> Download data</a></li>
-<li><a href="Mersy_set_up.html#practical-2-data" id="toc-practical-2-data"><span class="toc-section-number">8.4</span> Data description</a></li>
-<li><a href="Mersy_set_up.html#open-rstudio-1" id="toc-open-rstudio-1"><span class="toc-section-number">8.5</span> Open RStudio</a></li>
-<li><a href="Mersy_set_up.html#projects-and-scripts" id="toc-projects-and-scripts"><span class="toc-section-number">8.6</span> Projects and Scripts</a>
-<ul>
-<li><a href="Mersy_set_up.html#Existing_R_Projects" id="toc-Existing_R_Projects"><span class="toc-section-number">8.6.1</span> Using an existing R project</a></li>
-<li><a href="Mersy_set_up.html#creating-an-r-script-1" id="toc-creating-an-r-script-1"><span class="toc-section-number">8.6.2</span> Creating an R script</a></li>
+<li class="chapter" data-level="5.1" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#install-programs"><i class="fa fa-check"></i><b>5.1</b> Install programs</a></li>
+<li class="chapter" data-level="5.2" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#download_data"><i class="fa fa-check"></i><b>5.2</b> Download data</a></li>
+<li class="chapter" data-level="5.3" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#open-rstudio"><i class="fa fa-check"></i><b>5.3</b> Open RStudio</a></li>
+<li class="chapter" data-level="5.4" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#R_Projects"><i class="fa fa-check"></i><b>5.4</b> Initialise an R project</a></li>
+<li class="chapter" data-level="5.5" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#creating-an-r-script"><i class="fa fa-check"></i><b>5.5</b> Creating an R script</a></li>
+<li class="chapter" data-level="5.6" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#install-whiteboxtools"><i class="fa fa-check"></i><b>5.6</b> Install WhiteboxTools</a></li>
+<li class="chapter" data-level="5.7" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#loading-packages"><i class="fa fa-check"></i><b>5.7</b> Loading packages</a></li>
+<li class="chapter" data-level="5.8" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#errors-using-r-projects"><i class="fa fa-check"></i><b>5.8</b> Errors using R projects</a></li>
 </ul></li>
-<li><a href="Mersy_set_up.html#loading-packages-1" id="toc-loading-packages-1"><span class="toc-section-number">8.7</span> Loading packages</a></li>
+<li class="chapter" data-level="6" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html"><i class="fa fa-check"></i><b>6</b> Eskdale III - Flow routing</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#dem-pre-processing-flow-enforcement"><i class="fa fa-check"></i><b>6.1</b> DEM pre-processing: flow enforcement</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#data-description"><i class="fa fa-check"></i><b>6.1.1</b> Data description</a></li>
+<li class="chapter" data-level="6.1.2" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#breaching-and-filling"><i class="fa fa-check"></i><b>6.1.2</b> Breaching and filling</a></li>
+<li class="chapter" data-level="6.1.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#choosing-a-colour-ramp"><i class="fa fa-check"></i><b>6.1.3</b> Choosing a colour ramp</a></li>
 </ul></li>
-<li><a href="mersey_three.html#mersey_three" id="toc-mersey_three"><span class="toc-section-number">9</span> Mersey III - Hydrology</a>
+<li class="chapter" data-level="6.2" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#flow-parameters-pointers"><i class="fa fa-check"></i><b>6.2</b> Flow Parameters: Pointers</a></li>
+<li class="chapter" data-level="6.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#flow-algorithms"><i class="fa fa-check"></i><b>6.3</b> Flow Algorithms</a>
 <ul>
-<li><a href="mersey_three.html#task-1-flow-routing" id="toc-task-1-flow-routing"><span class="toc-section-number">9.1</span> Task 1: Flow routing</a>
-<ul>
-<li><a href="mersey_three.html#creating-a-d8-pointer" id="toc-creating-a-d8-pointer"><span class="toc-section-number">9.1.1</span> Creating a D8 pointer</a></li>
-<li><a href="mersey_three.html#catchment-area" id="toc-catchment-area"><span class="toc-section-number">9.1.2</span> Catchment area</a></li>
+<li class="chapter" data-level="6.3.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#comparing-flow-algorithms"><i class="fa fa-check"></i><b>6.3.1</b> Comparing flow algorithms</a></li>
+<li class="chapter" data-level="6.3.2" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#fd8-catchment-area"><i class="fa fa-check"></i><b>6.3.2</b> FD8 catchment area</a></li>
+<li class="chapter" data-level="6.3.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#d-infinity-catchment-area"><i class="fa fa-check"></i><b>6.3.3</b> D-infinity catchment area</a></li>
+<li class="chapter" data-level="6.3.4" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#comparing-the-outputs"><i class="fa fa-check"></i><b>6.3.4</b> Comparing the outputs</a></li>
 </ul></li>
-<li><a href="mersey_three.html#task-2-seed-points" id="toc-task-2-seed-points"><span class="toc-section-number">9.2</span> Task 2: Seed points</a>
-<ul>
-<li><a href="mersey_three.html#seed-repositioning" id="toc-seed-repositioning"><span class="toc-section-number">9.2.1</span> Seed repositioning</a></li>
+<li class="chapter" data-level="6.4" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#practical-solution"><i class="fa fa-check"></i><b>6.4</b> Practical solution</a></li>
 </ul></li>
-<li><a href="mersey_three.html#task-3-watershed-creation" id="toc-task-3-watershed-creation"><span class="toc-section-number">9.3</span> Task 3: Watershed creation</a></li>
-</ul></li>
-<li><a href="mersey_four.html#mersey_four" id="toc-mersey_four"><span class="toc-section-number">10</span> Mersey IV - Surface derivatives</a>
+<li class="chapter" data-level="7" data-path="SecondPractical.html"><a href="SecondPractical.html"><i class="fa fa-check"></i><b>7</b> Mersey I - Introduction</a>
 <ul>
-<li><a href="mersey_four.html#task-4-reclassification" id="toc-task-4-reclassification"><span class="toc-section-number">10.1</span> Task 4: Reclassification</a>
+<li class="chapter" data-level="7.1" data-path="SecondPractical.html"><a href="SecondPractical.html#overview-2"><i class="fa fa-check"></i><b>7.1</b> Overview</a>
 <ul>
-<li><a href="mersey_four.html#land-cover" id="toc-land-cover"><span class="toc-section-number">10.1.1</span> Land cover</a></li>
-<li><a href="mersey_four.html#hydrology-of-soil-types-host" id="toc-hydrology-of-soil-types-host"><span class="toc-section-number">10.1.2</span> Hydrology of Soil Types (HOST)</a></li>
-<li><a href="mersey_four.html#bedrock-geology" id="toc-bedrock-geology"><span class="toc-section-number">10.1.3</span> Bedrock geology</a></li>
-</ul></li>
-<li><a href="mersey_four.html#task-5-calculating-surface-derivatives" id="toc-task-5-calculating-surface-derivatives"><span class="toc-section-number">10.2</span> Task 5: Calculating surface derivatives</a></li>
-<li><a href="mersey_four.html#task-6-extracting-surface-derivatives" id="toc-task-6-extracting-surface-derivatives"><span class="toc-section-number">10.3</span> Task 6: Extracting surface derivatives</a>
-<ul>
-<li><a href="mersey_four.html#water-quality-measurements" id="toc-water-quality-measurements"><span class="toc-section-number">10.3.1</span> Water quality measurements</a></li>
-<li><a href="mersey_four.html#spatial-areas" id="toc-spatial-areas"><span class="toc-section-number">10.3.2</span> Spatial areas</a></li>
-<li><a href="mersey_four.html#continuous-derivatives" id="toc-continuous-derivatives"><span class="toc-section-number">10.3.3</span> Continuous derivatives</a></li>
-<li><a href="mersey_four.html#calculating-categorical-derivatives" id="toc-calculating-categorical-derivatives"><span class="toc-section-number">10.3.4</span> Calculating categorical derivatives</a></li>
-<li><a href="mersey_four.html#normalising-categorical-derivatives" id="toc-normalising-categorical-derivatives"><span class="toc-section-number">10.3.5</span> Normalising categorical derivatives</a></li>
+<li class="chapter" data-level="7.1.1" data-path="SecondPractical.html"><a href="SecondPractical.html#topics-covered-in-this-practical"><i class="fa fa-check"></i><b>7.1.1</b> Topics covered in this practical</a></li>
+<li class="chapter" data-level="7.1.2" data-path="SecondPractical.html"><a href="SecondPractical.html#intended-learning-outcomes-1"><i class="fa fa-check"></i><b>7.1.2</b> Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="7.1.3" data-path="SecondPractical.html"><a href="SecondPractical.html#assessment-1"><i class="fa fa-check"></i><b>7.1.3</b> Assessment</a></li>
 </ul></li>
 </ul></li>
-<li><a href="mersey_five.html#mersey_five" id="toc-mersey_five"><span class="toc-section-number">11</span> Mersey V - Statistical analysis</a>
+<li class="chapter" data-level="8" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html"><i class="fa fa-check"></i><b>8</b> Mersey II - Set-up</a>
 <ul>
-<li><a href="mersey_five.html#task-7-model-building" id="toc-task-7-model-building"><span class="toc-section-number">11.1</span> Task 7: Model building</a>
+<li class="chapter" data-level="8.1" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#practical-overview"><i class="fa fa-check"></i><b>8.1</b> Practical overview</a></li>
+<li class="chapter" data-level="8.2" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#install-programs-1"><i class="fa fa-check"></i><b>8.2</b> Install programs</a></li>
+<li class="chapter" data-level="8.3" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#download_data_v2"><i class="fa fa-check"></i><b>8.3</b> Download data</a></li>
+<li class="chapter" data-level="8.4" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#practical-2-data"><i class="fa fa-check"></i><b>8.4</b> Data description</a></li>
+<li class="chapter" data-level="8.5" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#open-rstudio-1"><i class="fa fa-check"></i><b>8.5</b> Open RStudio</a></li>
+<li class="chapter" data-level="8.6" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#projects-and-scripts"><i class="fa fa-check"></i><b>8.6</b> Projects and Scripts</a>
 <ul>
-<li><a href="mersey_five.html#an-introduction-to-linear-models-in-r" id="toc-an-introduction-to-linear-models-in-r"><span class="toc-section-number">11.1.1</span> An introduction to linear models in R</a></li>
-<li><a href="mersey_five.html#training-vs.-testing" id="toc-training-vs.-testing"><span class="toc-section-number">11.1.2</span> Training vs. Testing</a></li>
-<li><a href="mersey_five.html#variable-selection-strategies" id="toc-variable-selection-strategies"><span class="toc-section-number">11.1.3</span> Variable selection strategies</a></li>
+<li class="chapter" data-level="8.6.1" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#Existing_R_Projects"><i class="fa fa-check"></i><b>8.6.1</b> Using an existing R project</a></li>
+<li class="chapter" data-level="8.6.2" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#creating-an-r-script-1"><i class="fa fa-check"></i><b>8.6.2</b> Creating an R script</a></li>
 </ul></li>
-<li><a href="mersey_five.html#task-8-model-evaluation" id="toc-task-8-model-evaluation"><span class="toc-section-number">11.2</span> Task 8: Model evaluation</a></li>
+<li class="chapter" data-level="8.7" data-path="Mersy_set_up.html"><a href="Mersy_set_up.html#loading-packages-1"><i class="fa fa-check"></i><b>8.7</b> Loading packages</a></li>
 </ul></li>
-<li><a href="Assessment.html#Assessment" id="toc-Assessment"><span class="toc-section-number">12</span> Assessment</a></li>
-<li><a href="Hints.html#Hints" id="toc-Hints"><span class="toc-section-number">13</span> Handy Hints</a>
+<li class="chapter" data-level="9" data-path="mersey_three.html"><a href="mersey_three.html"><i class="fa fa-check"></i><b>9</b> Mersey III - Hydrology</a>
 <ul>
-<li><a href="Hints.html#project_repair" id="toc-project_repair">Errors with R projects and the <code>here</code> package</a></li>
-<li><a href="Hints.html#dealing-with-errors-1" id="toc-dealing-with-errors-1">Dealing with errors</a></li>
-<li><a href="Hints.html#whitebox-functions-vs.-the-raster-package" id="toc-whitebox-functions-vs.-the-raster-package">Whitebox functions vs. the <code>raster</code> package</a></li>
-<li><a href="Hints.html#r-projects" id="toc-r-projects">R Projects</a></li>
-<li><a href="Hints.html#file-paths" id="toc-file-paths">File paths</a></li>
-<li><a href="Hints.html#output-files" id="toc-output-files">Output files</a></li>
-<li><a href="Hints.html#packages-1" id="toc-packages-1">Packages</a></li>
-<li><a href="Hints.html#code-structure" id="toc-code-structure">Code structure</a></li>
+<li class="chapter" data-level="9.1" data-path="mersey_three.html"><a href="mersey_three.html#task-1-flow-routing"><i class="fa fa-check"></i><b>9.1</b> Task 1: Flow routing</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="mersey_three.html"><a href="mersey_three.html#creating-a-d8-pointer"><i class="fa fa-check"></i><b>9.1.1</b> Creating a D8 pointer</a></li>
+<li class="chapter" data-level="9.1.2" data-path="mersey_three.html"><a href="mersey_three.html#catchment-area"><i class="fa fa-check"></i><b>9.1.2</b> Catchment area</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="mersey_three.html"><a href="mersey_three.html#task-2-seed-points"><i class="fa fa-check"></i><b>9.2</b> Task 2: Seed points</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="mersey_three.html"><a href="mersey_three.html#seed-repositioning"><i class="fa fa-check"></i><b>9.2.1</b> Seed repositioning</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="mersey_three.html"><a href="mersey_three.html#task-3-watershed-creation"><i class="fa fa-check"></i><b>9.3</b> Task 3: Watershed creation</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="mersey_four.html"><a href="mersey_four.html"><i class="fa fa-check"></i><b>10</b> Mersey IV - Surface derivatives</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="mersey_four.html"><a href="mersey_four.html#task-4-reclassification"><i class="fa fa-check"></i><b>10.1</b> Task 4: Reclassification</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="mersey_four.html"><a href="mersey_four.html#land-cover"><i class="fa fa-check"></i><b>10.1.1</b> Land cover</a></li>
+<li class="chapter" data-level="10.1.2" data-path="mersey_four.html"><a href="mersey_four.html#hydrology-of-soil-types-host"><i class="fa fa-check"></i><b>10.1.2</b> Hydrology of Soil Types (HOST)</a></li>
+<li class="chapter" data-level="10.1.3" data-path="mersey_four.html"><a href="mersey_four.html#bedrock-geology"><i class="fa fa-check"></i><b>10.1.3</b> Bedrock geology</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="mersey_four.html"><a href="mersey_four.html#task-5-calculating-surface-derivatives"><i class="fa fa-check"></i><b>10.2</b> Task 5: Calculating surface derivatives</a></li>
+<li class="chapter" data-level="10.3" data-path="mersey_four.html"><a href="mersey_four.html#task-6-extracting-surface-derivatives"><i class="fa fa-check"></i><b>10.3</b> Task 6: Extracting surface derivatives</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="mersey_four.html"><a href="mersey_four.html#water-quality-measurements"><i class="fa fa-check"></i><b>10.3.1</b> Water quality measurements</a></li>
+<li class="chapter" data-level="10.3.2" data-path="mersey_four.html"><a href="mersey_four.html#spatial-areas"><i class="fa fa-check"></i><b>10.3.2</b> Spatial areas</a></li>
+<li class="chapter" data-level="10.3.3" data-path="mersey_four.html"><a href="mersey_four.html#continuous-derivatives"><i class="fa fa-check"></i><b>10.3.3</b> Continuous derivatives</a></li>
+<li class="chapter" data-level="10.3.4" data-path="mersey_four.html"><a href="mersey_four.html#calculating-categorical-derivatives"><i class="fa fa-check"></i><b>10.3.4</b> Calculating categorical derivatives</a></li>
+<li class="chapter" data-level="10.3.5" data-path="mersey_four.html"><a href="mersey_four.html#normalising-categorical-derivatives"><i class="fa fa-check"></i><b>10.3.5</b> Normalising categorical derivatives</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="mersey_five.html"><a href="mersey_five.html"><i class="fa fa-check"></i><b>11</b> Mersey V - Statistical analysis</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="mersey_five.html"><a href="mersey_five.html#task-7-model-building"><i class="fa fa-check"></i><b>11.1</b> Task 7: Model building</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="mersey_five.html"><a href="mersey_five.html#an-introduction-to-linear-models-in-r"><i class="fa fa-check"></i><b>11.1.1</b> An introduction to linear models in R</a></li>
+<li class="chapter" data-level="11.1.2" data-path="mersey_five.html"><a href="mersey_five.html#training-vs.-testing"><i class="fa fa-check"></i><b>11.1.2</b> Training vs. Testing</a></li>
+<li class="chapter" data-level="11.1.3" data-path="mersey_five.html"><a href="mersey_five.html#variable-selection-strategies"><i class="fa fa-check"></i><b>11.1.3</b> Variable selection strategies</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="mersey_five.html"><a href="mersey_five.html#task-8-model-evaluation"><i class="fa fa-check"></i><b>11.2</b> Task 8: Model evaluation</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="Assessment.html"><a href="Assessment.html"><i class="fa fa-check"></i><b>12</b> Assessment</a></li>
+<li class="chapter" data-level="13" data-path="Hints.html"><a href="Hints.html"><i class="fa fa-check"></i><b>13</b> Handy Hints</a>
+<ul>
+<li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#project_repair"><i class="fa fa-check"></i>Errors with R projects and the <code>here</code> package</a></li>
+<li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#dealing-with-errors-1"><i class="fa fa-check"></i>Dealing with errors</a></li>
+<li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#whitebox-functions-vs.-the-raster-package"><i class="fa fa-check"></i>Whitebox functions vs. the <code>raster</code> package</a></li>
+<li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#r-projects"><i class="fa fa-check"></i>R Projects</a></li>
+<li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#file-paths"><i class="fa fa-check"></i>File paths</a></li>
+<li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#output-files"><i class="fa fa-check"></i>Output files</a></li>
+<li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#packages-1"><i class="fa fa-check"></i>Packages</a></li>
+<li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#code-structure"><i class="fa fa-check"></i>Code structure</a></li>
 </ul></li>
 </ul>
 
@@ -531,7 +533,7 @@ Hydrological analysis in R<br />
 <span id="cb169-5"><a href="Hints.html#cb169-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Pointer value&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Northing&quot;</span>) <span class="sc">+</span></span>
 <span id="cb169-6"><a href="Hints.html#cb169-6" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">type =</span> <span class="st">&quot;viridis&quot;</span>,  <span class="at">na.value =</span> <span class="cn">NA</span>)</span>
 <span id="cb169-7"><a href="Hints.html#cb169-7" tabindex="-1"></a>p </span></code></pre></div>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-167-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-168-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><strong>TLDR</strong>: for subsequent analysis, make sure to adhere to the following structure:</p>
 <ol style="list-style-type: decimal">
 <li><p>Create output files using <code>whitebox</code> functions.</p></li>
@@ -663,13 +665,13 @@ Tarboton, D.G. (1997) <span>‘A new method for the determination of flow direct
 </div>
 </div>
 </div>
-<div class="footnotes footnotes-end-of-document">
-<hr />
-<ol>
-<li id="fn1"><p><strong>Base R</strong> is used to refer to the functions that are part of the core packages deployed with R, such as <code>plot()</code>, <code>sqrt()</code> or <code>seq()</code>. As we install and utilise user-created <a href="Intro_to_R.html#packages">packages</a>, we are moving away from base R.<a href="Intro_to_R.html#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p>The total number of combinations for a set of eight numbers (n = 8) is equal to 255 (ignoring order, no repetition) and is calculated as follows using <strong>factorials</strong>: <span class="math inline">\(\frac{n!}{k!(n-k!)}\)</span>, where <em>k</em> is the number of selected elements (<span class="math inline">\(k = 1, 2, ... , 8\)</span>): see <a href="https://www.hackmath.net/en/calculator/combinations-and-permutations?n=8&amp;k=8&amp;order=0&amp;repeat=0">here</a> for a interactive version. In WBT, each one of these combinations has a unique value. This is not the case for other formats (e.g. SAGA GIS), where additional programming is required to store and extract that information.<a href="mersey_three.html#fnref2" class="footnote-back">↩︎</a></p></li>
-</ol>
-</div>
+
+
+
+
+
+
+
             </section>
 
           </div>
@@ -680,7 +682,6 @@ Tarboton, D.G. (1997) <span>‘A new method for the determination of flow direct
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -721,7 +722,7 @@ gitbook.start({
 },
 "download": null,
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
@@ -737,7 +738,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

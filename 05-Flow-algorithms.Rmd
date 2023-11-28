@@ -67,11 +67,16 @@ content <- paste(sep = "<br/>",
                  "Western Lake District"
                  )
 
-# Loads shapefiles
-eskdale_watershed_polygons <- readOGR(here("output", "practical_1", "eskdale_watershed.shp"), verbose = FALSE)
+# Read using sf
+eskdale_watershed_polygons <- st_read(here("output", "practical_1", "eskdale_watershed.shp"),
+                                      quiet = TRUE)
 
-# Transform to WGS 84
-eskdale_watershed_polygons <- spTransform(eskdale_watershed_polygons, CRS("+proj=longlat +datum=WGS84"))
+# Transform using sf
+eskdale_watershed_polygons <- st_transform(eskdale_watershed_polygons, 4326)
+
+# Loads shapefiles and transform using rgdal (deprecated)
+# eskdale_watershed_polygons <- readOGR(here("output", "practical_1", "eskdale_watershed.shp"), verbose = FALSE)
+# eskdale_watershed_polygons <- spTransform(eskdale_watershed_polygons, CRS("+proj=longlat +datum=WGS84"))
 
 m <- leaflet() %>%
   # Sets views

@@ -131,12 +131,16 @@ The locations of the EA monitoring stations are shown below:
 
 ```{r, echo = FALSE, fig.align="center", warning = FALSE, message = FALSE}
 
+# Read using sf
+mersey_points <- st_read(here("data", "practical_2", "mersey_EA_sites.shp"),
+                         quiet = TRUE)
 
-# Loads shapefiles
-mersey_points <- readOGR(here("data", "practical_2", "mersey_EA_sites.shp"), verbose = FALSE)
+# Transform using sf
+mersey_points <- st_transform(mersey_points, 4326)
 
-# Transform to WGS 84
-mersey_points <- spTransform(mersey_points, CRS("+proj=longlat +datum=WGS84"))
+# Loads shapefiles and transform using rgdal (deprecated)
+#mersey_points <- readOGR(here("data", "practical_2", "mersey_EA_sites.shp"), verbose = FALSE)
+#mersey_points <- spTransform(mersey_points, CRS("+proj=longlat +datum=WGS84"))
 
 m <- leaflet() %>%
   # Sets view
@@ -382,13 +386,21 @@ These delineated watersheds can now be used for further analysis. However, it is
 
 ```{r, echo = FALSE, fig.align="center", warning = FALSE, message = FALSE}
 
-# Loads shapefiles
-mersey_watershed_polygons <- readOGR(here("output", "practical_2", "mersey_watersheds.shp"), verbose = FALSE)
-mersey_points <- readOGR(here("output", "practical_2", "mersey_EA_sites_snapped.shp"), verbose = FALSE)
+# Load shapefiles using sf
+mersey_points <- st_read(here("output", "practical_2", "mersey_EA_sites_snapped.shp"),
+                         quiet = TRUE)
+mersey_watershed_polygons <- st_read(here("output", "practical_2", "mersey_watersheds.shp"),
+                                     quiet = TRUE)
 
-# Transform to WGS 84
-mersey_watershed_polygons <- spTransform(mersey_watershed_polygons, CRS("+proj=longlat +datum=WGS84"))
-mersey_points <- spTransform(mersey_points, CRS("+proj=longlat +datum=WGS84"))
+# Transform using sf
+mersey_points <- st_transform(mersey_points, 4326)
+mersey_watershed_polygons <- st_transform(mersey_watershed_polygons, 4326)
+ 
+# Deprecated (rgdal)
+#mersey_watershed_polygons <- readOGR(here("output", "practical_2", "mersey_watersheds.shp"), verbose = FALSE)
+#mersey_points <- readOGR(here("output", "practical_2", "mersey_EA_sites_snapped.shp"), verbose = FALSE)
+#mersey_watershed_polygons <- spTransform(mersey_watershed_polygons, CRS("+proj=longlat +datum=WGS84"))
+#mersey_points <- spTransform(mersey_points, CRS("+proj=longlat +datum=WGS84"))
 
 m <- leaflet() %>%
   # Sets view

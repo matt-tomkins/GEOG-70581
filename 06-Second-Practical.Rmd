@@ -9,7 +9,7 @@ You can explore the basin below:
 ```{r, echo = FALSE, fig.align="center", warning = FALSE, message = FALSE}
 
 # Loads library and shapefile
-library(rgdal)
+# library(rgdal)
 
 # Labelling
 content <- paste(sep = "<br/>",
@@ -18,11 +18,17 @@ content <- paste(sep = "<br/>",
                  "UK"
                  )
 
-mersey_watershed <- readOGR(here("data", "practical_2", "mersey_watershed_basin.shp"), 
-                            layer = "mersey_watershed_basin", verbose = FALSE)
 
-# Transform to WGS 84
-mersey_watershed <- spTransform(mersey_watershed, CRS("+proj=longlat +datum=WGS84"))
+# Load shapefile and transform using rgdal (deprecated)
+# mersey_watershed <- readOGR(here("data", "practical_2", "mersey_watershed_basin.shp"), layer = "mersey_watershed_basin", verbose = FALSE)
+# mersey_watershed <- spTransform(mersey_watershed, CRS("+proj=longlat +datum=WGS84"))
+
+# Read using sf
+mersey_watershed <- st_read(here("data", "practical_2", "mersey_watershed_basin.shp"),
+                            quiet = TRUE)
+
+# Transform using sf
+mersey_watershed <- st_transform(mersey_watershed, 4326)
 
 m <- leaflet() %>%
   # Sets view
