@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title> Hydrological analysis in R </title>
+  <title>Chapter 12 Assessment |  Hydrological analysis in R </title>
   <meta name="description" content="<br />
 Hydrological analysis in R<br />
 </center>" />
   <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
-  <meta property="og:title" content=" Hydrological analysis in R " />
+  <meta property="og:title" content="Chapter 12 Assessment |  Hydrological analysis in R " />
   <meta property="og:type" content="book" />
   
   
@@ -18,7 +18,7 @@ Hydrological analysis in R<br />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content=" Hydrological analysis in R " />
+  <meta name="twitter:title" content="Chapter 12 Assessment |  Hydrological analysis in R " />
   
   
   
@@ -31,8 +31,8 @@ Hydrological analysis in R<br />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="Installation.html"/>
+<link rel="prev" href="mersey_five.html"/>
+<link rel="next" href="Hints.html"/>
 <script src="libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -342,63 +342,93 @@ Hydrological analysis in R<br />
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title"><center><br />
-Hydrological analysis in R<br />
-</center></h1>
-</div>
-<div id="introduction" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p><img src="figures/course-logo.png" /></p>
-<div id="practical-outline" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Practical outline<a href="index.html#practical-outline" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In this set of practicals, we’ll be using <a href="https://www.r-project.org/">R</a>, <a href="https://www.rstudio.com/">RStudio</a> and <a href="https://jblindsay.github.io/wbt_book/intro.html">WhiteboxTools</a> to perform hydrological analysis.</p>
-<p>In <a href="Installation.html#Installation">Chapters 2</a> and <a href="#R">3</a>, we’ll install and get to grips with the required programs.</p>
-<p>In Practical 1 (Chapters 4 - 6), which uses data for the <strong>Eskdale</strong> watershed, we’ll introduce you to some of the key approaches, including DEM pre-processing, calculating flow parameters and comparing flow algorithms.</p>
-<p>In Practical 2 (Chapters 7 - 11), we’ll utilise these approaches to investigate the water quality of the <strong>Mersey</strong> Basin. This forms the basis for your assessment.</p>
-<p><strong>Note</strong>: the relevant chapters will be made available as we progress through the semester, hence why Practicals 2 and the assessment information are not currently visible. Practical 2 will be released prior to the Week 10 lecture.</p>
-</div>
-<div id="objectives" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Objectives<a href="index.html#objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>After completing these practicals, you will:</p>
+<div id="Assessment" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Chapter 12</span> Assessment<a href="Assessment.html#Assessment" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><strong>Title:</strong> Modelling River Hydrochemistry in the Mersey Basin, UK</p>
+<p><strong>Primary aims</strong></p>
+<p>In addition to the specific points outlined below, your report should:</p>
 <ul>
-<li>have gained experience with new tools (e.g. R, RStudio, WhiteboxTools);</li>
-<li>become familiar with hydrological approaches used to simulate overland flow from digital elevation models (DEMs);</li>
-<li>utilised statistical analysis to investigate the relationships between water quality indicators and catchment characteristics;</li>
-<li>improved your understanding of the hydrological processes influencing water quality.</li>
+<li><strong>Explore</strong> the controls on river water quality in the Mersey Basin.</li>
+<li><strong>Develop</strong> empirical models which link river water quality (e.g. pH, Mg, Ca…) to catchment characteristics (e.g. land cover, topography, soils, bedrock).</li>
+<li><strong>Explain</strong> the trends shown in these models, with reference to relevant hydrological literature and hydrological-environmental processes.</li>
+<li><strong>Assess</strong> the quality of the models, with reference to key concepts covered in the course so far.</li>
 </ul>
-</div>
-<div id="schedule" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> Schedule<a href="index.html#schedule" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>These practicals will be completed across Weeks 8 to 12 as follows:</p>
+<p><strong>Word Limit:</strong> 1500. The guidelines provided in the CO<sub>2</sub> flux practical, which outline what is and what is not included in the word count, as well penalties for exceeding the word count, also apply here.</p>
+<p><strong>Intended Learning Outcomes</strong>: see <a href="SecondPractical.html#SecondPractical">Mersey I - Introduction</a></p>
+<p><strong>Assessment Criteria</strong>: see the <a href="https://online.manchester.ac.uk/webapps/blackboard/content/listContentEditable.jsp?content_id=_14414662_1&amp;course_id=_74713_1">Assessment Guidance</a> section on Blackboard, which includes a marking rubric and hints-and-tips presentation, as well as <a href="SecondPractical.html#SecondPractical">Mersey I - Introduction</a></p>
+<p><strong>Format:</strong> Report</p>
+<p><strong>Structure:</strong> Your report should be a coherent document, as opposed to a list of Q&amp;As as with the CO<sub>2</sub> flux practical. Within this, how you structure the report is your decision. However, there are certain items that must be included in the main body of the report. These are the regression equations (and associated information i.e. significance values, R<sup>2</sup> etc) for all ten water quality indicators.</p>
+<p>This could be presented as a table, perhaps in the format shown below:</p>
+<table>
+<colgroup>
+<col width="10%" />
+<col width="52%" />
+<col width="9%" />
+<col width="7%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Indicator</th>
+<th align="center">Equation</th>
+<th align="center">R<sup>2</sup></th>
+<th align="center"><em>p</em> value</th>
+<th align="center">Additional columns as required</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">NO<sub>2</sub></td>
+<td align="center"><span class="math inline">\(NO_2 = 0.044 + (0.001 \cdot Urban \: percent) + (-0.004 \cdot Average \: slope)\)</span></td>
+<td align="center">0.48</td>
+<td align="center">&lt; 0.01</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>As well as these important items, the following points should be covered in the report:</p>
+<ol style="list-style-type: decimal">
+<li><p>What are the relationships between water quality and catchment characteristics?</p></li>
+<li><p>Are there any consistent predictors of water quality?</p></li>
+<li><p>How good are the regression models?</p></li>
+<li><p>What sort of errors may occur during the derivation of catchment characteristics?</p></li>
+<li><p>How could these errors be minimised?</p></li>
+<li><p>How could you validate the models?</p></li>
+<li><p>Your regression models could be used to predict water quality in different catchments or different sub-basins of the Mersey. Can you think of any possible errors / limitations when making predictions of this type?</p></li>
+</ol>
+<p>Your report should not just be a reworked version of the practical instructions. <strong>Do not</strong> include a ‘methodology’ section at all, although you may wish to reflect on the methods used when considering the points above. You may find it useful to refer to the my learning essential resources on <a href="https://www.library.manchester.ac.uk/using-the-library/students/training-and-skills-support/my-learning-essentials/online-resources/">report writing</a>.</p>
+<p>In addition to the above, we would like you to produce three output maps to visualise the practical steps. These should be included in an Appendix at the back of the report (ideally two images per page). These should include the layers listed below but can include others to improve map design (e.g. an elevation background).</p>
 <ul>
-<li>Week 8:
-<ul>
-<li>Introductory lecture (~1 hr)</li>
-<li>Complete Chapters 1 - 3: An introduction to R (~2 hr)</li>
-</ul></li>
-<li>Weeks 9:
-<ul>
-<li>Lecture on Hydrological and Geomorphological models (~1 hr)</li>
-<li>Complete Chapters 4 - 6: <strong>Eskdale</strong> practical (~2 hr, plus independent work)</li>
-</ul></li>
-<li>Weeks 10 - 12:
-<ul>
-<li>Lecture on Water Quality Modelling (~1 hr)</li>
-<li>Complete Chapters 7 - 11: <strong>Mersey</strong> practical (~6 hr, plus independent work)</li>
-</ul></li>
+<li>a map showing the flow accumulation network (<code>mersey_dem_flow_accumulation.tif</code>), using log-transformed values and specific contributing areas;</li>
+<li>a map showing the watersheds in the Mersey Basin (<code>mersey_watersheds.shp</code>), derived from the 70 modified Environment Agency seed points;</li>
+<li>a map showing the reclassified soils raster (<code>mersey_HOST_reclass.tif</code>).</li>
 </ul>
-<p>The assessment, based upon Practical 2 (<strong>Mersey</strong>), is due 11/01/2024 (14:00).</p>
+<p><strong>Map design</strong>: Normally, all maps should have a scale bar and north arrow. However, because we’re using projected data (British National Grid) and because <code>ggpsatial</code> automatically adds informative latitude/longitude axes to your plots, you <strong>don’t</strong> need to include either of these elements here. For reference, these can be added using <code>annotation_scale()</code> and <code>annotation_north_arrow()</code> respectively. Maps should, however, include informative legends, titles and axis labels, and should use colour-blind friendly and perceptually-uniform palettes.</p>
+<p><strong>Referencing</strong>: The report should be fully referenced, using the Harvard style. You should not just adapt the text from the Rothwell et al. (<a href="https://doi.org/10.1016/j.jhydrol.2010.10.015">2010</a>) paper, substituting key values for the data here. This will result in a high similarity index and you may face a penalty due to poor academic practice. You must write up the report in your own words, making sure you paraphrase the ideas of others, and reference fully throughout.</p>
+<p><strong>Submission deadline</strong>: 11/01/2024, 14:00</p>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="Installation.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="mersey_five.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="Hints.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
