@@ -430,7 +430,7 @@ Hydrological analysis in R<br />
 <span id="cb108-2"><a href="mersey_four.html#cb108-2" tabindex="-1"></a>land_cover_classified <span class="ot">&lt;-</span> <span class="fu">subs</span>(land_cover, categories)</span>
 <span id="cb108-3"><a href="mersey_four.html#cb108-3" tabindex="-1"></a></span>
 <span id="cb108-4"><a href="mersey_four.html#cb108-4" tabindex="-1"></a><span class="co"># Write to new raster</span></span>
-<span id="cb108-5"><a href="mersey_four.html#cb108-5" tabindex="-1"></a><span class="fu">writeRaster</span>(land_cover_classified, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_LC_reclass.tif&quot;</span>))</span></code></pre></div>
+<span id="cb108-5"><a href="mersey_four.html#cb108-5" tabindex="-1"></a><span class="fu">writeRaster</span>(land_cover_classified, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_LC_reclass.tif&quot;</span>), <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <blockquote>
 <p>When you understand it, run the code, load the new raster into R and plot. Use the code below to visualise the reclassified raster, taking note of the manual fill aesthetic (<code>scale_fill_manual</code>):</p>
 </blockquote>
@@ -439,29 +439,22 @@ Hydrological analysis in R<br />
 <span id="cb109-3"><a href="mersey_four.html#cb109-3" tabindex="-1"></a></span>
 <span id="cb109-4"><a href="mersey_four.html#cb109-4" tabindex="-1"></a><span class="co"># Manually defined colours for land cover categories</span></span>
 <span id="cb109-5"><a href="mersey_four.html#cb109-5" tabindex="-1"></a><span class="co"># (1=Arable, 2=Heath, 3=Grassland, 4=Urban, 5=Wetland)</span></span>
-<span id="cb109-6"><a href="mersey_four.html#cb109-6" tabindex="-1"></a>colours <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Arable&quot;</span> <span class="ot">=</span> <span class="st">&quot;#D1F5D8&quot;</span>,</span>
-<span id="cb109-7"><a href="mersey_four.html#cb109-7" tabindex="-1"></a>             <span class="st">&quot;Heath&quot;</span> <span class="ot">=</span> <span class="st">&quot;#87C292&quot;</span>,</span>
-<span id="cb109-8"><a href="mersey_four.html#cb109-8" tabindex="-1"></a>             <span class="st">&quot;Grassland&quot;</span> <span class="ot">=</span> <span class="st">&quot;#498955&quot;</span>,</span>
-<span id="cb109-9"><a href="mersey_four.html#cb109-9" tabindex="-1"></a>             <span class="st">&quot;Urban&quot;</span> <span class="ot">=</span> <span class="st">&quot;#FFA888&quot;</span>,</span>
-<span id="cb109-10"><a href="mersey_four.html#cb109-10" tabindex="-1"></a>             <span class="st">&quot;Wetland&quot;</span> <span class="ot">=</span> <span class="st">&quot;#4575B4&quot;</span>)</span>
+<span id="cb109-6"><a href="mersey_four.html#cb109-6" tabindex="-1"></a>colours <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1&quot;</span> <span class="ot">=</span> <span class="st">&quot;#D1F5D8&quot;</span>,</span>
+<span id="cb109-7"><a href="mersey_four.html#cb109-7" tabindex="-1"></a>             <span class="st">&quot;2&quot;</span> <span class="ot">=</span> <span class="st">&quot;#87C292&quot;</span>,</span>
+<span id="cb109-8"><a href="mersey_four.html#cb109-8" tabindex="-1"></a>             <span class="st">&quot;3&quot;</span> <span class="ot">=</span> <span class="st">&quot;#498955&quot;</span>,</span>
+<span id="cb109-9"><a href="mersey_four.html#cb109-9" tabindex="-1"></a>             <span class="st">&quot;4&quot;</span> <span class="ot">=</span> <span class="st">&quot;#FFA888&quot;</span>,</span>
+<span id="cb109-10"><a href="mersey_four.html#cb109-10" tabindex="-1"></a>             <span class="st">&quot;5&quot;</span> <span class="ot">=</span> <span class="st">&quot;#4575B4&quot;</span>)</span>
 <span id="cb109-11"><a href="mersey_four.html#cb109-11" tabindex="-1"></a></span>
 <span id="cb109-12"><a href="mersey_four.html#cb109-12" tabindex="-1"></a><span class="co"># Plots using ggplot</span></span>
 <span id="cb109-13"><a href="mersey_four.html#cb109-13" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb109-14"><a href="mersey_four.html#cb109-14" tabindex="-1"></a>  <span class="fu">layer_spatial</span>(mersey_land_cover, <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">factor</span>(<span class="fu">after_stat</span>(band1)))) <span class="sc">+</span> <span class="co"># Adds raster layer</span></span>
 <span id="cb109-15"><a href="mersey_four.html#cb109-15" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
 <span id="cb109-16"><a href="mersey_four.html#cb109-16" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Land cover class&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Northing&quot;</span>) <span class="sc">+</span></span>
-<span id="cb109-17"><a href="mersey_four.html#cb109-17" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> colours, <span class="at">na.value =</span> <span class="cn">NA</span>) <span class="sc">+</span> <span class="co"># Updated fill aesthetic</span></span>
-<span id="cb109-18"><a href="mersey_four.html#cb109-18" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span>
-<span id="cb109-19"><a href="mersey_four.html#cb109-19" tabindex="-1"></a>p </span></code></pre></div>
+<span id="cb109-17"><a href="mersey_four.html#cb109-17" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> colours, <span class="at">na.value =</span> <span class="cn">NA</span>, <span class="co"># Updated fill aesthetic</span></span>
+<span id="cb109-18"><a href="mersey_four.html#cb109-18" tabindex="-1"></a>                    <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;Arable&quot;</span>, <span class="st">&quot;Heath&quot;</span>, <span class="st">&quot;Grassland&quot;</span>, <span class="st">&quot;Urban&quot;</span>, <span class="st">&quot;Wetland&quot;</span>)) <span class="sc">+</span> <span class="co"># Manual legend labels</span></span>
+<span id="cb109-19"><a href="mersey_four.html#cb109-19" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span>
+<span id="cb109-20"><a href="mersey_four.html#cb109-20" tabindex="-1"></a>p </span></code></pre></div>
 <p><img src="Practical_1_files/figure-html/unnamed-chunk-108-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>In the above image, the land cover classes are shown as follows:</p>
-<ul>
-<li><strong>Arable</strong> = 1 (dark blue)</li>
-<li><strong>Heath</strong> = 2 (light blue)</li>
-<li><strong>Grassland</strong> = 3 (yellow)</li>
-<li><strong>Urban</strong> = 4 (orange)</li>
-<li><strong>Wetland</strong> = 5 (red)</li>
-</ul>
 <p><br/></p>
 <blockquote>
 <p>First, save your script before continuing.</p>

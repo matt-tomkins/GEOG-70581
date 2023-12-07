@@ -91,7 +91,7 @@ Finally, we can use this updated data frame to replace (or substitute) values in
 land_cover_classified <- subs(land_cover, categories)
 
 # Write to new raster
-writeRaster(land_cover_classified, here("output", "practical_2", "mersey_LC_reclass.tif"))
+writeRaster(land_cover_classified, here("output", "practical_2", "mersey_LC_reclass.tif"), overwrite = TRUE)
 ```
 
 > When you understand it, run the code, load the new raster into R and plot. Use the code below to visualise the reclassified raster, taking note of the manual fill aesthetic (`scale_fill_manual`):
@@ -103,18 +103,19 @@ mersey_land_cover <- raster(here("output", "practical_2", "mersey_LC_reclass.tif
 
 # Manually defined colours for land cover categories
 # (1=Arable, 2=Heath, 3=Grassland, 4=Urban, 5=Wetland)
-colours <- c("Arable" = "#D1F5D8",
-             "Heath" = "#87C292",
-             "Grassland" = "#498955",
-             "Urban" = "#FFA888",
-             "Wetland" = "#4575B4")
+colours <- c("1" = "#D1F5D8",
+             "2" = "#87C292",
+             "3" = "#498955",
+             "4" = "#FFA888",
+             "5" = "#4575B4")
 
 # Plots using ggplot
 p <- ggplot() +
   layer_spatial(mersey_land_cover, aes(fill = factor(after_stat(band1)))) + # Adds raster layer
   theme_classic() + 
   labs(fill = "Land cover class", x = "Easting", y = "Northing") +
-  scale_fill_manual(values = colours, na.value = NA) + # Updated fill aesthetic
+  scale_fill_manual(values = colours, na.value = NA, # Updated fill aesthetic
+                    labels=c("Arable", "Heath", "Grassland", "Urban", "Wetland")) + # Manual legend labels
   theme(legend.position = "top")
 p 
 ```
@@ -135,14 +136,6 @@ p <- ggplot() +
   theme(legend.position = "top")
 p 
 ```
-
-In the above image, the land cover classes are shown as follows:
-
-- **Arable** = 1 (dark blue)
-- **Heath** = 2 (light blue)
-- **Grassland** = 3 (yellow)
-- **Urban** = 4 (orange)
-- **Wetland** = 5 (red)
 
 <br/> 
 
