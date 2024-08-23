@@ -160,7 +160,10 @@ In **Practical 2**, we are going to use a number of additional packages:
 - [`MASS`](https://rdrr.io/cran/MASS/) 
     - for statistical analysis, based upon Venables and Ripley (2002) "**M**odern **A**pplied **S**tatistics with **S**"; 
 - [`units`](https://cran.r-project.org/web/packages/units/index.html) 
-    - for calculation of measurement units.
+    - for calculation of measurement units;
+- [`corrplot`](https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html) and [`olsrr`](https://cran.r-project.org/web/packages/olsrr/vignettes/intro.html)
+    - for correlation and regression analysis.
+  
 
 <br/> 
 

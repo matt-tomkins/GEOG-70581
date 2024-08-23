@@ -12,7 +12,8 @@ check.packages <- function(pkg){
 # Checks and installs packages
 packages <- c("ggplot2", "ggspatial", "here", "raster", "sf", "whitebox", # Practical-1
               "data.table", "dplyr", "forcats", "MASS", "units", "patchwork", "leaflet",
-              "gridExtra", "rgdal") # Practical-2
+              "gridExtra", "rgdal", # Practical-2
+              "corrplot", "olsrr") # Added 13-08-2024
 check.packages(packages)
 ```
 
@@ -830,7 +831,7 @@ To extract the month from each record, you may want to use the `months()` functi
 
 A code solution to the formative task will be uploaded here after the class.
 
-```{r, eval = FALSE, echo = FALSE, warning = FALSE, message = FALSE}
+```{r, eval = FALSE, echo = TRUE, warning = FALSE, message = FALSE}
 
 # Solution to the Chapter 3 formative task
 # Author: matt-tomkins
@@ -840,7 +841,7 @@ A code solution to the formative task will be uploaded here after the class.
 
 > **Note** If you're working on a personal computer with Chinese language settings, you may need to run `Sys.setlocale("LC_TIME", "English")` at the start of your code to fix language-related errors the in the `as.Date()` function. 
 
-```{r, eval = TRUE, echo = TRUE, warning = FALSE, message = FALSE}
+```{r, eval = FALSE, echo = FALSE, warning = FALSE, message = FALSE}
 
 # Solution to the Chapter 3 formative task
 # Author: matt-tomkins

@@ -11,11 +11,11 @@ In addition to the specific points outlined below, your report should:
 - **Explain** the trends shown in these models, with reference to relevant hydrological literature and hydrological-environmental processes.
 - **Assess** the quality of the models, with reference to key concepts covered in the course so far. 
 
-**Word Limit:** 1500. The guidelines provided in the CO<sub>2</sub> flux practical, which outline what is and what is not included in the word count, as well penalties for exceeding the word count, also apply here. 
+**Word Limit:** 1,500. The guidelines provided in the CO<sub>2</sub> flux practical, which outline what is and what is not included in the word count, as well penalties for exceeding the word count, also apply here. 
 
 **Intended Learning Outcomes**: see [Mersey I - Introduction](#SecondPractical)
 
-**Assessment Criteria**: see the [Assessment Guidance](https://online.manchester.ac.uk/webapps/blackboard/content/listContentEditable.jsp?content_id=_14414662_1&course_id=_74713_1) section on Blackboard, which includes a marking rubric and hints-and-tips presentation, as well as [Mersey I - Introduction](#SecondPractical)
+**Assessment Criteria**: see the [Assessment Guidance](https://online.manchester.ac.uk/ultra/courses/_83595_1/cl/outline) section on Blackboard, which includes a marking rubric and hints-and-tips presentation, as well as [Mersey I - Introduction](#SecondPractical)
 
 **Format:** Report 
 
@@ -25,7 +25,7 @@ This could be presented as a table, perhaps in the format shown below:
 
 |    Indicator   |                                      Equation                                     | R<sup>2</sup> | *p* value | Additional columns as required |
 |:--------------:|:---------------------------------------------------------------------------------:|:-------------:|:---------:|:------------------------------:|
-| NO<sub>2</sub> | $NO_2 = 0.044 + (0.001 \cdot Urban \: percent) + (-0.004 \cdot Average \: slope)$ | 0.48          | < 0.01    |                                |
+| Zn | $Zn = 11.31 + (0.43 \cdot Urban \: percent)$ | 0.36          | < 0.01    |                                |
 |                |                                                                                   |               |           |                                |
 |                |                                                                                   |               |           |                                |
 
@@ -57,6 +57,6 @@ In addition to the above, we would like you to produce three output maps to visu
 
 **Referencing**: The report should be fully referenced, using the Harvard style. You should not just adapt the text from the Rothwell et al. ([2010](https://doi.org/10.1016/j.jhydrol.2010.10.015)) paper, substituting key values for the data here. This will result in a high similarity index and you may face a penalty due to poor academic practice. You must write up the report in your own words, making sure you paraphrase the ideas of others, and reference fully throughout. 
 
-**Submission deadline**: 11/01/2024, 14:00
+**Submission deadline**: 09/01/2025, 14:00
 
 

@@ -93,6 +93,9 @@ task-7-model-building
 an-introduction-to-linear-models-in-r
 training-vs.-testing
 variable-selection-strategies
+testing-for-collinearity
+stepwise-regression
+interpreting-results
 task-8-model-evaluation
 Assessment
 Hints

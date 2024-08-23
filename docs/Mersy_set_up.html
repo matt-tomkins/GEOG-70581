@@ -310,13 +310,15 @@ div.csl-indent {
 <li class="chapter" data-level="11.1.1" data-path="mersey_five.html"><a href="mersey_five.html#an-introduction-to-linear-models-in-r"><i class="fa fa-check"></i><b>11.1.1</b> An introduction to linear models in R</a></li>
 <li class="chapter" data-level="11.1.2" data-path="mersey_five.html"><a href="mersey_five.html#training-vs.-testing"><i class="fa fa-check"></i><b>11.1.2</b> Training vs. Testing</a></li>
 <li class="chapter" data-level="11.1.3" data-path="mersey_five.html"><a href="mersey_five.html#variable-selection-strategies"><i class="fa fa-check"></i><b>11.1.3</b> Variable selection strategies</a></li>
+<li class="chapter" data-level="11.1.4" data-path="mersey_five.html"><a href="mersey_five.html#testing-for-collinearity"><i class="fa fa-check"></i><b>11.1.4</b> Testing for collinearity</a></li>
+<li class="chapter" data-level="11.1.5" data-path="mersey_five.html"><a href="mersey_five.html#stepwise-regression"><i class="fa fa-check"></i><b>11.1.5</b> Stepwise regression</a></li>
+<li class="chapter" data-level="11.1.6" data-path="mersey_five.html"><a href="mersey_five.html#interpreting-results"><i class="fa fa-check"></i><b>11.1.6</b> Interpreting results</a></li>
 </ul></li>
 <li class="chapter" data-level="11.2" data-path="mersey_five.html"><a href="mersey_five.html#task-8-model-evaluation"><i class="fa fa-check"></i><b>11.2</b> Task 8: Model evaluation</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="Assessment.html"><a href="Assessment.html"><i class="fa fa-check"></i><b>12</b> Assessment</a></li>
 <li class="chapter" data-level="13" data-path="Hints.html"><a href="Hints.html"><i class="fa fa-check"></i><b>13</b> Handy Hints</a>
 <ul>
-<li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#project_repair"><i class="fa fa-check"></i>Errors with R projects and the <code>here</code> package</a></li>
 <li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#dealing-with-errors-1"><i class="fa fa-check"></i>Dealing with errors</a></li>
 <li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#whitebox-functions-vs.-the-raster-package"><i class="fa fa-check"></i>Whitebox functions vs. the <code>raster</code> package</a></li>
 <li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#r-projects"><i class="fa fa-check"></i>R Projects</a></li>
@@ -324,6 +326,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#output-files"><i class="fa fa-check"></i>Output files</a></li>
 <li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#packages-1"><i class="fa fa-check"></i>Packages</a></li>
 <li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#code-structure"><i class="fa fa-check"></i>Code structure</a></li>
+<li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#project_repair"><i class="fa fa-check"></i>Errors with R projects and the <code>here</code> package</a></li>
 </ul></li>
 </ul>
 
@@ -483,13 +486,13 @@ Hydrological analysis in R<br />
 <blockquote>
 <p>Copy and paste the <code>check.packages</code> function into your new script, either from below or from <code>Practical-1-Eskdale.R</code>:</p>
 </blockquote>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="Mersy_set_up.html#cb91-1" tabindex="-1"></a><span class="co"># Function to check and install packages</span></span>
-<span id="cb91-2"><a href="Mersy_set_up.html#cb91-2" tabindex="-1"></a>check.packages <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg){</span>
-<span id="cb91-3"><a href="Mersy_set_up.html#cb91-3" tabindex="-1"></a>  new.pkg <span class="ot">&lt;-</span> pkg[<span class="sc">!</span>(pkg <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
-<span id="cb91-4"><a href="Mersy_set_up.html#cb91-4" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(new.pkg)) </span>
-<span id="cb91-5"><a href="Mersy_set_up.html#cb91-5" tabindex="-1"></a>    <span class="fu">install.packages</span>(new.pkg, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb91-6"><a href="Mersy_set_up.html#cb91-6" tabindex="-1"></a>  <span class="fu">sapply</span>(pkg, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb91-7"><a href="Mersy_set_up.html#cb91-7" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="Mersy_set_up.html#cb83-1" tabindex="-1"></a><span class="co"># Function to check and install packages</span></span>
+<span id="cb83-2"><a href="Mersy_set_up.html#cb83-2" tabindex="-1"></a>check.packages <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg){</span>
+<span id="cb83-3"><a href="Mersy_set_up.html#cb83-3" tabindex="-1"></a>  new.pkg <span class="ot">&lt;-</span> pkg[<span class="sc">!</span>(pkg <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
+<span id="cb83-4"><a href="Mersy_set_up.html#cb83-4" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(new.pkg)) </span>
+<span id="cb83-5"><a href="Mersy_set_up.html#cb83-5" tabindex="-1"></a>    <span class="fu">install.packages</span>(new.pkg, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb83-6"><a href="Mersy_set_up.html#cb83-6" tabindex="-1"></a>  <span class="fu">sapply</span>(pkg, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb83-7"><a href="Mersy_set_up.html#cb83-7" tabindex="-1"></a>}</span></code></pre></div>
 <p><br/></p>
 <p>In <strong>Practical 1</strong>, we used the following packages:</p>
 <ul>
@@ -539,15 +542,19 @@ Hydrological analysis in R<br />
 </ul></li>
 <li><a href="https://cran.r-project.org/web/packages/units/index.html"><code>units</code></a>
 <ul>
-<li>for calculation of measurement units.</li>
+<li>for calculation of measurement units;</li>
+</ul></li>
+<li><a href="https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html"><code>corrplot</code></a> and <a href="https://cran.r-project.org/web/packages/olsrr/vignettes/intro.html"><code>olsrr</code></a>
+<ul>
+<li>for correlation and regression analysis.</li>
 </ul></li>
 </ul>
 <p><br/></p>
 <p>To load new packages, you can either use the <code>install.packages()</code> and <code>library()</code> functions or more simply, add package names to the packages vector, as shown here:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="Mersy_set_up.html#cb92-1" tabindex="-1"></a><span class="co"># Checks and installs packages</span></span>
-<span id="cb92-2"><a href="Mersy_set_up.html#cb92-2" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;ggspatial&quot;</span>, <span class="st">&quot;here&quot;</span>, <span class="st">&quot;raster&quot;</span>, <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;whitebox&quot;</span>, <span class="co"># Practical-1</span></span>
-<span id="cb92-3"><a href="Mersy_set_up.html#cb92-3" tabindex="-1"></a>              <span class="st">&quot;data.table&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;forcats&quot;</span>, <span class="st">&quot;MASS&quot;</span>, <span class="st">&quot;units&quot;</span>) <span class="co"># Practical-2 </span></span>
-<span id="cb92-4"><a href="Mersy_set_up.html#cb92-4" tabindex="-1"></a><span class="fu">check.packages</span>(packages)</span></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="Mersy_set_up.html#cb84-1" tabindex="-1"></a><span class="co"># Checks and installs packages</span></span>
+<span id="cb84-2"><a href="Mersy_set_up.html#cb84-2" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;ggspatial&quot;</span>, <span class="st">&quot;here&quot;</span>, <span class="st">&quot;raster&quot;</span>, <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;whitebox&quot;</span>, <span class="co"># Practical-1</span></span>
+<span id="cb84-3"><a href="Mersy_set_up.html#cb84-3" tabindex="-1"></a>              <span class="st">&quot;data.table&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;forcats&quot;</span>, <span class="st">&quot;MASS&quot;</span>, <span class="st">&quot;units&quot;</span>) <span class="co"># Practical-2 </span></span>
+<span id="cb84-4"><a href="Mersy_set_up.html#cb84-4" tabindex="-1"></a><span class="fu">check.packages</span>(packages)</span></code></pre></div>
 <blockquote>
 <p>Use the above code to install and load the required packages.</p>
 </blockquote>

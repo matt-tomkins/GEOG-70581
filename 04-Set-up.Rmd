@@ -126,7 +126,7 @@ These packages can be installed as normal using the `install.packages()` and `li
 
 Instead, it had to be installed using [R-Forge](https://r-forge.r-project.org/projects/whitebox/). While **CRAN** is the official package repository for R and generally features "release" versions of packages, **R-Forge** provides candidate, beta or "work-in-progress" packages or packages which don't meet the criteria for inclusion on CRAN. 
 
-However, as of the [27th October](https://cran.r-project.org/web/packages/whitebox/index.html), `whitebox` is now back on CRAN so we can install as normal using the `install.packages()` function. 
+However, as of last year, `whitebox` is now back on [CRAN](https://cran.r-project.org/web/packages/whitebox/index.html) so we can install as normal using the `install.packages()` function. 
 
 It is worth noting, however, that you can install packages from **R-Forge** by simply specifying the repository (web location) where the package is stored, in this case: `http://R-Forge.R-project.org`. 
 
@@ -223,7 +223,7 @@ where the **logical** value `TRUE` equates to a successful installation (and vic
 
 ## Errors using R projects
 
-**IMPORTANT. Please read.** For the 2023/24 iteration of this course, there have been a few issues using `whitebox` functions. It took a while to solve, but I've eventually traced the problem back to how R projects and the `here` package are working (i.e., not working) on university-managed computers.
+For the **2023/24** iteration of this course, there were a few issues using `whitebox` functions. It took a while to solve, but I eventually traced the problem back to how R projects and the `here` package are working (i.e., not working) on university-managed computers.
 
-If you're having issues using `whitebox` functions, or are struggling to access files using `here`, please see the [solution](#project_repair) on the Hints page.
+For **2024/25**, these issues should now have been fixed, but if you're having issues using `whitebox` functions, or are struggling to access files using `here`, please see the [solution](#project_repair) on the Hints page.
 

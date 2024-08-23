@@ -15,3 +15,5 @@ units
 patchwork
 leaflet
 gridExtra
+corrplot
+olsrr
