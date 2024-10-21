@@ -20,7 +20,7 @@ check.packages(packages)
 
 ## Overview
 
-The following chapter provides a basic introduction to coding in R. If you already have experience with coding, perhaps from [Spatial Ecology](https://www.manchester.ac.uk/study/masters/courses/list/07053/msc-geographical-information-science/course-details/GEOG71921#course-unit-details) or [Understanding GIS](https://www.manchester.ac.uk/study/undergraduate/courses/2022/00575/bsc-geography/all-content/GEOG30552#course-unit-details), then the following content should be familiar to you. For those of you with little or no experience with code, the content builds from the simple (using R as a calculator) to the complex (loading packages and data, plotting) and will equip you with the skills needed to complete Practicals 1 (Eskdale) and 2 (Mersey)
+The following chapter provides a basic introduction to coding in R. If you already have experience with coding, perhaps from [Understanding GIS](https://www.manchester.ac.uk/study/undergraduate/courses/2022/00575/bsc-geography/all-content/GEOG30552#course-unit-details), then the following content should be familiar to you. For those of you with little or no experience with code, the content builds from the simple (using R as a calculator) to the complex (loading packages and data, plotting) and will equip you with the skills needed to complete Practicals 1 (Eskdale) and 2 (Mersey)
 
 You should aim to work through this Chapter by the end of Week 8, making sure you understand the concepts and code before moving on to the next sub-section. 
 
@@ -156,7 +156,7 @@ result # Typing the name of an object ('result') prints it in the Console Window
 
 This is a relatively complicated mathematical formula! It uses a square root `sqrt()` and logarithm `log()` function, as well as multiplication `*` and powers `^`. We could replicate this result by substituting each value of **a** for 5 and each value of **b** for 10, but this would be time consuming and prone to error, and would be very frustrating if we wanted to re-calculate the result for `a = 6` and `b = 11`! Using objects allows us to use and modify values multiple times within the code. 
 
-> Modify the code above to test for `a = 6` and `b = 11`. Compare your answer with a colleague in class or on Zoom. Did you get the same result?
+> Modify the code above to test for `a = 6` and `b = 11`. Compare your answer with a friend in class. Did you get the same result?
 
 ```{r, echo = FALSE, eval = FALSE}
 
@@ -310,7 +310,7 @@ r
 
 ### Data frames {#data_frames}
 
-Other common R data structures include **matrices**, **lists** and **data frames**. The data frame is the most commonly used structure for tabular data and will be familiar to those of you with experience in Microsoft Excel. Here is an example data frame, which is created by combining four existing vectors of the same length (`name`, `height`, `nationality`, [`bereft_of_life`](https://en.wikipedia.org/wiki/Dead_Parrot_sketch)):
+Other common R data structures include **matrices**, **lists** and **data frames**. The data frame is the most commonly used structure for tabular data and will be familiar to you, as this similiar in structure to a Microsoft Excel spreadsheet (containing rows and columns of data). Here is an example data frame, which is created by combining four existing vectors of the same length (`name`, `height`, `nationality`, [`bereft_of_life`](https://en.wikipedia.org/wiki/Dead_Parrot_sketch)):
 
 ```{r}
 
@@ -357,10 +357,10 @@ We can also extract rows and columns based on the values within the data frame, 
 # Extract data frame rows where height is more than or equal to (>=) 1.8 m. 
 subset(df, height >= 1.8) 
 
-# Extract data frames rows where nationality is not equal to (!=) American
+# Extract data frame rows where nationality is not equal to (!=) American
 subset(df, nationality != "American")
 
-# Extract data frames rows where bereft_of_life is equal to (==) FALSE
+# Extract data frame rows where bereft_of_life is equal to (==) FALSE
 subset(df, bereft_of_life == FALSE)
 
 ```
