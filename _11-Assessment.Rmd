@@ -1,3 +1,9 @@
+---
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
 # Assessment {#Assessment}
 
 **Title:** Modelling River Hydrochemistry in the Mersey Basin, UK

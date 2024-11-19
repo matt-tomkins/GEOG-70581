@@ -831,7 +831,7 @@ To extract the month from each record, you may want to use the `months()` functi
 
 A code solution to the formative task will be uploaded here after the class.
 
-```{r, eval = FALSE, echo = TRUE, warning = FALSE, message = FALSE}
+```{r, eval = FALSE, echo = FALSE, warning = FALSE, message = FALSE}
 
 # Solution to the Chapter 3 formative task
 # Author: matt-tomkins
@@ -841,11 +841,11 @@ A code solution to the formative task will be uploaded here after the class.
 
 > **Note** If you're working on a personal computer with Chinese language settings, you may need to run `Sys.setlocale("LC_TIME", "English")` at the start of your code to fix language-related errors the in the `as.Date()` function. 
 
-```{r, eval = FALSE, echo = FALSE, warning = FALSE, message = FALSE}
+```{r, eval = TRUE, echo = TRUE, warning = FALSE, message = FALSE}
 
 # Solution to the Chapter 3 formative task
 # Author: matt-tomkins
-# Date of upload: 17-11-2023
+# Date of upload: 19-11-2024
 
 # Function to check and install packages
 check.packages <- function(pkg){
