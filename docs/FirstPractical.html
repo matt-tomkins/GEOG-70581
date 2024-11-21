@@ -4,20 +4,20 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Installation |  Hydrological analysis in R </title>
+  <title>Chapter 4 Eskdale I - Introduction |  Hydrological analysis in R </title>
   <meta name="description" content="<br />
 Hydrological analysis in R<br />
 </center>" />
   <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Installation |  Hydrological analysis in R " />
+  <meta property="og:title" content="Chapter 4 Eskdale I - Introduction |  Hydrological analysis in R " />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Installation |  Hydrological analysis in R " />
+  <meta name="twitter:title" content="Chapter 4 Eskdale I - Introduction |  Hydrological analysis in R " />
   
   
   
@@ -30,8 +30,8 @@ Hydrological analysis in R<br />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="Intro_to_R.html"/>
+<link rel="prev" href="Intro_to_R.html"/>
+<link rel="next" href="Eskdale_set_up.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -279,67 +279,36 @@ Hydrological analysis in R<br />
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="Installation" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Installation<a href="Installation.html#Installation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>During this practical you will be using <a href="https://jblindsay.github.io/wbt_book/intro.html">WhiteboxTools</a>, an open-source GIS software package for hydro-geomorphic applications. While it contains much of the functionality found in a standard GIS software package, it also includes novel functionality specific to hydrological analysis. The tools are also computationally efficient (i.e. fast!), taking advantage of parallel processing and other advancements in computing power. Finally, the tools are developed for cross-platform use, so can be accessed through code (e.g. R, Python) or other GUIs (e.g. QGIS, ArcGIS) if required.</p>
-<p>To run WhiteboxTools functions (<strong>WBT</strong>), we’ll be using R as a front-end interface. This will allow us to access and run all of the relevant hydrological functions from WBT, while utilising the statistical and visualisation capabilities of R.</p>
-<div id="r" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> R<a href="Installation.html#r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>If you’re working on a <strong>university-managed computer</strong> (in HBS 2.2, HBS 2.88 or Mansfield Cooper 2.01) or accessing the course via <em>Citrix</em>, both R and RStudio (described below) should already be installed or can be accessed through the Software Centre.</p>
-<p>To Install R on a <strong>personal computer</strong>:</p>
+<div id="FirstPractical" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Eskdale I - Introduction<a href="FirstPractical.html#FirstPractical" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>It should be evident from the lectures that digital elevation models (DEMs) have a great deal of potential for modelling surface water hydrology and related phenomena in drainage basins. Much of this work is based on the assumptions that (1) we can trace the path that water will take from any point in an elevation grid to a basin outlet, and (2) the discharge of water from a particular location is directly related to its catchment area. This is a fairly reasonable assumption in most drainage basins.</p>
+<div id="overview-1" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Overview<a href="FirstPractical.html#overview-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this lab exercise, we will use a DEM of the Upper Eskdale catchment to model flow-related phenomena, and will have gained experience in:</p>
 <ul>
-<li>Open an internet browser and go to <a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a>.</li>
-<li>Click the “download R” link in the middle of the page under “Getting Started.”</li>
-<li>Select a CRAN location (a mirror site) and click the corresponding link e.g. the site provided by <a href="https://cran.ma.imperial.ac.uk/">Imperial College London</a>.</li>
-<li>Click on the “Download R for Windows” link, or the relevant link for your operating system (macOS, Linux).</li>
-<li>Click on ‘base’ and then <code>Download R [Version Number] for Windows</code>. The current version is 4.2.2.</li>
-<li>Once downloaded, double click the application file (.exe) and follow the installation instructions.</li>
+<li>DEM pre-processing;</li>
+<li>Calculating flow parameters (e.g. pointers and contributing areas);</li>
+<li>Comparing flow algorithms.</li>
+</ul>
+<p><strong>Make sure to save your R script regularly!</strong></p>
+<div class="float">
+<img src="figures/Practical-1/cover.png" alt="Upper Eskdale catchment" />
+<div class="figcaption">Upper Eskdale catchment</div>
+</div>
+<div id="intended-learning-outcomes" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Intended learning outcomes<a href="FirstPractical.html#intended-learning-outcomes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In <a href="Eskdale_set_up.html#Eskdale_set_up">Chapter 5</a>, we’ll download the data and install the required programs and packages, and will combine these in <a href="Eskdale_flow_algorithms.html#Eskdale_flow_algorithms">Chapter 6</a> to:</p>
+<ul>
+<li>gain experience with <a href="https://jblindsay.github.io/wbt_book/intro.html">WhiteboxTools</a>, a specialist GIS specifically designed for digital terrain analysis (DTA);</li>
+<li>become familiar with some of the most commonly used flow algorithms used to simulate overland flow from digital elevation models (DEMs);</li>
+<li>consider the utility of DTA for routing applications;</li>
 </ul>
 </div>
-<div id="r-studio" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> R Studio<a href="Installation.html#r-studio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>While R is now installed, it is good practice to use an integrated development environment (IDE) to access and run R functions. The most well known IDE for R is <a href="https://www.rstudio.com/">RStudio</a>, which includes a console, higher quality graphics, as well as tools for plotting, history, debugging and workspace management.</p>
-<p><strong>Note</strong>: R may be used without RStudio, but RStudio cannot be used without R.</p>
-<p>To Install RStudio on a <strong>personal computer</strong>:</p>
-<ul>
-<li>Go to <a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a> and click on <code>Download RStudio for Windows</code>. Installers for macOS and other operating systems are available below.
-<p align="center">
-<img src="figures/Using-R/download_RStudio.png" style="width:50.0%" />
-</p></li>
-<li>Once downloaded, double click the application file (.exe) and follow the installation instructions.</li>
-</ul>
-</div>
-<div id="materials" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> Course materials<a href="Installation.html#materials" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>All the data required for this sets of practicals are available on Blackboard under Course Content → <a href="https://online.manchester.ac.uk/webapps/blackboard/content/listContentEditable.jsp?content_id=_16238747_1&amp;course_id=_83595_1">Week 8 to 12</a>.</p>
-<blockquote>
-<p>Download the folder, save it to an appropriate location and extract the contents (unzip).</p>
-</blockquote>
-<p>The directory structure is as follows:</p>
-<ul>
-<li>GEOG70581
-<ul>
-<li>Data
-<ul>
-<li>Practical_1</li>
-<li>Practical_2</li>
-</ul></li>
-<li>Images
-<ul>
-<li>Practical_1</li>
-<li>Practical_2</li>
-</ul></li>
-<li>Output
-<ul>
-<li>Practical_1</li>
-<li>Practical_2</li>
-</ul></li>
-</ul></li>
-</ul>
-<p>All the required data files for Practicals 1 and 2 are stored in the associated sub-directory within <strong>Data</strong>.</p>
-<p>As we move through the practicals, we’ll be creating a number of additional GIS files and we encourage you to save these within the corresponding sub-directory within <strong>Output</strong>.</p>
-<p>Finally, maps and figures will be required for the assessment. These can be exported directly from R and stored in <strong>Images</strong>.</p>
+<div id="assessment" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Assessment<a href="FirstPractical.html#assessment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This practical is formative and as such will not count towards your final mark for GEOG 70581, but you are encouraged to complete the practical to the best of your ability as the skills developed here will be used throughout the assessed Practical 2.</p>
 
+</div>
 </div>
 </div>
             </section>
@@ -347,8 +316,8 @@ Hydrological analysis in R<br />
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="Intro_to_R.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="Intro_to_R.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="Eskdale_set_up.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

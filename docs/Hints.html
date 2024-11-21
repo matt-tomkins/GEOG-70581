@@ -4,20 +4,20 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Handy Hints |  Hydrological analysis in R </title>
+  <title>Chapter 7 Handy Hints |  Hydrological analysis in R </title>
   <meta name="description" content="<br />
 Hydrological analysis in R<br />
 </center>" />
   <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Handy Hints |  Hydrological analysis in R " />
+  <meta property="og:title" content="Chapter 7 Handy Hints |  Hydrological analysis in R " />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Handy Hints |  Hydrological analysis in R " />
+  <meta name="twitter:title" content="Chapter 7 Handy Hints |  Hydrological analysis in R " />
   
   
   
@@ -30,7 +30,7 @@ Hydrological analysis in R<br />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="Intro_to_R.html"/>
+<link rel="prev" href="Eskdale_flow_algorithms.html"/>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -133,6 +133,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 </style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 </head>
 
@@ -190,7 +212,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#formative_solution_one"><i class="fa fa-check"></i><b>3.9.1</b> Formative solution</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="Hints.html"><a href="Hints.html"><i class="fa fa-check"></i><b>4</b> Handy Hints</a>
+<li class="chapter" data-level="4" data-path="FirstPractical.html"><a href="FirstPractical.html"><i class="fa fa-check"></i><b>4</b> Eskdale I - Introduction</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="FirstPractical.html"><a href="FirstPractical.html#overview-1"><i class="fa fa-check"></i><b>4.1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="FirstPractical.html"><a href="FirstPractical.html#intended-learning-outcomes"><i class="fa fa-check"></i><b>4.1.1</b> Intended learning outcomes</a></li>
+<li class="chapter" data-level="4.1.2" data-path="FirstPractical.html"><a href="FirstPractical.html#assessment"><i class="fa fa-check"></i><b>4.1.2</b> Assessment</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html"><i class="fa fa-check"></i><b>5</b> Eskdale II - Set-up</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#install-programs"><i class="fa fa-check"></i><b>5.1</b> Install programs</a></li>
+<li class="chapter" data-level="5.2" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#download_data"><i class="fa fa-check"></i><b>5.2</b> Download data</a></li>
+<li class="chapter" data-level="5.3" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#open-rstudio"><i class="fa fa-check"></i><b>5.3</b> Open RStudio</a></li>
+<li class="chapter" data-level="5.4" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#R_Projects"><i class="fa fa-check"></i><b>5.4</b> Initialise an R project</a></li>
+<li class="chapter" data-level="5.5" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#creating-an-r-script"><i class="fa fa-check"></i><b>5.5</b> Creating an R script</a></li>
+<li class="chapter" data-level="5.6" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#install-whiteboxtools"><i class="fa fa-check"></i><b>5.6</b> Install WhiteboxTools</a></li>
+<li class="chapter" data-level="5.7" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#loading-packages"><i class="fa fa-check"></i><b>5.7</b> Loading packages</a></li>
+<li class="chapter" data-level="5.8" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#errors-using-r-projects"><i class="fa fa-check"></i><b>5.8</b> Errors using R projects</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html"><i class="fa fa-check"></i><b>6</b> Eskdale III - Flow routing</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#dem-pre-processing-flow-enforcement"><i class="fa fa-check"></i><b>6.1</b> DEM pre-processing: flow enforcement</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#data-description"><i class="fa fa-check"></i><b>6.1.1</b> Data description</a></li>
+<li class="chapter" data-level="6.1.2" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#breaching-and-filling"><i class="fa fa-check"></i><b>6.1.2</b> Breaching and filling</a></li>
+<li class="chapter" data-level="6.1.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#choosing-a-colour-ramp"><i class="fa fa-check"></i><b>6.1.3</b> Choosing a colour ramp</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#flow-parameters-pointers"><i class="fa fa-check"></i><b>6.2</b> Flow Parameters: Pointers</a></li>
+<li class="chapter" data-level="6.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#flow-algorithms"><i class="fa fa-check"></i><b>6.3</b> Flow Algorithms</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#comparing-flow-algorithms"><i class="fa fa-check"></i><b>6.3.1</b> Comparing flow algorithms</a></li>
+<li class="chapter" data-level="6.3.2" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#fd8-catchment-area"><i class="fa fa-check"></i><b>6.3.2</b> FD8 catchment area</a></li>
+<li class="chapter" data-level="6.3.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#d-infinity-catchment-area"><i class="fa fa-check"></i><b>6.3.3</b> D-infinity catchment area</a></li>
+<li class="chapter" data-level="6.3.4" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#comparing-the-outputs"><i class="fa fa-check"></i><b>6.3.4</b> Comparing the outputs</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#practical-solution"><i class="fa fa-check"></i><b>6.4</b> Practical solution</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="Hints.html"><a href="Hints.html"><i class="fa fa-check"></i><b>7</b> Handy Hints</a>
 <ul>
 <li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#dealing-with-errors-1"><i class="fa fa-check"></i>Dealing with errors</a></li>
 <li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#whitebox-functions-vs.-the-raster-package"><i class="fa fa-check"></i>Whitebox functions vs. the <code>raster</code> package</a></li>
@@ -220,8 +279,8 @@ Hydrological analysis in R<br />
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="Hints" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">Chapter 4</span> Handy Hints<a href="Hints.html#Hints" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="Hints" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Handy Hints<a href="Hints.html#Hints" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This chapter contains a few handy hints which may be useful if you’re having any issues loading R packages or running <code>Whitebox</code> tools.</p>
 <div id="dealing-with-errors-1" class="section level3 unnumbered hasAnchor">
 <h3>Dealing with errors<a href="Hints.html#dealing-with-errors-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -237,39 +296,39 @@ Hydrological analysis in R<br />
 <li><p>If the error message doesn’t provide a simple solution to the problem, then the next step should be to work through your code step-by-step, testing each line or code block to ensure it is working correctly (usually using <code>print()</code> statements).</p></li>
 </ol>
 <p>To illustrate this, here is some code which has failed:</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="Hints.html#cb70-1" tabindex="-1"></a><span class="co"># Function to check and install packages</span></span>
-<span id="cb70-2"><a href="Hints.html#cb70-2" tabindex="-1"></a>check.packages <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg){</span>
-<span id="cb70-3"><a href="Hints.html#cb70-3" tabindex="-1"></a>  new.pkg <span class="ot">&lt;-</span> pkg[<span class="sc">!</span>(pkg <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
-<span id="cb70-4"><a href="Hints.html#cb70-4" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(new.pkg)) </span>
-<span id="cb70-5"><a href="Hints.html#cb70-5" tabindex="-1"></a>    <span class="fu">install.packages</span>(new.pkg, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb70-6"><a href="Hints.html#cb70-6" tabindex="-1"></a>  <span class="fu">sapply</span>(pkg, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb70-7"><a href="Hints.html#cb70-7" tabindex="-1"></a>}</span>
-<span id="cb70-8"><a href="Hints.html#cb70-8" tabindex="-1"></a></span>
-<span id="cb70-9"><a href="Hints.html#cb70-9" tabindex="-1"></a><span class="co"># Checks and installs packages</span></span>
-<span id="cb70-10"><a href="Hints.html#cb70-10" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;here&quot;</span>, <span class="st">&quot;raster&quot;</span>, <span class="st">&quot;whitebox&quot;</span>)</span>
-<span id="cb70-11"><a href="Hints.html#cb70-11" tabindex="-1"></a><span class="fu">check.packages</span>(packages)</span>
-<span id="cb70-12"><a href="Hints.html#cb70-12" tabindex="-1"></a></span>
-<span id="cb70-13"><a href="Hints.html#cb70-13" tabindex="-1"></a><span class="co"># Fill depressions in a DEM</span></span>
-<span id="cb70-14"><a href="Hints.html#cb70-14" tabindex="-1"></a><span class="fu">wbt_fill_depressions</span>(<span class="at">dem =</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;dem_10m.tif&quot;</span>),</span>
-<span id="cb70-15"><a href="Hints.html#cb70-15" tabindex="-1"></a>                     <span class="at">output =</span> <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span>
-<span id="cb70-16"><a href="Hints.html#cb70-16" tabindex="-1"></a></span>
-<span id="cb70-17"><a href="Hints.html#cb70-17" tabindex="-1"></a><span class="co"># Loads raster</span></span>
-<span id="cb70-18"><a href="Hints.html#cb70-18" tabindex="-1"></a>filled_dem <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span>
-<span id="cb70-19"><a href="Hints.html#cb70-19" tabindex="-1"></a></span>
-<span id="cb70-20"><a href="Hints.html#cb70-20" tabindex="-1"></a><span class="co"># Plots using ggplot</span></span>
-<span id="cb70-21"><a href="Hints.html#cb70-21" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb70-22"><a href="Hints.html#cb70-22" tabindex="-1"></a>  <span class="co"># Adds raster layer using layer_spatial</span></span>
-<span id="cb70-23"><a href="Hints.html#cb70-23" tabindex="-1"></a>  <span class="fu">layer_spatial</span>(filed_dem, <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">after_stat</span>(band1))) <span class="sc">+</span></span>
-<span id="cb70-24"><a href="Hints.html#cb70-24" tabindex="-1"></a>  <span class="co"># Sets ggplot theme</span></span>
-<span id="cb70-25"><a href="Hints.html#cb70-25" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
-<span id="cb70-26"><a href="Hints.html#cb70-26" tabindex="-1"></a>  <span class="co"># Axis and legend labeling</span></span>
-<span id="cb70-27"><a href="Hints.html#cb70-27" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Elevation (m)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Northing&quot;</span> <span class="sc">+</span></span>
-<span id="cb70-28"><a href="Hints.html#cb70-28" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>) <span class="sc">+</span></span>
-<span id="cb70-29"><a href="Hints.html#cb70-29" tabindex="-1"></a>  <span class="co"># Sets fill symbology</span></span>
-<span id="cb70-30"><a href="Hints.html#cb70-30" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">type =</span> <span class="st">&quot;viridis&quot;</span>  <span class="at">na.value =</span> <span class="cn">NA</span>)</span>
-<span id="cb70-31"><a href="Hints.html#cb70-31" tabindex="-1"></a></span>
-<span id="cb70-32"><a href="Hints.html#cb70-32" tabindex="-1"></a><span class="co"># Shows plot</span></span>
-<span id="cb70-33"><a href="Hints.html#cb70-33" tabindex="-1"></a>g</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="Hints.html#cb89-1" tabindex="-1"></a><span class="co"># Function to check and install packages</span></span>
+<span id="cb89-2"><a href="Hints.html#cb89-2" tabindex="-1"></a>check.packages <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg){</span>
+<span id="cb89-3"><a href="Hints.html#cb89-3" tabindex="-1"></a>  new.pkg <span class="ot">&lt;-</span> pkg[<span class="sc">!</span>(pkg <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
+<span id="cb89-4"><a href="Hints.html#cb89-4" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(new.pkg)) </span>
+<span id="cb89-5"><a href="Hints.html#cb89-5" tabindex="-1"></a>    <span class="fu">install.packages</span>(new.pkg, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb89-6"><a href="Hints.html#cb89-6" tabindex="-1"></a>  <span class="fu">sapply</span>(pkg, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb89-7"><a href="Hints.html#cb89-7" tabindex="-1"></a>}</span>
+<span id="cb89-8"><a href="Hints.html#cb89-8" tabindex="-1"></a></span>
+<span id="cb89-9"><a href="Hints.html#cb89-9" tabindex="-1"></a><span class="co"># Checks and installs packages</span></span>
+<span id="cb89-10"><a href="Hints.html#cb89-10" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;here&quot;</span>, <span class="st">&quot;raster&quot;</span>, <span class="st">&quot;whitebox&quot;</span>)</span>
+<span id="cb89-11"><a href="Hints.html#cb89-11" tabindex="-1"></a><span class="fu">check.packages</span>(packages)</span>
+<span id="cb89-12"><a href="Hints.html#cb89-12" tabindex="-1"></a></span>
+<span id="cb89-13"><a href="Hints.html#cb89-13" tabindex="-1"></a><span class="co"># Fill depressions in a DEM</span></span>
+<span id="cb89-14"><a href="Hints.html#cb89-14" tabindex="-1"></a><span class="fu">wbt_fill_depressions</span>(<span class="at">dem =</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;dem_10m.tif&quot;</span>),</span>
+<span id="cb89-15"><a href="Hints.html#cb89-15" tabindex="-1"></a>                     <span class="at">output =</span> <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span>
+<span id="cb89-16"><a href="Hints.html#cb89-16" tabindex="-1"></a></span>
+<span id="cb89-17"><a href="Hints.html#cb89-17" tabindex="-1"></a><span class="co"># Loads raster</span></span>
+<span id="cb89-18"><a href="Hints.html#cb89-18" tabindex="-1"></a>filled_dem <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span>
+<span id="cb89-19"><a href="Hints.html#cb89-19" tabindex="-1"></a></span>
+<span id="cb89-20"><a href="Hints.html#cb89-20" tabindex="-1"></a><span class="co"># Plots using ggplot</span></span>
+<span id="cb89-21"><a href="Hints.html#cb89-21" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb89-22"><a href="Hints.html#cb89-22" tabindex="-1"></a>  <span class="co"># Adds raster layer using layer_spatial</span></span>
+<span id="cb89-23"><a href="Hints.html#cb89-23" tabindex="-1"></a>  <span class="fu">layer_spatial</span>(filed_dem, <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">after_stat</span>(band1))) <span class="sc">+</span></span>
+<span id="cb89-24"><a href="Hints.html#cb89-24" tabindex="-1"></a>  <span class="co"># Sets ggplot theme</span></span>
+<span id="cb89-25"><a href="Hints.html#cb89-25" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb89-26"><a href="Hints.html#cb89-26" tabindex="-1"></a>  <span class="co"># Axis and legend labeling</span></span>
+<span id="cb89-27"><a href="Hints.html#cb89-27" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Elevation (m)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Northing&quot;</span> <span class="sc">+</span></span>
+<span id="cb89-28"><a href="Hints.html#cb89-28" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>) <span class="sc">+</span></span>
+<span id="cb89-29"><a href="Hints.html#cb89-29" tabindex="-1"></a>  <span class="co"># Sets fill symbology</span></span>
+<span id="cb89-30"><a href="Hints.html#cb89-30" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">type =</span> <span class="st">&quot;viridis&quot;</span>  <span class="at">na.value =</span> <span class="cn">NA</span>)</span>
+<span id="cb89-31"><a href="Hints.html#cb89-31" tabindex="-1"></a></span>
+<span id="cb89-32"><a href="Hints.html#cb89-32" tabindex="-1"></a><span class="co"># Shows plot</span></span>
+<span id="cb89-33"><a href="Hints.html#cb89-33" tabindex="-1"></a>g</span></code></pre></div>
 <p>I would first inspect the error message (<code>No such file or directory</code>) but if I didn’t understand it, I would then troubleshoot by:</p>
 <ol style="list-style-type: decimal">
 <li><p>First running the <code>check.packages(packages)</code> function. Were all the packages installed correctly i.e. <code>TRUE</code>?</p></li>
@@ -285,17 +344,17 @@ Hydrological analysis in R<br />
 <blockquote>
 <p>Can you spot any errors in the code below? There are three to find…</p>
 </blockquote>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="Hints.html#cb71-1" tabindex="-1"></a><span class="co"># Plots using ggplot</span></span>
-<span id="cb71-2"><a href="Hints.html#cb71-2" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb71-3"><a href="Hints.html#cb71-3" tabindex="-1"></a>  <span class="co"># Adds raster layer using layer_spatial</span></span>
-<span id="cb71-4"><a href="Hints.html#cb71-4" tabindex="-1"></a>  <span class="fu">layer_spatial</span>(filed_dem, <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">after_stat</span>(band1))) <span class="sc">+</span></span>
-<span id="cb71-5"><a href="Hints.html#cb71-5" tabindex="-1"></a>  <span class="co"># Sets ggplot theme</span></span>
-<span id="cb71-6"><a href="Hints.html#cb71-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
-<span id="cb71-7"><a href="Hints.html#cb71-7" tabindex="-1"></a>  <span class="co"># Axis and legend labeling</span></span>
-<span id="cb71-8"><a href="Hints.html#cb71-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Elevation (m)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Northing&quot;</span> <span class="sc">+</span></span>
-<span id="cb71-9"><a href="Hints.html#cb71-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>) <span class="sc">+</span></span>
-<span id="cb71-10"><a href="Hints.html#cb71-10" tabindex="-1"></a>  <span class="co"># Sets fill symbology</span></span>
-<span id="cb71-11"><a href="Hints.html#cb71-11" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">type =</span> <span class="st">&quot;viridis&quot;</span>  <span class="at">na.value =</span> <span class="cn">NA</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="Hints.html#cb90-1" tabindex="-1"></a><span class="co"># Plots using ggplot</span></span>
+<span id="cb90-2"><a href="Hints.html#cb90-2" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb90-3"><a href="Hints.html#cb90-3" tabindex="-1"></a>  <span class="co"># Adds raster layer using layer_spatial</span></span>
+<span id="cb90-4"><a href="Hints.html#cb90-4" tabindex="-1"></a>  <span class="fu">layer_spatial</span>(filed_dem, <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">after_stat</span>(band1))) <span class="sc">+</span></span>
+<span id="cb90-5"><a href="Hints.html#cb90-5" tabindex="-1"></a>  <span class="co"># Sets ggplot theme</span></span>
+<span id="cb90-6"><a href="Hints.html#cb90-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb90-7"><a href="Hints.html#cb90-7" tabindex="-1"></a>  <span class="co"># Axis and legend labeling</span></span>
+<span id="cb90-8"><a href="Hints.html#cb90-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Elevation (m)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Northing&quot;</span> <span class="sc">+</span></span>
+<span id="cb90-9"><a href="Hints.html#cb90-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>) <span class="sc">+</span></span>
+<span id="cb90-10"><a href="Hints.html#cb90-10" tabindex="-1"></a>  <span class="co"># Sets fill symbology</span></span>
+<span id="cb90-11"><a href="Hints.html#cb90-11" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">type =</span> <span class="st">&quot;viridis&quot;</span>  <span class="at">na.value =</span> <span class="cn">NA</span>)</span></code></pre></div>
 <p><strong>TLDR</strong>: the best way to fix errors is to be <strong>systematic</strong> in your approach.</p>
 <p>Work your way through the code step-by-step, checking it is producing the <strong>intended</strong> outputs at each stage - just because the code doesn’t produce an error, it doesn’t mean it is producing the output that you want!</p>
 </div>
@@ -308,25 +367,25 @@ Hydrological analysis in R<br />
 <p><strong>Analysis structure</strong>. [1] Create output files using <code>whitebox</code> [2] Load outputs into R using <code>raster</code> [3] Plot them using <code>ggplot</code></p>
 </p>
 <p>To illustrate this, below we have an example of the <code>wbt_d8_pointer</code> function, which creates a D8 pointer file based on an input digital elevation model (dem):</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="Hints.html#cb72-1" tabindex="-1"></a><span class="co"># Creates a D8 pointer file (.tif) at the output location, based on the input dem</span></span>
-<span id="cb72-2"><a href="Hints.html#cb72-2" tabindex="-1"></a><span class="fu">wbt_d8_pointer</span>(<span class="at">dem =</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_dem_fill.tif&quot;</span>),</span>
-<span id="cb72-3"><a href="Hints.html#cb72-3" tabindex="-1"></a>               <span class="at">output =</span> <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_dem_D8_pointer.tif&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="Hints.html#cb91-1" tabindex="-1"></a><span class="co"># Creates a D8 pointer file (.tif) at the output location, based on the input dem</span></span>
+<span id="cb91-2"><a href="Hints.html#cb91-2" tabindex="-1"></a><span class="fu">wbt_d8_pointer</span>(<span class="at">dem =</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_dem_fill.tif&quot;</span>),</span>
+<span id="cb91-3"><a href="Hints.html#cb91-3" tabindex="-1"></a>               <span class="at">output =</span> <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_dem_D8_pointer.tif&quot;</span>))</span></code></pre></div>
 <p>This uses the <code>here</code> package for locating the input file (<code>mersey_dem_fill.tif</code>), which is stored in <code>data/practical_2</code>, and for saving the output, which is stored as <code>mersey_dem_D8_pointer.tif</code> in <code>output/practical_2</code>.</p>
 <p>If this runs successfully (make sure to carefully check file paths, file names, use of commas), then an output raster will be created at the specified location.</p>
 <p><strong>Crucially</strong>, this does <strong>not</strong> load the raster into the R environment, so any attempt to plot the raster using <code>ggplot2</code> would fail.</p>
 <p>To achieve this, a raster must be first loaded into the R environment as follows:</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="Hints.html#cb73-1" tabindex="-1"></a><span class="co"># Loads D8 pointer raster using the raster and here packages</span></span>
-<span id="cb73-2"><a href="Hints.html#cb73-2" tabindex="-1"></a>mersey_pointer <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_dem_D8_pointer.tif&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="Hints.html#cb92-1" tabindex="-1"></a><span class="co"># Loads D8 pointer raster using the raster and here packages</span></span>
+<span id="cb92-2"><a href="Hints.html#cb92-2" tabindex="-1"></a>mersey_pointer <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_dem_D8_pointer.tif&quot;</span>))</span></code></pre></div>
 <p>Again, we have determined the input file location using <code>here</code> package (<code>output/practical_2/mersey_dem_D8_pointer.tif</code>) and stored the raster as an object in the R environment called <code>mersey_pointer</code>.</p>
 <p>With this stored, it can then be plotted using <code>ggplot</code>, setting <code>layer_spatial</code> to the <code>mersey_pointer</code> object name:</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="Hints.html#cb74-1" tabindex="-1"></a><span class="co"># Plots using ggplot</span></span>
-<span id="cb74-2"><a href="Hints.html#cb74-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb74-3"><a href="Hints.html#cb74-3" tabindex="-1"></a>  <span class="fu">layer_spatial</span>(mersey_pointer, <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">stat</span>(band1))) <span class="sc">+</span></span>
-<span id="cb74-4"><a href="Hints.html#cb74-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
-<span id="cb74-5"><a href="Hints.html#cb74-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Pointer value&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Northing&quot;</span>) <span class="sc">+</span></span>
-<span id="cb74-6"><a href="Hints.html#cb74-6" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">type =</span> <span class="st">&quot;viridis&quot;</span>,  <span class="at">na.value =</span> <span class="cn">NA</span>)</span>
-<span id="cb74-7"><a href="Hints.html#cb74-7" tabindex="-1"></a>p </span></code></pre></div>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-55-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="Hints.html#cb93-1" tabindex="-1"></a><span class="co"># Plots using ggplot</span></span>
+<span id="cb93-2"><a href="Hints.html#cb93-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb93-3"><a href="Hints.html#cb93-3" tabindex="-1"></a>  <span class="fu">layer_spatial</span>(mersey_pointer, <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">stat</span>(band1))) <span class="sc">+</span></span>
+<span id="cb93-4"><a href="Hints.html#cb93-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb93-5"><a href="Hints.html#cb93-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Pointer value&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Northing&quot;</span>) <span class="sc">+</span></span>
+<span id="cb93-6"><a href="Hints.html#cb93-6" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">type =</span> <span class="st">&quot;viridis&quot;</span>,  <span class="at">na.value =</span> <span class="cn">NA</span>)</span>
+<span id="cb93-7"><a href="Hints.html#cb93-7" tabindex="-1"></a>p </span></code></pre></div>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-85-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><strong>TLDR</strong>: for subsequent analysis, make sure to adhere to the following structure:</p>
 <ol style="list-style-type: decimal">
 <li><p>Create output files using <code>whitebox</code> functions.</p></li>
@@ -337,7 +396,7 @@ Hydrological analysis in R<br />
 </div>
 <div id="r-projects" class="section level3 unnumbered hasAnchor">
 <h3>R Projects<a href="Hints.html#r-projects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Make sure to initialise an R project for your work (<a href="#R_Projects">Section 5.4</a>) and ensure this is created for your GEOG70581 directory. This should resemble the following, with the R <strong>project file</strong> and a separate <strong>R script</strong> for the Eskdale and Mersey Basin practicals:</p>
+<p>Make sure to initialise an R project for your work (<a href="Eskdale_set_up.html#R_Projects">Section 5.4</a>) and ensure this is created for your GEOG70581 directory. This should resemble the following, with the R <strong>project file</strong> and a separate <strong>R script</strong> for the Eskdale and Mersey Basin practicals:</p>
 <p align="center">
 <img src="figures/Using-R/R-project-visualisation.png" style="width:65.0%" />
 </p>
@@ -365,40 +424,40 @@ Hydrological analysis in R<br />
 <blockquote>
 <p>Inspect the code below:</p>
 </blockquote>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="Hints.html#cb75-1" tabindex="-1"></a><span class="co"># Function to check and install packages</span></span>
-<span id="cb75-2"><a href="Hints.html#cb75-2" tabindex="-1"></a>check.packages <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg){</span>
-<span id="cb75-3"><a href="Hints.html#cb75-3" tabindex="-1"></a>  new.pkg <span class="ot">&lt;-</span> pkg[<span class="sc">!</span>(pkg <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
-<span id="cb75-4"><a href="Hints.html#cb75-4" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(new.pkg))</span>
-<span id="cb75-5"><a href="Hints.html#cb75-5" tabindex="-1"></a>    <span class="fu">install.packages</span>(new.pkg, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb75-6"><a href="Hints.html#cb75-6" tabindex="-1"></a>  <span class="fu">sapply</span>(pkg, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb75-7"><a href="Hints.html#cb75-7" tabindex="-1"></a>}</span>
-<span id="cb75-8"><a href="Hints.html#cb75-8" tabindex="-1"></a></span>
-<span id="cb75-9"><a href="Hints.html#cb75-9" tabindex="-1"></a><span class="co"># Checks and installs packages</span></span>
-<span id="cb75-10"><a href="Hints.html#cb75-10" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;here&quot;</span>, <span class="st">&quot;raster&quot;</span>, <span class="st">&quot;whitebox&quot;</span>, <span class="st">&quot;ggspatial&quot;</span>, <span class="st">&quot;patchwork&quot;</span>)</span>
-<span id="cb75-11"><a href="Hints.html#cb75-11" tabindex="-1"></a><span class="fu">check.packages</span>(packages)</span>
-<span id="cb75-12"><a href="Hints.html#cb75-12" tabindex="-1"></a></span>
-<span id="cb75-13"><a href="Hints.html#cb75-13" tabindex="-1"></a><span class="co"># Sets file path for DEM</span></span>
-<span id="cb75-14"><a href="Hints.html#cb75-14" tabindex="-1"></a>dem <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m.tif&quot;</span>)</span>
-<span id="cb75-15"><a href="Hints.html#cb75-15" tabindex="-1"></a></span>
-<span id="cb75-16"><a href="Hints.html#cb75-16" tabindex="-1"></a><span class="co"># Breach and fills depressions</span></span>
-<span id="cb75-17"><a href="Hints.html#cb75-17" tabindex="-1"></a><span class="fu">wbt_fill_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span>
-<span id="cb75-18"><a href="Hints.html#cb75-18" tabindex="-1"></a><span class="fu">wbt_breach_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_breach.tif&quot;</span>))</span>
-<span id="cb75-19"><a href="Hints.html#cb75-19" tabindex="-1"></a></span>
-<span id="cb75-20"><a href="Hints.html#cb75-20" tabindex="-1"></a><span class="co"># Calculates D8 pointer</span></span>
-<span id="cb75-21"><a href="Hints.html#cb75-21" tabindex="-1"></a><span class="fu">wbt_d8_pointer</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>),</span>
-<span id="cb75-22"><a href="Hints.html#cb75-22" tabindex="-1"></a>               <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_D8_pointer.tif&quot;</span>))</span>
-<span id="cb75-23"><a href="Hints.html#cb75-23" tabindex="-1"></a></span>
-<span id="cb75-24"><a href="Hints.html#cb75-24" tabindex="-1"></a><span class="co"># Calculates D8 accumulation file (SCA), with log-transformed values</span></span>
-<span id="cb75-25"><a href="Hints.html#cb75-25" tabindex="-1"></a><span class="fu">wbt_d8_flow_accumulation</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>),</span>
-<span id="cb75-26"><a href="Hints.html#cb75-26" tabindex="-1"></a>                         <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_flow_accumulation.tif&quot;</span>),</span>
-<span id="cb75-27"><a href="Hints.html#cb75-27" tabindex="-1"></a>                         <span class="at">out_type =</span> <span class="st">&quot;specific contributing area&quot;</span>,</span>
-<span id="cb75-28"><a href="Hints.html#cb75-28" tabindex="-1"></a>                         <span class="at">log =</span> <span class="st">&quot;TRUE&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="Hints.html#cb94-1" tabindex="-1"></a><span class="co"># Function to check and install packages</span></span>
+<span id="cb94-2"><a href="Hints.html#cb94-2" tabindex="-1"></a>check.packages <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg){</span>
+<span id="cb94-3"><a href="Hints.html#cb94-3" tabindex="-1"></a>  new.pkg <span class="ot">&lt;-</span> pkg[<span class="sc">!</span>(pkg <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
+<span id="cb94-4"><a href="Hints.html#cb94-4" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(new.pkg))</span>
+<span id="cb94-5"><a href="Hints.html#cb94-5" tabindex="-1"></a>    <span class="fu">install.packages</span>(new.pkg, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb94-6"><a href="Hints.html#cb94-6" tabindex="-1"></a>  <span class="fu">sapply</span>(pkg, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb94-7"><a href="Hints.html#cb94-7" tabindex="-1"></a>}</span>
+<span id="cb94-8"><a href="Hints.html#cb94-8" tabindex="-1"></a></span>
+<span id="cb94-9"><a href="Hints.html#cb94-9" tabindex="-1"></a><span class="co"># Checks and installs packages</span></span>
+<span id="cb94-10"><a href="Hints.html#cb94-10" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;here&quot;</span>, <span class="st">&quot;raster&quot;</span>, <span class="st">&quot;whitebox&quot;</span>, <span class="st">&quot;ggspatial&quot;</span>, <span class="st">&quot;patchwork&quot;</span>)</span>
+<span id="cb94-11"><a href="Hints.html#cb94-11" tabindex="-1"></a><span class="fu">check.packages</span>(packages)</span>
+<span id="cb94-12"><a href="Hints.html#cb94-12" tabindex="-1"></a></span>
+<span id="cb94-13"><a href="Hints.html#cb94-13" tabindex="-1"></a><span class="co"># Sets file path for DEM</span></span>
+<span id="cb94-14"><a href="Hints.html#cb94-14" tabindex="-1"></a>dem <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m.tif&quot;</span>)</span>
+<span id="cb94-15"><a href="Hints.html#cb94-15" tabindex="-1"></a></span>
+<span id="cb94-16"><a href="Hints.html#cb94-16" tabindex="-1"></a><span class="co"># Breach and fills depressions</span></span>
+<span id="cb94-17"><a href="Hints.html#cb94-17" tabindex="-1"></a><span class="fu">wbt_fill_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span>
+<span id="cb94-18"><a href="Hints.html#cb94-18" tabindex="-1"></a><span class="fu">wbt_breach_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_breach.tif&quot;</span>))</span>
+<span id="cb94-19"><a href="Hints.html#cb94-19" tabindex="-1"></a></span>
+<span id="cb94-20"><a href="Hints.html#cb94-20" tabindex="-1"></a><span class="co"># Calculates D8 pointer</span></span>
+<span id="cb94-21"><a href="Hints.html#cb94-21" tabindex="-1"></a><span class="fu">wbt_d8_pointer</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>),</span>
+<span id="cb94-22"><a href="Hints.html#cb94-22" tabindex="-1"></a>               <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_D8_pointer.tif&quot;</span>))</span>
+<span id="cb94-23"><a href="Hints.html#cb94-23" tabindex="-1"></a></span>
+<span id="cb94-24"><a href="Hints.html#cb94-24" tabindex="-1"></a><span class="co"># Calculates D8 accumulation file (SCA), with log-transformed values</span></span>
+<span id="cb94-25"><a href="Hints.html#cb94-25" tabindex="-1"></a><span class="fu">wbt_d8_flow_accumulation</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>),</span>
+<span id="cb94-26"><a href="Hints.html#cb94-26" tabindex="-1"></a>                         <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_flow_accumulation.tif&quot;</span>),</span>
+<span id="cb94-27"><a href="Hints.html#cb94-27" tabindex="-1"></a>                         <span class="at">out_type =</span> <span class="st">&quot;specific contributing area&quot;</span>,</span>
+<span id="cb94-28"><a href="Hints.html#cb94-28" tabindex="-1"></a>                         <span class="at">log =</span> <span class="st">&quot;TRUE&quot;</span>)</span></code></pre></div>
 <p>This code includes comments for each main code block, line spaces to distinguish different parts of the code, and is written in a logical order (e.g. first loading packages, then loading/selecting data, running tools). Any non-essential code has been removed e.g. additional calls to install.packages() or library().</p>
 </div>
 <div id="project_repair" class="section level3 unnumbered hasAnchor">
 <h3>Errors with R projects and the <code>here</code> package<a href="Hints.html#project_repair" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>If you’re working on a university-managed computer, you may have encountered errors while trying to use <code>whitebox</code> functions, such as <code>wbt_fill_depressions()</code>, or accessing files using relative file paths via the <code>here</code> package.</p>
-<p>This problem actually originates with our use of R projects (described <a href="#R_Projects">here</a>). R projects are designed to make accessing files simple and to ensure our analyses are <strong>self-contained</strong> and <strong>portable</strong>. They do this by automatically setting the <strong>working directory</strong> in RStudio. You can test this by using the <code>getwd()</code> function, which should print your working directory to the console.</p>
+<p>This problem actually originates with our use of R projects (described <a href="Eskdale_set_up.html#R_Projects">here</a>). R projects are designed to make accessing files simple and to ensure our analyses are <strong>self-contained</strong> and <strong>portable</strong>. They do this by automatically setting the <strong>working directory</strong> in RStudio. You can test this by using the <code>getwd()</code> function, which should print your working directory to the console.</p>
 <p>If the R project is working, this should set your working directory to the directory where your R project is saved e.g., an R project file stored in <code>C:/Users/Bob/Documents/GEOG70581</code> should have an identical working directory.</p>
 <p>Unfortunately, R projects <strong>were not working</strong> as intended on university-managed computers in <strong>2023/24</strong>: the working directory was <em>not</em> being automatically updated. In most cases, the working directory was stuck at <code>P:/</code>, even if the R project is saved elsewhere! This was a completely <strong>new</strong> problem for 2023/24, but it is possibly due to changes in the waycomputers are managed after the recent <a href="https://www.manchester.ac.uk/cyber-incident/">cyber incident</a>.</p>
 <p>This can lead to difficulties accessing files using <code>here</code>, but also utilising <code>whitebox</code> functions, even when inelegant <em>absolute</em> file paths are used. In both cases, R is looking in the wrong place, either for the data files, or the WBT executable.</p>
@@ -415,69 +474,113 @@ Hydrological analysis in R<br />
 <blockquote>
 <p>Try running the code below, making sure to update the path to the correct working directory.</p>
 </blockquote>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="Hints.html#cb76-1" tabindex="-1"></a><span class="co"># FIRST, set your working directory manually</span></span>
-<span id="cb76-2"><a href="Hints.html#cb76-2" tabindex="-1"></a><span class="fu">setwd</span>(<span class="sc">---</span>YOUR PATH GOES HERE<span class="sc">---</span>) <span class="co"># e.g., &quot;C:/Users/Bob/Documents/GEOG70581&quot;</span></span>
-<span id="cb76-3"><a href="Hints.html#cb76-3" tabindex="-1"></a></span>
-<span id="cb76-4"><a href="Hints.html#cb76-4" tabindex="-1"></a><span class="co"># Function to check and install packages</span></span>
-<span id="cb76-5"><a href="Hints.html#cb76-5" tabindex="-1"></a>check.packages <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg){</span>
-<span id="cb76-6"><a href="Hints.html#cb76-6" tabindex="-1"></a>  new.pkg <span class="ot">&lt;-</span> pkg[<span class="sc">!</span>(pkg <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
-<span id="cb76-7"><a href="Hints.html#cb76-7" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(new.pkg)) </span>
-<span id="cb76-8"><a href="Hints.html#cb76-8" tabindex="-1"></a>    <span class="fu">install.packages</span>(new.pkg, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb76-9"><a href="Hints.html#cb76-9" tabindex="-1"></a>  <span class="fu">sapply</span>(pkg, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb76-10"><a href="Hints.html#cb76-10" tabindex="-1"></a>}</span>
-<span id="cb76-11"><a href="Hints.html#cb76-11" tabindex="-1"></a></span>
-<span id="cb76-12"><a href="Hints.html#cb76-12" tabindex="-1"></a><span class="co"># Checks and installs packages</span></span>
-<span id="cb76-13"><a href="Hints.html#cb76-13" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;here&quot;</span>, <span class="st">&quot;raster&quot;</span>, <span class="st">&quot;whitebox&quot;</span>, <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;ggspatial&quot;</span>)</span>
-<span id="cb76-14"><a href="Hints.html#cb76-14" tabindex="-1"></a><span class="fu">check.packages</span>(packages)</span>
-<span id="cb76-15"><a href="Hints.html#cb76-15" tabindex="-1"></a></span>
-<span id="cb76-16"><a href="Hints.html#cb76-16" tabindex="-1"></a><span class="co"># Initialise whitebox tools executable</span></span>
-<span id="cb76-17"><a href="Hints.html#cb76-17" tabindex="-1"></a>whitebox<span class="sc">::</span><span class="fu">install_whitebox</span>()</span>
-<span id="cb76-18"><a href="Hints.html#cb76-18" tabindex="-1"></a></span>
-<span id="cb76-19"><a href="Hints.html#cb76-19" tabindex="-1"></a><span class="co"># Check whitebox is in the library and the version</span></span>
-<span id="cb76-20"><a href="Hints.html#cb76-20" tabindex="-1"></a><span class="fu">library</span>(whitebox)</span>
-<span id="cb76-21"><a href="Hints.html#cb76-21" tabindex="-1"></a><span class="fu">wbt_version</span>()</span>
-<span id="cb76-22"><a href="Hints.html#cb76-22" tabindex="-1"></a></span>
-<span id="cb76-23"><a href="Hints.html#cb76-23" tabindex="-1"></a><span class="co"># Sets file path for DEM</span></span>
-<span id="cb76-24"><a href="Hints.html#cb76-24" tabindex="-1"></a>dem <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m.tif&quot;</span>)</span>
-<span id="cb76-25"><a href="Hints.html#cb76-25" tabindex="-1"></a></span>
-<span id="cb76-26"><a href="Hints.html#cb76-26" tabindex="-1"></a><span class="co"># Prints the file path to the console window</span></span>
-<span id="cb76-27"><a href="Hints.html#cb76-27" tabindex="-1"></a>dem</span>
-<span id="cb76-28"><a href="Hints.html#cb76-28" tabindex="-1"></a></span>
-<span id="cb76-29"><a href="Hints.html#cb76-29" tabindex="-1"></a><span class="co"># Fills depressions</span></span>
-<span id="cb76-30"><a href="Hints.html#cb76-30" tabindex="-1"></a><span class="fu">wbt_fill_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span>
-<span id="cb76-31"><a href="Hints.html#cb76-31" tabindex="-1"></a></span>
-<span id="cb76-32"><a href="Hints.html#cb76-32" tabindex="-1"></a><span class="co"># Subtract function; the difference between the processed DEM (filled) and the original DEM</span></span>
-<span id="cb76-33"><a href="Hints.html#cb76-33" tabindex="-1"></a><span class="fu">wbt_subtract</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>), <span class="co"># Input file 1</span></span>
-<span id="cb76-34"><a href="Hints.html#cb76-34" tabindex="-1"></a>              dem, <span class="co"># Input file 2</span></span>
-<span id="cb76-35"><a href="Hints.html#cb76-35" tabindex="-1"></a>              <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill_difference.tif&quot;</span>)) <span class="co"># Output file</span></span>
-<span id="cb76-36"><a href="Hints.html#cb76-36" tabindex="-1"></a></span>
-<span id="cb76-37"><a href="Hints.html#cb76-37" tabindex="-1"></a><span class="co"># Loads raster using the raster and here packages</span></span>
-<span id="cb76-38"><a href="Hints.html#cb76-38" tabindex="-1"></a>eskdale_dem <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill_difference.tif&quot;</span>))</span>
-<span id="cb76-39"><a href="Hints.html#cb76-39" tabindex="-1"></a></span>
-<span id="cb76-40"><a href="Hints.html#cb76-40" tabindex="-1"></a><span class="co"># Find minimum and maximum values</span></span>
-<span id="cb76-41"><a href="Hints.html#cb76-41" tabindex="-1"></a>minimum_value <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="fu">values</span>(eskdale_dem)[<span class="fu">which</span>(<span class="fu">values</span>(eskdale_dem) <span class="sc">&gt;</span> <span class="dv">0</span>)])</span>
-<span id="cb76-42"><a href="Hints.html#cb76-42" tabindex="-1"></a>maximum_value <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="fu">values</span>(eskdale_dem))</span>
-<span id="cb76-43"><a href="Hints.html#cb76-43" tabindex="-1"></a></span>
-<span id="cb76-44"><a href="Hints.html#cb76-44" tabindex="-1"></a><span class="co"># Plots using ggplot</span></span>
-<span id="cb76-45"><a href="Hints.html#cb76-45" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb76-46"><a href="Hints.html#cb76-46" tabindex="-1"></a>  <span class="fu">layer_spatial</span>(eskdale_dem, <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">after_stat</span>(band1))) <span class="sc">+</span></span>
-<span id="cb76-47"><a href="Hints.html#cb76-47" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
-<span id="cb76-48"><a href="Hints.html#cb76-48" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Elevation difference (m)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Northing&quot;</span>) <span class="sc">+</span></span>
-<span id="cb76-49"><a href="Hints.html#cb76-49" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">type =</span> <span class="st">&quot;viridis&quot;</span>,  <span class="at">na.value =</span> <span class="cn">NA</span>, </span>
-<span id="cb76-50"><a href="Hints.html#cb76-50" tabindex="-1"></a>                        <span class="at">limits =</span> <span class="fu">c</span>(minimum_value, maximum_value))</span>
-<span id="cb76-51"><a href="Hints.html#cb76-51" tabindex="-1"></a>g</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="Hints.html#cb95-1" tabindex="-1"></a><span class="co"># FIRST, set your working directory manually</span></span>
+<span id="cb95-2"><a href="Hints.html#cb95-2" tabindex="-1"></a><span class="fu">setwd</span>(<span class="sc">---</span>YOUR PATH GOES HERE<span class="sc">---</span>) <span class="co"># e.g., &quot;C:/Users/Bob/Documents/GEOG70581&quot;</span></span>
+<span id="cb95-3"><a href="Hints.html#cb95-3" tabindex="-1"></a></span>
+<span id="cb95-4"><a href="Hints.html#cb95-4" tabindex="-1"></a><span class="co"># Function to check and install packages</span></span>
+<span id="cb95-5"><a href="Hints.html#cb95-5" tabindex="-1"></a>check.packages <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg){</span>
+<span id="cb95-6"><a href="Hints.html#cb95-6" tabindex="-1"></a>  new.pkg <span class="ot">&lt;-</span> pkg[<span class="sc">!</span>(pkg <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
+<span id="cb95-7"><a href="Hints.html#cb95-7" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(new.pkg)) </span>
+<span id="cb95-8"><a href="Hints.html#cb95-8" tabindex="-1"></a>    <span class="fu">install.packages</span>(new.pkg, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb95-9"><a href="Hints.html#cb95-9" tabindex="-1"></a>  <span class="fu">sapply</span>(pkg, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb95-10"><a href="Hints.html#cb95-10" tabindex="-1"></a>}</span>
+<span id="cb95-11"><a href="Hints.html#cb95-11" tabindex="-1"></a></span>
+<span id="cb95-12"><a href="Hints.html#cb95-12" tabindex="-1"></a><span class="co"># Checks and installs packages</span></span>
+<span id="cb95-13"><a href="Hints.html#cb95-13" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;here&quot;</span>, <span class="st">&quot;raster&quot;</span>, <span class="st">&quot;whitebox&quot;</span>, <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;ggspatial&quot;</span>)</span>
+<span id="cb95-14"><a href="Hints.html#cb95-14" tabindex="-1"></a><span class="fu">check.packages</span>(packages)</span>
+<span id="cb95-15"><a href="Hints.html#cb95-15" tabindex="-1"></a></span>
+<span id="cb95-16"><a href="Hints.html#cb95-16" tabindex="-1"></a><span class="co"># Initialise whitebox tools executable</span></span>
+<span id="cb95-17"><a href="Hints.html#cb95-17" tabindex="-1"></a>whitebox<span class="sc">::</span><span class="fu">install_whitebox</span>()</span>
+<span id="cb95-18"><a href="Hints.html#cb95-18" tabindex="-1"></a></span>
+<span id="cb95-19"><a href="Hints.html#cb95-19" tabindex="-1"></a><span class="co"># Check whitebox is in the library and the version</span></span>
+<span id="cb95-20"><a href="Hints.html#cb95-20" tabindex="-1"></a><span class="fu">library</span>(whitebox)</span>
+<span id="cb95-21"><a href="Hints.html#cb95-21" tabindex="-1"></a><span class="fu">wbt_version</span>()</span>
+<span id="cb95-22"><a href="Hints.html#cb95-22" tabindex="-1"></a></span>
+<span id="cb95-23"><a href="Hints.html#cb95-23" tabindex="-1"></a><span class="co"># Sets file path for DEM</span></span>
+<span id="cb95-24"><a href="Hints.html#cb95-24" tabindex="-1"></a>dem <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m.tif&quot;</span>)</span>
+<span id="cb95-25"><a href="Hints.html#cb95-25" tabindex="-1"></a></span>
+<span id="cb95-26"><a href="Hints.html#cb95-26" tabindex="-1"></a><span class="co"># Prints the file path to the console window</span></span>
+<span id="cb95-27"><a href="Hints.html#cb95-27" tabindex="-1"></a>dem</span>
+<span id="cb95-28"><a href="Hints.html#cb95-28" tabindex="-1"></a></span>
+<span id="cb95-29"><a href="Hints.html#cb95-29" tabindex="-1"></a><span class="co"># Fills depressions</span></span>
+<span id="cb95-30"><a href="Hints.html#cb95-30" tabindex="-1"></a><span class="fu">wbt_fill_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span>
+<span id="cb95-31"><a href="Hints.html#cb95-31" tabindex="-1"></a></span>
+<span id="cb95-32"><a href="Hints.html#cb95-32" tabindex="-1"></a><span class="co"># Subtract function; the difference between the processed DEM (filled) and the original DEM</span></span>
+<span id="cb95-33"><a href="Hints.html#cb95-33" tabindex="-1"></a><span class="fu">wbt_subtract</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>), <span class="co"># Input file 1</span></span>
+<span id="cb95-34"><a href="Hints.html#cb95-34" tabindex="-1"></a>              dem, <span class="co"># Input file 2</span></span>
+<span id="cb95-35"><a href="Hints.html#cb95-35" tabindex="-1"></a>              <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill_difference.tif&quot;</span>)) <span class="co"># Output file</span></span>
+<span id="cb95-36"><a href="Hints.html#cb95-36" tabindex="-1"></a></span>
+<span id="cb95-37"><a href="Hints.html#cb95-37" tabindex="-1"></a><span class="co"># Loads raster using the raster and here packages</span></span>
+<span id="cb95-38"><a href="Hints.html#cb95-38" tabindex="-1"></a>eskdale_dem <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill_difference.tif&quot;</span>))</span>
+<span id="cb95-39"><a href="Hints.html#cb95-39" tabindex="-1"></a></span>
+<span id="cb95-40"><a href="Hints.html#cb95-40" tabindex="-1"></a><span class="co"># Find minimum and maximum values</span></span>
+<span id="cb95-41"><a href="Hints.html#cb95-41" tabindex="-1"></a>minimum_value <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="fu">values</span>(eskdale_dem)[<span class="fu">which</span>(<span class="fu">values</span>(eskdale_dem) <span class="sc">&gt;</span> <span class="dv">0</span>)])</span>
+<span id="cb95-42"><a href="Hints.html#cb95-42" tabindex="-1"></a>maximum_value <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="fu">values</span>(eskdale_dem))</span>
+<span id="cb95-43"><a href="Hints.html#cb95-43" tabindex="-1"></a></span>
+<span id="cb95-44"><a href="Hints.html#cb95-44" tabindex="-1"></a><span class="co"># Plots using ggplot</span></span>
+<span id="cb95-45"><a href="Hints.html#cb95-45" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb95-46"><a href="Hints.html#cb95-46" tabindex="-1"></a>  <span class="fu">layer_spatial</span>(eskdale_dem, <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">after_stat</span>(band1))) <span class="sc">+</span></span>
+<span id="cb95-47"><a href="Hints.html#cb95-47" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb95-48"><a href="Hints.html#cb95-48" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Elevation difference (m)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Northing&quot;</span>) <span class="sc">+</span></span>
+<span id="cb95-49"><a href="Hints.html#cb95-49" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">type =</span> <span class="st">&quot;viridis&quot;</span>,  <span class="at">na.value =</span> <span class="cn">NA</span>, </span>
+<span id="cb95-50"><a href="Hints.html#cb95-50" tabindex="-1"></a>                        <span class="at">limits =</span> <span class="fu">c</span>(minimum_value, maximum_value))</span>
+<span id="cb95-51"><a href="Hints.html#cb95-51" tabindex="-1"></a>g</span></code></pre></div>
 <blockquote>
 <p><strong>If you want to continue</strong> with an existing directory/R Project, then you will need to set the working directory manually (<code>setwd()</code>) <strong>and</strong> set the origin for the <code>here</code> package, as shown below:</p>
 </blockquote>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="Hints.html#cb77-1" tabindex="-1"></a><span class="co"># Set the working directory manually</span></span>
-<span id="cb77-2"><a href="Hints.html#cb77-2" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;C:/Users/Bob/Documents/GEOG70581&quot;</span>) <span class="co"># UPDATE TO YOUR DIRECTORY</span></span>
-<span id="cb77-3"><a href="Hints.html#cb77-3" tabindex="-1"></a></span>
-<span id="cb77-4"><a href="Hints.html#cb77-4" tabindex="-1"></a><span class="co"># Manually set the origin for the &#39;here&#39; package</span></span>
-<span id="cb77-5"><a href="Hints.html#cb77-5" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">i_am</span>(<span class="st">&quot;practical-1-eskdale.R&quot;</span>) <span class="co"># UPDATE IF A DIFFERENT FILE NAME USED</span></span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="Hints.html#cb96-1" tabindex="-1"></a><span class="co"># Set the working directory manually</span></span>
+<span id="cb96-2"><a href="Hints.html#cb96-2" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;C:/Users/Bob/Documents/GEOG70581&quot;</span>) <span class="co"># UPDATE TO YOUR DIRECTORY</span></span>
+<span id="cb96-3"><a href="Hints.html#cb96-3" tabindex="-1"></a></span>
+<span id="cb96-4"><a href="Hints.html#cb96-4" tabindex="-1"></a><span class="co"># Manually set the origin for the &#39;here&#39; package</span></span>
+<span id="cb96-5"><a href="Hints.html#cb96-5" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">i_am</span>(<span class="st">&quot;practical-1-eskdale.R&quot;</span>) <span class="co"># UPDATE IF A DIFFERENT FILE NAME USED</span></span></code></pre></div>
 <p>The above solutions have been tested on a range of university-managed computers, working on both the <code>P:</code> and <code>C:</code> drive.</p>
 <p>For other installation issues, please contact me on my <code>@manchester</code> email. For other R issues, please post on the <a href="https://online.manchester.ac.uk/ultra/courses/_83595_1/cl/outline">forum</a>.</p>
 
 
+<div id="refs" class="references csl-bib-body">
+<div class="csl-entry">
+Alcalde, J. <em>et al.</em> (2017) <span>‘Framing bias: <span>The</span> effect of figure presentation on seismic interpretation’</span>, <em>Interpretation</em>, 5(4), pp. T591–T605. doi:<a href="https://doi.org/10.1190/INT-2017-0083.1">10.1190/INT-2017-0083.1</a>.
+</div>
+<div class="csl-entry">
+Crameri, F. (2018) <span>‘Geodynamic diagnostics, scientific visualisation and <span>StagLab</span> 3.0’</span>, <em>Geoscientific Model Development</em>, 11(6), pp. 2541–2562. doi:<a href="https://doi.org/10.5194/gmd-11-2541-2018">https://doi.org/10.5194/gmd-11-2541-2018</a>.
+</div>
+<div class="csl-entry">
+Fairfield, J. and Leymarie, P. (1991) <span>‘Drainage networks from grid digital elevation models’</span>, <em>Water Resources Research</em>, 27(5), pp. 709–717. doi:<a href="https://doi.org/10.1029/90WR02658">https://doi.org/10.1029/90WR02658</a>.
+</div>
+<div class="csl-entry">
+Freeman, T.G. (1991) <span>‘Calculating catchment area with divergent flow based on a regular grid’</span>, <em>Computers &amp; Geosciences</em>, 17(3), pp. 413–422. doi:<a href="https://doi.org/10.1016/0098-3004(91)90048-I">10.1016/0098-3004(91)90048-I</a>.
+</div>
+<div class="csl-entry">
+Geissbuehler, M. and Lasser, T. (2013) <span>‘How to display data by color schemes compatible with red-green color perception deficiencies’</span>, <em>Optics Express</em>, 21(8), pp. 9862–9874. doi:<a href="https://doi.org/10.1364/OE.21.009862">10.1364/OE.21.009862</a>.
+</div>
+<div class="csl-entry">
+Grabs, T.J. <em>et al.</em> (2010) <span>‘Calculating terrain indices along streams: <span>A</span> new method for separating stream sides’</span>, <em>Water Resources Research</em>, 46(12). doi:<a href="https://doi.org/10.1029/2010WR009296">https://doi.org/10.1029/2010WR009296</a>.
+</div>
+<div class="csl-entry">
+Hawkins, E. (2015) <span>‘Scrap rainbow colour scales’</span>, <em>Nature</em>, 519(7543), pp. 291–291. doi:<a href="https://doi.org/10.1038/519291d">10.1038/519291d</a>.
+</div>
+<div class="csl-entry">
+Jenson, S.K. and Domingue, J.O. (1988) <span>‘Extracting topographic structure from digital elevation data for geographic information-system analysis’</span>, <em>Photogrammetric Engineering and Remote Sensing</em>, 54(11), p. 15931600. Available at: <a href="http://pubs.er.usgs.gov/publication/70142175">http://pubs.er.usgs.gov/publication/70142175</a> (Accessed: 2 December 2020).
+</div>
+<div class="csl-entry">
+Levine, T. (2009) <span>‘Using colour in figures: Let’s agree to differ’</span>, <em>Traffic</em>, 10(3), pp. 344–347. doi:<a href="https://doi.org/10.1111/j.1600-0854.2008.00863.x">https://doi.org/10.1111/j.1600-0854.2008.00863.x</a>.
+</div>
+<div class="csl-entry">
+O’Callaghan, J.F. and Mark, D.M. (1984) <span>‘The extraction of drainage networks from digital elevation data’</span>, <em>Computer Vision, Graphics, and Image Processing</em>, 28(3), pp. 323–344. doi:<a href="https://doi.org/10.1016/S0734-189X(84)80011-0">10.1016/S0734-189X(84)80011-0</a>.
+</div>
+<div class="csl-entry">
+Quinn, P. <em>et al.</em> (1991) <span>‘The prediction of hillslope flow paths for distributed hydrological modelling using digital terrain models’</span>, <em>Hydrological Processes</em>, 5(1), pp. 59–79. doi:<a href="https://doi.org/10.1002/hyp.3360050106">https://doi.org/10.1002/hyp.3360050106</a>.
+</div>
+<div class="csl-entry">
+Quinn, P.F. <em>et al.</em> (1995) <span>‘The in(a/tan/β) index: <span>How</span> to calculate it and how to use it within the topmodel framework’</span>, <em>Hydrological Processes</em>, 9(2), pp. 161–182. doi:<a href="https://doi.org/10.1002/hyp.3360090204">https://doi.org/10.1002/hyp.3360090204</a>.
+</div>
+<div class="csl-entry">
+Seibert, J. and McGlynn, B.L. (2007) <span>‘A new triangular multiple flow direction algorithm for computing upslope areas from gridded digital elevation models’</span>, <em>Water Resources Research</em>, 43(4). doi:<a href="https://doi.org/10.1029/2006WR005128">https://doi.org/10.1029/2006WR005128</a>.
+</div>
+<div class="csl-entry">
+Tarboton, D.G. (1997) <span>‘A new method for the determination of flow directions and upslope areas in grid digital elevation models’</span>, <em>Water Resources Research</em>, 33(2), pp. 309–319. doi:<a href="https://doi.org/10.1029/96WR03137">https://doi.org/10.1029/96WR03137</a>.
+</div>
+</div>
 </div>
 </div>
 
@@ -491,7 +594,7 @@ Hydrological analysis in R<br />
           </div>
         </div>
       </div>
-<a href="Intro_to_R.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="Eskdale_flow_algorithms.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
