@@ -516,7 +516,7 @@ As with the introduction to R (Chapter 2 - 3), I will provide a code solution to
 
 This will be released prior to the Week 10 class. 
 
-```{r, echo = TRUE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
+```{r, echo = FALSE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
 
 # Solution to Practical 1 (Eskdale)
 # Author: matt-tomkins
@@ -524,14 +524,11 @@ This will be released prior to the Week 10 class.
 
 ```
 
-```{r, echo = FALSE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
 
 # Solution to Practical 1 (Eskdale)
 # Author: matt-tomkins
-# Date of upload: 24/11/2023
-
-# You may need to set your working directory here if working on a university-managed computer
-# setwd(---- DIRECTORY PATH HERE ----)
+# Date of upload: 26/11/2024
 
 # Function to check and install packages
 check.packages <- function(pkg){
