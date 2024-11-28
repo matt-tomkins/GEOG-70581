@@ -4,20 +4,20 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Mersey II - Set-up |  Hydrological analysis in R </title>
+  <title>Chapter 12 Assessment |  Hydrological analysis in R </title>
   <meta name="description" content="<br />
 Hydrological analysis in R<br />
 </center>" />
   <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Mersey II - Set-up |  Hydrological analysis in R " />
+  <meta property="og:title" content="Chapter 12 Assessment |  Hydrological analysis in R " />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Mersey II - Set-up |  Hydrological analysis in R " />
+  <meta name="twitter:title" content="Chapter 12 Assessment |  Hydrological analysis in R " />
   
   
   
@@ -30,8 +30,8 @@ Hydrological analysis in R<br />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="SecondPractical.html"/>
-<link rel="next" href="mersey_three.html"/>
+<link rel="prev" href="mersey_five.html"/>
+<link rel="next" href="Hints.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -347,227 +347,93 @@ Hydrological analysis in R<br />
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="Mersy_set_up" class="section level1 hasAnchor" number="8">
-<h1><span class="header-section-number">Chapter 8</span> Mersey II - Set-up<a href="Mersy_set_up.html#Mersy_set_up" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="practical-overview" class="section level2 hasAnchor" number="8.1">
-<h2><span class="header-section-number">8.1</span> Practical overview<a href="Mersy_set_up.html#practical-overview" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This practical is comprised of eight primary tasks, with three weeks of class time available (Weeks 10 - 12). Each of the steps is described in more detail in the remainder of this document. An outline of the key tasks is as follows:</p>
-<p><strong>Mersey III</strong> (Chapter 9): To complete in class in Week 10, and finish before the class in Week 11:</p>
+<div id="Assessment" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Chapter 12</span> Assessment<a href="Assessment.html#Assessment" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><strong>Title:</strong> Modelling River Hydrochemistry in the Mersey Basin, UK</p>
+<p><strong>Primary aims</strong></p>
+<p>In addition to the specific points outlined below, your report should:</p>
 <ul>
-<li>Task 1: Flow routing</li>
-<li>Task 2: Seed points</li>
-<li>Task 3: Watershed delineation</li>
+<li><strong>Explore</strong> the controls on river water quality in the Mersey Basin.</li>
+<li><strong>Develop</strong> empirical models which link river water quality (e.g. pH, Mg, Ca…) to catchment characteristics (e.g. land cover, topography, soils, bedrock).</li>
+<li><strong>Explain</strong> the trends shown in these models, with reference to relevant hydrological literature and hydrological-environmental processes.</li>
+<li><strong>Assess</strong> the quality of the models, with reference to key concepts covered in the course so far.</li>
 </ul>
-<p><strong>Mersey IV</strong> (Chapter 10): To complete in class in Week 11, and finish before the class in Week 12:</p>
+<p><strong>Word Limit:</strong> 1,500. The guidelines provided in the CO<sub>2</sub> flux practical, which outline what is and what is not included in the word count, as well penalties for exceeding the word count, also apply here.</p>
+<p><strong>Intended Learning Outcomes</strong>: see <a href="SecondPractical.html#SecondPractical">Mersey I - Introduction</a></p>
+<p><strong>Assessment Criteria</strong>: see the <a href="https://online.manchester.ac.uk/ultra/courses/_83595_1/cl/outline">Assessment Guidance</a> section on Blackboard, which includes a marking rubric and hints-and-tips presentation, as well as <a href="SecondPractical.html#SecondPractical">Mersey I - Introduction</a></p>
+<p><strong>Format:</strong> Report</p>
+<p><strong>Structure:</strong> Your report should be a coherent document, as opposed to a list of Q&amp;As as with the CO<sub>2</sub> flux practical. Within this, how you structure the report is your decision. However, there are certain items that must be included in the main body of the report. These are the regression equations (and associated information i.e. significance values, R<sup>2</sup> etc) for all ten water quality indicators.</p>
+<p>This could be presented as a table, perhaps in the format shown below:</p>
+<table>
+<colgroup>
+<col width="10%" />
+<col width="52%" />
+<col width="9%" />
+<col width="7%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Indicator</th>
+<th align="center">Equation</th>
+<th align="center">R<sup>2</sup></th>
+<th align="center"><em>p</em> value</th>
+<th align="center">Additional columns as required</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Zn</td>
+<td align="center"><span class="math inline">\(Zn = 11.31 + (0.43 \cdot Urban \: percent)\)</span></td>
+<td align="center">0.36</td>
+<td align="center">&lt; 0.01</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>As well as these important items, the following points should be covered in the report:</p>
+<ol style="list-style-type: decimal">
+<li><p>What are the relationships between water quality and catchment characteristics?</p></li>
+<li><p>Are there any consistent predictors of water quality?</p></li>
+<li><p>How good are the regression models?</p></li>
+<li><p>What sort of errors may occur during the derivation of catchment characteristics?</p></li>
+<li><p>How could these errors be minimised?</p></li>
+<li><p>How could you validate the models?</p></li>
+<li><p>Your regression models could be used to predict water quality in different catchments or different sub-basins of the Mersey. Can you think of any possible errors / limitations when making predictions of this type?</p></li>
+</ol>
+<p>Your report should not just be a reworked version of the practical instructions. <strong>Do not</strong> include a ‘methodology’ section at all, although you may wish to reflect on the methods used when considering the points above. You may find it useful to refer to the my learning essential resources on <a href="https://www.library.manchester.ac.uk/using-the-library/students/training-and-skills-support/my-learning-essentials/online-resources/">report writing</a>.</p>
+<p>In addition to the above, we would like you to produce three output maps to visualise the practical steps. These should be included in an Appendix at the back of the report (ideally two images per page). These should include the layers listed below but can include others to improve map design (e.g. an elevation background).</p>
 <ul>
-<li>Task 4: Reclassification of categorical datasets</li>
-<li>Task 5: Calculating surface derivatives</li>
-<li>Task 6: Extracting surface derivatives</li>
+<li>a map showing the flow accumulation network (<code>mersey_dem_flow_accumulation.tif</code>), using log-transformed values and specific contributing areas;</li>
+<li>a map showing the watersheds in the Mersey Basin (<code>mersey_watersheds.shp</code>), derived from the 70 modified Environment Agency seed points;</li>
+<li>a map showing the reclassified soils raster (<code>mersey_HOST_reclass.tif</code>).</li>
 </ul>
-<p><strong>Mersey V</strong> (Chapter 11): To complete in class in Week 12:</p>
-<ul>
-<li>Task 7: Model building i.e. relating river water quality to catchment metrics</li>
-<li>Task 8: Model evaluation</li>
-</ul>
-<p>Any class time remaining can be used to commence your practical report and ask any questions you may have before submission.</p>
-</div>
-<div id="install-programs-1" class="section level2 hasAnchor" number="8.2">
-<h2><span class="header-section-number">8.2</span> Install programs<a href="Mersy_set_up.html#install-programs-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>You should have already installed R and RStudio. If not, please refer to the instructions <a href="Installation.html#Installation">here</a> before continuing.</p>
-</div>
-<div id="download_data_v2" class="section level2 hasAnchor" number="8.3">
-<h2><span class="header-section-number">8.3</span> Download data<a href="Mersy_set_up.html#download_data_v2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The data for this practical have already been downloaded <a href="https://online.manchester.ac.uk/webapps/blackboard/content/listContentEditable.jsp?content_id=_13304460_1&amp;course_id=_68533_1">here</a> and can be found in <code>data/practical_2</code>. The directory structure is outlined in <a href="Installation.html#materials">Chapter 2</a>.</p>
-</div>
-<div id="practical-2-data" class="section level2 hasAnchor" number="8.4">
-<h2><span class="header-section-number">8.4</span> Data description<a href="Mersy_set_up.html#practical-2-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In Practical 1, we used a single raster file (<code>dem_10m.tif</code>) and visualised and assessed the outputs of a number of WBT functions (e.g. fill, breach, slope, pointer, flow accumulation).</p>
-<p>In Practical 2, we are going to use a much wider range of input data, all of which use the <strong>British National Grid</strong> (BNG), a <strong>projected</strong> coordinate Reference System [<a href="https://epsg.io/27700">EPSG:27700</a>]. Alongside a few supplementary files (which you may wish to use for plotting), the key data are described here:</p>
-<ul>
-<li><strong>Raster</strong> data (<code>.tif</code>):
-<ul>
-<li><code>mersey_dem_fill</code>
-<ul>
-<li>a filled digital elevation model of the Mersey Basin;</li>
-</ul></li>
-<li><code>mersey_rainfall</code>
-<ul>
-<li>a raster of precipitation values;</li>
-</ul></li>
-<li><code>mersey_bedrock</code>
-<ul>
-<li>a categorical raster of bedrock geology types;</li>
-</ul></li>
-<li><code>mersey_HOST</code>
-<ul>
-<li>a categorical raster of soil types (<strong>H</strong>ydrology <strong>o</strong>f <strong>S</strong>oil <strong>T</strong>ypes);</li>
-</ul></li>
-<li><code>mersey_LC</code>
-<ul>
-<li>a categorical raster of land cover classes, based on LCM2000 data;</li>
-</ul></li>
-</ul></li>
-<li><strong>Vector</strong> data (<code>.shp</code>):
-<ul>
-<li><code>mersey_EA_sites</code>
-<ul>
-<li>a point vector representing the locations of water quality monitoring stations. The attribute table contains a unique Environment Agency ID for each (<code>EA_ID</code>):</li>
-</ul></li>
-</ul></li>
-<li><strong>Tables</strong> (<code>.csv</code>):
-<ul>
-<li><code>mersey_EA_chemisty</code>
-<ul>
-<li>a comma-delimited table containing measurements for the following water quality indicators, as well as corresponding Environment Agency IDs:
-<ul>
-<li>pH: acidity/alkalinity;</li>
-<li>SSC: suspended solids concentration (mg l<sup>−1</sup>);</li>
-<li>Ca: calcium (mg l<sup>−1</sup>);</li>
-<li>Mg: magnesium (mg l<sup>−1</sup>);</li>
-<li>NH<sub>4</sub>: ammonium (mg-N l<sup>−1</sup>);</li>
-<li>NO<sub>3</sub>: nitrate (mg-N l<sup>−1</sup>);</li>
-<li>NO<sub>2</sub>: nitrite (mg-N l<sup>−1</sup>);</li>
-<li>TON: total oxidised nitrogen (mg-N l<sup>−1</sup>);</li>
-<li>PO<sub>4</sub>: phosphate (mg-P l<sup>−1</sup>);</li>
-<li>Zn: zinc (μg l<sup>−1</sup>).</li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul>
-<blockquote>
-<p>Read through the above descriptions carefully, making sure you understand the data we are using before moving on. We’ll be combining the Environment Agency measurements of water quality (e.g. pH, SSC, …) with spatial data representing the catchment (e.g. topography, rainfall, land cover, …) to investigate the controls on water quality across the Mersey Basin.</p>
-</blockquote>
-</div>
-<div id="open-rstudio-1" class="section level2 hasAnchor" number="8.5">
-<h2><span class="header-section-number">8.5</span> Open RStudio<a href="Mersy_set_up.html#open-rstudio-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<blockquote>
-<p>To begin, open RStudio.</p>
-</blockquote>
-</div>
-<div id="projects-and-scripts" class="section level2 hasAnchor" number="8.6">
-<h2><span class="header-section-number">8.6</span> Projects and Scripts<a href="Mersy_set_up.html#projects-and-scripts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="Existing_R_Projects" class="section level3 hasAnchor" number="8.6.1">
-<h3><span class="header-section-number">8.6.1</span> Using an existing R project<a href="Mersy_set_up.html#Existing_R_Projects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In Practical 2 (Eskdale), we utilised an <strong>R Project</strong> called GEOG70581. Your GEOG70581 directory should resemble the following:</p>
-<p align="center">
-<a name="Figure_scripts"></a><img src="figures/Practical-2/projects-and-scripts.png" style="width:20.0%" />
-</p>
-<p>Here we have sub-directories for the original data (<code>data</code>) and any spatial data files or images we might create (<code>output</code> and <code>images</code>). We can also see the <code>GEOG70581</code> <strong>project file</strong> and the <code>Practical-1-Eskdale</code> <strong>R script</strong>. The former is used to improve file access and to ensure our code is reproducible, self-contained and portable (see <a href="Eskdale_set_up.html#R_Projects">here</a> for a refresher). The latter contains all our code and comments relating to Practical 1.</p>
-<p>In this practical, we <strong>don’t</strong> need to create a new R project. We will simply use the existing R project as follows:</p>
-<blockquote>
-<p>Go to <strong>File</strong>, <strong>Open Project in New Session</strong>, and select the <strong>GEOG70581</strong> project file.</p>
-</blockquote>
-<p>If this has been successful, your console should have been updated to include the path to your project working directory as follows:</p>
-<p align="center">
-<img src="figures/Practical-2/Project_creation.png" style="width:50.0%" />
-</p>
-</div>
-<div id="creating-an-r-script-1" class="section level3 hasAnchor" number="8.6.2">
-<h3><span class="header-section-number">8.6.2</span> Creating an R script<a href="Mersy_set_up.html#creating-an-r-script-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>As shown in the file directory image above, we already have an R script for the Eskdale practical (<code>Practical-1-Eskdale</code>). As we are now working on a separate practical, with different input data and analytical techniques, it makes sense to create a new script to store the code and comments.</p>
-<p>To create a new script for Practical 2:</p>
-<blockquote>
-<p>Navigate to <strong>File</strong>, <strong>New File</strong> and <strong>R Script</strong>.</p>
-</blockquote>
-<p>To save the script:</p>
-<blockquote>
-<p>Navigate to <strong>File</strong> and <strong>Save As</strong>, and save it in the GEOG70581 folder with an appropriate name (e.g. <code>Practical-2-Mersey</code>)</p>
-</blockquote>
-<p>This should now resemble the following:</p>
-<p align="center">
-<img src="figures/Practical-2/Practical2_New_Script.png" style="width:50.0%" />
-</p>
-</div>
-</div>
-<div id="loading-packages-1" class="section level2 hasAnchor" number="8.7">
-<h2><span class="header-section-number">8.7</span> Loading packages<a href="Mersy_set_up.html#loading-packages-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>As we’re working in the same R project from Practical 1, we don’t need to re-install already utilised packages (e.g. <code>whitebox</code>).</p>
-<p>However, we will need to install some new packages and ensure that all packages are loaded into the R environment.</p>
-<blockquote>
-<p>Copy and paste the <code>check.packages</code> function into your new script, either from below or from <code>Practical-1-Eskdale.R</code>:</p>
-</blockquote>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="Mersy_set_up.html#cb91-1" tabindex="-1"></a><span class="co"># Function to check and install packages</span></span>
-<span id="cb91-2"><a href="Mersy_set_up.html#cb91-2" tabindex="-1"></a>check.packages <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg){</span>
-<span id="cb91-3"><a href="Mersy_set_up.html#cb91-3" tabindex="-1"></a>  new.pkg <span class="ot">&lt;-</span> pkg[<span class="sc">!</span>(pkg <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
-<span id="cb91-4"><a href="Mersy_set_up.html#cb91-4" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(new.pkg)) </span>
-<span id="cb91-5"><a href="Mersy_set_up.html#cb91-5" tabindex="-1"></a>    <span class="fu">install.packages</span>(new.pkg, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb91-6"><a href="Mersy_set_up.html#cb91-6" tabindex="-1"></a>  <span class="fu">sapply</span>(pkg, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb91-7"><a href="Mersy_set_up.html#cb91-7" tabindex="-1"></a>}</span></code></pre></div>
-<p><br/></p>
-<p>In <strong>Practical 1</strong>, we used the following packages:</p>
-<ul>
-<li><a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a>
-<ul>
-<li>for data visualisation;</li>
-</ul></li>
-<li><a href="https://here.r-lib.org/"><code>here</code></a>
-<ul>
-<li>to construct paths to your project files;</li>
-</ul></li>
-<li><a href="https://rspatial.org/raster/pkg/index.html"><code>raster</code></a>
-<ul>
-<li>for reading, analysing and writing of raster and vector data;</li>
-</ul></li>
-<li><a href="https://r-spatial.github.io/sf/"><code>sf</code></a>
-<ul>
-<li>for simple storage of vector data;</li>
-</ul></li>
-<li><a href="https://paleolimbot.github.io/ggspatial/articles/ggspatial.html"><code>ggspatial</code></a>
-<ul>
-<li>for simple plotting of raster data in ggplot2;</li>
-</ul></li>
-<li><a href="https://giswqs.github.io/whiteboxR/"><code>whitebox</code></a>
-<ul>
-<li>for geospatial analysis (a front-end for <a href="https://www.whiteboxgeo.com/manual/wbt_book/preface.html">WhiteboxTools</a>);</li>
-</ul></li>
-</ul>
-<p><br/></p>
-<p>In <strong>Practical 2</strong>, we are going to use a number of additional packages:</p>
-<ul>
-<li><a href="https://cran.r-project.org/web/packages/data.table/index.html"><code>data.table</code></a>
-<ul>
-<li>for easy manipulation of tables;</li>
-</ul></li>
-<li><a href="https://cran.r-project.org/web/packages/dplyr/index.html"><code>dplyr</code></a>
-<ul>
-<li>for easy manipulation of data frames;</li>
-</ul></li>
-<li><a href="https://forcats.tidyverse.org/"><code>forcats</code></a>
-<ul>
-<li>for working with categorical variables (factors);</li>
-</ul></li>
-<li><a href="https://rdrr.io/cran/MASS/"><code>MASS</code></a>
-<ul>
-<li>for statistical analysis, based upon Venables and Ripley (2002) “<strong>M</strong>odern <strong>A</strong>pplied <strong>S</strong>tatistics with <strong>S</strong>”;</li>
-</ul></li>
-<li><a href="https://cran.r-project.org/web/packages/units/index.html"><code>units</code></a>
-<ul>
-<li>for calculation of measurement units;</li>
-</ul></li>
-<li><a href="https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html"><code>corrplot</code></a> and <a href="https://cran.r-project.org/web/packages/olsrr/vignettes/intro.html"><code>olsrr</code></a>
-<ul>
-<li>for correlation and regression analysis.</li>
-</ul></li>
-</ul>
-<p><br/></p>
-<p>To load new packages, you can either use the <code>install.packages()</code> and <code>library()</code> functions or more simply, add package names to the packages vector, as shown here:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="Mersy_set_up.html#cb92-1" tabindex="-1"></a><span class="co"># Checks and installs packages</span></span>
-<span id="cb92-2"><a href="Mersy_set_up.html#cb92-2" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;ggspatial&quot;</span>, <span class="st">&quot;here&quot;</span>, <span class="st">&quot;raster&quot;</span>, <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;whitebox&quot;</span>, <span class="co"># Practical-1</span></span>
-<span id="cb92-3"><a href="Mersy_set_up.html#cb92-3" tabindex="-1"></a>              <span class="st">&quot;data.table&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;forcats&quot;</span>, <span class="st">&quot;MASS&quot;</span>, <span class="st">&quot;units&quot;</span>) <span class="co"># Practical-2 </span></span>
-<span id="cb92-4"><a href="Mersy_set_up.html#cb92-4" tabindex="-1"></a><span class="fu">check.packages</span>(packages)</span></code></pre></div>
-<blockquote>
-<p>Use the above code to install and load the required packages.</p>
-</blockquote>
+<p><strong>Map design</strong>: Normally, all maps should have a scale bar and north arrow. However, because we’re using projected data (British National Grid) and because <code>ggpsatial</code> automatically adds informative latitude/longitude axes to your plots, you <strong>don’t</strong> need to include either of these elements here. For reference, these can be added using <code>annotation_scale()</code> and <code>annotation_north_arrow()</code> respectively. Maps should, however, include informative legends, titles and axis labels, and should use colour-blind friendly and perceptually-uniform palettes.</p>
+<p><strong>Referencing</strong>: The report should be fully referenced, using the Harvard style. You should not just adapt the text from the Rothwell et al. (<a href="https://doi.org/10.1016/j.jhydrol.2010.10.015">2010</a>) paper, substituting key values for the data here. This will result in a high similarity index and you may face a penalty due to poor academic practice. You must write up the report in your own words, making sure you paraphrase the ideas of others, and reference fully throughout.</p>
+<p><strong>Submission deadline</strong>: 09/01/2025, 14:00</p>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="SecondPractical.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="mersey_three.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="mersey_five.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="Hints.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
