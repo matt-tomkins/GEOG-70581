@@ -51,7 +51,7 @@ For this practical, we'll be calculating the pointer file using the simplest D8 
 
 > Using your experience from Practical 1, run the `wbt_d8_pointer` function, using `mersey_dem_fill.tif` as the input file and saving with an appropriate output name (`mersey_dem_D8_pointer.tif`) and to the correct directory (`output/practical_2`). **Remember**: use the **here** package for accessing file locations.
 
-> Load the raster into R using the **raster** package and plot using **ggplot2** and **ggspatial**. Your output should resemble the following, where each cell value has been reclassified according to the D8 flow. 
+> Load the raster into R using the **raster** package and plot using **ggplot2** and **ggspatial**. Your output should resemble the following, where each cell value has been reclassified according to the D8 flow. *Note* that the map below is using a continuous scale - a categorical scale would be more appropriate for pointer data, see [last week!]({#Eskdale_flow_algorithms})
 
 ```{r, echo = FALSE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
 

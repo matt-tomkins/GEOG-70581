@@ -353,6 +353,11 @@ Hydrological analysis in R<br />
 <div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="mersey_five.html#cb139-1" tabindex="-1"></a><span class="co"># Reads completed file from csv</span></span>
 <span id="cb139-2"><a href="mersey_five.html#cb139-2" tabindex="-1"></a>watersheds_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_watersheds_ea.csv&quot;</span>))</span></code></pre></div>
 <p>If you have any other variables in your R environment, these can be removed using <code>rm()</code>.</p>
+<blockquote>
+<p>If you are working on a personal computer using <strong>macOS</strong>, please also run the following code to remove the troublesome catchment #35 from the subsequent analysis. See my email sent on 12-12-2024 for an explanation! Note that for Mac users your regression coefficients (etc) will now vary slightly from those listed below.</p>
+</blockquote>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="mersey_five.html#cb140-1" tabindex="-1"></a><span class="co"># Remove catchment #35 using subset()</span></span>
+<span id="cb140-2"><a href="mersey_five.html#cb140-2" tabindex="-1"></a>watersheds_df <span class="ot">&lt;-</span> <span class="fu">subset</span>(watersheds_df, Seed_Point_ID <span class="sc">!=</span> <span class="st">&quot;35&quot;</span>)</span></code></pre></div>
 <div id="task-7-model-building" class="section level2 hasAnchor" number="11.1">
 <h2><span class="header-section-number">11.1</span> Task 7: Model building<a href="mersey_five.html#task-7-model-building" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This data frame should contain the following 10 water quality indicators for each watershed:</p>
@@ -381,10 +386,10 @@ Hydrological analysis in R<br />
 <p>Remember, you don’t have to run every code block shown below, but you can do so if it would help your understanding.</p>
 </blockquote>
 <p>The simplest way to run a linear regression in R is to use the <code>lm()</code> function, an example of which is shown below, storing the output in <code>model</code> (you can change this name to reflect the input variables):</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="mersey_five.html#cb140-1" tabindex="-1"></a><span class="co"># Fits a linear model</span></span>
-<span id="cb140-2"><a href="mersey_five.html#cb140-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> Zn <span class="sc">~</span> average_elevation, <span class="at">data =</span> watersheds_df)</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="mersey_five.html#cb141-1" tabindex="-1"></a><span class="co"># Fits a linear model</span></span>
+<span id="cb141-2"><a href="mersey_five.html#cb141-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> Zn <span class="sc">~</span> average_elevation, <span class="at">data =</span> watersheds_df)</span></code></pre></div>
 <p>We have defined the data frame being used (<code>data = watersheds_df</code>) and the input variables from that data frame. This is achieved by including their column names, shown here:</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="mersey_five.html#cb141-1" tabindex="-1"></a><span class="fu">colnames</span>(watersheds_df)</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="mersey_five.html#cb142-1" tabindex="-1"></a><span class="fu">colnames</span>(watersheds_df)</span></code></pre></div>
 <pre><code>##  [1] &quot;Seed_Point_ID&quot;          &quot;FID&quot;                    &quot;EA_ID&quot;                 
 ##  [4] &quot;Group&quot;                  &quot;Ph&quot;                     &quot;SSC&quot;                   
 ##  [7] &quot;Ca&quot;                     &quot;Mg&quot;                     &quot;NH4&quot;                   
@@ -401,10 +406,10 @@ Hydrological analysis in R<br />
 ## [40] &quot;Gleyed_percent&quot;         &quot;Peats_percent&quot;          &quot;Sands_and_Muds_percent&quot;
 ## [43] &quot;Limestone_percent&quot;      &quot;Coal_percent&quot;</code></pre>
 <p>Input variables in the <strong>formula</strong> are separated by <code>~</code>, where the variable to the left is the dependent variable (<code>Zn</code>) and the variable to the right is an independent variable (<code>average_elevation</code>). We can, however, include <strong>multiple</strong> independent variables to perform multiple linear regression. This is achieved as follows, where additional independent variables are separated by <code>+</code>:</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="mersey_five.html#cb143-1" tabindex="-1"></a><span class="co"># Fits a linear model</span></span>
-<span id="cb143-2"><a href="mersey_five.html#cb143-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> Zn <span class="sc">~</span> average_elevation <span class="sc">+</span> Grassland_percent, <span class="at">data =</span> watersheds_df)</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="mersey_five.html#cb144-1" tabindex="-1"></a><span class="co"># Fits a linear model</span></span>
+<span id="cb144-2"><a href="mersey_five.html#cb144-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> Zn <span class="sc">~</span> average_elevation <span class="sc">+</span> Grassland_percent, <span class="at">data =</span> watersheds_df)</span></code></pre></div>
 <p>We can then assess the model output using the <code>summary</code> function:</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="mersey_five.html#cb144-1" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="mersey_five.html#cb145-1" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Zn ~ average_elevation + Grassland_percent, data = watersheds_df)
@@ -426,10 +431,10 @@ Hydrological analysis in R<br />
 ## F-statistic: 10.67 on 2 and 67 DF,  p-value: 9.512e-05</code></pre>
 <p>For this set of independent variables, we have an R<sup>2</sup> of 0.24 (<code>Multiple R-squared: 0.2415</code>) and a model <em>p</em> value of &lt; 0.01 (<code>p-value: 9.512e-05</code>).</p>
 <p>The model coefficients for the independent variables are described above, where <code>*</code> denotes <em>p</em> values &lt; 0.05 (95% probability) and <code>**</code> denotes <em>p</em> values &lt; 0.01 (99% probability). As the coefficients are very small, they are presented in scientific notation. These can be converted to numeric (non-scientific) format using the following code:</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="mersey_five.html#cb146-1" tabindex="-1"></a><span class="fu">format</span>(<span class="sc">-</span><span class="fl">2.096e-04</span>, <span class="at">scientific =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="mersey_five.html#cb147-1" tabindex="-1"></a><span class="fu">format</span>(<span class="sc">-</span><span class="fl">2.096e-04</span>, <span class="at">scientific =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;-0.0002096&quot;</code></pre>
 <p>We can supply multiple values to the <code>format</code> function by creating a vector:</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="mersey_five.html#cb148-1" tabindex="-1"></a><span class="fu">format</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.096e-04</span>, <span class="sc">-</span><span class="fl">8.358e-06</span>, ...) , <span class="at">scientific =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="mersey_five.html#cb149-1" tabindex="-1"></a><span class="fu">format</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.096e-04</span>, <span class="sc">-</span><span class="fl">8.358e-06</span>, ...) , <span class="at">scientific =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <blockquote>
 <p>When you’re happy you understanding the formatting of the <code>lm</code> function, move on to the next section.</p>
 </blockquote>
@@ -447,11 +452,11 @@ Hydrological analysis in R<br />
 <blockquote>
 <p>Run the code above to create <code>training</code> and <code>testing</code> dataframes:</p>
 </blockquote>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="mersey_five.html#cb149-1" tabindex="-1"></a><span class="co"># Extracts training dataset, comprising 50 observations (~70%)</span></span>
-<span id="cb149-2"><a href="mersey_five.html#cb149-2" tabindex="-1"></a>training <span class="ot">&lt;-</span> <span class="fu">subset</span>(watersheds_df, Group <span class="sc">==</span> <span class="st">&quot;Training&quot;</span>)</span>
-<span id="cb149-3"><a href="mersey_five.html#cb149-3" tabindex="-1"></a></span>
-<span id="cb149-4"><a href="mersey_five.html#cb149-4" tabindex="-1"></a><span class="co"># Extracts training dataset, comprising 20 observations (~30%)</span></span>
-<span id="cb149-5"><a href="mersey_five.html#cb149-5" tabindex="-1"></a>testing <span class="ot">&lt;-</span> <span class="fu">subset</span>(watersheds_df, Group <span class="sc">==</span> <span class="st">&quot;Testing&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="mersey_five.html#cb150-1" tabindex="-1"></a><span class="co"># Extracts training dataset, comprising 50 observations (~70%)</span></span>
+<span id="cb150-2"><a href="mersey_five.html#cb150-2" tabindex="-1"></a>training <span class="ot">&lt;-</span> <span class="fu">subset</span>(watersheds_df, Group <span class="sc">==</span> <span class="st">&quot;Training&quot;</span>)</span>
+<span id="cb150-3"><a href="mersey_five.html#cb150-3" tabindex="-1"></a></span>
+<span id="cb150-4"><a href="mersey_five.html#cb150-4" tabindex="-1"></a><span class="co"># Extracts training dataset, comprising 20 observations (~30%)</span></span>
+<span id="cb150-5"><a href="mersey_five.html#cb150-5" tabindex="-1"></a>testing <span class="ot">&lt;-</span> <span class="fu">subset</span>(watersheds_df, Group <span class="sc">==</span> <span class="st">&quot;Testing&quot;</span>) </span></code></pre></div>
 <blockquote>
 <p>Before you move on to the next section, can you think of any limitations of this approach?</p>
 </blockquote>
@@ -466,11 +471,11 @@ Hydrological analysis in R<br />
 <p>For our analysis, we are going to use a relatively simple method known as <strong>Stepwise Regression</strong>, implemented in the <code>MASS</code> package. This works by including <strong>all</strong> the relevant independent variables in the analysis and then selecting those with the greatest explanatory power.</p>
 <p>However, we don’t necessarily want to test <em>all</em> model variables. We would probably want to exclude the categorical counts (e.g. <code>Arable</code>, <code>Heath</code>, …) as these factors are already represented by the normalised variables (e.g. <code>Arable_percent</code>, <code>Heath_percent</code>, …), as well as any IDs or geometry variables (<code>area</code>). In general, we are only interested in testing the continuous derivatives (column names starting with <code>average_</code>) and the normalised categorical derivatives (column names ending in <code>_percent</code>).</p>
 <p>Rather than typing out the columns of interest manually, we are going to use the <code>select</code> function from the <code>dplyr</code> package to do so:</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="mersey_five.html#cb150-1" tabindex="-1"></a><span class="co"># Creates a vector of column names, including only those which contain &quot;average&quot; or &quot;percent&quot;</span></span>
-<span id="cb150-2"><a href="mersey_five.html#cb150-2" tabindex="-1"></a>factors <span class="ot">&lt;-</span> <span class="fu">colnames</span>(watersheds_df <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">contains</span>(<span class="fu">c</span>(<span class="st">&quot;average&quot;</span>, <span class="st">&quot;percent&quot;</span>))))</span>
-<span id="cb150-3"><a href="mersey_five.html#cb150-3" tabindex="-1"></a></span>
-<span id="cb150-4"><a href="mersey_five.html#cb150-4" tabindex="-1"></a><span class="co"># Prints to console</span></span>
-<span id="cb150-5"><a href="mersey_five.html#cb150-5" tabindex="-1"></a>factors</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="mersey_five.html#cb151-1" tabindex="-1"></a><span class="co"># Creates a vector of column names, including only those which contain &quot;average&quot; or &quot;percent&quot;</span></span>
+<span id="cb151-2"><a href="mersey_five.html#cb151-2" tabindex="-1"></a>factors <span class="ot">&lt;-</span> <span class="fu">colnames</span>(watersheds_df <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="fu">contains</span>(<span class="fu">c</span>(<span class="st">&quot;average&quot;</span>, <span class="st">&quot;percent&quot;</span>))))</span>
+<span id="cb151-3"><a href="mersey_five.html#cb151-3" tabindex="-1"></a></span>
+<span id="cb151-4"><a href="mersey_five.html#cb151-4" tabindex="-1"></a><span class="co"># Prints to console</span></span>
+<span id="cb151-5"><a href="mersey_five.html#cb151-5" tabindex="-1"></a>factors</span></code></pre></div>
 <pre><code>##  [1] &quot;average_elevation&quot;      &quot;average_rainfall&quot;       &quot;average_slope&quot;         
 ##  [4] &quot;average_aspect&quot;         &quot;Arable_percent&quot;         &quot;Heath_percent&quot;         
 ##  [7] &quot;Grassland_percent&quot;      &quot;Urban_percent&quot;          &quot;Wetland_percent&quot;       
@@ -481,7 +486,7 @@ Hydrological analysis in R<br />
 <p>Run the above code. <strong>Note</strong>, the formatting of <code>dplyr::select</code> may be slightly confusing but it is necessary because there is also a <code>select</code> function in the <code>MASS</code> package. Here, we are telling R to use <code>select</code> from <code>dplyr</code>.</p>
 </blockquote>
 <p>Using this vector of column names, we are going to create a new data frame (called <code>variables</code>) containing only the independent variables of interest. <strong>Crucially</strong>, this is only for the <code>training</code> dataset:</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="mersey_five.html#cb152-1" tabindex="-1"></a>variables <span class="ot">&lt;-</span> training[factors]</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="mersey_five.html#cb153-1" tabindex="-1"></a>variables <span class="ot">&lt;-</span> training[factors]</span></code></pre></div>
 <blockquote>
 <p>Run the above code and use <code>head()</code> to inspect the results.</p>
 </blockquote>
@@ -490,13 +495,13 @@ Hydrological analysis in R<br />
 <h3><span class="header-section-number">11.1.4</span> Testing for collinearity<a href="mersey_five.html#testing-for-collinearity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Before we use this dataset to investigate the controls on water quality, it is a good idea to test for <strong>collinearity</strong>, which occurs when independent variables in our regression model are highly correlated to each other. This is a common problem in regression analysis. If you are interested in the factors which influence <span class="math inline">\(A\)</span>, you might perform a regression involving <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span>. However, if <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> are highly correlated (as <span class="math inline">\(B\)</span> increases, so too does <span class="math inline">\(C\)</span>), how do you know which is important?</p>
 <p>To test for this, we can create a <strong>correlation matrix</strong>, using the <code>cor</code> function available in the base R <code>stats</code> package, and then visualise this using the <code>corrplot()</code> function from the <code>corrplot</code> package:</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="mersey_five.html#cb153-1" tabindex="-1"></a><span class="co"># Create correlation matrix</span></span>
-<span id="cb153-2"><a href="mersey_five.html#cb153-2" tabindex="-1"></a>cor_matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(variables)</span>
-<span id="cb153-3"><a href="mersey_five.html#cb153-3" tabindex="-1"></a></span>
-<span id="cb153-4"><a href="mersey_five.html#cb153-4" tabindex="-1"></a><span class="co"># Visualise using corrplot()</span></span>
-<span id="cb153-5"><a href="mersey_five.html#cb153-5" tabindex="-1"></a><span class="fu">corrplot</span>(cor_matrix, <span class="at">method =</span> <span class="st">&#39;circle&#39;</span>, </span>
-<span id="cb153-6"><a href="mersey_five.html#cb153-6" tabindex="-1"></a>         <span class="at">type =</span> <span class="st">&#39;lower&#39;</span>, <span class="at">diag =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-153-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="mersey_five.html#cb154-1" tabindex="-1"></a><span class="co"># Create correlation matrix</span></span>
+<span id="cb154-2"><a href="mersey_five.html#cb154-2" tabindex="-1"></a>cor_matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(variables)</span>
+<span id="cb154-3"><a href="mersey_five.html#cb154-3" tabindex="-1"></a></span>
+<span id="cb154-4"><a href="mersey_five.html#cb154-4" tabindex="-1"></a><span class="co"># Visualise using corrplot()</span></span>
+<span id="cb154-5"><a href="mersey_five.html#cb154-5" tabindex="-1"></a><span class="fu">corrplot</span>(cor_matrix, <span class="at">method =</span> <span class="st">&#39;circle&#39;</span>, </span>
+<span id="cb154-6"><a href="mersey_five.html#cb154-6" tabindex="-1"></a>         <span class="at">type =</span> <span class="st">&#39;lower&#39;</span>, <span class="at">diag =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-154-1.png" width="672" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>You can modify the design to show additional information, such as using <code>method = 'number'</code> to include the correlation values (1 = perfect positive correlation, 0 = no correlation, -1 = perfect negative correlation). Further information available <a href="https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html">here</a></p>
 </blockquote>
@@ -507,8 +512,8 @@ Hydrological analysis in R<br />
 </blockquote>
 <p>We can also see evidence of high collinearity between <code>Coal</code> and <code>Sands_and_Muds</code>, which reflects their spatial distribution across the basin. You could visualise this by plotting the <a href="https://emm-concepts.com/mersey_four.html#bedrock-geology">bedrock raster</a> you created in Mersey IV. As there are only three bedrock categories, and limestone is rare, high coverage of <code>Coal</code> has to be associated with low coverage of <code>Sands_and_Muds</code> (and vice versa).</p>
 <p>Based on the above reasoning, we can be justified in <strong>removing variables</strong> with evidence of collinearity (<code>average_slope</code>, <code>average_elevation</code>, <code>average_rainfall</code>, <code>Coal</code>). We can achieve this using the <code>select</code> function from the <code>dplyr</code> package, which we used previously, but modified slightly to exclude variables, rather than retain them:</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="mersey_five.html#cb154-1" tabindex="-1"></a><span class="co"># Remove colinear variables</span></span>
-<span id="cb154-2"><a href="mersey_five.html#cb154-2" tabindex="-1"></a>variables <span class="ot">&lt;-</span> variables <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="fu">contains</span>(<span class="fu">c</span>(<span class="st">&quot;slope&quot;</span>, <span class="st">&quot;rainfall&quot;</span>, <span class="st">&quot;elevation&quot;</span>, <span class="st">&quot;Coal&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="mersey_five.html#cb155-1" tabindex="-1"></a><span class="co"># Remove colinear variables</span></span>
+<span id="cb155-2"><a href="mersey_five.html#cb155-2" tabindex="-1"></a>variables <span class="ot">&lt;-</span> variables <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="fu">contains</span>(<span class="fu">c</span>(<span class="st">&quot;slope&quot;</span>, <span class="st">&quot;rainfall&quot;</span>, <span class="st">&quot;elevation&quot;</span>, <span class="st">&quot;Coal&quot;</span>)))</span></code></pre></div>
 <blockquote>
 <p>Run the above to remove collinear variables. You may want to produce a new correlation matrix (<code>corrplot()</code>) to investigate the effects.</p>
 </blockquote>
@@ -516,11 +521,11 @@ Hydrological analysis in R<br />
 <div id="stepwise-regression" class="section level3 hasAnchor" number="11.1.5">
 <h3><span class="header-section-number">11.1.5</span> Stepwise regression<a href="mersey_five.html#stepwise-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>With our new <em>filtered</em> dataset, we can now combine this data frame (<code>cbind</code>) with a dependent variable of interest; we will use zinc (Zn) as an example. Our new dataframe will be called <code>model_df</code> as it contains all the variables (dependent + independent) required for multiple linear regression. <strong>Note</strong>: by default, <code>cbind</code> will (somewhat unhelpfully) rename input column names e.g. <code>Zn</code> will become <code>watersheds_df$Zn</code>. The code below specifies the new column name as Zn (<code>Zn =</code>) for readability:</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="mersey_five.html#cb155-1" tabindex="-1"></a><span class="co"># Column bind the Zn column with the independent variables from the training dataset</span></span>
-<span id="cb155-2"><a href="mersey_five.html#cb155-2" tabindex="-1"></a>model_df <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">Zn =</span> training<span class="sc">$</span>Zn, variables)</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="mersey_five.html#cb156-1" tabindex="-1"></a><span class="co"># Column bind the Zn column with the independent variables from the training dataset</span></span>
+<span id="cb156-2"><a href="mersey_five.html#cb156-2" tabindex="-1"></a>model_df <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">Zn =</span> training<span class="sc">$</span>Zn, variables)</span></code></pre></div>
 <p>When complete, we can then run a new model, making sure to update the data frame used (<code>data = model_df</code>) and updating the formula to <code>Zn ~ .</code>. This denotes that <em>all</em> other data frame columns will be included as independent variables (a useful time saver!):</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="mersey_five.html#cb156-1" tabindex="-1"></a><span class="co"># Fits a linear model, including all other columns (~.) as independent variables</span></span>
-<span id="cb156-2"><a href="mersey_five.html#cb156-2" tabindex="-1"></a>zn_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> Zn <span class="sc">~</span> ., <span class="at">data =</span> model_df)</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="mersey_five.html#cb157-1" tabindex="-1"></a><span class="co"># Fits a linear model, including all other columns (~.) as independent variables</span></span>
+<span id="cb157-2"><a href="mersey_five.html#cb157-2" tabindex="-1"></a>zn_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> Zn <span class="sc">~</span> ., <span class="at">data =</span> model_df)</span></code></pre></div>
 <blockquote>
 <p>When you’re happy you understand the <code>lm</code> syntax, combine the two dataframes, run the linear model and inspect the output using <code>summary()</code>. This should resemble the following:</p>
 </blockquote>
@@ -556,12 +561,12 @@ Hydrological analysis in R<br />
 <p>Our overall model fit (R<sup>2</sup>) is <span class="math inline">\(0.5143\)</span> which indicates that the independent variables explain ~51% of variability in the dependent variable. Our model is statistically significant, here defined as having a <em>p</em> value &lt; 0.05. When values are very small (e.g. <em>p</em> &lt; 0.0005), we would typically present these as a discrete value e.g. <em>p</em> &lt; 0.05, &lt; 0.01, &lt; 0.001. Generally, we only use models in which we can be 95% confident or higher (i.e. significance level of 0.05 or less).</p>
 <p>However, it is important to note that <em>p</em> values should be not be considered in isolation and need to be interpreted carefully. For statistical reviews of using and interpreting <em>p</em> values, see <span class="citation">Goodman (<a href="#ref-goodman_dirty_2008">2008</a>)</span> and <span class="citation">Andrade (<a href="#ref-andrade_p_2019">2019</a>)</span>. For a broader overview, see the <em>Nature</em> commentary by <span class="citation">Amrhein <em>et al.</em> (<a href="#ref-amrhein_scientists_2019">2019</a>)</span>, as well as a summary article by <a href="https://www.vox.com/latest-news/2019/3/22/18275913/statistical-significance-p-values-explained">Vox</a>.</p>
 <p>In addition, while the model is significant, it contains <strong>all the independent variables</strong>, some of which probably have no effect on Zinc concentrations. We can filter out unimportant variables using the <code>step.AIC</code> function from the <code>MASS</code> library:</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="mersey_five.html#cb158-1" tabindex="-1"></a><span class="co"># Stepwise regression model</span></span>
-<span id="cb158-2"><a href="mersey_five.html#cb158-2" tabindex="-1"></a>step.model <span class="ot">&lt;-</span> <span class="fu">stepAIC</span>(zn_model, <span class="co"># Input linear model</span></span>
-<span id="cb158-3"><a href="mersey_five.html#cb158-3" tabindex="-1"></a>                      <span class="at">direction =</span> <span class="st">&quot;both&quot;</span>,</span>
-<span id="cb158-4"><a href="mersey_five.html#cb158-4" tabindex="-1"></a>                      <span class="at">trace =</span> <span class="cn">FALSE</span>, <span class="co"># Print out intermediate results? </span></span>
-<span id="cb158-5"><a href="mersey_five.html#cb158-5" tabindex="-1"></a>                      <span class="at">scope =</span> <span class="cn">NULL</span>, </span>
-<span id="cb158-6"><a href="mersey_five.html#cb158-6" tabindex="-1"></a>                      <span class="at">k =</span> <span class="dv">2</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="mersey_five.html#cb159-1" tabindex="-1"></a><span class="co"># Stepwise regression model</span></span>
+<span id="cb159-2"><a href="mersey_five.html#cb159-2" tabindex="-1"></a>step.model <span class="ot">&lt;-</span> <span class="fu">stepAIC</span>(zn_model, <span class="co"># Input linear model</span></span>
+<span id="cb159-3"><a href="mersey_five.html#cb159-3" tabindex="-1"></a>                      <span class="at">direction =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb159-4"><a href="mersey_five.html#cb159-4" tabindex="-1"></a>                      <span class="at">trace =</span> <span class="cn">FALSE</span>, <span class="co"># Print out intermediate results? </span></span>
+<span id="cb159-5"><a href="mersey_five.html#cb159-5" tabindex="-1"></a>                      <span class="at">scope =</span> <span class="cn">NULL</span>, </span>
+<span id="cb159-6"><a href="mersey_five.html#cb159-6" tabindex="-1"></a>                      <span class="at">k =</span> <span class="dv">2</span>) </span></code></pre></div>
 <p>Helpfully, this takes the output of the <code>lm</code> model (<code>zn_model</code>) with no need for any additional data wrangling. The following are important parameters:</p>
 <ul>
 <li><code>direction = "both"</code>:
@@ -615,13 +620,13 @@ Hydrological analysis in R<br />
 <li><p>Use a more strict criteria for determining significance i.e., shifting from AIC (<code>k = 2</code>) to BIC (<code>k = log(n)</code>)</p></li>
 <li><p>Updating the model <code>scope</code>, which defines the range of models examined in the stepwise search. Rather than, for example, building from an <em>empty</em> model and progressively adding variables (i.e., <code>direction = "forward"</code>), we can give stepwise a headstart by performing the stepwise search <em>from an initial model</em>.</p></li>
 </ol>
-<p>To achieve this, we are going to use the <code>ols_step_all_possible()</code> function from the <code>oslrr</code> package, which takes a linear model and fits all possible regressions. For a model with three independent variables (<span class="math inline">\(A, B, C\)</span>), this would include <strong>six</strong> models: <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> alone, <span class="math inline">\(A+B\)</span>, <span class="math inline">\(A+C\)</span> and <span class="math inline">\(B+C\)</span>. As the number of independent variables (<span class="math inline">\(k\)</span>) increases, the number of possible combinations increases by a factor of <span class="math inline">\(2^k\)</span>. For our reduced dataset, this is equivalent to <span class="math inline">\(2^{12}\)</span> which is <span class="math inline">\(4096\)</span> possible models!</p>
+<p>To achieve this, we are going to use the <code>ols_step_all_possible()</code> function from the <code>olsrr</code> package, which takes a linear model and fits all possible regressions. For a model with three independent variables (<span class="math inline">\(A, B, C\)</span>), this would include <strong>six</strong> models: <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> alone, <span class="math inline">\(A+B\)</span>, <span class="math inline">\(A+C\)</span> and <span class="math inline">\(B+C\)</span>. As the number of independent variables (<span class="math inline">\(k\)</span>) increases, the number of possible combinations increases by a factor of <span class="math inline">\(2^k\)</span>. For our reduced dataset, this is equivalent to <span class="math inline">\(2^{12}\)</span> which is <span class="math inline">\(4096\)</span> possible models!</p>
 <p>In this case, we are going to use <code>ols_step_all_possible()</code> to perform <strong>univariable</strong> linear regression, which is achieved by setting <code>max_order = 1</code>, and utilising the <strong>full model</strong> in the calculation:</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="mersey_five.html#cb160-1" tabindex="-1"></a><span class="co"># Perform univariable regression for all independent variables</span></span>
-<span id="cb160-2"><a href="mersey_five.html#cb160-2" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">ols_step_all_possible</span>(zn_model, <span class="at">max_order =</span> <span class="dv">1</span>)</span>
-<span id="cb160-3"><a href="mersey_five.html#cb160-3" tabindex="-1"></a></span>
-<span id="cb160-4"><a href="mersey_five.html#cb160-4" tabindex="-1"></a><span class="co"># Print summary</span></span>
-<span id="cb160-5"><a href="mersey_five.html#cb160-5" tabindex="-1"></a><span class="fu">print</span>(k)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="mersey_five.html#cb161-1" tabindex="-1"></a><span class="co"># Perform univariable regression for all independent variables</span></span>
+<span id="cb161-2"><a href="mersey_five.html#cb161-2" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">ols_step_all_possible</span>(zn_model, <span class="at">max_order =</span> <span class="dv">1</span>)</span>
+<span id="cb161-3"><a href="mersey_five.html#cb161-3" tabindex="-1"></a></span>
+<span id="cb161-4"><a href="mersey_five.html#cb161-4" tabindex="-1"></a><span class="co"># Print summary</span></span>
+<span id="cb161-5"><a href="mersey_five.html#cb161-5" tabindex="-1"></a><span class="fu">print</span>(k)</span></code></pre></div>
 <pre><code>##    Index N             Predictors    R-Square Adj. R-Square  Mallow&#39;s Cp
 ## 5      1 1          Urban_percent 0.364259451  0.3510148559  0.293201616
 ## 4      2 1      Grassland_percent 0.174429003  0.1572296068  0.083658529
@@ -641,17 +646,17 @@ Hydrological analysis in R<br />
 <p>Based on the above approach, we can evaluate the relative performance of the different models using R<sup>2</sup>, adjusted R<sup>2</sup>, and other criteria. The best performing univariable model utilises <code>Urban_percent</code>, with an R<sup>2</sup> of <span class="math inline">\(~0.36\)</span>. As the best explanatory variable, we are going to use this as the starting point for our new stepwise search.</p>
 <p>The code below is very similar to our previous use of stepwise, but this time includes the more strict <strong>BIC</strong> threshold for determining significance (<code>k = log(n)</code>), and utilises the <code>scope</code> argument to define the start point for the search (<code>lower = ~Urban_percent</code>) and the potential end point (<code>upper = ~zn_model</code>).</p>
 <p><strong>To summarise</strong>, we are starting with a simple univariable model, in which zinc concentrations are solely related to the urban land cover percentage, and then progressively searching through other combinations of models, adding or removing variables (<code>direction = "both"</code>), to find the best outcome. The quality of models is assessed by BIC, which evaluates model fit while penalising unnecessary variables. The upper limit is the model containing <strong>all</strong> the variables (<code>upper = ~zn_model</code>), and while this would have the highest model fit (R<sup>2</sup>), it is likely to have unnecessary variables and would be excluded based on BIC.</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="mersey_five.html#cb162-1" tabindex="-1"></a><span class="co"># Updated stepwise regression model, using BIC and scope</span></span>
-<span id="cb162-2"><a href="mersey_five.html#cb162-2" tabindex="-1"></a>step.model <span class="ot">&lt;-</span> <span class="fu">stepAIC</span>(zn_model, <span class="co"># Input linear model</span></span>
-<span id="cb162-3"><a href="mersey_five.html#cb162-3" tabindex="-1"></a>                      <span class="at">direction =</span> <span class="st">&quot;both&quot;</span>,</span>
-<span id="cb162-4"><a href="mersey_five.html#cb162-4" tabindex="-1"></a>                      <span class="at">trace =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb162-5"><a href="mersey_five.html#cb162-5" tabindex="-1"></a>                      <span class="co"># Utilising the scope argument</span></span>
-<span id="cb162-6"><a href="mersey_five.html#cb162-6" tabindex="-1"></a>                      <span class="at">scope =</span> <span class="fu">list</span>(<span class="at">lower =</span> <span class="sc">~</span>Urban_percent, <span class="at">upper =</span> zn_model), </span>
-<span id="cb162-7"><a href="mersey_five.html#cb162-7" tabindex="-1"></a>                      <span class="co"># Utilising the more strict BIC [k = log(n)], rather than AIC [k = 2]</span></span>
-<span id="cb162-8"><a href="mersey_five.html#cb162-8" tabindex="-1"></a>                      <span class="at">k =</span> <span class="fu">log</span>(<span class="fu">nrow</span>(training)))</span>
-<span id="cb162-9"><a href="mersey_five.html#cb162-9" tabindex="-1"></a></span>
-<span id="cb162-10"><a href="mersey_five.html#cb162-10" tabindex="-1"></a><span class="co"># Print summary</span></span>
-<span id="cb162-11"><a href="mersey_five.html#cb162-11" tabindex="-1"></a><span class="fu">summary</span>(step.model)</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="mersey_five.html#cb163-1" tabindex="-1"></a><span class="co"># Updated stepwise regression model, using BIC and scope</span></span>
+<span id="cb163-2"><a href="mersey_five.html#cb163-2" tabindex="-1"></a>step.model <span class="ot">&lt;-</span> <span class="fu">stepAIC</span>(zn_model, <span class="co"># Input linear model</span></span>
+<span id="cb163-3"><a href="mersey_five.html#cb163-3" tabindex="-1"></a>                      <span class="at">direction =</span> <span class="st">&quot;both&quot;</span>,</span>
+<span id="cb163-4"><a href="mersey_five.html#cb163-4" tabindex="-1"></a>                      <span class="at">trace =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb163-5"><a href="mersey_five.html#cb163-5" tabindex="-1"></a>                      <span class="co"># Utilising the scope argument</span></span>
+<span id="cb163-6"><a href="mersey_five.html#cb163-6" tabindex="-1"></a>                      <span class="at">scope =</span> <span class="fu">list</span>(<span class="at">lower =</span> <span class="sc">~</span>Urban_percent, <span class="at">upper =</span> zn_model), </span>
+<span id="cb163-7"><a href="mersey_five.html#cb163-7" tabindex="-1"></a>                      <span class="co"># Utilising the more strict BIC [k = log(n)], rather than AIC [k = 2]</span></span>
+<span id="cb163-8"><a href="mersey_five.html#cb163-8" tabindex="-1"></a>                      <span class="at">k =</span> <span class="fu">log</span>(<span class="fu">nrow</span>(training)))</span>
+<span id="cb163-9"><a href="mersey_five.html#cb163-9" tabindex="-1"></a></span>
+<span id="cb163-10"><a href="mersey_five.html#cb163-10" tabindex="-1"></a><span class="co"># Print summary</span></span>
+<span id="cb163-11"><a href="mersey_five.html#cb163-11" tabindex="-1"></a><span class="fu">summary</span>(step.model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Zn ~ Urban_percent, data = model_df)
@@ -705,8 +710,8 @@ Zn = 11.31 + (0.43 \cdot Urban \: percent)
 <h2><span class="header-section-number">11.2</span> Task 8: Model evaluation<a href="mersey_five.html#task-8-model-evaluation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Having created a statistical model, it is necessary to evaluate its performance. Comparison plots of <strong>measured vs. modelled (or predicted) values</strong> are one common way to assess model quality, alongside other metrics such as root-mean-square error (RMSE), normalised root-mean-square-error (nRMSE), Q-Q plots, or histograms of model residuals. You may want to explore some of these for the assessment.</p>
 <p>To calculate modelled values, we can use the <code>predict()</code> function, taking the model variable (<code>step.model</code>) as the input, rather than re-creating the above equation manually in code, and using our <code>testing</code> dataframe for the <code>newdata</code> argument:</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="mersey_five.html#cb164-1" tabindex="-1"></a><span class="co"># Predict Zn values based upon stepwise model, saving to testing dataframe</span></span>
-<span id="cb164-2"><a href="mersey_five.html#cb164-2" tabindex="-1"></a>testing<span class="sc">$</span>predicted_Zn <span class="ot">&lt;-</span> <span class="fu">predict</span>(step.model, <span class="at">newdata =</span> testing)</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="mersey_five.html#cb165-1" tabindex="-1"></a><span class="co"># Predict Zn values based upon stepwise model, saving to testing dataframe</span></span>
+<span id="cb165-2"><a href="mersey_five.html#cb165-2" tabindex="-1"></a>testing<span class="sc">$</span>predicted_Zn <span class="ot">&lt;-</span> <span class="fu">predict</span>(step.model, <span class="at">newdata =</span> testing)</span></code></pre></div>
 <p>If<code>new_data</code> is not defined, the <code>predict</code> function uses the fitted values for prediction i.e. the training data used to construct the model (see <a href="https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/predict.lm">here</a>).</p>
 <blockquote>
 <p>Run the above code block to predict Zn concentrations in the testing dataset, based on the regression model produced from the training dataset.</p>
@@ -716,35 +721,35 @@ Zn = 11.31 + (0.43 \cdot Urban \: percent)
 RMSE = \sqrt{mean(measured\:values - modelled\:values)^2}
 \]</span></p>
 <p>Plots of measured vs. modelled values (as well as Q-Q plots and histograms) can be created in ggplot2. Here is an example:</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="mersey_five.html#cb165-1" tabindex="-1"></a><span class="co"># ggplot of measured vs. modelled (predicted) NO2 values</span></span>
-<span id="cb165-2"><a href="mersey_five.html#cb165-2" tabindex="-1"></a>zn_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> testing, <span class="fu">aes</span>(<span class="at">x =</span> Zn, <span class="at">y =</span> predicted_Zn)) <span class="sc">+</span></span>
-<span id="cb165-3"><a href="mersey_five.html#cb165-3" tabindex="-1"></a>  <span class="co"># Adding a linear regression (&quot;lm&quot;), removing standard error bars (se = FALSE)</span></span>
-<span id="cb165-4"><a href="mersey_five.html#cb165-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">colour=</span><span class="st">&quot;#FF953C&quot;</span>) <span class="sc">+</span></span>
-<span id="cb165-5"><a href="mersey_five.html#cb165-5" tabindex="-1"></a>  <span class="co"># Adds a 1:1 line for comparison</span></span>
-<span id="cb165-6"><a href="mersey_five.html#cb165-6" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
-<span id="cb165-7"><a href="mersey_five.html#cb165-7" tabindex="-1"></a>  <span class="co"># Adds the point data, modifying the shape, size, colour and fill</span></span>
-<span id="cb165-8"><a href="mersey_five.html#cb165-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">colour =</span> <span class="st">&quot;white&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;#5695FF&quot;</span>, <span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
-<span id="cb165-9"><a href="mersey_five.html#cb165-9" tabindex="-1"></a>  <span class="co"># Setting the theme and aspect ratio</span></span>
-<span id="cb165-10"><a href="mersey_five.html#cb165-10" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb165-11"><a href="mersey_five.html#cb165-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb165-12"><a href="mersey_five.html#cb165-12" tabindex="-1"></a>  <span class="co"># Axis limits</span></span>
-<span id="cb165-13"><a href="mersey_five.html#cb165-13" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">60</span>)) <span class="sc">+</span></span>
-<span id="cb165-14"><a href="mersey_five.html#cb165-14" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">60</span>)) <span class="sc">+</span></span>
-<span id="cb165-15"><a href="mersey_five.html#cb165-15" tabindex="-1"></a>  <span class="co"># Add axis labels and a title</span></span>
-<span id="cb165-16"><a href="mersey_five.html#cb165-16" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> Measured<span class="sc">~</span>Zn, <span class="at">y =</span> Modelled<span class="sc">~</span>Zn, </span>
-<span id="cb165-17"><a href="mersey_five.html#cb165-17" tabindex="-1"></a>       <span class="at">title =</span> Plot<span class="sc">~</span>of<span class="sc">~</span>measured<span class="sc">~</span>vs.<span class="sc">~</span>modelled<span class="sc">~</span>Zn<span class="sc">~</span>values)</span>
-<span id="cb165-18"><a href="mersey_five.html#cb165-18" tabindex="-1"></a></span>
-<span id="cb165-19"><a href="mersey_five.html#cb165-19" tabindex="-1"></a>zn_plot</span></code></pre></div>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-163-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="mersey_five.html#cb166-1" tabindex="-1"></a><span class="co"># ggplot of measured vs. modelled (predicted) NO2 values</span></span>
+<span id="cb166-2"><a href="mersey_five.html#cb166-2" tabindex="-1"></a>zn_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> testing, <span class="fu">aes</span>(<span class="at">x =</span> Zn, <span class="at">y =</span> predicted_Zn)) <span class="sc">+</span></span>
+<span id="cb166-3"><a href="mersey_five.html#cb166-3" tabindex="-1"></a>  <span class="co"># Adding a linear regression (&quot;lm&quot;), removing standard error bars (se = FALSE)</span></span>
+<span id="cb166-4"><a href="mersey_five.html#cb166-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">colour=</span><span class="st">&quot;#FF953C&quot;</span>) <span class="sc">+</span></span>
+<span id="cb166-5"><a href="mersey_five.html#cb166-5" tabindex="-1"></a>  <span class="co"># Adds a 1:1 line for comparison</span></span>
+<span id="cb166-6"><a href="mersey_five.html#cb166-6" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb166-7"><a href="mersey_five.html#cb166-7" tabindex="-1"></a>  <span class="co"># Adds the point data, modifying the shape, size, colour and fill</span></span>
+<span id="cb166-8"><a href="mersey_five.html#cb166-8" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">colour =</span> <span class="st">&quot;white&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;#5695FF&quot;</span>, <span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
+<span id="cb166-9"><a href="mersey_five.html#cb166-9" tabindex="-1"></a>  <span class="co"># Setting the theme and aspect ratio</span></span>
+<span id="cb166-10"><a href="mersey_five.html#cb166-10" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb166-11"><a href="mersey_five.html#cb166-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb166-12"><a href="mersey_five.html#cb166-12" tabindex="-1"></a>  <span class="co"># Axis limits</span></span>
+<span id="cb166-13"><a href="mersey_five.html#cb166-13" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">60</span>)) <span class="sc">+</span></span>
+<span id="cb166-14"><a href="mersey_five.html#cb166-14" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">60</span>)) <span class="sc">+</span></span>
+<span id="cb166-15"><a href="mersey_five.html#cb166-15" tabindex="-1"></a>  <span class="co"># Add axis labels and a title</span></span>
+<span id="cb166-16"><a href="mersey_five.html#cb166-16" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> Measured<span class="sc">~</span>Zn, <span class="at">y =</span> Modelled<span class="sc">~</span>Zn, </span>
+<span id="cb166-17"><a href="mersey_five.html#cb166-17" tabindex="-1"></a>       <span class="at">title =</span> Plot<span class="sc">~</span>of<span class="sc">~</span>measured<span class="sc">~</span>vs.<span class="sc">~</span>modelled<span class="sc">~</span>Zn<span class="sc">~</span>values)</span>
+<span id="cb166-18"><a href="mersey_five.html#cb166-18" tabindex="-1"></a></span>
+<span id="cb166-19"><a href="mersey_five.html#cb166-19" tabindex="-1"></a>zn_plot</span></code></pre></div>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-164-1.png" width="672" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>Does the regression line match the 1:1 line? Is there any evidence of under- or over-prediction? Are there any outliers? What <strong>types</strong> of errors can you identify?</p>
 </blockquote>
 <p>You could also assess this relationship statistically, using linear regression:</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="mersey_five.html#cb166-1" tabindex="-1"></a><span class="co"># Linear regression of measured vs. modelled Zn values</span></span>
-<span id="cb166-2"><a href="mersey_five.html#cb166-2" tabindex="-1"></a>prediction_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> Zn <span class="sc">~</span> predicted_Zn, <span class="at">data =</span> testing)</span>
-<span id="cb166-3"><a href="mersey_five.html#cb166-3" tabindex="-1"></a></span>
-<span id="cb166-4"><a href="mersey_five.html#cb166-4" tabindex="-1"></a><span class="co"># Print summary statistics</span></span>
-<span id="cb166-5"><a href="mersey_five.html#cb166-5" tabindex="-1"></a><span class="fu">summary</span>(prediction_model)</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="mersey_five.html#cb167-1" tabindex="-1"></a><span class="co"># Linear regression of measured vs. modelled Zn values</span></span>
+<span id="cb167-2"><a href="mersey_five.html#cb167-2" tabindex="-1"></a>prediction_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> Zn <span class="sc">~</span> predicted_Zn, <span class="at">data =</span> testing)</span>
+<span id="cb167-3"><a href="mersey_five.html#cb167-3" tabindex="-1"></a></span>
+<span id="cb167-4"><a href="mersey_five.html#cb167-4" tabindex="-1"></a><span class="co"># Print summary statistics</span></span>
+<span id="cb167-5"><a href="mersey_five.html#cb167-5" tabindex="-1"></a><span class="fu">summary</span>(prediction_model)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Zn ~ predicted_Zn, data = testing)

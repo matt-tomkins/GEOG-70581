@@ -531,7 +531,7 @@ watersheds_ea <- cbind(watersheds_ea, land_cover_classes, soils_classes, bedrock
 
 In the **final** step of the practical, we are going to normalise our categorical derivatives i.e. to establish the percentage cover of each category, rather than a raw count of raster cells. The former is more informative as it allows us to compare watersheds of differing sizes. 
 
-This is a relatively simple calculation and involves dividing the total number of raster cells in each watershed (stored in `$count`) by the number corresponding to each category (stored in `$Arable`, `$Heath`, `$Grassland`, ...), before multiplying by 100. 
+This is a relatively simple calculation and involves dividing the number corresponding to each category (stored in `$Arable`, `$Heath`, `$Grassland`, ...) by the total number of raster cells in each watershed (stored in `$count`), before multiplying by 100. 
 
 However, we have **12** categorical variables to normalise. We *could* type out each calculation manually e.g.
 

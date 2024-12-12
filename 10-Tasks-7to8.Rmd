@@ -10,6 +10,15 @@ watersheds_df <- read.csv(here("output", "practical_2", "mersey_watersheds_ea.cs
 
 If you have any other variables in your R environment, these can be removed using `rm()`. 
 
+> If you are working on a personal computer using **macOS**, please also run the following code to remove the troublesome catchment #35 from the subsequent analysis. See my email sent on 12-12-2024 for an explanation! Note that for Mac users your regression coefficients (etc) will now vary slightly from those listed below. 
+
+```{r, echo = TRUE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
+# Remove catchment #35 using subset()
+watersheds_df <- subset(watersheds_df, Seed_Point_ID != "35")
+
+```
+
+
 ## Task 7: Model building
 
 This data frame should contain the following 10 water quality indicators for each watershed:
@@ -237,7 +246,7 @@ As you can see above, we have now produced a more parsimonious model, but there 
 
 2. Updating the model `scope`, which defines the range of models examined in the stepwise search. Rather than, for example, building from an *empty* model and progressively adding variables (i.e., `direction = "forward"`), we can give stepwise a headstart by performing the stepwise search *from an initial model*. 
 
-To achieve this, we are going to use the `ols_step_all_possible()` function from the `oslrr` package, which takes a linear model and fits all possible regressions. For a model with three independent variables ($A, B, C$), this would include **six** models: $A$, $B$ and $C$ alone, $A+B$, $A+C$ and $B+C$. As the number of independent variables ($k$) increases, the number of possible combinations increases by a factor of $2^k$. For our reduced dataset, this is equivalent to $2^{12}$ which is $4096$ possible models! 
+To achieve this, we are going to use the `ols_step_all_possible()` function from the `olsrr` package, which takes a linear model and fits all possible regressions. For a model with three independent variables ($A, B, C$), this would include **six** models: $A$, $B$ and $C$ alone, $A+B$, $A+C$ and $B+C$. As the number of independent variables ($k$) increases, the number of possible combinations increases by a factor of $2^k$. For our reduced dataset, this is equivalent to $2^{12}$ which is $4096$ possible models! 
 
 In this case, we are going to use `ols_step_all_possible()` to perform **univariable** linear regression, which is achieved by setting `max_order = 1`, and utilising the **full model** in the calculation:
 
