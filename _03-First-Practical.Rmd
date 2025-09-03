@@ -1,0 +1,28 @@
+# Eskdale I - Introduction {#FirstPractical}
+
+It should be evident from the lectures that digital elevation models (DEMs) have a great deal of potential for modelling surface water hydrology and related phenomena in drainage basins. Much of this work is based on the assumptions that (1) we can trace the path that water will take from any point in an elevation grid to a basin outlet, and (2) the discharge of water from a particular location is directly related to its catchment area. This is a fairly reasonable assumption in most drainage basins. 
+
+## Overview
+
+In this lab exercise, we will use a DEM of the Upper Eskdale catchment to model flow-related phenomena, and will have gained experience in:
+
+- DEM pre-processing; 
+- Calculating flow parameters (e.g. pointers and contributing areas);
+- Comparing flow algorithms. 
+
+**Make sure to save your R script regularly!**
+
+![Upper Eskdale catchment](figures/Practical-1/cover.png)
+
+### Intended learning outcomes
+
+In [Chapter 5](#Eskdale_set_up), we'll download the data and install the required programs and packages, and will combine these in [Chapter 6](#Eskdale_flow_algorithms) to: 
+
+- gain experience with [WhiteboxTools](https://jblindsay.github.io/wbt_book/intro.html), a specialist GIS specifically designed for digital terrain analysis (DTA); 
+- become familiar with some of the most commonly used flow algorithms used to simulate overland flow from digital elevation models (DEMs); 
+- consider the utility of DTA for routing applications; 
+
+### Assessment
+
+This practical is formative and as such will not count towards your final mark for GEOG 70581. However, you are encouraged to complete the practical to the best of your ability as the skills developed here will be used throughout the assessed Practical 2. As with the [Introduction to R practical](#formative_solution_one), I will upload a code solution after the class so you can check your working. 
+

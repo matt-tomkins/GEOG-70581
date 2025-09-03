@@ -12,10 +12,10 @@ bibliography: EMMR_Practicals.bib
 csl: harvard-cite-them-right.csl
 link-citations: true
 ---
+
 # Introduction
 
-![](figures/course-logo.png) 
-
+![](figures/course-logo.png)
 
 ```{r, eval = TRUE, echo = FALSE, warning = FALSE, message = FALSE, results='hide'}
 
@@ -36,42 +36,44 @@ check.packages(packages)
 # Clean the docs folder
 clean_book(clean = getOption("bookdown.clean_book", TRUE))
 
+# Code to render
+# bookdown::render_book("index.Rmd", "bookdown::gitbook", output_dir = "docs")
+
 ```
+
 ## Practical outline
 
-In this set of practicals, we'll be using [R](https://www.r-project.org/), [RStudio](https://www.rstudio.com/) and [WhiteboxTools](https://jblindsay.github.io/wbt_book/intro.html) to perform hydrological analysis. 
+In this set of practicals, we'll be using [R](https://www.r-project.org/), [RStudio](https://www.rstudio.com/) and [WhiteboxTools](https://jblindsay.github.io/wbt_book/intro.html) to perform hydrological analysis.
 
-In [Chapters 2](#Installation) and [3](#R), we'll install and get to grips with the required programs. 
+In [Chapters 2](#Installation) and [3](#R), we'll install and get to grips with the required programs.
 
-In Practical 1 (Chapters 4 - 6), which uses data for the **Eskdale** watershed, we'll introduce you to some of the key approaches, including DEM pre-processing, calculating flow parameters and comparing flow algorithms. 
+In Practical 1 (Chapters 4 - 6), which uses data for the **Eskdale** watershed, we'll introduce you to some of the key approaches, including DEM pre-processing, calculating flow parameters and comparing flow algorithms.
 
-In Practical 2 (Chapters 7 - 11),  we'll utilise these approaches to investigate the water quality of the **Mersey** Basin. This forms the basis for your assessment. 
+In Practical 2 (Chapters 7 - 9), we'll utilise these approaches to investigate the water quality of the **Mersey** Basin. This forms the basis for your assessment.
 
-**Note**: the relevant chapters will be made available as we progress through the semester, hence why Practicals 2 and the assessment information are not currently visible. Practical 2 will be released prior to the Week 10 lecture.
+**Note**: the relevant chapters will be made available as we progress through the semester. Prior to the semester, only the introductory page will be visible. 
 
 ## Objectives
 
 After completing these practicals, you will:
 
-- have gained experience with new tools (e.g. R, RStudio, WhiteboxTools);
-- become familiar with hydrological approaches used to simulate overland flow from digital elevation models (DEMs);
-- utilised statistical analysis to investigate the relationships between water quality indicators and catchment characteristics; 
-- improved your understanding of the hydrological processes influencing water quality.
+-   have gained experience with new tools (e.g. R, RStudio, WhiteboxTools);
+-   become familiar with hydrological approaches used to simulate overland flow from digital elevation models (DEMs);
+-   utilised statistical analysis to investigate the relationships between water quality indicators and catchment characteristics;
+-   improved your understanding of the hydrological processes influencing water quality.
 
 ## Schedule
 
 These practicals will be completed across Weeks 8 to 12 as follows:
 
-- Week 8: 
-  - Introductory lecture (~1 hr)
-  - Complete Chapters 1 - 3: An introduction to R (~2 hr)
-- Weeks 9:
-  - Lecture on Hydrological and Geomorphological models (~1 hr)
-  - Complete Chapters 4 - 6: **Eskdale** practical (~2 hr, plus independent work)
-- Weeks 10 - 12:
-  - Lecture on Water Quality Modelling (~1 hr)
-  - Complete Chapters 7 - 11: **Mersey** practical (~6 hr, plus independent work)
-  
-  
-The assessment, based upon Practical 2 (**Mersey**), is due 09/01/2025 (14:00). 
+-   Week 8:
+    -   Introductory lecture (~1 hr)
+    -   Complete Chapters 1 - 3: An introduction to R (~2 hr)
+-   Weeks 9:
+    -   Lecture on Hydrological and Geomorphological models (~1 hr)
+    -   Complete Chapters 4 - 6: **Eskdale** practical (~2 hr, plus independent work)
+-   Weeks 10 - 12:
+    -   Lecture on Water Quality Modelling (~1 hr)
+    -   Complete Chapters 7 - 10: **Mersey** practical (~6 hr, plus independent work)
 
+The assessment, based upon Practical 2 (**Mersey**), is detailed in full on **Canvas** [here](https://canvas.manchester.ac.uk/courses/40307/pages/assessment-guidance?module_item_id=2105254).

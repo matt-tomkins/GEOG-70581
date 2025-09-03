@@ -1,0 +1,6 @@
+
+## Errors using R projects
+
+For the **2023/24** iteration of this course, there were a few issues using `whitebox` functions. It took a while to solve, but I eventually traced the problem back to how R projects and the `here` package are working (i.e., not working) on university-managed computers.
+
+For **2024/25**, these issues should now have been fixed, but if you're having issues using `whitebox` functions, or are struggling to access files using `here`, please see the [solution](#project_repair) on the Hints page.
