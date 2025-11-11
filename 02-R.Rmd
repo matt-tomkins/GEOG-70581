@@ -13,7 +13,8 @@ check.packages <- function(pkg){
 packages <- c("ggplot2", "ggspatial", "here", "raster", "sf", "whitebox", # Practical-1
               "data.table", "dplyr", "forcats", "MASS", "units", "patchwork", "leaflet",
               "gridExtra", "rgdal", # Practical-2
-              "corrplot", "olsrr") # Added 13-08-2024
+              "corrplot", "olsrr", # Added 13-08-2024
+              "glmnet") # Added 16-09-2025 
 check.packages(packages)
 ```
 

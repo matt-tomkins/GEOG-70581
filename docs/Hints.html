@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 12 Handy Hints |  Hydrological analysis in R </title>
+  <meta name="description" content="<br />
+Hydrological analysis in R<br />
+</center>" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 12 Handy Hints |  Hydrological analysis in R " />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 12 Handy Hints |  Hydrological analysis in R " />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="Assessment.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#practical-outline"><i class="fa fa-check"></i><b>1.1</b> Practical outline</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#objectives"><i class="fa fa-check"></i><b>1.2</b> Objectives</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>1.3</b> Schedule</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="Installation.html"><a href="Installation.html"><i class="fa fa-check"></i><b>2</b> Installation</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="Installation.html"><a href="Installation.html#r"><i class="fa fa-check"></i><b>2.1</b> R</a></li>
+<li class="chapter" data-level="2.2" data-path="Installation.html"><a href="Installation.html#r-studio"><i class="fa fa-check"></i><b>2.2</b> R Studio</a></li>
+<li class="chapter" data-level="2.3" data-path="Installation.html"><a href="Installation.html#materials"><i class="fa fa-check"></i><b>2.3</b> Course materials</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="Intro_to_R.html"><a href="Intro_to_R.html"><i class="fa fa-check"></i><b>3</b> A (brief) introduction to R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#overview"><i class="fa fa-check"></i><b>3.1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#what-is-r"><i class="fa fa-check"></i><b>3.1.1</b> What is R?</a></li>
+<li class="chapter" data-level="3.1.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#why_code"><i class="fa fa-check"></i><b>3.1.2</b> Why code?</a></li>
+<li class="chapter" data-level="3.1.3" data-path="Intro_to_R.html"><a href="Intro_to_R.html#a-quick-note-on-the-practicals"><i class="fa fa-check"></i><b>3.1.3</b> A quick note on the practicals</a></li>
+<li class="chapter" data-level="3.1.4" data-path="Intro_to_R.html"><a href="Intro_to_R.html#dealing-with-errors"><i class="fa fa-check"></i><b>3.1.4</b> Dealing with errors</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#loading-r"><i class="fa fa-check"></i><b>3.2</b> Loading R</a></li>
+<li class="chapter" data-level="3.3" data-path="Intro_to_R.html"><a href="Intro_to_R.html#variables-looping"><i class="fa fa-check"></i><b>3.3</b> Objects</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#object-names"><i class="fa fa-check"></i><b>3.3.1</b> Object names</a></li>
+<li class="chapter" data-level="3.3.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#variables_types"><i class="fa fa-check"></i><b>3.3.2</b> Object types</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data-structures"><i class="fa fa-check"></i><b>3.4</b> Data structures</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#vectors"><i class="fa fa-check"></i><b>3.4.1</b> Vectors</a></li>
+<li class="chapter" data-level="3.4.2" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data_frames"><i class="fa fa-check"></i><b>3.4.2</b> Data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="Intro_to_R.html"><a href="Intro_to_R.html#scripts"><i class="fa fa-check"></i><b>3.5</b> Scripts</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#comments"><i class="fa fa-check"></i><b>3.5.1</b> Comments</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="Intro_to_R.html"><a href="Intro_to_R.html#packages"><i class="fa fa-check"></i><b>3.6</b> Loading packages</a></li>
+<li class="chapter" data-level="3.7" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data_loading"><i class="fa fa-check"></i><b>3.7</b> Loading data</a></li>
+<li class="chapter" data-level="3.8" data-path="Intro_to_R.html"><a href="Intro_to_R.html#data_plotting"><i class="fa fa-check"></i><b>3.8</b> Plotting</a></li>
+<li class="chapter" data-level="3.9" data-path="Intro_to_R.html"><a href="Intro_to_R.html#formative_task"><i class="fa fa-check"></i><b>3.9</b> Formative task</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="Intro_to_R.html"><a href="Intro_to_R.html#formative_solution_one"><i class="fa fa-check"></i><b>3.9.1</b> Formative solution</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="FirstPractical.html"><a href="FirstPractical.html"><i class="fa fa-check"></i><b>4</b> Eskdale I - Introduction</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="FirstPractical.html"><a href="FirstPractical.html#overview-1"><i class="fa fa-check"></i><b>4.1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="FirstPractical.html"><a href="FirstPractical.html#intended-learning-outcomes"><i class="fa fa-check"></i><b>4.1.1</b> Intended learning outcomes</a></li>
+<li class="chapter" data-level="4.1.2" data-path="FirstPractical.html"><a href="FirstPractical.html#assessment"><i class="fa fa-check"></i><b>4.1.2</b> Assessment</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html"><i class="fa fa-check"></i><b>5</b> Eskdale II - Set-up</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#install-programs"><i class="fa fa-check"></i><b>5.1</b> Install programs</a></li>
+<li class="chapter" data-level="5.2" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#download_data"><i class="fa fa-check"></i><b>5.2</b> Download data</a></li>
+<li class="chapter" data-level="5.3" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#open-rstudio"><i class="fa fa-check"></i><b>5.3</b> Open RStudio</a></li>
+<li class="chapter" data-level="5.4" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#R_Projects"><i class="fa fa-check"></i><b>5.4</b> Initialise an R project</a></li>
+<li class="chapter" data-level="5.5" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#creating-an-r-script"><i class="fa fa-check"></i><b>5.5</b> Creating an R script</a></li>
+<li class="chapter" data-level="5.6" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#install-whiteboxtools"><i class="fa fa-check"></i><b>5.6</b> Install WhiteboxTools</a></li>
+<li class="chapter" data-level="5.7" data-path="Eskdale_set_up.html"><a href="Eskdale_set_up.html#loading-packages"><i class="fa fa-check"></i><b>5.7</b> Loading packages</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html"><i class="fa fa-check"></i><b>6</b> Eskdale III - Flow routing</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#dem-pre-processing-flow-enforcement"><i class="fa fa-check"></i><b>6.1</b> DEM pre-processing: flow enforcement</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#data-description"><i class="fa fa-check"></i><b>6.1.1</b> Data description</a></li>
+<li class="chapter" data-level="6.1.2" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#breaching-and-filling"><i class="fa fa-check"></i><b>6.1.2</b> Breaching and filling</a></li>
+<li class="chapter" data-level="6.1.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#choosing-a-colour-ramp"><i class="fa fa-check"></i><b>6.1.3</b> Choosing a colour ramp</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#flow-parameters-pointers"><i class="fa fa-check"></i><b>6.2</b> Flow Parameters: Pointers</a></li>
+<li class="chapter" data-level="6.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#flow-algorithms"><i class="fa fa-check"></i><b>6.3</b> Flow Algorithms</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#comparing-flow-algorithms"><i class="fa fa-check"></i><b>6.3.1</b> Comparing flow algorithms</a></li>
+<li class="chapter" data-level="6.3.2" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#fd8-catchment-area"><i class="fa fa-check"></i><b>6.3.2</b> FD8 catchment area</a></li>
+<li class="chapter" data-level="6.3.3" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#d-infinity-catchment-area"><i class="fa fa-check"></i><b>6.3.3</b> D-infinity catchment area</a></li>
+<li class="chapter" data-level="6.3.4" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#comparing-the-outputs"><i class="fa fa-check"></i><b>6.3.4</b> Comparing the outputs</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="Eskdale_flow_algorithms.html"><a href="Eskdale_flow_algorithms.html#practical-solution"><i class="fa fa-check"></i><b>6.4</b> Practical solution</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="SecondPractical.html"><a href="SecondPractical.html"><i class="fa fa-check"></i><b>7</b> Mersey I - Introduction</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="SecondPractical.html"><a href="SecondPractical.html#overview-2"><i class="fa fa-check"></i><b>7.1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="SecondPractical.html"><a href="SecondPractical.html#topics-covered-in-this-practical"><i class="fa fa-check"></i><b>7.1.1</b> Topics covered in this practical</a></li>
+<li class="chapter" data-level="7.1.2" data-path="SecondPractical.html"><a href="SecondPractical.html#intended-learning-outcomes-1"><i class="fa fa-check"></i><b>7.1.2</b> Intended Learning Outcomes</a></li>
+<li class="chapter" data-level="7.1.3" data-path="SecondPractical.html"><a href="SecondPractical.html#assessment-1"><i class="fa fa-check"></i><b>7.1.3</b> Assessment</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="Mersey_set_up.html"><a href="Mersey_set_up.html"><i class="fa fa-check"></i><b>8</b> Mersey II - Set-up</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="Mersey_set_up.html"><a href="Mersey_set_up.html#practical-overview"><i class="fa fa-check"></i><b>8.1</b> Practical overview</a></li>
+<li class="chapter" data-level="8.2" data-path="Mersey_set_up.html"><a href="Mersey_set_up.html#install-programs-1"><i class="fa fa-check"></i><b>8.2</b> Install programs</a></li>
+<li class="chapter" data-level="8.3" data-path="Mersey_set_up.html"><a href="Mersey_set_up.html#download_data_v2"><i class="fa fa-check"></i><b>8.3</b> Download data</a></li>
+<li class="chapter" data-level="8.4" data-path="Mersey_set_up.html"><a href="Mersey_set_up.html#practical-2-data"><i class="fa fa-check"></i><b>8.4</b> Data description</a></li>
+<li class="chapter" data-level="8.5" data-path="Mersey_set_up.html"><a href="Mersey_set_up.html#open-rstudio-1"><i class="fa fa-check"></i><b>8.5</b> Open RStudio</a></li>
+<li class="chapter" data-level="8.6" data-path="Mersey_set_up.html"><a href="Mersey_set_up.html#projects-and-scripts"><i class="fa fa-check"></i><b>8.6</b> Projects and Scripts</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="Mersey_set_up.html"><a href="Mersey_set_up.html#Existing_R_Projects"><i class="fa fa-check"></i><b>8.6.1</b> Using an existing R project</a></li>
+<li class="chapter" data-level="8.6.2" data-path="Mersey_set_up.html"><a href="Mersey_set_up.html#creating-an-r-script-1"><i class="fa fa-check"></i><b>8.6.2</b> Creating an R script</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="Mersey_set_up.html"><a href="Mersey_set_up.html#loading-packages-1"><i class="fa fa-check"></i><b>8.7</b> Loading packages</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="mersey_three.html"><a href="mersey_three.html"><i class="fa fa-check"></i><b>9</b> Mersey III - Hydrology</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="mersey_three.html"><a href="mersey_three.html#task-1-flow-routing"><i class="fa fa-check"></i><b>9.1</b> Task 1: Flow routing</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="mersey_three.html"><a href="mersey_three.html#creating-a-d8-pointer"><i class="fa fa-check"></i><b>9.1.1</b> Creating a D8 pointer</a></li>
+<li class="chapter" data-level="9.1.2" data-path="mersey_three.html"><a href="mersey_three.html#catchment-area"><i class="fa fa-check"></i><b>9.1.2</b> Catchment area</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="mersey_three.html"><a href="mersey_three.html#task-2-seed-points"><i class="fa fa-check"></i><b>9.2</b> Task 2: Seed points</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="mersey_three.html"><a href="mersey_three.html#seed-repositioning"><i class="fa fa-check"></i><b>9.2.1</b> Seed repositioning</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="mersey_three.html"><a href="mersey_three.html#task-3-watershed-creation"><i class="fa fa-check"></i><b>9.3</b> Task 3: Watershed creation</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="mersey_four.html"><a href="mersey_four.html"><i class="fa fa-check"></i><b>10</b> Mersey IV - Statistical analysis</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="mersey_four.html"><a href="mersey_four.html#task-4-extracting-catchment-characteristics"><i class="fa fa-check"></i><b>10.1</b> Task 4: Extracting catchment characteristics</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="mersey_four.html"><a href="mersey_four.html#calculating-surface-derivatives"><i class="fa fa-check"></i><b>10.1.1</b> Calculating surface derivatives</a></li>
+<li class="chapter" data-level="10.1.2" data-path="mersey_four.html"><a href="mersey_four.html#extracting-continuous-characteristics"><i class="fa fa-check"></i><b>10.1.2</b> Extracting continuous characteristics</a></li>
+<li class="chapter" data-level="10.1.3" data-path="mersey_four.html"><a href="mersey_four.html#extracting-categorical-characteristics"><i class="fa fa-check"></i><b>10.1.3</b> Extracting categorical characteristics</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="mersey_four.html"><a href="mersey_four.html#task-5-model-building"><i class="fa fa-check"></i><b>10.2</b> Task 5: Model building</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="mersey_four.html"><a href="mersey_four.html#an-introduction-to-linear-models-in-r"><i class="fa fa-check"></i><b>10.2.1</b> An introduction to linear models in R</a></li>
+<li class="chapter" data-level="10.2.2" data-path="mersey_four.html"><a href="mersey_four.html#train-test"><i class="fa fa-check"></i><b>10.2.2</b> Training vs. Testing</a></li>
+<li class="chapter" data-level="10.2.3" data-path="mersey_four.html"><a href="mersey_four.html#the-full-model"><i class="fa fa-check"></i><b>10.2.3</b> The full model</a></li>
+<li class="chapter" data-level="10.2.4" data-path="mersey_four.html"><a href="mersey_four.html#variable-selection-strategies"><i class="fa fa-check"></i><b>10.2.4</b> Variable selection strategies</a></li>
+<li class="chapter" data-level="10.2.5" data-path="mersey_four.html"><a href="mersey_four.html#lasso-in-theory"><i class="fa fa-check"></i><b>10.2.5</b> LASSO in theory</a></li>
+<li class="chapter" data-level="10.2.6" data-path="11-Hints.html"><a href="#cross-validation-for-%CE%BB"><i class="fa fa-check"></i><b>10.2.6</b> Cross-validation for λ</a></li>
+<li class="chapter" data-level="10.2.7" data-path="mersey_four.html"><a href="mersey_four.html#lasso-in-practice"><i class="fa fa-check"></i><b>10.2.7</b> LASSO in practice</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="mersey_four.html"><a href="mersey_four.html#task-6-model-evaluation"><i class="fa fa-check"></i><b>10.3</b> Task 6: Model evaluation</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="Assessment.html"><a href="Assessment.html"><i class="fa fa-check"></i><b>11</b> Assessment</a></li>
+<li class="chapter" data-level="12" data-path="Hints.html"><a href="Hints.html"><i class="fa fa-check"></i><b>12</b> Handy Hints</a>
+<ul>
+<li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#dealing-with-errors-1"><i class="fa fa-check"></i>Dealing with errors</a></li>
+<li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#whitebox-functions-vs.-the-raster-package"><i class="fa fa-check"></i>Whitebox functions vs. the <code>raster</code> package</a></li>
+<li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#r-projects"><i class="fa fa-check"></i>R Projects</a></li>
+<li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#file-paths"><i class="fa fa-check"></i>File paths</a></li>
+<li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#output-files"><i class="fa fa-check"></i>Output files</a></li>
+<li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#packages-1"><i class="fa fa-check"></i>Packages</a></li>
+<li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#code-structure"><i class="fa fa-check"></i>Code structure</a></li>
+<li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#project_repair"><i class="fa fa-check"></i>Errors with R projects and the <code>here</code> package</a></li>
+<li class="chapter" data-level="" data-path="Hints.html"><a href="Hints.html#catchment-characteristics-from-categorical-data"><i class="fa fa-check"></i>Catchment characteristics from categorical data</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><center><br />
+Hydrological analysis in R<br />
+</center></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="Hints" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Chapter 12</span> Handy Hints<a href="Hints.html#Hints" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This chapter contains a few handy hints which may be useful if you’re having any issues loading R packages or running <code>Whitebox</code> tools.</p>
+<div id="dealing-with-errors-1" class="section level3 unnumbered hasAnchor">
+<h3>Dealing with errors<a href="Hints.html#dealing-with-errors-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Errors are an <strong>inevitable</strong> aspect of coding, irrespective of how experienced you are! As we gain programming experience, these errors increase in difficulty from initially simple problems, such as incorrect file paths or errors in code syntax, to the more complex.</p>
+<p>Being able to deal with errors is therefore an essential programming skill. My top tips for fixing errors are:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Read the error message</strong> (red text in the R console). If this appears, it usually means that something has gone wrong! Error messages can vary in quality, but at the very least they should tell you:</p>
+<ul>
+<li><strong>where</strong> the error was encountered i.e. which line of code failed.</li>
+<li>some indication as to <strong>why</strong> the error occurred e.g. <code>No such file or directory</code>
+</p></li>
+</ul></li>
+<li><p>If the error message doesn’t provide a simple solution to the problem, then the next step should be to work through your code step-by-step, testing each line or code block to ensure it is working correctly (usually using <code>print()</code> statements).</p></li>
+</ol>
+<p>To illustrate this, here is some code which has failed:</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="Hints.html#cb131-1" tabindex="-1"></a><span class="co"># Function to check and install packages</span></span>
+<span id="cb131-2"><a href="Hints.html#cb131-2" tabindex="-1"></a>check.packages <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg){</span>
+<span id="cb131-3"><a href="Hints.html#cb131-3" tabindex="-1"></a>  new.pkg <span class="ot">&lt;-</span> pkg[<span class="sc">!</span>(pkg <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
+<span id="cb131-4"><a href="Hints.html#cb131-4" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(new.pkg)) </span>
+<span id="cb131-5"><a href="Hints.html#cb131-5" tabindex="-1"></a>    <span class="fu">install.packages</span>(new.pkg, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb131-6"><a href="Hints.html#cb131-6" tabindex="-1"></a>  <span class="fu">sapply</span>(pkg, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb131-7"><a href="Hints.html#cb131-7" tabindex="-1"></a>}</span>
+<span id="cb131-8"><a href="Hints.html#cb131-8" tabindex="-1"></a></span>
+<span id="cb131-9"><a href="Hints.html#cb131-9" tabindex="-1"></a><span class="co"># Checks and installs packages</span></span>
+<span id="cb131-10"><a href="Hints.html#cb131-10" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;here&quot;</span>, <span class="st">&quot;raster&quot;</span>, <span class="st">&quot;whitebox&quot;</span>)</span>
+<span id="cb131-11"><a href="Hints.html#cb131-11" tabindex="-1"></a><span class="fu">check.packages</span>(packages)</span>
+<span id="cb131-12"><a href="Hints.html#cb131-12" tabindex="-1"></a></span>
+<span id="cb131-13"><a href="Hints.html#cb131-13" tabindex="-1"></a><span class="co"># Fill depressions in a DEM</span></span>
+<span id="cb131-14"><a href="Hints.html#cb131-14" tabindex="-1"></a><span class="fu">wbt_fill_depressions</span>(<span class="at">dem =</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;dem_10m.tif&quot;</span>),</span>
+<span id="cb131-15"><a href="Hints.html#cb131-15" tabindex="-1"></a>                     <span class="at">output =</span> <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span>
+<span id="cb131-16"><a href="Hints.html#cb131-16" tabindex="-1"></a></span>
+<span id="cb131-17"><a href="Hints.html#cb131-17" tabindex="-1"></a><span class="co"># Loads raster</span></span>
+<span id="cb131-18"><a href="Hints.html#cb131-18" tabindex="-1"></a>filled_dem <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span>
+<span id="cb131-19"><a href="Hints.html#cb131-19" tabindex="-1"></a></span>
+<span id="cb131-20"><a href="Hints.html#cb131-20" tabindex="-1"></a><span class="co"># Plots using ggplot</span></span>
+<span id="cb131-21"><a href="Hints.html#cb131-21" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb131-22"><a href="Hints.html#cb131-22" tabindex="-1"></a>  <span class="co"># Adds raster layer using layer_spatial</span></span>
+<span id="cb131-23"><a href="Hints.html#cb131-23" tabindex="-1"></a>  <span class="fu">layer_spatial</span>(filed_dem, <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">after_stat</span>(band1))) <span class="sc">+</span></span>
+<span id="cb131-24"><a href="Hints.html#cb131-24" tabindex="-1"></a>  <span class="co"># Sets ggplot theme</span></span>
+<span id="cb131-25"><a href="Hints.html#cb131-25" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb131-26"><a href="Hints.html#cb131-26" tabindex="-1"></a>  <span class="co"># Axis and legend labeling</span></span>
+<span id="cb131-27"><a href="Hints.html#cb131-27" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Elevation (m)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Northing&quot;</span> <span class="sc">+</span></span>
+<span id="cb131-28"><a href="Hints.html#cb131-28" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>) <span class="sc">+</span></span>
+<span id="cb131-29"><a href="Hints.html#cb131-29" tabindex="-1"></a>  <span class="co"># Sets fill symbology</span></span>
+<span id="cb131-30"><a href="Hints.html#cb131-30" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">type =</span> <span class="st">&quot;viridis&quot;</span>  <span class="at">na.value =</span> <span class="cn">NA</span>)</span>
+<span id="cb131-31"><a href="Hints.html#cb131-31" tabindex="-1"></a></span>
+<span id="cb131-32"><a href="Hints.html#cb131-32" tabindex="-1"></a><span class="co"># Shows plot</span></span>
+<span id="cb131-33"><a href="Hints.html#cb131-33" tabindex="-1"></a>g</span></code></pre></div>
+<p>I would first inspect the error message (<code>No such file or directory</code>) but if I didn’t understand it, I would then troubleshoot by:</p>
+<ol style="list-style-type: decimal">
+<li><p>First running the <code>check.packages(packages)</code> function. Were all the packages installed correctly i.e. <code>TRUE</code>?</p></li>
+<li><p>Then checking the <code>wbt_fill_depressions()</code> function. Does this produce an error? Does it correctly produce an output raster in the intended location? Does the output look sensible? Plotting the raster might be useful here to check.</p></li>
+<li><p>Then running the <code>raster()</code> function to load the raster into R. Here the code would fail and I could then start to investigate further:</p>
+<ul>
+<li><p>Are there any syntax errors? e.g. use of commas, correct number of brackets, spelling errors?</p></li>
+<li><p>Are the inputs defined correctly?</p></li>
+</ul></li>
+</ol>
+<p>In the above example, the code fails because the <code>raster</code> package is trying to load <code>dem_10m_fill.tif</code> from <code>data/practical_1</code> when it was actually saved in <code>output/practical_1</code>.</p>
+<p>Running the code again might produce <strong>another</strong> error, in which case I would repeat the above process, checking the code step-by-step until the error can be located and fixed.</p>
+<blockquote>
+<p>Can you spot any errors in the code below? There are three to find…</p>
+</blockquote>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="Hints.html#cb132-1" tabindex="-1"></a><span class="co"># Plots using ggplot</span></span>
+<span id="cb132-2"><a href="Hints.html#cb132-2" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb132-3"><a href="Hints.html#cb132-3" tabindex="-1"></a>  <span class="co"># Adds raster layer using layer_spatial</span></span>
+<span id="cb132-4"><a href="Hints.html#cb132-4" tabindex="-1"></a>  <span class="fu">layer_spatial</span>(filed_dem, <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">after_stat</span>(band1))) <span class="sc">+</span></span>
+<span id="cb132-5"><a href="Hints.html#cb132-5" tabindex="-1"></a>  <span class="co"># Sets ggplot theme</span></span>
+<span id="cb132-6"><a href="Hints.html#cb132-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb132-7"><a href="Hints.html#cb132-7" tabindex="-1"></a>  <span class="co"># Axis and legend labeling</span></span>
+<span id="cb132-8"><a href="Hints.html#cb132-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Elevation (m)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Northing&quot;</span> <span class="sc">+</span></span>
+<span id="cb132-9"><a href="Hints.html#cb132-9" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>) <span class="sc">+</span></span>
+<span id="cb132-10"><a href="Hints.html#cb132-10" tabindex="-1"></a>  <span class="co"># Sets fill symbology</span></span>
+<span id="cb132-11"><a href="Hints.html#cb132-11" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">type =</span> <span class="st">&quot;viridis&quot;</span>  <span class="at">na.value =</span> <span class="cn">NA</span>)</span></code></pre></div>
+<p><strong>TLDR</strong>: the best way to fix errors is to be <strong>systematic</strong> in your approach.</p>
+<p>Work your way through the code step-by-step, checking it is producing the <strong>intended</strong> outputs at each stage - just because the code doesn’t produce an error, it doesn’t mean it is producing the output that you want!</p>
+</div>
+<div id="whitebox-functions-vs.-the-raster-package" class="section level3 unnumbered hasAnchor">
+<h3>Whitebox functions vs. the <code>raster</code> package<a href="Hints.html#whitebox-functions-vs.-the-raster-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>So far, there has been some confusion regarding the role of <code>whitebox</code> functions, the <code>raster</code> package and <code>ggplot2</code>. Each of these has a unique role, as visualised below, while analysis needs to be conducted in the correct order to avoid errors.</p>
+<p align="center">
+<a name="Analysis_order"></a><img src="figures/Practical-2/wbt_raster_ggplot.png" style="width:100.0%" />
+</p>
+<p><strong>Analysis structure</strong>. [1] Create output files using <code>whitebox</code> [2] Load outputs into R using <code>raster</code> [3] Plot them using <code>ggplot</code></p>
+</p>
+<p>To illustrate this, below we have an example of the <code>wbt_d8_pointer</code> function, which creates a D8 pointer file based on an input digital elevation model (dem):</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="Hints.html#cb133-1" tabindex="-1"></a><span class="co"># Creates a D8 pointer file (.tif) at the output location, based on the input dem</span></span>
+<span id="cb133-2"><a href="Hints.html#cb133-2" tabindex="-1"></a><span class="fu">wbt_d8_pointer</span>(<span class="at">dem =</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_dem_fill.tif&quot;</span>),</span>
+<span id="cb133-3"><a href="Hints.html#cb133-3" tabindex="-1"></a>               <span class="at">output =</span> <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_dem_D8_pointer.tif&quot;</span>))</span></code></pre></div>
+<p>This uses the <code>here</code> package for locating the input file (<code>mersey_dem_fill.tif</code>), which is stored in <code>data/practical_2</code>, and for saving the output, which is stored as <code>mersey_dem_D8_pointer.tif</code> in <code>output/practical_2</code>.</p>
+<p>If this runs successfully (make sure to carefully check file paths, file names, use of commas), then an output raster will be created at the specified location.</p>
+<p><strong>Crucially</strong>, this does <strong>not</strong> load the raster into the R environment, so any attempt to plot the raster using <code>ggplot2</code> would fail.</p>
+<p>To achieve this, a raster must be first loaded into the R environment as follows:</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="Hints.html#cb134-1" tabindex="-1"></a><span class="co"># Loads D8 pointer raster using the raster and here packages</span></span>
+<span id="cb134-2"><a href="Hints.html#cb134-2" tabindex="-1"></a>mersey_pointer <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_dem_D8_pointer.tif&quot;</span>))</span></code></pre></div>
+<p>Again, we have determined the input file location using <code>here</code> package (<code>output/practical_2/mersey_dem_D8_pointer.tif</code>) and stored the raster as an object in the R environment called <code>mersey_pointer</code>.</p>
+<p>With this stored, it can then be plotted using <code>ggplot</code>, setting <code>layer_spatial</code> to the <code>mersey_pointer</code> object name:</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="Hints.html#cb135-1" tabindex="-1"></a><span class="co"># Plots using ggplot</span></span>
+<span id="cb135-2"><a href="Hints.html#cb135-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb135-3"><a href="Hints.html#cb135-3" tabindex="-1"></a>  <span class="fu">layer_spatial</span>(mersey_pointer, <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">stat</span>(band1))) <span class="sc">+</span></span>
+<span id="cb135-4"><a href="Hints.html#cb135-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb135-5"><a href="Hints.html#cb135-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Pointer value&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Northing&quot;</span>) <span class="sc">+</span></span>
+<span id="cb135-6"><a href="Hints.html#cb135-6" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">type =</span> <span class="st">&quot;viridis&quot;</span>,  <span class="at">na.value =</span> <span class="cn">NA</span>)</span>
+<span id="cb135-7"><a href="Hints.html#cb135-7" tabindex="-1"></a>p </span></code></pre></div>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-148-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>TLDR</strong>: for subsequent analysis, make sure to adhere to the following structure:</p>
+<ol style="list-style-type: decimal">
+<li><p>Create output files using <code>whitebox</code> functions.</p></li>
+<li><p>Load those output files into R using the <code>raster</code> package (stored as objects)</p></li>
+<li><p>Plot the R objects using <code>ggplot2</code></p></li>
+</ol>
+<p>Any deviation from this order (e.g. plotting without loading using <code>raster</code>, loading files that have not yet been created using <code>whitebox</code>) will cause errors!</p>
+</div>
+<div id="r-projects" class="section level3 unnumbered hasAnchor">
+<h3>R Projects<a href="Hints.html#r-projects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Make sure to initialise an R project for your work (<a href="Eskdale_set_up.html#R_Projects">Section 5.4</a>) and ensure this is created for your GEOG70581 directory. This should resemble the following, with the R <strong>project file</strong> and a separate <strong>R script</strong> for the Eskdale and Mersey Basin practicals:</p>
+<p align="center">
+<img src="figures/Using-R/R-project-visualisation.png" style="width:65.0%" />
+</p>
+</div>
+<div id="file-paths" class="section level3 unnumbered hasAnchor">
+<h3>File paths<a href="Hints.html#file-paths" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Remove spaces in directories or file paths. As a rule, avoid using spaces when naming files or folders as this can cause issues, particularly when coding:</p>
+<ul>
+<li>“P:/Environmental Monitoring Concepts/GEOG70581/…” <em>Bad</em></li>
+<li>“P:/Environmental_Monitoring_Concepts/GEOG70581/…” <em>Good</em></li>
+</ul>
+</p>
+</div>
+<div id="output-files" class="section level3 unnumbered hasAnchor">
+<h3>Output files<a href="Hints.html#output-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Make sure to inspect output files. When you run a command (e.g. a Whitebox function), check that it produces the intended output (e.g. a raster file (.tif) in the output directory). If there is an error or the output hasn’t been created, subsequent code will fail.</p>
+</div>
+<div id="packages-1" class="section level3 unnumbered hasAnchor">
+<h3>Packages<a href="Hints.html#packages-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If you’re having difficulty loading the <code>raster</code> or <code>sf</code> packages on a University managed computer, this is due to multiple package installs. Go to the packages window, identify the <strong>older</strong> version of each package, and tick the check box to load it into your R library.</p>
+</div>
+<div id="code-structure" class="section level3 unnumbered hasAnchor">
+<h3>Code structure<a href="Hints.html#code-structure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>While you will <strong>not</strong> be assessed on the quality of your code (you do <strong>not</strong> have to submit your code for the assessment), remember that well-formatted code (with comments and good structure) is easier to read and understand and will be less prone to error.</p>
+<blockquote>
+<p>Inspect the code below:</p>
+</blockquote>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="Hints.html#cb136-1" tabindex="-1"></a><span class="co"># Function to check and install packages</span></span>
+<span id="cb136-2"><a href="Hints.html#cb136-2" tabindex="-1"></a>check.packages <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg){</span>
+<span id="cb136-3"><a href="Hints.html#cb136-3" tabindex="-1"></a>  new.pkg <span class="ot">&lt;-</span> pkg[<span class="sc">!</span>(pkg <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
+<span id="cb136-4"><a href="Hints.html#cb136-4" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(new.pkg))</span>
+<span id="cb136-5"><a href="Hints.html#cb136-5" tabindex="-1"></a>    <span class="fu">install.packages</span>(new.pkg, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb136-6"><a href="Hints.html#cb136-6" tabindex="-1"></a>  <span class="fu">sapply</span>(pkg, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb136-7"><a href="Hints.html#cb136-7" tabindex="-1"></a>}</span>
+<span id="cb136-8"><a href="Hints.html#cb136-8" tabindex="-1"></a></span>
+<span id="cb136-9"><a href="Hints.html#cb136-9" tabindex="-1"></a><span class="co"># Checks and installs packages</span></span>
+<span id="cb136-10"><a href="Hints.html#cb136-10" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;here&quot;</span>, <span class="st">&quot;raster&quot;</span>, <span class="st">&quot;whitebox&quot;</span>, <span class="st">&quot;ggspatial&quot;</span>, <span class="st">&quot;patchwork&quot;</span>)</span>
+<span id="cb136-11"><a href="Hints.html#cb136-11" tabindex="-1"></a><span class="fu">check.packages</span>(packages)</span>
+<span id="cb136-12"><a href="Hints.html#cb136-12" tabindex="-1"></a></span>
+<span id="cb136-13"><a href="Hints.html#cb136-13" tabindex="-1"></a><span class="co"># Sets file path for DEM</span></span>
+<span id="cb136-14"><a href="Hints.html#cb136-14" tabindex="-1"></a>dem <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m.tif&quot;</span>)</span>
+<span id="cb136-15"><a href="Hints.html#cb136-15" tabindex="-1"></a></span>
+<span id="cb136-16"><a href="Hints.html#cb136-16" tabindex="-1"></a><span class="co"># Breach and fills depressions</span></span>
+<span id="cb136-17"><a href="Hints.html#cb136-17" tabindex="-1"></a><span class="fu">wbt_fill_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span>
+<span id="cb136-18"><a href="Hints.html#cb136-18" tabindex="-1"></a><span class="fu">wbt_breach_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_breach.tif&quot;</span>))</span>
+<span id="cb136-19"><a href="Hints.html#cb136-19" tabindex="-1"></a></span>
+<span id="cb136-20"><a href="Hints.html#cb136-20" tabindex="-1"></a><span class="co"># Calculates D8 pointer</span></span>
+<span id="cb136-21"><a href="Hints.html#cb136-21" tabindex="-1"></a><span class="fu">wbt_d8_pointer</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>),</span>
+<span id="cb136-22"><a href="Hints.html#cb136-22" tabindex="-1"></a>               <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_D8_pointer.tif&quot;</span>))</span>
+<span id="cb136-23"><a href="Hints.html#cb136-23" tabindex="-1"></a></span>
+<span id="cb136-24"><a href="Hints.html#cb136-24" tabindex="-1"></a><span class="co"># Calculates D8 accumulation file (SCA), with log-transformed values</span></span>
+<span id="cb136-25"><a href="Hints.html#cb136-25" tabindex="-1"></a><span class="fu">wbt_d8_flow_accumulation</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>),</span>
+<span id="cb136-26"><a href="Hints.html#cb136-26" tabindex="-1"></a>                         <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_flow_accumulation.tif&quot;</span>),</span>
+<span id="cb136-27"><a href="Hints.html#cb136-27" tabindex="-1"></a>                         <span class="at">out_type =</span> <span class="st">&quot;specific contributing area&quot;</span>,</span>
+<span id="cb136-28"><a href="Hints.html#cb136-28" tabindex="-1"></a>                         <span class="at">log =</span> <span class="st">&quot;TRUE&quot;</span>)</span></code></pre></div>
+<p>This code includes comments for each main code block, line spaces to distinguish different parts of the code, and is written in a logical order (e.g. first loading packages, then loading/selecting data, running tools). Any non-essential code has been removed e.g. additional calls to install.packages() or library().</p>
+</div>
+<div id="project_repair" class="section level3 unnumbered hasAnchor">
+<h3>Errors with R projects and the <code>here</code> package<a href="Hints.html#project_repair" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If you’re working on a university-managed computer, you may have encountered errors while trying to use <code>whitebox</code> functions, such as <code>wbt_fill_depressions()</code>, or accessing files using relative file paths via the <code>here</code> package.</p>
+<p>This problem actually originates with our use of R projects (described <a href="Eskdale_set_up.html#R_Projects">here</a>). R projects are designed to make accessing files simple and to ensure our analyses are <strong>self-contained</strong> and <strong>portable</strong>. They do this by automatically setting the <strong>working directory</strong> in RStudio. You can test this by using the <code>getwd()</code> function, which should print your working directory to the console.</p>
+<p>If the R project is working, this should set your working directory to the directory where your R project is saved e.g., an R project file stored in <code>C:/Users/Bob/Documents/GEOG70581</code> should have an identical working directory.</p>
+<p>Unfortunately, R projects <strong>were not working</strong> as intended on university-managed computers in <strong>2023/24</strong>: the working directory was <em>not</em> being automatically updated. In most cases, the working directory was stuck at <code>P:/</code>, even if the R project is saved elsewhere! This was a completely <strong>new</strong> problem for 2023/24, but it is possibly due to changes in the waycomputers are managed after the recent <a href="https://www.manchester.ac.uk/cyber-incident/">cyber incident</a>.</p>
+<p>This can lead to difficulties accessing files using <code>here</code>, but also utilising <code>whitebox</code> functions, even when inelegant <em>absolute</em> file paths are used. In both cases, R is looking in the wrong place, either for the data files, or the WBT executable.</p>
+<p>This <strong>issue should be solved for 2024/25</strong>, but if it arises again, there are two options <strong>to fix this</strong>:</p>
+<blockquote>
+<p>The simplest approach is to start from scratch, downloading the <a href="%5BWeek%208%20to%2012%5D(https://online.manchester.ac.uk/webapps/blackboard/content/listContentEditable.jsp?content_id=_15464511_1&amp;course_id=_77840_1)">course data</a>, and creating a new R project in the same directory. If successful, it should resemble the following:</p>
+</blockquote>
+<p align="center">
+<img src="figures/Using-R/R-project-visualisation.png" style="width:65.0%" />
+</p>
+<blockquote>
+<p>The next step is to set the working directory <strong>manually</strong> using the <code>setwd()</code> function (<strong>see below for an example</strong>). This should update the working directory to the correct location, such as <code>C:/Users/Bob/Documents/GEOG70581</code> or <code>P:/GEOG70581</code> depending on where you data are saved, and should be done <strong>before</strong> installing packages. The practical steps can then be following as normal and the <code>whitebox</code> functions should work as intended.</p>
+</blockquote>
+<blockquote>
+<p>Try running the code below, making sure to update the path to the correct working directory.</p>
+</blockquote>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="Hints.html#cb137-1" tabindex="-1"></a><span class="co"># FIRST, set your working directory manually</span></span>
+<span id="cb137-2"><a href="Hints.html#cb137-2" tabindex="-1"></a><span class="fu">setwd</span>(<span class="sc">---</span>YOUR PATH GOES HERE<span class="sc">---</span>) <span class="co"># e.g., &quot;C:/Users/Bob/Documents/GEOG70581&quot;</span></span>
+<span id="cb137-3"><a href="Hints.html#cb137-3" tabindex="-1"></a></span>
+<span id="cb137-4"><a href="Hints.html#cb137-4" tabindex="-1"></a><span class="co"># Function to check and install packages</span></span>
+<span id="cb137-5"><a href="Hints.html#cb137-5" tabindex="-1"></a>check.packages <span class="ot">&lt;-</span> <span class="cf">function</span>(pkg){</span>
+<span id="cb137-6"><a href="Hints.html#cb137-6" tabindex="-1"></a>  new.pkg <span class="ot">&lt;-</span> pkg[<span class="sc">!</span>(pkg <span class="sc">%in%</span> <span class="fu">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])]</span>
+<span id="cb137-7"><a href="Hints.html#cb137-7" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(new.pkg)) </span>
+<span id="cb137-8"><a href="Hints.html#cb137-8" tabindex="-1"></a>    <span class="fu">install.packages</span>(new.pkg, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb137-9"><a href="Hints.html#cb137-9" tabindex="-1"></a>  <span class="fu">sapply</span>(pkg, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb137-10"><a href="Hints.html#cb137-10" tabindex="-1"></a>}</span>
+<span id="cb137-11"><a href="Hints.html#cb137-11" tabindex="-1"></a></span>
+<span id="cb137-12"><a href="Hints.html#cb137-12" tabindex="-1"></a><span class="co"># Checks and installs packages</span></span>
+<span id="cb137-13"><a href="Hints.html#cb137-13" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;here&quot;</span>, <span class="st">&quot;raster&quot;</span>, <span class="st">&quot;whitebox&quot;</span>, <span class="st">&quot;sf&quot;</span>, <span class="st">&quot;ggspatial&quot;</span>)</span>
+<span id="cb137-14"><a href="Hints.html#cb137-14" tabindex="-1"></a><span class="fu">check.packages</span>(packages)</span>
+<span id="cb137-15"><a href="Hints.html#cb137-15" tabindex="-1"></a></span>
+<span id="cb137-16"><a href="Hints.html#cb137-16" tabindex="-1"></a><span class="co"># Initialise whitebox tools executable</span></span>
+<span id="cb137-17"><a href="Hints.html#cb137-17" tabindex="-1"></a>whitebox<span class="sc">::</span><span class="fu">install_whitebox</span>()</span>
+<span id="cb137-18"><a href="Hints.html#cb137-18" tabindex="-1"></a></span>
+<span id="cb137-19"><a href="Hints.html#cb137-19" tabindex="-1"></a><span class="co"># Check whitebox is in the library and the version</span></span>
+<span id="cb137-20"><a href="Hints.html#cb137-20" tabindex="-1"></a><span class="fu">library</span>(whitebox)</span>
+<span id="cb137-21"><a href="Hints.html#cb137-21" tabindex="-1"></a><span class="fu">wbt_version</span>()</span>
+<span id="cb137-22"><a href="Hints.html#cb137-22" tabindex="-1"></a></span>
+<span id="cb137-23"><a href="Hints.html#cb137-23" tabindex="-1"></a><span class="co"># Sets file path for DEM</span></span>
+<span id="cb137-24"><a href="Hints.html#cb137-24" tabindex="-1"></a>dem <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m.tif&quot;</span>)</span>
+<span id="cb137-25"><a href="Hints.html#cb137-25" tabindex="-1"></a></span>
+<span id="cb137-26"><a href="Hints.html#cb137-26" tabindex="-1"></a><span class="co"># Prints the file path to the console window</span></span>
+<span id="cb137-27"><a href="Hints.html#cb137-27" tabindex="-1"></a>dem</span>
+<span id="cb137-28"><a href="Hints.html#cb137-28" tabindex="-1"></a></span>
+<span id="cb137-29"><a href="Hints.html#cb137-29" tabindex="-1"></a><span class="co"># Fills depressions</span></span>
+<span id="cb137-30"><a href="Hints.html#cb137-30" tabindex="-1"></a><span class="fu">wbt_fill_depressions</span>(dem, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>))</span>
+<span id="cb137-31"><a href="Hints.html#cb137-31" tabindex="-1"></a></span>
+<span id="cb137-32"><a href="Hints.html#cb137-32" tabindex="-1"></a><span class="co"># Subtract function; the difference between the processed DEM (filled) and the original DEM</span></span>
+<span id="cb137-33"><a href="Hints.html#cb137-33" tabindex="-1"></a><span class="fu">wbt_subtract</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill.tif&quot;</span>), <span class="co"># Input file 1</span></span>
+<span id="cb137-34"><a href="Hints.html#cb137-34" tabindex="-1"></a>              dem, <span class="co"># Input file 2</span></span>
+<span id="cb137-35"><a href="Hints.html#cb137-35" tabindex="-1"></a>              <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill_difference.tif&quot;</span>)) <span class="co"># Output file</span></span>
+<span id="cb137-36"><a href="Hints.html#cb137-36" tabindex="-1"></a></span>
+<span id="cb137-37"><a href="Hints.html#cb137-37" tabindex="-1"></a><span class="co"># Loads raster using the raster and here packages</span></span>
+<span id="cb137-38"><a href="Hints.html#cb137-38" tabindex="-1"></a>eskdale_dem <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_1&quot;</span>, <span class="st">&quot;dem_10m_fill_difference.tif&quot;</span>))</span>
+<span id="cb137-39"><a href="Hints.html#cb137-39" tabindex="-1"></a></span>
+<span id="cb137-40"><a href="Hints.html#cb137-40" tabindex="-1"></a><span class="co"># Find minimum and maximum values</span></span>
+<span id="cb137-41"><a href="Hints.html#cb137-41" tabindex="-1"></a>minimum_value <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="fu">values</span>(eskdale_dem)[<span class="fu">which</span>(<span class="fu">values</span>(eskdale_dem) <span class="sc">&gt;</span> <span class="dv">0</span>)])</span>
+<span id="cb137-42"><a href="Hints.html#cb137-42" tabindex="-1"></a>maximum_value <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="fu">values</span>(eskdale_dem))</span>
+<span id="cb137-43"><a href="Hints.html#cb137-43" tabindex="-1"></a></span>
+<span id="cb137-44"><a href="Hints.html#cb137-44" tabindex="-1"></a><span class="co"># Plots using ggplot</span></span>
+<span id="cb137-45"><a href="Hints.html#cb137-45" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb137-46"><a href="Hints.html#cb137-46" tabindex="-1"></a>  <span class="fu">layer_spatial</span>(eskdale_dem, <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">after_stat</span>(band1))) <span class="sc">+</span></span>
+<span id="cb137-47"><a href="Hints.html#cb137-47" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb137-48"><a href="Hints.html#cb137-48" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Elevation difference (m)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Northing&quot;</span>) <span class="sc">+</span></span>
+<span id="cb137-49"><a href="Hints.html#cb137-49" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">type =</span> <span class="st">&quot;viridis&quot;</span>,  <span class="at">na.value =</span> <span class="cn">NA</span>, </span>
+<span id="cb137-50"><a href="Hints.html#cb137-50" tabindex="-1"></a>                        <span class="at">limits =</span> <span class="fu">c</span>(minimum_value, maximum_value))</span>
+<span id="cb137-51"><a href="Hints.html#cb137-51" tabindex="-1"></a>g</span></code></pre></div>
+<blockquote>
+<p><strong>If you want to continue</strong> with an existing directory/R Project, then you will need to set the working directory manually (<code>setwd()</code>) <strong>and</strong> set the origin for the <code>here</code> package, as shown below:</p>
+</blockquote>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="Hints.html#cb138-1" tabindex="-1"></a><span class="co"># Set the working directory manually</span></span>
+<span id="cb138-2"><a href="Hints.html#cb138-2" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;C:/Users/Bob/Documents/GEOG70581&quot;</span>) <span class="co"># UPDATE TO YOUR DIRECTORY</span></span>
+<span id="cb138-3"><a href="Hints.html#cb138-3" tabindex="-1"></a></span>
+<span id="cb138-4"><a href="Hints.html#cb138-4" tabindex="-1"></a><span class="co"># Manually set the origin for the &#39;here&#39; package</span></span>
+<span id="cb138-5"><a href="Hints.html#cb138-5" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">i_am</span>(<span class="st">&quot;practical-1-eskdale.R&quot;</span>) <span class="co"># UPDATE IF A DIFFERENT FILE NAME USED</span></span></code></pre></div>
+<p>The above solutions have been tested on a range of university-managed computers, working on both the <code>P:</code> and <code>C:</code> drive.</p>
+<p>For other installation issues, please contact me on my <code>@manchester</code> email. For other R issues, please post on the <a href="https://online.manchester.ac.uk/ultra/courses/_83595_1/cl/outline">forum</a>.</p>
+</div>
+<div id="catchment-characteristics-from-categorical-data" class="section level3 unnumbered hasAnchor">
+<h3>Catchment characteristics from categorical data<a href="Hints.html#catchment-characteristics-from-categorical-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In Task 4, we calculated some important catchment characteristics from the continuous datasets (e.g., <code>average_elevation</code>, <code>average_rainfall</code>, <code>average_slope</code>, <code>average_aspect</code>). To simplify the analysis, and to give you more time to focus on <strong>statistical analysis and interpretation</strong>, I dealt with the categorical datasets (land cover, soil type, bedrock type) and provided the summary values in <code>mersey_EA_characteristics.csv</code>. The following instructions outline how this was completed. While you do <strong>not</strong> need to run this code as part of the practical, it is useful for you to understand the process, especially if you wanted to use this or similar techniques in future e.g., for your dissertations.</p>
+<div id="reclassification" class="section level4 unnumbered hasAnchor">
+<h4>Reclassification<a href="Hints.html#reclassification" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The categorical files <code>mersey_LC</code> (based on LCM2000 data), <code>mersey_HOST</code> (Hydrology of Soil Types) and <code>mersey_bedrock</code> contain many different detailed classes, some of which are not applicable to the study region. Therefore, the datasets need to be simplified by aggregating some classes and omitting unnecessary classes.</p>
+<p>For example, there are 26 classes in LCM2000 data, each with a unique numeric identifier. These were simplified into the following five macro-classes, alongside their numeric identifiers:</p>
+<ul>
+<li><strong>Arable</strong> = 41, 42, 43;</li>
+<li><strong>Heath</strong> = 91, 101, 102;</li>
+<li><strong>Grassland</strong> = 51, 52, 61, 71, 81;</li>
+<li><strong>Urban</strong> = 171, 172;</li>
+<li><strong>Wetland</strong> = 111, 121.</li>
+</ul>
+<p>This was achieved using the <code>fct_collapse</code> function from the <code>forcats</code> package, using the following approach, which can you replicate:</p>
+<blockquote>
+<p>First, load the land cover raster into R as normal:</p>
+</blockquote>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="Hints.html#cb139-1" tabindex="-1"></a><span class="co"># Loads land cover raster</span></span>
+<span id="cb139-2"><a href="Hints.html#cb139-2" tabindex="-1"></a>land_cover <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_LC.tif&quot;</span>))</span></code></pre></div>
+<p>Because our raster is categorical (rather than continuous), it makes sense to convert the data format to a <strong>factor</strong>. In R, these are used to represent categorical variables.</p>
+<blockquote>
+<p>Next, convert the land cover raster to a factor:</p>
+</blockquote>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="Hints.html#cb140-1" tabindex="-1"></a><span class="co"># Converts the land cover raster to a factor, overwriting the original variable</span></span>
+<span id="cb140-2"><a href="Hints.html#cb140-2" tabindex="-1"></a>land_cover <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(land_cover)</span></code></pre></div>
+<p>To assess the values stored in the <code>land_cover</code> raster, use the <code>unique</code> function, which should produce the following:</p>
+<pre><code>##  [1] -9999     0    11    21    41    42    43    51    52    61    71    81    91   101   102   111   121
+## [18]   131   161   171   172   191   211   212   221</code></pre>
+<p>As not all categories are applicable to our study area, we are next going to create a data frame of the land cover categories of interest.</p>
+<blockquote>
+<p>Inspect the code below. Many of the code elements should be familiar to you. We are creating a vector called <code>categories</code> using the <code>c()</code> function, which contains all the classes of interest <code>c(41, 42, 43, ...)</code>). Next, we have converted that to a data frame using <code>as.data.frame()</code> and assigned a column name (<code>ID</code>). When you understand what is happening, add to your script and run.</p>
+</blockquote>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="Hints.html#cb142-1" tabindex="-1"></a><span class="co"># Categories of interest</span></span>
+<span id="cb142-2"><a href="Hints.html#cb142-2" tabindex="-1"></a>categories <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">c</span>(<span class="dv">41</span>, <span class="dv">42</span>, <span class="dv">43</span>, <span class="dv">91</span>, <span class="dv">101</span>, <span class="dv">102</span>, <span class="dv">51</span>, <span class="dv">52</span>, <span class="dv">61</span>, <span class="dv">71</span>, <span class="dv">81</span>, <span class="dv">171</span>, <span class="dv">172</span>, <span class="dv">111</span>, <span class="dv">121</span>))</span>
+<span id="cb142-3"><a href="Hints.html#cb142-3" tabindex="-1"></a><span class="fu">colnames</span>(categories) <span class="ot">&lt;-</span> <span class="st">&quot;ID&quot;</span></span></code></pre></div>
+<blockquote>
+<p>If you want to inspect the output, you can use <code>head(categories)</code> to print out the first 6 rows:</p>
+</blockquote>
+<pre><code>##    ID
+## 1  41
+## 2  42
+## 3  43
+## 4  91
+## 5 101
+## 6 102</code></pre>
+<p>Using this new data frame, we are going to create a new column called <code>name</code>, which corresponds to the name of the land cover class (e.g. <span class="math inline">\(Arable = 41\)</span>)</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="Hints.html#cb144-1" tabindex="-1"></a><span class="co"># Collapse categories into groups based on ID</span></span>
+<span id="cb144-2"><a href="Hints.html#cb144-2" tabindex="-1"></a>categories<span class="sc">$</span>name <span class="ot">&lt;-</span> <span class="fu">fct_collapse</span>(<span class="fu">as.factor</span>(categories<span class="sc">$</span>ID),</span>
+<span id="cb144-3"><a href="Hints.html#cb144-3" tabindex="-1"></a>             <span class="st">&quot;Arable&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;41&quot;</span>, <span class="st">&quot;42&quot;</span>, <span class="st">&quot;43&quot;</span>),</span>
+<span id="cb144-4"><a href="Hints.html#cb144-4" tabindex="-1"></a>             <span class="st">&quot;Heath&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;91&quot;</span>, <span class="st">&quot;101&quot;</span>, <span class="st">&quot;102&quot;</span>),</span>
+<span id="cb144-5"><a href="Hints.html#cb144-5" tabindex="-1"></a>             <span class="st">&quot;Grassland&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;51&quot;</span>, <span class="st">&quot;52&quot;</span>, <span class="st">&quot;61&quot;</span>, <span class="st">&quot;71&quot;</span>, <span class="st">&quot;81&quot;</span>),</span>
+<span id="cb144-6"><a href="Hints.html#cb144-6" tabindex="-1"></a>             <span class="st">&quot;Urban&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;171&quot;</span>, <span class="st">&quot;172&quot;</span>), </span>
+<span id="cb144-7"><a href="Hints.html#cb144-7" tabindex="-1"></a>             <span class="st">&quot;Wetland&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;111&quot;</span>, <span class="st">&quot;121&quot;</span>))</span></code></pre></div>
+<blockquote>
+<p>Inspect the above code. The syntax is reasonably complex, but you should understand what is happening if you inspect the output:</p>
+</blockquote>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="Hints.html#cb145-1" tabindex="-1"></a><span class="co"># Prints categories data frame</span></span>
+<span id="cb145-2"><a href="Hints.html#cb145-2" tabindex="-1"></a>categories</span></code></pre></div>
+<pre><code>##     ID      name
+## 1   41    Arable
+## 2   42    Arable
+## 3   43    Arable
+## 4   91     Heath
+## 5  101     Heath
+## 6  102     Heath
+## 7   51 Grassland
+## 8   52 Grassland
+## 9   61 Grassland
+## 10  71 Grassland
+## 11  81 Grassland
+## 12 171     Urban
+## 13 172     Urban
+## 14 111   Wetland
+## 15 121   Wetland</code></pre>
+<p>Finally, we can use this updated data frame to replace (or substitute) values in the land cover raster (i.e. <span class="math inline">\(41, 91, ...\)</span>) with the land cover class it represents. In this case, values are stored numerically (i.e. <span class="math inline">\(Arable =1,Heath =2, ...\)</span>). One way to achieve this is using the <a href="https://rdrr.io/cran/raster/man/subs.html"><code>subs</code></a> function from the <code>raster</code> package.</p>
+<blockquote>
+<p>Inspect the following code, which substitutes (reclassifies) the raster layer and saves to a new raster (<code>.tif</code>) using the <code>writeRaster</code> function.</p>
+</blockquote>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="Hints.html#cb147-1" tabindex="-1"></a><span class="co"># Substitutes raster values with new categories</span></span>
+<span id="cb147-2"><a href="Hints.html#cb147-2" tabindex="-1"></a>land_cover_classified <span class="ot">&lt;-</span> <span class="fu">subs</span>(land_cover, categories)</span>
+<span id="cb147-3"><a href="Hints.html#cb147-3" tabindex="-1"></a></span>
+<span id="cb147-4"><a href="Hints.html#cb147-4" tabindex="-1"></a><span class="co"># Write to new raster</span></span>
+<span id="cb147-5"><a href="Hints.html#cb147-5" tabindex="-1"></a><span class="fu">writeRaster</span>(land_cover_classified, <span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_LC_reclass.tif&quot;</span>), <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<blockquote>
+<p>When you understand it, run the code, load the new raster into R and plot. Use the code below to visualise the reclassified raster, taking note of the manual fill aesthetic (<code>scale_fill_manual</code>):</p>
+</blockquote>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="Hints.html#cb148-1" tabindex="-1"></a><span class="co"># Loads land cover raster using the raster and here packages</span></span>
+<span id="cb148-2"><a href="Hints.html#cb148-2" tabindex="-1"></a>mersey_land_cover <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_LC_reclass.tif&quot;</span>))</span>
+<span id="cb148-3"><a href="Hints.html#cb148-3" tabindex="-1"></a></span>
+<span id="cb148-4"><a href="Hints.html#cb148-4" tabindex="-1"></a><span class="co"># Manually defined colours for land cover categories</span></span>
+<span id="cb148-5"><a href="Hints.html#cb148-5" tabindex="-1"></a><span class="co"># (1=Arable, 2=Heath, 3=Grassland, 4=Urban, 5=Wetland)</span></span>
+<span id="cb148-6"><a href="Hints.html#cb148-6" tabindex="-1"></a>colours <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1&quot;</span> <span class="ot">=</span> <span class="st">&quot;#D1F5D8&quot;</span>,</span>
+<span id="cb148-7"><a href="Hints.html#cb148-7" tabindex="-1"></a>             <span class="st">&quot;2&quot;</span> <span class="ot">=</span> <span class="st">&quot;#87C292&quot;</span>,</span>
+<span id="cb148-8"><a href="Hints.html#cb148-8" tabindex="-1"></a>             <span class="st">&quot;3&quot;</span> <span class="ot">=</span> <span class="st">&quot;#498955&quot;</span>,</span>
+<span id="cb148-9"><a href="Hints.html#cb148-9" tabindex="-1"></a>             <span class="st">&quot;4&quot;</span> <span class="ot">=</span> <span class="st">&quot;#FFA888&quot;</span>,</span>
+<span id="cb148-10"><a href="Hints.html#cb148-10" tabindex="-1"></a>             <span class="st">&quot;5&quot;</span> <span class="ot">=</span> <span class="st">&quot;#4575B4&quot;</span>)</span>
+<span id="cb148-11"><a href="Hints.html#cb148-11" tabindex="-1"></a></span>
+<span id="cb148-12"><a href="Hints.html#cb148-12" tabindex="-1"></a><span class="co"># Plots using ggplot</span></span>
+<span id="cb148-13"><a href="Hints.html#cb148-13" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb148-14"><a href="Hints.html#cb148-14" tabindex="-1"></a>  <span class="fu">layer_spatial</span>(mersey_land_cover, <span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">factor</span>(<span class="fu">after_stat</span>(band1)))) <span class="sc">+</span> <span class="co"># Adds raster layer</span></span>
+<span id="cb148-15"><a href="Hints.html#cb148-15" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb148-16"><a href="Hints.html#cb148-16" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;Land cover class&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Easting&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Northing&quot;</span>) <span class="sc">+</span></span>
+<span id="cb148-17"><a href="Hints.html#cb148-17" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> colours, <span class="at">na.value =</span> <span class="cn">NA</span>, <span class="co"># Updated fill aesthetic</span></span>
+<span id="cb148-18"><a href="Hints.html#cb148-18" tabindex="-1"></a>                    <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;Arable&quot;</span>, <span class="st">&quot;Heath&quot;</span>, <span class="st">&quot;Grassland&quot;</span>, <span class="st">&quot;Urban&quot;</span>, <span class="st">&quot;Wetland&quot;</span>)) <span class="sc">+</span> <span class="co"># Manual legend labels</span></span>
+<span id="cb148-19"><a href="Hints.html#cb148-19" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span>
+<span id="cb148-20"><a href="Hints.html#cb148-20" tabindex="-1"></a>p </span></code></pre></div>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-160-1.png" width="672" style="display: block; margin: auto;" /></p>
+<blockquote>
+<p>Using the methodology outlined above, this process can be repeated for the soil type (<code>mersey_HOST</code>) and bedrock geology rasters (<code>mersey_bedrock</code>). Make sure to use a consistent approach to file naming e.g. <code>mersey_HOST_reclass.tif</code> and <code>mersey_bedrock_reclass.tif</code>.</p>
+</blockquote>
+<p>There are 29 classes in HOST, each with a unique numeric identifier. Reclassify these into the following four new classes:</p>
+<ul>
+<li><strong>Permeable</strong> = 1, 3, 4, 5, 6, 7, 15, 16;</li>
+<li><strong>Impermeable</strong> = 12, 17, 18, 19, 21, 22;</li>
+<li><strong>Gleyed</strong> = 8, 9, 13, 24;</li>
+<li><strong>Peats</strong> = 10, 11, 14, 25, 26, 27, 29.</li>
+</ul>
+<p>Utilising the order above, the values of the output raster should be as follows:</p>
+<ul>
+<li><strong>Permeable</strong> = 1</li>
+<li><strong>Impermeable</strong> = 2</li>
+<li><strong>Gleyed</strong> = 3</li>
+<li><strong>Peats</strong> = 4</li>
+</ul>
+<p><br/></p>
+<p>There are 34 bedrock geology classes in Mersey Basin region, each with a unique numeric identifier. Reclassify into the following three new classes listed below:</p>
+<ul>
+<li><strong>Sands_and_Muds</strong> (sands and muds) = 5, 16, 18, 24, 28, 34;</li>
+<li><strong>Limestone</strong> = 10, 11, 17, 19;</li>
+<li><strong>Coal</strong> = 9, 15, 22.</li>
+</ul>
+<p>Utilising the order above, the values of the output raster should be as follows:</p>
+<ul>
+<li><strong>Sands_and_Muds</strong> = 1</li>
+<li><strong>Limestone</strong> = 2</li>
+<li><strong>Coal</strong> = 3</li>
+</ul>
+<blockquote>
+<p>When complete, save your script before continuing. You should have three reclassified rasters in your <code>output</code> directory i.e., <code>mersey_LC_reclass.tif,</code>mersey_HOST_reclass.tif<code>,</code>mersey_bedrock_reclass.tif`.</p>
+</blockquote>
+</div>
+<div id="extracting-normalising-surface-derivatives" class="section level4 unnumbered hasAnchor">
+<h4>Extracting-normalising surface derivatives<a href="Hints.html#extracting-normalising-surface-derivatives" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In the next phase, we want to count the number of cells for each class per watershed i.e., number of <code>arable</code> cells, number of <code>grassland</code> cells, number of <code>limestone</code> cells. If we know the total number of cells per watershed, we can calculate the proportion i.e., <code>arable %</code>, <code>grassland %</code>, <code>limestone %</code>.</p>
+<blockquote>
+<p>First, ensure the <strong>reclassified</strong> land cover, soil type and bedrock rasters are loaded into R and stored with sensible variable names (e.g. <code>land_cover</code>, <code>soils</code>, <code>bedrock</code>).</p>
+</blockquote>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="Hints.html#cb149-1" tabindex="-1"></a><span class="co"># Load raster data</span></span>
+<span id="cb149-2"><a href="Hints.html#cb149-2" tabindex="-1"></a>land_cover <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_LC_reclass.tif&quot;</span>))</span>
+<span id="cb149-3"><a href="Hints.html#cb149-3" tabindex="-1"></a>soils <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_HOST_reclass.tif&quot;</span>))</span>
+<span id="cb149-4"><a href="Hints.html#cb149-4" tabindex="-1"></a>bedrock <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_bedrock_reclass.tif&quot;</span>))</span></code></pre></div>
+<blockquote>
+<p>Next, we are going to use the <code>extract</code> function again, but this time returning the count of each category (e.g. Arable, Heath, Grassland, Urban, Wetland) for each watershed area, as shown here:</p>
+</blockquote>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="Hints.html#cb150-1" tabindex="-1"></a><span class="co"># Load watersheds (vector, sf, VALUE column is important) and renames</span></span>
+<span id="cb150-2"><a href="Hints.html#cb150-2" tabindex="-1"></a>watersheds_ea <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="fu">here</span>(<span class="st">&quot;output&quot;</span>, <span class="st">&quot;practical_2&quot;</span>, <span class="st">&quot;mersey_watersheds.shp&quot;</span>))</span>
+<span id="cb150-3"><a href="Hints.html#cb150-3" tabindex="-1"></a></span>
+<span id="cb150-4"><a href="Hints.html#cb150-4" tabindex="-1"></a><span class="co"># Extract land cover counts (5 classes so levels = 1:5)</span></span>
+<span id="cb150-5"><a href="Hints.html#cb150-5" tabindex="-1"></a>land_cover_classes <span class="ot">&lt;-</span> <span class="fu">extract</span>(land_cover, watersheds_ea, <span class="at">fun=</span><span class="cf">function</span>(i,...) <span class="fu">table</span>(<span class="fu">factor</span>(i, <span class="at">levels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)))</span></code></pre></div>
+<blockquote>
+<p>Rather than trying to decipher the code straight away, copy to your script, run and use <code>head()</code> to inspect the output, which should be as follows. This may take a little while (~30 seconds on a i7 computer with 16 Gb of RAM):</p>
+</blockquote>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="Hints.html#cb151-1" tabindex="-1"></a><span class="fu">head</span>(land_cover_classes)</span></code></pre></div>
+<pre><code>##       1   2    3   4   5
+## [1,] 18  41 2779  88   0
+## [2,] 28  73 4727 223  21
+## [3,] 16 108 1333   0 221
+## [4,] 90  61 1544 669   0
+## [5,]  0  90 1008  13 221
+## [6,] 16  49 1230   6  18</code></pre>
+<p>We have produced a data frame with 5 columns (representing the 5 land cover classes) and 70 rows (representing the 70 watersheds), where the row-column values represent the number of raster cells corresponding to each land cover class.</p>
+<p>This is based upon a user-defined function, incorporating the <code>table</code> function from the <strong>data.table</strong> package. <strong>Important</strong>: as the land cover dataset contains 5 classes, the function splits the underlying data into five groups using <code>levels = 1:5</code>. This needs to be updated when applying to the soils and bedrock datasets.</p>
+<p>While this information is useful, it complicates our statistical analysis and our comparison <strong>between</strong> watersheds, as there are a different number of cells per watershed, reflecting their varying sizes.</p>
+<p>To convert these to <strong>percentages</strong>, there are a couple of possible approaches.</p>
+<p>The first is to use the <code>rowSums</code> function, which is available in base R and (as the name suggests) calculates the sum of each row within a matrix or dataframe. Note that we use the form <code>base::</code> to specify we are using the <code>base</code> package, as <code>rowSums</code> is also the name of a function in other packages, such as <code>raster</code>, see <a href="https://www.rdocumentation.org/packages/raster/versions/3.6-32/topics/rowSums">here</a>.</p>
+<blockquote>
+<p>You can test the code below, which calculates the land cover percentage (proportion * 100)</p>
+</blockquote>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="Hints.html#cb153-1" tabindex="-1"></a><span class="co"># Land cover proportion as a function of the total number of land cover cells (rowSums), converted to a percentage (* 100)</span></span>
+<span id="cb153-2"><a href="Hints.html#cb153-2" tabindex="-1"></a>land_cover_classes <span class="ot">&lt;-</span> land_cover_classes <span class="sc">/</span> base<span class="sc">::</span><span class="fu">rowSums</span>(land_cover_classes) <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div>
+<p>The above approach calculates the percentage per class (<code>arable</code>, <code>heath</code>, <code>grassland</code>, <code>urban</code>, <code>wetland</code>) as a function of the total number of cells <strong>in those five classes</strong>. In our reclassification we focused on the macro-classes which are known to have the greatest impact of river hydrochemistry (e.g. urban areas, farmland). <strong>However</strong>, other land cover categories are found within each watershed, but these typically account for only a small percentage of the total area and are assumed to have a limited effect on the river environment. While these categories have been excluded to simplify the analysis, this does mean that the <strong>total number of cells</strong> in the watershed will be greater than the number of cells <strong>in the five macro classes</strong>, which will influence our percentage calculation.</p>
+<blockquote>
+<p>To reflect this, we might want to calculate the class percentage as a function of the total watershed area. This can be completed using the <code>extract</code> function, this time using a custom function (<code>fun=function(x, ...) length(x)</code>) to count the number of cells within each watershed:</p>
+</blockquote>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="Hints.html#cb154-1" tabindex="-1"></a><span class="co"># Total number of cells within each watershed</span></span>
+<span id="cb154-2"><a href="Hints.html#cb154-2" tabindex="-1"></a>land_cover_count <span class="ot">=</span> <span class="fu">extract</span>(land_cover, watersheds_ea, <span class="at">fun=</span><span class="cf">function</span>(x, ...) <span class="fu">length</span>(x))</span>
+<span id="cb154-3"><a href="Hints.html#cb154-3" tabindex="-1"></a></span>
+<span id="cb154-4"><a href="Hints.html#cb154-4" tabindex="-1"></a><span class="co"># Calculate proportion using sweep, convert to percentage</span></span>
+<span id="cb154-5"><a href="Hints.html#cb154-5" tabindex="-1"></a>land_cover_classes <span class="ot">&lt;-</span> <span class="fu">sweep</span>(land_cover_classes, <span class="dv">1</span>, land_cover_count, <span class="at">FUN =</span> <span class="st">&quot;/&quot;</span>) <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div>
+<blockquote>
+<p>To improve the readability of the data frame, update its column names as follows:</p>
+</blockquote>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="Hints.html#cb155-1" tabindex="-1"></a><span class="fu">colnames</span>(land_cover_classes) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Arable_percent&quot;</span>, <span class="st">&quot;Heath_percent&quot;</span>, <span class="st">&quot;Grassland_percent&quot;</span>, <span class="st">&quot;Urban_percent&quot;</span>, <span class="st">&quot;Wetland_percent&quot;</span>)</span></code></pre></div>
+<blockquote>
+<p>Use <code>head()</code> to inspect the output:</p>
+</blockquote>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="Hints.html#cb156-1" tabindex="-1"></a><span class="fu">head</span>(land_cover_classes)</span></code></pre></div>
+<pre><code>##      Arable_percent Heath_percent Grassland_percent Urban_percent Wetland_percent
+## [1,]      0.5584859      1.272107          86.22401     2.7303754        0.000000
+## [2,]      0.5217067      1.360164          88.07527     4.1550214        0.391280
+## [3,]      0.8311688      5.610390          69.24675     0.0000000       11.480519
+## [4,]      3.5074045      2.377241          60.17147    26.0717069        0.000000
+## [5,]      0.0000000      5.579665          62.49225     0.8059516       13.701178
+## [6,]      1.1644833      3.566230          89.51965     0.4366812        1.310044</code></pre>
+<p><br/></p>
+<blockquote>
+<p>Replicate this approach for the soil type and bedrock datasets, using sensible variable names (e.g. <code>soils_classes</code> and <code>bedrock_classes</code>), remembering to update the <code>extract</code> function used (i.e. <code>levels = 1:4</code> for the soil data and <code>levels = 1:3</code> for the bedrock data).</p>
+</blockquote>
+<p><br/></p>
+<p>When complete, you should have the following data frames in your R environment:</p>
+<ul>
+<li><code>watersheds_ea</code>:
+<ul>
+<li>containing the water quality measurements, the spatial areas and the continuous derivatives;</li>
+</ul></li>
+<li><code>land_cover_classes</code>:
+<ul>
+<li>containing the proportion for each land cover class;</li>
+</ul></li>
+<li><code>soils_classes</code>:
+<ul>
+<li>containing the proportion for each soil type;</li>
+</ul></li>
+<li><code>bedrock_classes</code>:
+<ul>
+<li>containing the proportion for each bedrock type;</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>To simplify your R environment, remove all other variables using the <code>rm()</code> function.</p>
+</blockquote>
+<p>To merge the remaining files, we can use <code>cbind()</code>, which binds data frames together based on their columns:</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="Hints.html#cb158-1" tabindex="-1"></a><span class="co"># Combines watersheds data frame with proportions</span></span>
+<span id="cb158-2"><a href="Hints.html#cb158-2" tabindex="-1"></a>watersheds_ea <span class="ot">&lt;-</span> <span class="fu">cbind</span>(watersheds_ea, land_cover_classes, soils_classes, bedrock_classes)</span></code></pre></div>
+
+
+<div id="refs" class="references csl-bib-body">
+<div class="csl-entry">
+Alcalde, J. <em>et al.</em> (2017) <span>‘Framing bias: <span>The</span> effect of figure presentation on seismic interpretation’</span>, <em>Interpretation</em>, 5(4), pp. T591–T605. doi:<a href="https://doi.org/10.1190/INT-2017-0083.1">10.1190/INT-2017-0083.1</a>.
+</div>
+<div class="csl-entry">
+Crameri, F. (2018) <span>‘Geodynamic diagnostics, scientific visualisation and <span>StagLab</span> 3.0’</span>, <em>Geoscientific Model Development</em>, 11(6), pp. 2541–2562. doi:<a href="https://doi.org/10.5194/gmd-11-2541-2018">https://doi.org/10.5194/gmd-11-2541-2018</a>.
+</div>
+<div class="csl-entry">
+Fairfield, J. and Leymarie, P. (1991) <span>‘Drainage networks from grid digital elevation models’</span>, <em>Water Resources Research</em>, 27(5), pp. 709–717. doi:<a href="https://doi.org/10.1029/90WR02658">https://doi.org/10.1029/90WR02658</a>.
+</div>
+<div class="csl-entry">
+Freeman, T.G. (1991) <span>‘Calculating catchment area with divergent flow based on a regular grid’</span>, <em>Computers &amp; Geosciences</em>, 17(3), pp. 413–422. doi:<a href="https://doi.org/10.1016/0098-3004(91)90048-I">10.1016/0098-3004(91)90048-I</a>.
+</div>
+<div class="csl-entry">
+Geissbuehler, M. and Lasser, T. (2013) <span>‘How to display data by color schemes compatible with red-green color perception deficiencies’</span>, <em>Optics Express</em>, 21(8), pp. 9862–9874. doi:<a href="https://doi.org/10.1364/OE.21.009862">10.1364/OE.21.009862</a>.
+</div>
+<div class="csl-entry">
+Grabs, T.J. <em>et al.</em> (2010) <span>‘Calculating terrain indices along streams: <span>A</span> new method for separating stream sides’</span>, <em>Water Resources Research</em>, 46(12). doi:<a href="https://doi.org/10.1029/2010WR009296">https://doi.org/10.1029/2010WR009296</a>.
+</div>
+<div class="csl-entry">
+Hawkins, E. (2015) <span>‘Scrap rainbow colour scales’</span>, <em>Nature</em>, 519(7543), pp. 291–291. doi:<a href="https://doi.org/10.1038/519291d">10.1038/519291d</a>.
+</div>
+<div class="csl-entry">
+Jenson, S.K. (1991) <span>‘Applications of hydrologic information automatically extracted from digital elevation models’</span>, <em>Hydrological Processes</em>, 5(1), pp. 31–44. doi:<a href="https://doi.org/10.1002/hyp.3360050104">https://doi.org/10.1002/hyp.3360050104</a>.
+</div>
+<div class="csl-entry">
+Jenson, S.K. and Domingue, J.O. (1988) <span>‘Extracting topographic structure from digital elevation data for geographic information-system analysis’</span>, <em>Photogrammetric Engineering and Remote Sensing</em>, 54(11), p. 15931600. Available at: <a href="http://pubs.er.usgs.gov/publication/70142175">http://pubs.er.usgs.gov/publication/70142175</a> (Accessed: 2 December 2020).
+</div>
+<div class="csl-entry">
+Levine, T. (2009) <span>‘Using colour in figures: Let’s agree to differ’</span>, <em>Traffic</em>, 10(3), pp. 344–347. doi:<a href="https://doi.org/10.1111/j.1600-0854.2008.00863.x">https://doi.org/10.1111/j.1600-0854.2008.00863.x</a>.
+</div>
+<div class="csl-entry">
+Lindsay, J.B. <em>et al.</em> (2008) <span>‘Mapping outlet points used for watershed delineation onto <span>DEM</span>-derived stream networks’</span>, <em>Water Resources Research</em>, 44(8). doi:<a href="https://doi.org/10.1029/2007WR006507">https://doi.org/10.1029/2007WR006507</a>.
+</div>
+<div class="csl-entry">
+O’Callaghan, J.F. and Mark, D.M. (1984) <span>‘The extraction of drainage networks from digital elevation data’</span>, <em>Computer Vision, Graphics, and Image Processing</em>, 28(3), pp. 323–344. doi:<a href="https://doi.org/10.1016/S0734-189X(84)80011-0">10.1016/S0734-189X(84)80011-0</a>.
+</div>
+<div class="csl-entry">
+Quinn, P. <em>et al.</em> (1991) <span>‘The prediction of hillslope flow paths for distributed hydrological modelling using digital terrain models’</span>, <em>Hydrological Processes</em>, 5(1), pp. 59–79. doi:<a href="https://doi.org/10.1002/hyp.3360050106">https://doi.org/10.1002/hyp.3360050106</a>.
+</div>
+<div class="csl-entry">
+Quinn, P.F. <em>et al.</em> (1995) <span>‘The in(a/tan/β) index: <span>How</span> to calculate it and how to use it within the topmodel framework’</span>, <em>Hydrological Processes</em>, 9(2), pp. 161–182. doi:<a href="https://doi.org/10.1002/hyp.3360090204">https://doi.org/10.1002/hyp.3360090204</a>.
+</div>
+<div class="csl-entry">
+Seibert, J. and McGlynn, B.L. (2007) <span>‘A new triangular multiple flow direction algorithm for computing upslope areas from gridded digital elevation models’</span>, <em>Water Resources Research</em>, 43(4). doi:<a href="https://doi.org/10.1029/2006WR005128">https://doi.org/10.1029/2006WR005128</a>.
+</div>
+<div class="csl-entry">
+Tarboton, D.G. (1997) <span>‘A new method for the determination of flow directions and upslope areas in grid digital elevation models’</span>, <em>Water Resources Research</em>, 33(2), pp. 309–319. doi:<a href="https://doi.org/10.1029/96WR03137">https://doi.org/10.1029/96WR03137</a>.
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="Assessment.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

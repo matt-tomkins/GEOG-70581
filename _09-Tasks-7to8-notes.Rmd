@@ -22,13 +22,13 @@ If you are interested in the reclassification approach, I have provided some gui
 
 ### Calculating surface derivatives
 
-Before we can extract characteristics for each watershed, we need to produce some additional layers. Here, we are interested in the effects of elevation (the data from `mersey_DEM_fill`) and rainfall (`mersey_rainfall`), as well as topographic **slope** and **aspect**, both of which likely influence the path of water through the landscape. These two attributes (*slope, aspect*) are known as **surface derivatives** as they are calculated (derived) from the DEM.  
+Before we can extract characteristics for each watershed, we need to produce some additional layers. Here, we are interested in the effects of elevation (the data from `mersey_DEM_fill`) and rainfall (`mersey_rainfall`), as well as topographic **slope** and **aspect**, both of which likely influence the path of water through the landscape. These two attributes (*slope, aspect*) are known as **surface derivatives** as they are calculated (derived) from the DEM.
 
-To produce **slope** and **aspect** rasters: 
+To produce **slope** and **aspect** rasters:
 
-> use the `wbt_slope` and `wbt_aspect` functions, using the original filled DEM as the input data (`mersey_dem_fill.tif`) and using appropriate output names (e.g. `mersey_dem_slope` and `mersey_dem_aspect`). 
+> use the `wbt_slope` and `wbt_aspect` functions, using the original filled DEM as the input data (`mersey_dem_fill.tif`) and using appropriate output names (e.g. `mersey_dem_slope` and `mersey_dem_aspect`).
 
-Your outputs should resemble the following: 
+Your outputs should resemble the following:
 
 ```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
 # Sets file path for DEM
@@ -137,12 +137,14 @@ To extract continuous derivatives, we are going to use the `extract` function fr
 Broadly, the function extracts values from a raster object at the locations of spatial vector data, where the value of interest is user-defined. For example, this could be the mean (e.g. the average elevation of a DEM within a vector polygon), the count (e.g. the number of cells within a vector polygon), or a minimum or maximum (e.g. the maximum elevation within a vector polygon), as shown in the figure below:
 
 <p align="center">
-<a name="Figure_7"></a>![](figures/Practical-2/extract-raster.png){width=50%}
+
+<a name="Figure_7"></a>![](figures/Practical-2/extract-raster.png){width="50%"}
+
 </p>
 
-**Figure 5: Visual example of the `extract` function**. In this example, our raster layer is the slope of the terrain in the Eskdale catchment, studied in [Week 9](#Eskdale_flow_algorithms), with values ranging from 0° (flat) to 76° (very steep). Our vector layer is a series of three $Polygons$, covering three upland locations (other valid vector types include $Points$ and $Lines$). Here, the `extract` function would return the average and minimum-maximum slope for $Polygons$ $A$ and $B$ respectively, and the count (number of raster cells) for $Polygon$ $C$.  
+**Figure 5: Visual example of the `extract` function**. In this example, our raster layer is the slope of the terrain in the Eskdale catchment, studied in [Week 9](#Eskdale_flow_algorithms), with values ranging from 0° (flat) to 76° (very steep). Our vector layer is a series of three $Polygons$, covering three upland locations (other valid vector types include $Points$ and $Lines$). Here, the `extract` function would return the average and minimum-maximum slope for $Polygons$ $A$ and $B$ respectively, and the count (number of raster cells) for $Polygon$ $C$.
 
-<br/> 
+<br/>
 
 To use the `extract` function, the raster dataset needs to be loaded into R.
 
@@ -218,7 +220,7 @@ watersheds_ea <- merge(watersheds_ea, watershed_char, by = "Seed_Point_ID")
 
 > Again, use the `head()` function to check this worked as expected.
 
-<br/> 
+<br/>
 
 **To finish Task 4:**
 
@@ -269,7 +271,7 @@ This data frame should contain the following 10 water quality indicators for eac
 
 It should also contain the continuous derivatives (e.g. average elevation) and categorical derivatives (e.g. land cover percentage) for each watershed.
 
-**Note**: some of the calculated percentages may not add up to 100%. During the reclassification of the categorical datasets (`land_cover`, `soils`, `bedrock`), we focused on the macro-classes which make up the majority of the catchment and are known to have the greatest impact of river hydrochemistry (e.g. urban areas, farmland). While other land cover categories are found within each watershed (hence $total$ $percent < 100$), these typically account for only a small percentage of the total area and have a limited effect on the river environment. These categories have been excluded to simplify the analysis. 
+**Note**: some of the calculated percentages may not add up to 100%. During the reclassification of the categorical datasets (`land_cover`, `soils`, `bedrock`), we focused on the macro-classes which make up the majority of the catchment and are known to have the greatest impact of river hydrochemistry (e.g. urban areas, farmland). While other land cover categories are found within each watershed (hence $total$ $percent < 100$), these typically account for only a small percentage of the total area and have a limited effect on the river environment. These categories have been excluded to simplify the analysis.
 
 ### An introduction to linear models in R
 
@@ -277,14 +279,14 @@ It is now time to examine the relationships between river water quality and catc
 
 1.  Regression equations for each water quality variable (dependent variable; n = 10) and the key explanatory catchment characteristics (independent variables; n = 16).
 
-2.  Associated model values (R<sup>2</sup>, *p* value).
+2.  An assessment of model quality (the exact metrics / plots / tests are up to you!)
 
 > Remember, you don't have to run every code block shown below, but you can do so if it would help your understanding.
 
 The simplest way to run a linear regression in R is to use the `lm()` function, an example of which is shown below, storing the output in `model` (you can change this name to reflect the input variables):
 
 ```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
-# Fits a linear model
+# Fit a linear model
 model <- lm(formula = Zn ~ average_elevation, data = watersheds_df)
 ```
 
@@ -307,9 +309,9 @@ We can then assess the model output using the `summary` function:
 summary(model)
 ```
 
-For this set of independent variables, we have an R<sup>2</sup> of 0.24 (`Multiple R-squared: 0.2415`) and a model *p* value of < 0.01 (`p-value: 9.512e-05`).
+For this set of independent variables, we have an R<sup>2</sup> of 0.24 (`Multiple R-squared: 0.2415`) and a model *p* value of \< 0.01 (`p-value: 9.512e-05`).
 
-The model coefficients for the independent variables are described above, where `*` denotes *p* values < 0.05 (95% probability) and `**` denotes *p* values < 0.01 (99% probability). As the coefficients are very small, they are presented in scientific notation. These can be converted to numeric (non-scientific) format using the following code:
+The model coefficients for the independent variables are described above, where `*` denotes *p* values \< 0.05 (95% probability) and `**` denotes *p* values \< 0.01 (99% probability). As the coefficients are very small, they are presented in scientific notation. These can be converted to numeric (non-scientific) format using the following code:
 
 ```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
 format(-2.096e-04, scientific = FALSE)
@@ -325,14 +327,14 @@ format(c(-2.096e-04, -8.358e-06, ...) , scientific = FALSE)
 
 ### Training vs. Testing
 
-One limitation of the above approach is that our dataframe (`watersheds_df`) contains observations from all 70 EA monitoring stations.
+One **limitation** of the above approach is that our dataframe (`watersheds_df`) contains observations from all 70 EA monitoring stations.
 
 When performing statistical analysis, it is common practice to split any dataset into:
 
 -   a **training** subset, which is used to create the model(s).
 -   a **testing** subset, which is used to evaluate the model(s).
 
-Subsetting our data in this way allows models to be evaluated more rigorously. Many models perform well "in-sample" but poorly "out-of-sample" when evaluated against independent data (i.e. the testing subset). This is commonly referred to as "over-fitting".
+Subsetting our data in this way allows models to be evaluated more rigorously. Many models perform well "in-sample" but poorly "out-of-sample" when evaluated against independent data (i.e. the testing subset). This is commonly referred to as **over-fitting**.
 
 Training and testing subsets are usually defined randomly, with an approximate ratio of 70:30 (although this varies). However, and to ensure reproducibility, this step has been completed for you: the `watersheds_df` dataframe contains a `group` variable denoting which monitoring sites belong to the training and testing subsets.
 
@@ -351,54 +353,194 @@ testing <- subset(watersheds_df, Group == "Testing")
 
 > Hints: How important is the training-testing ratio? How are training-testing subsets created?
 
-### Variable selection strategies
+### The full model
 
-An addition weakness of the above approach is that we have manually defined the independent variables of interest (`average_elevation + Grassland_percent`). For exploratory analysis, however, we may not know which are the most important variables. Perhaps there is a combination of independent variables which produces a better model fit (e.g. R<sup>2</sup> \> 0.24)?
+An additional **limitation** of the above approach is that we have manually defined the independent variables of interest (`average_elevation + Grassland_percent`). For exploratory analysis, however, we may not know which are the most important variables. Perhaps there is a combination of independent variables which produces a better model fit (e.g. R<sup>2</sup> \> 0.24)?
+
+As a first step, we could create a full model including **all** the *relevant* independent variables. This would include the normalised variables (e.g. `Arable_percent`, `Heath_percent`, ...), but we'd want to exclude the categorical counts (e.g. `Arable`, `Heath`, ... *influenced by catchment size*),as well as any IDs or geometry variables (`area`). In general, we are only interested in testing the continuous derivatives (column names starting with `average_`) and the normalised categorical derivatives (column names ending in `_percent`).
+
+Rather than typing out the columns of interest manually, we are going to use the `select` function from the `dplyr` package to achieve this:
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+# Creates a vector of column names, including only those which contain "average" or "percent"
+factors <- colnames(watersheds_df %>% dplyr::select(contains(c("average", "percent"))))
+
+# Prints to console
+factors
+```
+
+> Run the above code. **Note**, the formatting of `dplyr::select` may be slightly confusing but it is necessary because there is also a `select` function in the `MASS` package. Here, we are telling R to use `select` from `dplyr`.
+
+Using this vector of column names, we are going to create a new data frame (called `training_variables`) containing only the independent variables of interest for the `training` dataset:
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+training_df <- training[factors]
+```
+
+> Run the above code and use `head()` to inspect the results.
+
+To run a linear regression using these data, we need to ensure our dependent variable of interest is present in the dataframe, which can be achieved using `cbind`.
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+# Column bind (cbind) the dependent (n=1) and independent variables (n=16)
+model_df <- cbind(variable = training$Zn, training_df)
+```
+
+> Run the above code which creates a new dataframe (`model_df`) containing the dependent variable we want to model (`Zn`) and the full set of independent variables for our training set. In this case, we are using the generic term `variable` to denote our dependent variable.
+
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+
+# OLS, all independent variables
+linear_model <- lm(formula = variable ~ ., data = model_df)
+```
+
+> Next, run a new `lm()` model using all the independent variables, which can be acheived using the equation `Zn ~ .`, and inspect the output.
+
+> How has model performance changed?
+
+If all has worked as intended, you should have noted improved model performance on the training dataset (e.g., larger R^2^ value). This seems great!
+
+#### Problems with the full models
+
+*However*, there are some important problems with this approach:
+
+-   While adding all the independent variables to the model is quite simple, we don't know which are actually **important**. Perhaps only one or two of these have a demonstrable and/or high magnitude effect on the dependent variable?
+
+-   In general, we prefer models with the minimum number of parameters (independent variables). These models require fewer assumptions, less intensive data collection, can be applied more confidently to new data sets/locations, and are often easier to interpret. This principle of model parsimony is based upon **Occam’s Razor**: "other things being equal, simpler explanations are generally better than more complex ones".
+
+-   Another, and perhaps more important issue, is that we not yet assessed the performance of the model on the **testing** data set. Good performance on the training set is a good sign, but we need to evaluate how the model performs on unseen and independent data.
+
+To achieve this, we can use the `predict()` function which predicts new values for `Zn` based on our model, and can be achieved using the following code:
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+# Predict Zn values based upon linear model, saving to testing dataframe
+testing$predicted_Zn <- predict(linear_model, newdata = testing)
+```
+
+> Run the above code, which will create a new column in the `testing` dataframe called `predicted_Zn`, based on the model (`linear_model`) and the catchment characteristics stored in `testing`:
+
+> To evaluate the model perform, make a plot of measured `Zn` *vs.* predicted `Zn` values, using the skills developed in the [Introduction to R](@Intro_to_R). I would recommend adding a 1:1 line to the plot, as follows: `geom_abline(intercept = 0, slope = 1, lty = "dashed")`. If you want, you could also add a simple linear regression, which can be acheived using the following: `geom_smooth(method = "lm", se = FALSE, colour="#FF953C")`.
+
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+
+# ggplot of measured vs. modelled (predicted) NO2 values
+zn_plot <- ggplot(data = testing, aes(x = Zn, y = predicted_Zn)) +
+  # Adding a linear regression ("lm"), removing standard error bars (se = FALSE)
+  geom_smooth(method = "lm", se = FALSE, colour="#FF953C") +
+  # Adds a 1:1 line for comparison
+  geom_abline(intercept = 0, slope = 1, lty = "dashed") +
+  # Adds the point data, modifying the shape, size, colour and fill
+  geom_point(shape = 21, colour = "white", fill = "#5695FF", size = 2.5) +
+  # Setting the theme and aspect ratio
+  theme_classic() +
+  theme(aspect.ratio = 1) +
+  # Axis limits
+  scale_x_continuous(limits = c(0,60)) +
+  scale_y_continuous(limits = c(0,60)) +
+  # Add axis labels and a title
+  labs(x = Measured~Zn, y = Modelled~Zn, 
+       title = Plot~of~measured~vs.~modelled~Zn~values)
+
+zn_plot
+
+```
+
+> Use this plot to assess the model performance on the `testing` set. Can you see evidence of systematic and/or random error?
+
+While this is useful to allow for visual assessment of performance, we might also want to produce some metrics for a quantitative assessment, such as root-mean-square error (RMSE), normalised root-mean-square-error (nRMSE), or R^2^. 
+
+It is *tempting* at this stage to produce a regression between the measured and modelled values, such as the following: 
+
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+# Regression (measured vs. modelled)
+prediction_model <- lm(formula = Mg ~ predicted_Mg, data = testing)
+summary(prediction_model)
+```
+
+While this looks like a sensible approach, and it gives a high R^2^ value in this case, this is an **inappropriate** approach and is an easy mistake, because this is evaluating the deviations from the modelled line-of-best-fit (shown in orange [#FF953C] above), and not the 1:1 line. 
+
+**Instead**, we need to calculate the model R^2^ manually, the equation for which is here:
+
+$$R^2=1-\frac{RSS}{TSS}$$
+Here $RSS$ is the sum of the squares of residuals i.e., deviations of predicted values (`predicted_Zn`) from actual empirical values (`Zn`), and can be calculated in R as follows:
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+# Sum of Squared Residuals: sum of squared differences between measured and modelled value
+rss <- sum((testing$Zn - testing$predicted_Zn)^2)
+```
+
+$TSS$ refers to the total sum of squares i.e., the dispersion of the data points from the average value.
+
+To calculate $TSS$, you need to calculate the difference between each measured value and the mean of the measured values (e.g., `mean`), square each value, and then calculate the total sum. 
+
+
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+# Sum of Squares Total:
+tss <- sum((testing$Zn - mean(testing$Zn))^2)
+```
+
+> Try to calculate $TSS$ using the guidance above, and using the R code for $RSS$ as a guide. If you get stuck, ask for help! 
+
+The ratio of $RSS$ to $TSS$ accounts for the *unexplained* variation in the dependent variable that is not explained by the model. In turn, using $$1-\frac{RSS}{TSS}$$ returns our *explained* variation, which produces:
+
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+# Model performance for the testing set
+# See: https://en.wikipedia.org/wiki/Coefficient_of_determination#cite_note-8
+r_squared <- 1 - (rss / tss)
+print(r_squared)
+```
+
+As you can see, we have an unexpected result here, a strongly negative R^2^ ($<0$). How can we account for this? 
+
+Numerically, this has occurred because $RSS>TSS$ i.e., in general the residuals (deviation between modelled and measured values) are larger than the difference between the measured values and their average. But what does this actually **mean**?
+
+The explanation is that our model predictions are worse than if we simply used the average of the measured values for our prediction. 
+
+What does this suggest? Our model is **overfit** i.e., it performs well on the training dataset, but performs very poorly on the testing dataset. 
+
+### Variable selection strategies
 
 Determining which variables to include/exclude from a model is a very difficult problem, which has resulted in many different variable selection strategies. Common approaches include expert opinion and/or theory, partial least squares (PLS) regression, implemented in `PLS`, Least Absolute Shrinkage and Selection Operator (LASSO), implemented in `glmnet` and `LARS`, as well as elastic net methods and ridge regression, also implemented in `glmnet`. You may want to explore some of these more complex approaches for your dissertation.
 
+Variable selection strategies: <https://doi.org/10.1002/bimj.201700067>
 
-Variable selection strategies: https://doi.org/10.1002/bimj.201700067
+Elastic net: <https://doi.org/10.1111/j.1467-9868.2005.00503.x>
 
-Elastic net: https://doi.org/10.1111/j.1467-9868.2005.00503.x 
+Summary: <https://bradleyboehmke.github.io/HOML/regularized-regression.html>
 
-Summary: https://bradleyboehmke.github.io/HOML/regularized-regression.html
+**WATCH** ridge regression: <https://www.youtube.com/watch?v=Q81RR3yKn30&ab_channel=StatQuestwithJoshStarmer>
 
-**WATCH** ridge regression: https://www.youtube.com/watch?v=Q81RR3yKn30&ab_channel=StatQuestwithJoshStarmer
+-   Minimises (the sum of the squared residuals) + (lambda [0-Inf] \* slope coefficient\^2) ... or slope_1\^2 + slope_2\^2 + slope_3\^2
+-   Lambda can be any value, and this is normally calculated by trying a load of values using cross-validation (e.g., 10-fold), training-testing
+-   When lambda = 0, this is just standard least squares regression
+-   As lambda increases, the slope reduces and the model becomes less sensitive to the input (independent variables)
+-   This introduces bias, but for a drop in variance (poor fit to testing, change in predictions if we fit the model to a different training data set)
 
-- Minimises (the sum of the squared residuals) + (lambda [0-Inf] * slope coefficient^2) ... or slope_1^2 + slope_2^2 + slope_3^2
-- Lambda can be any value, and this is normally calculated by trying a load of values using cross-validation (e.g., 10-fold), training-testing
-- When lambda = 0, this is just standard least squares regression
-- As lambda increases, the slope reduces and the model becomes less sensitive to the input (independent variables)
-- This introduces bias, but for a drop in variance (poor fit to testing, change in predictions if we fit the model to a different training data set)
+**WATCH** LASSO: <https://www.youtube.com/watch?v=NGf0voTMlcs&ab_channel=StatQuestwithJoshStarmer>
 
-**WATCH** LASSO: https://www.youtube.com/watch?v=NGf0voTMlcs&ab_channel=StatQuestwithJoshStarmer
+-   LASSO the same as regression, except rather than squaring the slope, we take the *absolute* value
+-   lambda [0-Inf] \* \|slope coefficient\|)
+-   Again \* lambda, determined by cross validation
+-   Both methods make our model less sensitive to training data
+-   Big difference: Ridge can reduce slope asymptotically close to 0, whereas LASSO can go all the way to 0
+-   This is important because in large models with many predictors, even completely unimportant variables (e.g., airspeed of swallow influencing size) will still be \> 0 for ridge regression
+-   In LASSO, they can go to 0 (and those terms go away)
+-   This will result in a more parsimonious model (-useless variables)
+-   Ridge regression performs better when most variables in your model are useful (because it will shrink the parameters, but not remove them)
 
-- LASSO the same as regression, except rather than squaring the slope, we take the *absolute* value
-- lambda [0-Inf] * |slope coefficient|)
-- Again * lambda, determined by cross validation
-- Both methods make our model less sensitive to training data
-- Big difference: Ridge can reduce slope asymptotically close to 0, whereas LASSO can go all the way to 0
-- This is important because in large models with many predictors, even completely unimportant variables (e.g., airspeed of swallow influencing size) will still be > 0 for ridge regression
-- In LASSO, they can go to 0 (and those terms go away)
-- This will result in a more parsimonious model (-useless variables)
-- Ridge regression performs better when most variables in your model are useful (because it will shrink the parameters, but not remove them)
+**WATCH** Elastic net: <https://www.youtube.com/watch?v=1dKRdX9bfIo&ab_channel=StatQuestwithJoshStarmer>
 
-**WATCH** Elastic net: https://www.youtube.com/watch?v=1dKRdX9bfIo&ab_channel=StatQuestwithJoshStarmer
-
-- We can choose ridge (we think they're all important), or we can choose LASSO (some are less so)
-- What if there are loads of variables e.g., "large p, small n" case (high-dimensional data with few examples) i.e., number of variables (p) is significantly larger than the number of observations (n)
-- Most important for deep learning (e.g., millions of parameters) - some might be useful / useless
-- No need to pick, just use elastic net regression, which is a combination of both
-= sum of squared residuals + lasso regression penalty + ridge regression penalty
-- each penalty get its own lambda
-- again, cross validation used on different combinations of lambda1 and lambda2 to find the "best" value
-- again, if lambda1-2 are 0 = least squares
-- we will get ridge / lasso results, if either of their penalties are 0
-- if both > 0, we have a hybrid
-- great if we have correlated variables (LASSO tends to pick one, ridge shrinks all correlated variables together)
-- elastic groups and shrinks the parameters together... and leaves them in/removes them all at once
-
+-   We can choose ridge (we think they're all important), or we can choose LASSO (some are less so)
+-   What if there are loads of variables e.g., "large p, small n" case (high-dimensional data with few examples) i.e., number of variables (p) is significantly larger than the number of observations (n)
+-   Most important for deep learning (e.g., millions of parameters) - some might be useful / useless
+-   No need to pick, just use elastic net regression, which is a combination of both = sum of squared residuals + lasso regression penalty + ridge regression penalty
+-   each penalty get its own lambda
+-   again, cross validation used on different combinations of lambda1 and lambda2 to find the "best" value
+-   again, if lambda1-2 are 0 = least squares
+-   we will get ridge / lasso results, if either of their penalties are 0
+-   if both \> 0, we have a hybrid
+-   great if we have correlated variables (LASSO tends to pick one, ridge shrinks all correlated variables together)
+-   elastic groups and shrinks the parameters together... and leaves them in/removes them all at once
 
 For our analysis, we are going to use a relatively simple method known as **Stepwise Regression**, implemented in the `MASS` package. This works by including **all** the relevant independent variables in the analysis and then selecting those with the greatest explanatory power.
 
@@ -592,7 +734,7 @@ zn_model <- lm(formula = Zn ~ ., data = model_df)
 summary(zn_model)
 ```
 
-Our overall model fit (R<sup>2</sup>) is $0.5143$ which indicates that the independent variables explain ~51% of variability in the dependent variable. Our model is statistically significant, here defined as having a *p* value < 0.05. When values are very small (e.g. *p* < 0.0005), we would typically present these as a discrete value e.g. *p* < 0.05, < 0.01, < 0.001. Generally, we only use models in which we can be 95% confident or higher (i.e. significance level of 0.05 or less).
+Our overall model fit (R<sup>2</sup>) is $0.5143$ which indicates that the independent variables explain \~51% of variability in the dependent variable. Our model is statistically significant, here defined as having a *p* value \< 0.05. When values are very small (e.g. *p* \< 0.0005), we would typically present these as a discrete value e.g. *p* \< 0.05, \< 0.01, \< 0.001. Generally, we only use models in which we can be 95% confident or higher (i.e. significance level of 0.05 or less).
 
 However, it is important to note that *p* values should be not be considered in isolation and need to be interpreted carefully. For statistical reviews of using and interpreting *p* values, see @goodman_dirty_2008 and @andrade_p_2019. For a broader overview, see the *Nature* commentary by @amrhein_scientists_2019, as well as a summary article by [Vox](https://www.vox.com/latest-news/2019/3/22/18275913/statistical-significance-p-values-explained).
 
