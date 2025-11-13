@@ -6,12 +6,18 @@ output:
     config:
       toc:
         collapse: section
+        before: |
+          <div style="text-align: center; margin: 1em 0;">
+            <img src="images/course-logo.png" width="200">
+          </div>
+      sharing: null
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: EMMR_Practicals.bib
 csl: harvard-cite-them-right.csl
 link-citations: true
 ---
+# (PART\*) Home {-}
 
 # Introduction
 

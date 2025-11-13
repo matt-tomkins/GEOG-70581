@@ -1,4 +1,6 @@
-# Handy Hints {#Hints}
+# (PART\*) Endmatter {-}
+
+# Handy Hints {#Hints .unnumbered}
 
 This chapter contains a few handy hints which may be useful if you're having any issues loading R packages or running `Whitebox` tools. 
 
