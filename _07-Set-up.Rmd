@@ -153,19 +153,23 @@ In **Practical 1**, we used the following packages:
 
 In **Practical 2**, we are going to use a number of additional packages:
 
-- [`data.table`](https://cran.r-project.org/web/packages/data.table/index.html)
-    - for easy manipulation of tables;
 - [`dplyr`](https://cran.r-project.org/web/packages/dplyr/index.html) 
     - for easy manipulation of data frames;
-- [`forcats`](https://forcats.tidyverse.org/) 
-    - for working with categorical variables (factors);
-- [`MASS`](https://rdrr.io/cran/MASS/) 
-    - for statistical analysis, based upon Venables and Ripley (2002) "**M**odern **A**pplied **S**tatistics with **S**"; 
 - [`units`](https://cran.r-project.org/web/packages/units/index.html) 
     - for calculation of measurement units;
+- ['glmnet'](https://glmnet.stanford.edu/articles/glmnet.html) for regression analysis (LASSO)
+  
+```{r, eval = FALSE, echo = FALSE}
+
 - [`corrplot`](https://cran.r-project.org/web/packages/corrplot/vignettes/corrplot-intro.html) and [`olsrr`](https://cran.r-project.org/web/packages/olsrr/vignettes/intro.html)
     - for correlation and regression analysis.
-  
+- [`MASS`](https://rdrr.io/cran/MASS/) 
+    - for statistical analysis, based upon Venables and Ripley (2002) "**M**odern **A**pplied **S**tatistics with **S**"; 
+- [`forcats`](https://forcats.tidyverse.org/) 
+    - for working with categorical variables (factors);
+- [`data.table`](https://cran.r-project.org/web/packages/data.table/index.html)
+    - for easy manipulation of tables;
+```
 
 <br/> 
 
@@ -174,7 +178,7 @@ To load new packages, you can either use the `install.packages()` and `library()
 ```{r, eval = FALSE, warning= FALSE, message = FALSE, results='hide'}
 # Checks and installs packages
 packages <- c("ggplot2", "ggspatial", "here", "raster", "sf", "whitebox", # Practical-1
-              "data.table", "dplyr", "forcats", "MASS", "units") # Practical-2 
+              "dplyr", "units", "glmnet") # Practical-2 
 check.packages(packages)
 ```
 
