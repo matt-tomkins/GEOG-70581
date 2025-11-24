@@ -446,8 +446,8 @@ p
 
 So far we have used the most simplistic flow algorithm (D8) to model specific catchment area (SCA). However, there are many flow algorithms available (e.g. @fairfield_drainage_1991, @seibert_new_2007, @grabs_calculating_2010) and each algorithm results in slightly different spatial patterns of water flow. As flow routing is fundamental to the modelling of surface water hydrology, it is important to familiarise yourself with several commonly used methods, although it can be difficult to decide when or where it is appropriate to use a particular routing algorithm. In this section of the practical, we will compare the output of three flow routing algorithms including:
 
-- **D8**: see @ocallaghan_extraction_1984
-- **FD8**: see @freeman_calculating_1991, @quinn_prediction_1991 and its modification by @quinn_tan_1995
+- **D8**: see @ocallaghan_extraction_1984;
+- **FD8**: see @freeman_calculating_1991;
 - **D-infinity**: see @tarboton_new_1997; 
 
 Flow algorithms differ in the way in which they:
@@ -456,7 +456,9 @@ Flow algorithms differ in the way in which they:
 - model flow divergence, i.e., partition flow between neighbouring downslope cells; 
 - handle streams.
 
-The D8 algorithm is incapable of modelling flow divergence (or dispersion) because the flow from a particular grid cell is directed to a single downslope neighbour. FD8 (i.e. fractional D8; @freeman_calculating_1991, @quinn_prediction_1991) divides flow to each downslope neighbour using a partitioning scheme that is based on the slope angle to neighbouring cells, while a later modification by @quinn_tan_1995 increases the degree of flow convergence from the catchment divide to the channel head. Finally, D-infinity divide flows between a maximum of two downslope neighbours based on the direction of maximum downward slope. Of these, FD8-Quinn (@quinn_tan_1995) is the only algorithm of the three that explicitly recognises that flow on hillslopes should be divergent while flow along valley bottoms should be convergent. 
+The D8 algorithm is incapable of modelling flow divergence (or dispersion) because the flow from a particular grid cell is directed to a single downslope neighbour. FD8 (i.e. fractional D8; @freeman_calculating_1991, @quinn_prediction_1991) divides flow to each downslope neighbour using a partitioning scheme that is based on the slope angle to neighbouring cells. There are later modifications to this algorithm by @quinn_prediction_1991 and @quinn_tan_1995 which increase the degree of flow convergence from the catchment divide to the channel head. You could evaluate the effects of these in Whitebox tools using [`wbt_quinn_flow_accumulation()`](https://whiteboxr.gishub.org/reference/wbt_quinn_flow_accumulation.html). Finally, D-infinity divide flows between a maximum of two downslope neighbours based on the direction of maximum downward slope. Of these, FD8 (@freeman_calculating_1991), and its later modifications (e.g., @quinn_tan_1995), is the only algorithm of the three that explicitly recognises that flow on hillslopes should be divergent while flow along valley bottoms should be convergent. 
+ 
+It is worth noting that there are many other single-flow direction (SLF) and multiple-flow direction (MFD) algorithms that can be used, see Li et al. ([2020](https://doi.org/10.1016/j.jhydrol.2020.124619)).
 
 In the final part of the practical, we will assess the specific catchment areas (SCA) derived from each of the flow algorithms discussed above.
 
