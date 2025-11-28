@@ -1,0 +1,25 @@
+# References {.unlisted .unnumbered}
+
+```{r, eval = TRUE, echo = FALSE, warning = FALSE, message = FALSE, results='hide'}
+
+# Date: 2023-11-10
+# Problem:
+#----- clean_book() used in index.rmd to remove the previous bookdown files (stored in ./docs)
+#----- this is necessary to avoid index issues (i.e., links to later chapters still being visible). 
+#----- while this works, it removes everything in /docs, including the CNAME file, which is needed to push the webpage from GitHub Pages (https://matt-tomkins.github.io/GEOG-70581/) to the personal domain (https://emm-concepts.com/)
+
+# Solution:
+#----- Create the /docs directory and move the CNAME file manually to it (stored in /GEOG-70581)
+
+# Create the docs folder, if not existing
+if (!dir.exists("./docs")) {dir.create("./docs")}
+
+# Move the CNAME file
+file.copy("./CNAME", "./docs")
+
+# 2025-11-27
+#--> Weird behaviour - the title of this Rmd file appears when the bibliography is added (05-Flow-algorithms, 08-Mersey-III)... not sure why! 
+#--> Have updated from 'Data handling' to 'References' to hide the issue for now, but need to fix in future.
+
+
+```

@@ -1,0 +1,257 @@
+# Mersey IV - Catchments {#mersey_bonus}
+
+## Task 4: Extracting catchment characteristics
+
+We know from the lecture that river hydrochemistry can be influenced by a range of catchment characteristics, including land cover, soil type, bedrock geology, topography, and rainfall. Before we undertake statistical analysis, our next step is to extract these characteristics for each of the 70 catchments in the `mersey_watersheds` file (`.shp`), so we can relate these to the Environment Agency water quality data collected at each of the 70 monitoring sites.
+
+Information on these characteristics for the Mersey region can be obtained from the relevant files in the data pack, including:
+
+-   `mersey_LC` [`categorical`], based on LCM2000 data;
+-   `mersey_HOST` [`categorical`] i.e., Hydrology of Soil Types;
+-   `mersey_bedrock` [`categorical`], sourced from the British Geological Survey;
+-   `mersey_dem_fill` [`continuous`], a digital elevation model (50 m spatial resolution);
+-   `mersey_rainfall` [`continuous`], annual average rainfall (mm a^-1^).
+
+To simplify our analysis, I am going to walk you through the approach to calculate *some* of these variables, including the average of the continuous datasets (elevation, slope, aspect, rainfall).
+
+For the categorical datasets (e.g., percentage of the each of the land cover / soil / bedrock classes present), I have provided you with the summary values, stored in `data/practical_2/mersey_EA_characteristics.csv`.
+
+While extracting these values is an important part of the data cleaning-preparation process, it is *time-consuming*, requiring reclassification of each categorical raster (e.g., simplifying the number of classes and removing classes that are not present in the study area) and normalisation of the values based on catchment area. Given the focus of EMMC, this part has been removed to give you more time to focus on the **statistical analysis and interpretation** (as requested by previous student feedback), and to relate your results to key environmental **concepts**.
+
+If you are interested in the reclassification approach, I have provided some guidance in the final chapter [here](#Hints).
+
+### Calculating surface derivatives
+
+Before we can extract characteristics for each watershed, we need to produce some additional layers. Here, we are interested in the effects of elevation (the data from `mersey_DEM_fill`) and rainfall (`mersey_rainfall`), as well as topographic **slope** and **aspect**, both of which likely influence the path of water through the landscape. These two attributes (*slope, aspect*) are known as **surface derivatives** as they are calculated (derived) from the DEM.
+
+To produce **slope** and **aspect** rasters:
+
+> use the `wbt_slope` and `wbt_aspect` functions, using the original filled DEM as the input data (`mersey_dem_fill.tif`) and using appropriate output names (e.g. `mersey_dem_slope` and `mersey_dem_aspect`).
+
+Your outputs should resemble the following:
+
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+# Sets file path for DEM
+dem <- here("data", "practical_2", "mersey_dem_fill.tif")
+
+# Slope and aspect
+wbt_slope(dem, here("output", "practical_2", "mersey_dem_slope.tif")) 
+wbt_aspect(dem, here("output", "practical_2", "mersey_dem_aspect.tif")) 
+
+# Loads slope and aspect rasters
+mersey_slope <- raster(here("output", "practical_2", "mersey_dem_slope.tif"))
+mersey_aspect <- raster(here("output", "practical_2", "mersey_dem_aspect.tif"))
+
+# Creates ggplot for slope
+slope <- ggplot() +
+  layer_spatial(mersey_slope, aes(fill = stat(band1))) + # Adds raster layer
+  #annotation_spatial(data = snapped_seed_points, shape = 21, fill = "#FB5858", colour = "black", size = 3) + # Adds snapped seeds layer
+  theme_classic() + 
+  labs(fill = "Slope angle", x = "Easting", y = "Northing") +
+  scale_fill_continuous(type = "viridis",  na.value = NA) +
+  #scale_fill_distiller(palette = "RdYlBu", na.value = NA) +
+  theme(legend.position = "top")
+
+# Creates ggplot for aspect
+aspect <- ggplot() +
+  layer_spatial(mersey_aspect, aes(fill = stat(band1))) + # Adds raster layer
+  #annotation_spatial(data = snapped_seed_points, shape = 21, fill = "#FB5858", colour = "black", size = 3) + # Adds snapped seeds layer
+  theme_classic() + 
+  labs(fill = "Aspect", x = "Easting", y = "Northing") +
+  #scale_fill_continuous(type = "viridis",  na.value = NA) +
+  scale_fill_distiller(palette = "RdYlBu", na.value = NA) +
+  theme(legend.position = "top")
+
+
+slope+aspect
+```
+
+### Extracting continuous characteristics
+
+To begin:
+
+> Load the `mersey_watersheds.shp` file into R (produced in Task 3) using the `st_read` function, storing in a variable called `watersheds`.
+
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+# Load watersheds (vector, sf, VALUE column is important) and renames
+watersheds <- st_read(here("output", "practical_2", "mersey_watersheds.shp"))
+```
+
+> Next, print out attribute names for the shapefile as follows:
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+colnames(watersheds)
+```
+
+For our analysis, the attribute of interest is `VALUE`, which contains the unique Environment Agency ID for each watershed. **Importantly**, this is also found in `mersey_EA_chemisty.csv` file. This will enable us to join the two datasets, populating the attribute table of the `watersheds` variable with the water quality measurements stored in the csv.
+
+> To simplify this, use the following code to replace the column name `VALUE` with a new name `Seed_Point_ID`. The latter is used in the `mersey_EA_chemisty.csv`.
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+# Replaces column name 'VALUE' with 'SEED_Point_ID'
+names(watersheds)[names(watersheds) == 'VALUE'] <- 'Seed_Point_ID'
+```
+
+> You can re-use the `colnames` function to check it worked correctly:
+
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+colnames(watersheds)
+```
+
+With this updated:
+
+> We can now load the Environment Agency data using `read.csv()`, as shown in [Chapter 3](#Intro_to_R):
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+
+# Loads csv using read.csv
+ea_data <- read.csv(here("data", "practical_2", "mersey_EA_chemistry.csv"))
+```
+
+> and **merge** using the `merge` function:
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+# Merge based upon matching Seed_Point_IDs
+watersheds_ea <- merge(watersheds, ea_data, by = "Seed_Point_ID")
+```
+
+> Use the `head()` function to inspect the first few rows of our new data frame.
+
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+head(watersheds_ea)
+```
+
+> Save your script before continuing.
+
+Before we move on to extract our continuous derivatives (average elevation, rainfall, slope and aspect), it is worth noting that R variables can be removed from the environment as follows:
+
+```{r, echo = TRUE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+# Removes object(s) from memory
+rm(mersey_dem)
+```
+
+This can be useful if R is running slowly.
+
+To extract continuous derivatives, we are going to use the `extract` function from the **raster** package, which is described [here](https://www.rdocumentation.org/packages/raster/versions/3.5-2/topics/extract). We'll be using this function for each continuous dataset. It is also used for extracting categorical derivatives, as demonstrated [here](#Hints), so it's important that you understand what it's doing.
+
+Broadly, the function extracts values from a raster object at the locations of spatial vector data, where the value of interest is user-defined. For example, this could be the mean (e.g. the average elevation of a DEM within a vector polygon), the count (e.g. the number of cells within a vector polygon), or a minimum or maximum (e.g. the maximum elevation within a vector polygon), as shown in the figure below:
+
+<p align="center">
+
+<a name="Figure_7"></a>![](figures/Practical-2/extract-raster.png){width="50%"}
+
+</p>
+
+**Figure 5: Visual example of the `extract` function**. In this example, our raster layer is the slope of the terrain in the Eskdale catchment, studied in [Week 9](#Eskdale_flow_algorithms), with values ranging from 0° (flat) to 76° (very steep). Our vector layer is a series of three $Polygons$, covering three upland locations (other valid vector types include $Points$ and $Lines$). Here, the `extract` function would return the average and minimum-maximum slope for $Polygons$ $A$ and $B$ respectively, and the count (number of raster cells) for $Polygon$ $C$.
+
+<br/>
+
+To use the `extract` function, the raster dataset needs to be loaded into R.
+
+> Load the digital elevation model into R and store with a sensible variable name e.g. `mersey_dem`:
+
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+# Load elevation raster
+mersey_dem <- raster(here("data", "practical_2", "mersey_dem_fill.tif"))
+```
+
+> Now we can use the `extract` function as follows. This takes in both raster (`mersey_dem`) and vector input data (`watersheds_ea`), where the value of interest is determined by the `fun` parameter (i.e. a function). Here we are using an existing base R function (e.g. mean) but we can use user-defined functions as well. For example, `fun=function(x, ...) length(x)` would **count** the length (or number) of raster cells for each watershed, and `min` or `max` would return the minimum and maximum elevations, respectively. In our case, we just want to calculate the mean (average) elevation, so we can use the approach below:
+
+```{r, echo = TRUE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+# Extracts raster values for each watershed, calculates mean (fun=mean), stores in attribute table ($average_elevation), with NA values removed (na.rm=TRUE)
+watersheds_ea$average_elevation <- extract(mersey_dem, watersheds_ea, fun=mean, na.rm=TRUE)
+```
+
+> When you're happy you understand the process, load the other continuous rasters into R with sensible variable names (e.g. `mersey_rainfall`, `mersey_slope`, `mersey_aspect`) and use the `extract` function to calculate the relevant attributes e.g. `$average_rainfall`, `$average_slope`, `$average_aspect`.
+
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide'}
+# Load raster data
+mersey_dem <- raster(here("data", "practical_2", "mersey_dem_fill.tif"))
+mersey_rainfall <- raster(here("data", "practical_2", "mersey_rainfall.tif"))
+mersey_slope <- raster(here("output", "practical_2", "mersey_dem_slope.tif"))
+mersey_aspect <- raster(here("output", "practical_2", "mersey_dem_aspect.tif"))
+```
+
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide',  cache = FALSE}
+# Extract derivatives, calculate mean, and store in attribute table
+watersheds_ea$average_elevation <- extract(mersey_dem, watersheds_ea, fun=mean, na.rm=TRUE)
+watersheds_ea$average_rainfall  <- extract(mersey_rainfall, watersheds_ea, fun=mean, na.rm=TRUE)
+watersheds_ea$average_slope <- extract(mersey_slope, watersheds_ea, fun=mean, na.rm=TRUE)
+watersheds_ea$average_aspect  <- extract(mersey_aspect, watersheds_ea, fun=mean, na.rm=TRUE)
+
+# Removes object(s) from memory
+#rm(dem, rainfall, slope, aspect)
+
+```
+
+> Use the `head()` function to inspect the output.
+
+### Extracting categorical characteristics
+
+As noted above, I have produced some catchments characteristics for you, derived from `mersey_LC`, `mersey_HOST` and `mersey_bedrock`. If you want to learn about the approach, it is detailed [here](#Hints). This information is stored in `mersey_EA_characteristics.csv` and includes:
+
+-   Percentage of the each of the five land cover classes present:
+    -   Arable %
+    -   Heath %
+    -   Grassland %
+    -   Urban %
+    -   Wetland %
+-   Percentage of the each of the four soil types present:
+    -   Permeable %
+    -   Impermeable %
+    -   Gleyed %
+    -   Peats %
+-   Percentage of the each of the three bedrock geology types present:
+    -   Sands_and_Muds %
+    -   Limestone %
+    -   Coal %
+
+> Load the above dataset using `read.csv()` and then **merge** this dataset with `watersheds_ea` (containing the continuous characteristics calculated above) using the `merge` function and `Seed_Point_ID` as the merge value.
+
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center', results='hide',  cache = FALSE}
+
+# Load characteristics using read.csv
+watershed_char <- read.csv(here("data", "practical_2", "mersey_EA_characteristics.csv"))
+
+# Merge based upon matching Seed_Point_IDs
+watersheds_ea <- merge(watersheds_ea, watershed_char, by = "Seed_Point_ID")
+
+```
+
+> Again, use the `head()` function to check this worked as expected.
+
+<br/>
+
+**To finish Task 4:**
+
+> Run the following code, which removes the geometry stored in the data frame (not required for subsequent analysis) and saves our dataframe as a comma-separated file.
+
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+
+# Drops geometry attribute from watersheds_ea
+watersheds_ea <- st_drop_geometry(watersheds_ea)
+
+# Writes data frame to comma-separated file
+write.csv(x = watersheds_ea, here("output", "practical_2", "mersey_watersheds_ea.csv"), row.names=FALSE)
+
+```
+
+To check your calculations: 
+
+> Run `head(watersheds_ea)`, which should resemble the following:
+
+```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
+
+# Print first rows
+head(watersheds_ea)
+
+```
+
+
+> If you wish, it might be good idea to clean / simplify our R environment before commencing the statistical analysis. To do so, best practice is to restart R (`Ctrl + Shift + F10` on Windows) *or* you can use the following code `rm(list = ls())` to remove all objects from the workspace. While the latter isn't a perfect solution (see [here](https://rstats.wtf/source-and-blank-slates#sec-rm-list-ls)), it can be of value if used prudently.
+
+```{r, echo = TRUE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
+
+# Delete user-created objects from the global workspace
+rm(list = ls())
+```
