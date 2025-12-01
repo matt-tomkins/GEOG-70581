@@ -4,15 +4,18 @@
 
 This practical is comprised of six primary tasks, with three weeks of class time available (Weeks 10 - 12). Each of the steps is described in more detail in the remainder of this document. An outline of the key tasks is as follows:
 
-**Mersey III** (Chapter 9): To complete in class in Week 10, and finish before the class in Week 11: 
+**Mersey III**: To complete in class in Week 10, and finish before the class in Week 11: 
 
 - Task 1: Flow routing
 - Task 2: Seed points 
 - Task 3: Watershed delineation 
 
-**Mersey IV** (Chapter 10): To complete in class in Weeks 11 and 12:
+**Mersey IV**: To complete in class in Week 11:
 
 - Task 4: Extracting catchment characteristics 
+
+**Mersey V**: To begin in class in Week 11, and complete in Week 12 and via independent study: 
+
 - Task 5: Model building
 - Task 6: Model evaluation
 
@@ -157,7 +160,7 @@ In **Practical 2**, we are going to use a number of additional packages:
     - for easy manipulation of data frames;
 - [`units`](https://cran.r-project.org/web/packages/units/index.html) 
     - for calculation of measurement units;
-- ['glmnet'](https://glmnet.stanford.edu/articles/glmnet.html) for regression analysis (LASSO)
+- [`glmnet`](https://glmnet.stanford.edu/articles/glmnet.html) for regression analysis (LASSO)
   
 ```{r, eval = FALSE, echo = FALSE}
 
