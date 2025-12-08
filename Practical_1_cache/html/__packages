@@ -1,5 +1,3 @@
-bookdown
-markdown
 ggplot2
 ggspatial
 here
@@ -19,3 +17,5 @@ corrplot
 olsrr
 Matrix
 glmnet
+bookdown
+markdown

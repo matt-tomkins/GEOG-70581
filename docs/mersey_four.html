@@ -555,7 +555,7 @@ Hydrological analysis in R<br />
 <blockquote>
 <p>To evaluate the model performance, create a scatter plot of measured <code>Mg</code> <em>vs.</em> predicted <code>Mg</code> values, using the skills developed in the <a href="@Intro_to_R">Introduction to R</a>. I would recommend adding a 1:1 line to the plot, as follows: <code>geom_abline(intercept = 0, slope = 1, lty = "dashed")</code>. You could also add a linear regression using the measured and modelled values, although see below for important disucssion. This can be acheived using the following: <code>geom_smooth(method = "lm", se = FALSE, colour="#FF953C")</code>.</p>
 </blockquote>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-131-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-153-1.png" width="672" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>Use this plot to assess the model performance on the <code>testing</code> set. Can you see evidence of systematic and/or random error?</p>
 </blockquote>
@@ -603,7 +603,7 @@ Hydrological analysis in R<br />
 ## Residual standard error: 0.005749 on 5 degrees of freedom
 ## Multiple R-squared:      1,  Adjusted R-squared:      1 
 ## F-statistic: 1.542e+05 on 1 and 5 DF,  p-value: 2.031e-12</code></pre>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-133-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-155-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>To produce the <strong>correct</strong> <span class="math inline">\(R^2\)</span>, we need to do so manually using the following equation:</p>
 <p><span class="math display">\[R^2=1-\frac{RSS}{TSS}\]</span>
 Here <span class="math inline">\(RSS\)</span> is the residual sum of squares i.e., deviations of predicted values (e.g., <code>predicted_Mg</code>) from actual empirical values (e.g., <code>Mg</code>), and can be calculated in R as follows:</p>
@@ -839,7 +839,7 @@ resulting in:</p>
 <span id="cb147-8"><a href="mersey_four.html#cb147-8" tabindex="-1"></a></span>
 <span id="cb147-9"><a href="mersey_four.html#cb147-9" tabindex="-1"></a><span class="co"># Plot results</span></span>
 <span id="cb147-10"><a href="mersey_four.html#cb147-10" tabindex="-1"></a><span class="fu">plot</span>(lasso_cv)</span></code></pre></div>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-139-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-161-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>You can use <code>plot()</code> to visualise the results of cross-validation, which shows how the model performance varies with the number of non-zero coefficients and the value for λ. <strong>Note</strong>, your plot might look different to the one above, but don’t panic… Marked with dashed lines are two candidate models that the user might want to select as the final model:</p>
 <ul>
 <li><span class="math inline">\(λ_{min}\)</span> (<code>lambda.min</code>) i.e., the model with the minimum mean cross-validated error (y-axis)</li>
@@ -870,7 +870,10 @@ resulting in:</p>
 <span id="cb148-16"><a href="mersey_four.html#cb148-16" tabindex="-1"></a>  </span>
 <span id="cb148-17"><a href="mersey_four.html#cb148-17" tabindex="-1"></a>  <span class="co"># Store lambda.1se</span></span>
 <span id="cb148-18"><a href="mersey_four.html#cb148-18" tabindex="-1"></a>  lambda_values[i] <span class="ot">&lt;-</span> lasso_cv<span class="sc">$</span>lambda<span class="fl">.1</span>se</span>
-<span id="cb148-19"><a href="mersey_four.html#cb148-19" tabindex="-1"></a>}</span></code></pre></div>
+<span id="cb148-19"><a href="mersey_four.html#cb148-19" tabindex="-1"></a>}</span>
+<span id="cb148-20"><a href="mersey_four.html#cb148-20" tabindex="-1"></a></span>
+<span id="cb148-21"><a href="mersey_four.html#cb148-21" tabindex="-1"></a><span class="co"># Median value</span></span>
+<span id="cb148-22"><a href="mersey_four.html#cb148-22" tabindex="-1"></a>m_value <span class="ot">&lt;-</span> <span class="fu">median</span>(lambda_values)</span></code></pre></div>
 <blockquote>
 <p>Run the code above and inspect the results. For example, you could plot of a histogram of the λ values using <code>hist()</code> and print out the <code>median()</code> λ.</p>
 </blockquote>
@@ -878,7 +881,7 @@ resulting in:</p>
 <p>Thinking back to earlier in the course, why would using the median λ be a better choice than mean?</p>
 </blockquote>
 <p>The median λ based on my repeated (n=100) 10-fold cross validation is as follows:</p>
-<pre><code>## [1] 6.011583</code></pre>
+<pre><code>## [1] 6.597705</code></pre>
 <p>Your λ value should be identical or very similar. If so, it can be used to produce a final model for this dependent variable:</p>
 <div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="mersey_four.html#cb150-1" tabindex="-1"></a><span class="co"># Final LASSO model, without cross-validation</span></span>
 <span id="cb150-2"><a href="mersey_four.html#cb150-2" tabindex="-1"></a>final_model <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(x, y, <span class="at">alpha =</span> <span class="dv">1</span>)</span>
@@ -889,20 +892,20 @@ resulting in:</p>
 <p>Run the above code to run the LASSO regression and print out the model coefficients.</p>
 </blockquote>
 <pre><code>## 17 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
-##                        s=6.011583
-## (Intercept)            8.78973962
+##                        s=6.597705
+## (Intercept)            9.62080435
 ## average_elevation      .         
 ## average_rainfall       .         
 ## average_slope          .         
 ## average_aspect         .         
-## Arable_percent         0.32765141
+## Arable_percent         0.29694731
 ## Heath_percent          .         
 ## Grassland_percent      .         
 ## Urban_percent          .         
 ## Wetland_percent        .         
 ## Permeable_percent      .         
 ## Impermeable_percent    .         
-## Gleyed_percent         0.06928212
+## Gleyed_percent         0.05816263
 ## Peats_percent          .         
 ## Sands_and_Muds_percent .         
 ## Limestone_percent      .         
@@ -946,7 +949,7 @@ Mg = 9.62 + 0.30 \cdot Arable \: percent + 0.06 \cdot Gleyed \: percent
 RMSE = \sqrt{mean(measured\:values - modelled\:values)^2}
 \]</span></p>
 <p>Plots of measured vs. modelled values (as well as Q-Q plots and histograms) can be created in ggplot2. Here is an example:</p>
-<p><img src="Practical_1_files/figure-html/unnamed-chunk-145-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Practical_1_files/figure-html/unnamed-chunk-167-1.png" width="672" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>Does the regression line match the 1:1 line? Is there any evidence of under- or over-prediction? Are there any outliers? What <strong>types</strong> of errors can you identify?</p>
 </blockquote>

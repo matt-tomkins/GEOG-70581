@@ -492,6 +492,9 @@ for (i in 1:n_repeats) {
   lambda_values[i] <- lasso_cv$lambda.1se
 }
 
+# Median value
+m_value <- median(lambda_values)
+
 ```
 
 > Run the code above and inspect the results. For example, you could plot of a histogram of the λ values using `hist()` and print out the `median()` λ. 
@@ -503,7 +506,7 @@ The median λ based on my repeated (n=100) 10-fold cross validation is as follow
 ```{r, echo = FALSE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
 
 # Print the median
-print(median(lambda_values))
+print(m_value)
 
 ```
 
