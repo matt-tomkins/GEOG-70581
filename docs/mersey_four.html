@@ -393,14 +393,16 @@ Hydrological analysis in R<br />
 <span id="cb124-2"><a href="mersey_four.html#cb124-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> Mg <span class="sc">~</span> average_elevation, <span class="at">data =</span> watersheds_df)</span></code></pre></div>
 <p>We have defined the data frame being used (<code>data = watersheds_df</code>) and the input variables from that data frame. This is achieved by including their column names, shown here:</p>
 <div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="mersey_four.html#cb125-1" tabindex="-1"></a><span class="fu">colnames</span>(watersheds_df)</span></code></pre></div>
-<pre><code>##  [1] &quot;Seed_Point_ID&quot;          &quot;FID&quot;                    &quot;EA_ID&quot;                  &quot;Group&quot;                 
-##  [5] &quot;Ph&quot;                     &quot;SSC&quot;                    &quot;Ca&quot;                     &quot;Mg&quot;                    
-##  [9] &quot;NH4&quot;                    &quot;NO3&quot;                    &quot;NO2&quot;                    &quot;TON&quot;                   
-## [13] &quot;PO4&quot;                    &quot;Zn&quot;                     &quot;average_elevation&quot;      &quot;average_rainfall&quot;      
-## [17] &quot;average_slope&quot;          &quot;average_aspect&quot;         &quot;Arable_percent&quot;         &quot;Heath_percent&quot;         
-## [21] &quot;Grassland_percent&quot;      &quot;Urban_percent&quot;          &quot;Wetland_percent&quot;        &quot;Permeable_percent&quot;     
-## [25] &quot;Impermeable_percent&quot;    &quot;Gleyed_percent&quot;         &quot;Peats_percent&quot;          &quot;Sands_and_Muds_percent&quot;
-## [29] &quot;Limestone_percent&quot;      &quot;Coal_percent&quot;</code></pre>
+<pre><code>##  [1] &quot;Seed_Point_ID&quot;          &quot;FID&quot;                    &quot;EA_ID&quot;                 
+##  [4] &quot;Group&quot;                  &quot;Ph&quot;                     &quot;SSC&quot;                   
+##  [7] &quot;Ca&quot;                     &quot;Mg&quot;                     &quot;NH4&quot;                   
+## [10] &quot;NO3&quot;                    &quot;NO2&quot;                    &quot;TON&quot;                   
+## [13] &quot;PO4&quot;                    &quot;Zn&quot;                     &quot;average_elevation&quot;     
+## [16] &quot;average_rainfall&quot;       &quot;average_slope&quot;          &quot;average_aspect&quot;        
+## [19] &quot;Arable_percent&quot;         &quot;Heath_percent&quot;          &quot;Grassland_percent&quot;     
+## [22] &quot;Urban_percent&quot;          &quot;Wetland_percent&quot;        &quot;Permeable_percent&quot;     
+## [25] &quot;Impermeable_percent&quot;    &quot;Gleyed_percent&quot;         &quot;Peats_percent&quot;         
+## [28] &quot;Sands_and_Muds_percent&quot; &quot;Limestone_percent&quot;      &quot;Coal_percent&quot;</code></pre>
 <p>Input variables in the <strong>formula</strong> are separated by <code>~</code>, where the variable to the left is the dependent variable (<code>Mg</code>) and the variable to the right is an independent variable (<code>average_elevation</code>). We can, however, include <strong>multiple</strong> independent variables to perform multiple linear regression. This is achieved as follows, where additional independent variables are separated by <code>+</code>:</p>
 <div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="mersey_four.html#cb127-1" tabindex="-1"></a><span class="co"># Fits a linear model</span></span>
 <span id="cb127-2"><a href="mersey_four.html#cb127-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">formula =</span> Mg <span class="sc">~</span> average_elevation <span class="sc">+</span> Grassland_percent, <span class="at">data =</span> watersheds_df)</span></code></pre></div>
@@ -473,10 +475,12 @@ Hydrological analysis in R<br />
 <span id="cb134-3"><a href="mersey_four.html#cb134-3" tabindex="-1"></a></span>
 <span id="cb134-4"><a href="mersey_four.html#cb134-4" tabindex="-1"></a><span class="co"># Prints to console</span></span>
 <span id="cb134-5"><a href="mersey_four.html#cb134-5" tabindex="-1"></a>factors</span></code></pre></div>
-<pre><code>##  [1] &quot;average_elevation&quot;      &quot;average_rainfall&quot;       &quot;average_slope&quot;          &quot;average_aspect&quot;        
-##  [5] &quot;Arable_percent&quot;         &quot;Heath_percent&quot;          &quot;Grassland_percent&quot;      &quot;Urban_percent&quot;         
-##  [9] &quot;Wetland_percent&quot;        &quot;Permeable_percent&quot;      &quot;Impermeable_percent&quot;    &quot;Gleyed_percent&quot;        
-## [13] &quot;Peats_percent&quot;          &quot;Sands_and_Muds_percent&quot; &quot;Limestone_percent&quot;      &quot;Coal_percent&quot;</code></pre>
+<pre><code>##  [1] &quot;average_elevation&quot;      &quot;average_rainfall&quot;       &quot;average_slope&quot;         
+##  [4] &quot;average_aspect&quot;         &quot;Arable_percent&quot;         &quot;Heath_percent&quot;         
+##  [7] &quot;Grassland_percent&quot;      &quot;Urban_percent&quot;          &quot;Wetland_percent&quot;       
+## [10] &quot;Permeable_percent&quot;      &quot;Impermeable_percent&quot;    &quot;Gleyed_percent&quot;        
+## [13] &quot;Peats_percent&quot;          &quot;Sands_and_Muds_percent&quot; &quot;Limestone_percent&quot;     
+## [16] &quot;Coal_percent&quot;</code></pre>
 <blockquote>
 <p>Run the above code. <strong>Note</strong>, the formatting of <code>dplyr::select</code> may be slightly confusing but it is necessary because there is also a <code>select</code> function in the <code>MASS</code> package. Here, we are telling R to use <code>select</code> from <code>dplyr</code>.</p>
 </blockquote>
@@ -874,7 +878,7 @@ resulting in:</p>
 <p>Thinking back to earlier in the course, why would using the median λ be a better choice than mean?</p>
 </blockquote>
 <p>The median λ based on my repeated (n=100) 10-fold cross validation is as follows:</p>
-<pre><code>## [1] 6.597705</code></pre>
+<pre><code>## [1] 6.011583</code></pre>
 <p>Your λ value should be identical or very similar. If so, it can be used to produce a final model for this dependent variable:</p>
 <div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="mersey_four.html#cb150-1" tabindex="-1"></a><span class="co"># Final LASSO model, without cross-validation</span></span>
 <span id="cb150-2"><a href="mersey_four.html#cb150-2" tabindex="-1"></a>final_model <span class="ot">&lt;-</span> <span class="fu">glmnet</span>(x, y, <span class="at">alpha =</span> <span class="dv">1</span>)</span>
@@ -885,20 +889,20 @@ resulting in:</p>
 <p>Run the above code to run the LASSO regression and print out the model coefficients.</p>
 </blockquote>
 <pre><code>## 17 x 1 sparse Matrix of class &quot;dgCMatrix&quot;
-##                        s=6.597705
-## (Intercept)            9.62080435
+##                        s=6.011583
+## (Intercept)            8.78973962
 ## average_elevation      .         
 ## average_rainfall       .         
 ## average_slope          .         
 ## average_aspect         .         
-## Arable_percent         0.29694731
+## Arable_percent         0.32765141
 ## Heath_percent          .         
 ## Grassland_percent      .         
 ## Urban_percent          .         
 ## Wetland_percent        .         
 ## Permeable_percent      .         
 ## Impermeable_percent    .         
-## Gleyed_percent         0.05816263
+## Gleyed_percent         0.06928212
 ## Peats_percent          .         
 ## Sands_and_Muds_percent .         
 ## Limestone_percent      .         

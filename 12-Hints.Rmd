@@ -17,7 +17,18 @@ Being able to deal with errors is therefore an essential programming skill. My t
     - some indication as to **why** the error occurred e.g. `No such file or directory`
 </p>
 
-2. If the error message doesn't provide a simple solution to the problem, then the next step should be to work through your code step-by-step, testing each line or code block to ensure it is working correctly (usually using `print()` statements). 
+2. Use **help()**. If you're unsure of how a particular function works, then you can use the in-built function `help()`, with the name the of the function as the input, e.g.,
+
+``` {r, echo = TRUE, eval = TRUE}
+
+# Call help() for the 'st_read' function from sf package
+help("st_read")
+
+```
+
+This will give you valuable information on the function, including a description, inputs, arguments, and examples. 
+
+3. If the error message doesn't provide a simple solution to the problem, and help() hasn't helped, then the next step should be to work through your code step-by-step, testing each line or code block to ensure it is working correctly (usually using `print()` statements). 
 
 To illustrate this, here is some code which has failed: 
 

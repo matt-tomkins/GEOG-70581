@@ -199,8 +199,8 @@ mg_plot <- ggplot(data = testing, aes(x = Mg, y = predicted_Mg)) +
   theme_classic() +
   theme(aspect.ratio = 1) +
   # Axis limits
-  scale_x_continuous(limits = c(-10,60)) +
-  scale_y_continuous(limits = c(-10,60)) +
+  scale_x_continuous(limits = c(-30,60)) +
+  scale_y_continuous(limits = c(-30,60)) +
   # Add axis labels and a title
   labs(x = Measured~Mg, y = Modelled~Mg, 
        title = Plot~of~measured~vs.~modelled~Mg~values)

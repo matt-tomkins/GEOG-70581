@@ -415,13 +415,20 @@ Hydrological analysis in R<br />
 ## Dimension:     XY
 ## Bounding box:  xmin: 343660.8 ymin: 382963.7 xmax: 353552.6 ymax: 394555.6
 ## Projected CRS: OSGB36 / British National Grid
-##   Seed_Point_ID FID   EA_ID    Group   Ph   SSC     Ca    Mg  NH4  NO3  NO2  TON  PO4    Zn                       geometry
-## 1             1  54 1940214 Training 7.79 21.37  60.82 11.12 0.24 2.64 0.08 2.73 0.34 50.00 MULTIPOLYGON (((345159.5 38...
-## 2             2  42 1941025  Testing 7.79 33.52  75.45 17.52 4.46 3.24 0.11 3.35 0.99 20.51 MULTIPOLYGON (((348107.1 39...
-## 3             3  40 1941017 Training 8.55 11.69  58.54 20.50 0.25 0.83 0.02 0.84 0.07 35.23 MULTIPOLYGON (((346108.7 39...
-## 4             4  47 1941007 Training 7.71 34.06  96.83 46.33 0.24 3.65 0.07 3.73 0.21 74.26 MULTIPOLYGON (((350505.1 39...
-## 5             5  45 1941002 Training 8.08 70.81 141.98 85.85 0.40 4.47 0.05 4.52 0.14 20.16 MULTIPOLYGON (((351854 3906...
-## 6             6  44 1941003 Training 8.12 34.00 174.49 86.27 0.21 2.69 0.06 2.75 0.15 18.27 MULTIPOLYGON (((352903.1 39...</code></pre>
+##   Seed_Point_ID FID   EA_ID    Group   Ph   SSC     Ca    Mg  NH4  NO3  NO2  TON
+## 1             1  54 1940214 Training 7.79 21.37  60.82 11.12 0.24 2.64 0.08 2.73
+## 2             2  42 1941025  Testing 7.79 33.52  75.45 17.52 4.46 3.24 0.11 3.35
+## 3             3  40 1941017 Training 8.55 11.69  58.54 20.50 0.25 0.83 0.02 0.84
+## 4             4  47 1941007 Training 7.71 34.06  96.83 46.33 0.24 3.65 0.07 3.73
+## 5             5  45 1941002 Training 8.08 70.81 141.98 85.85 0.40 4.47 0.05 4.52
+## 6             6  44 1941003 Training 8.12 34.00 174.49 86.27 0.21 2.69 0.06 2.75
+##    PO4    Zn                       geometry
+## 1 0.34 50.00 MULTIPOLYGON (((345159.5 38...
+## 2 0.99 20.51 MULTIPOLYGON (((348107.1 39...
+## 3 0.07 35.23 MULTIPOLYGON (((346108.7 39...
+## 4 0.21 74.26 MULTIPOLYGON (((350505.1 39...
+## 5 0.14 20.16 MULTIPOLYGON (((351854 3906...
+## 6 0.15 18.27 MULTIPOLYGON (((352903.1 39...</code></pre>
 <blockquote>
 <p>Save your script before continuing.</p>
 </blockquote>
@@ -498,34 +505,41 @@ Hydrological analysis in R<br />
 <blockquote>
 <p>Run <code>head(watersheds_ea)</code>, which should resemble the following:</p>
 </blockquote>
-<pre><code>##   Seed_Point_ID FID   EA_ID    Group   Ph   SSC     Ca    Mg  NH4  NO3  NO2  TON  PO4    Zn average_elevation
-## 1             1  54 1940214 Training 7.79 21.37  60.82 11.12 0.24 2.64 0.08 2.73 0.34 50.00          21.51344
-## 2             2  42 1941025  Testing 7.79 33.52  75.45 17.52 4.46 3.24 0.11 3.35 0.99 20.51          39.95542
-## 3             3  40 1941017 Training 8.55 11.69  58.54 20.50 0.25 0.83 0.02 0.84 0.07 35.23          66.75006
-## 4             4  47 1941007 Training 7.71 34.06  96.83 46.33 0.24 3.65 0.07 3.73 0.21 74.26          44.82042
-## 5             5  45 1941002 Training 8.08 70.81 141.98 85.85 0.40 4.47 0.05 4.52 0.14 20.16          43.72755
-## 6             6  44 1941003 Training 8.12 34.00 174.49 86.27 0.21 2.69 0.06 2.75 0.15 18.27          49.89805
-##   average_rainfall average_slope average_aspect Arable_percent Heath_percent Grassland_percent Urban_percent
-## 1         539.8778     0.4947966       94.18135      23.881537             0          21.42407      49.46440
-## 2         581.1832     1.2605843      205.45723      44.563367             0          23.93578      20.94381
-## 3         591.3545     1.9887265      195.48206       2.862986             0          33.46967      35.71915
-## 4         549.0123     0.5363760      140.63359      36.419753             0          10.08230      51.23457
-## 5         557.1751     1.6656744      120.61153      62.289562             0          18.51852      19.19192
-## 6         562.9039     1.1076461      118.44821      27.402135             0          10.85409      43.77224
-##   Wetland_percent Permeable_percent Impermeable_percent Gleyed_percent Peats_percent Sands_and_Muds_percent
-## 1               0           0.00000                   0       64.90233     35.097669               89.09893
-## 2               0           6.59207                   0       84.23741      9.170518              100.00000
-## 3               0          19.90457                   0       80.09543      0.000000              100.00000
-## 4               0           0.00000                   0      100.00000      0.000000              100.00000
-## 5               0           0.00000                   0      100.00000      0.000000              100.00000
-## 6               0           0.00000                   0      100.00000      0.000000              100.00000
-##   Limestone_percent Coal_percent
-## 1                 0            0
-## 2                 0            0
-## 3                 0            0
-## 4                 0            0
-## 5                 0            0
-## 6                 0            0</code></pre>
+<pre><code>##   Seed_Point_ID FID   EA_ID    Group   Ph   SSC     Ca    Mg  NH4  NO3  NO2  TON
+## 1             1  54 1940214 Training 7.79 21.37  60.82 11.12 0.24 2.64 0.08 2.73
+## 2             2  42 1941025  Testing 7.79 33.52  75.45 17.52 4.46 3.24 0.11 3.35
+## 3             3  40 1941017 Training 8.55 11.69  58.54 20.50 0.25 0.83 0.02 0.84
+## 4             4  47 1941007 Training 7.71 34.06  96.83 46.33 0.24 3.65 0.07 3.73
+## 5             5  45 1941002 Training 8.08 70.81 141.98 85.85 0.40 4.47 0.05 4.52
+## 6             6  44 1941003 Training 8.12 34.00 174.49 86.27 0.21 2.69 0.06 2.75
+##    PO4    Zn average_elevation average_rainfall average_slope average_aspect
+## 1 0.34 50.00          21.51344         539.8778     0.4947966       94.18135
+## 2 0.99 20.51          39.95542         581.1832     1.2605843      205.45723
+## 3 0.07 35.23          66.75006         591.3545     1.9887265      195.48206
+## 4 0.21 74.26          44.82042         549.0123     0.5363760      140.63359
+## 5 0.14 20.16          43.72755         557.1751     1.6656744      120.61153
+## 6 0.15 18.27          49.89805         562.9039     1.1076461      118.44821
+##   Arable_percent Heath_percent Grassland_percent Urban_percent Wetland_percent
+## 1      23.881537             0          21.42407      49.46440               0
+## 2      44.563367             0          23.93578      20.94381               0
+## 3       2.862986             0          33.46967      35.71915               0
+## 4      36.419753             0          10.08230      51.23457               0
+## 5      62.289562             0          18.51852      19.19192               0
+## 6      27.402135             0          10.85409      43.77224               0
+##   Permeable_percent Impermeable_percent Gleyed_percent Peats_percent
+## 1           0.00000                   0       64.90233     35.097669
+## 2           6.59207                   0       84.23741      9.170518
+## 3          19.90457                   0       80.09543      0.000000
+## 4           0.00000                   0      100.00000      0.000000
+## 5           0.00000                   0      100.00000      0.000000
+## 6           0.00000                   0      100.00000      0.000000
+##   Sands_and_Muds_percent Limestone_percent Coal_percent
+## 1               89.09893                 0            0
+## 2              100.00000                 0            0
+## 3              100.00000                 0            0
+## 4              100.00000                 0            0
+## 5              100.00000                 0            0
+## 6              100.00000                 0            0</code></pre>
 <blockquote>
 <p>If you wish, it might be good idea to clean / simplify our R environment before commencing the statistical analysis. To do so, best practice is to restart R (<code>Ctrl + Shift + F10</code> on Windows) <em>or</em> you can use the following code <code>rm(list = ls())</code> to remove all objects from the workspace. While the latter isn’t a perfect solution (see <a href="https://rstats.wtf/source-and-blank-slates#sec-rm-list-ls">here</a>), it can be of value if used prudently.</p>
 </blockquote>
