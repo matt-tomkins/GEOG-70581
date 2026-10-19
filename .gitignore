@@ -4,3 +4,9 @@
 .Ruserdata
 output/
 legacy/
+# No hidden Rmd files i.e., for later practicals
+_*.Rmd
+# Zipped data dir
+GEOG70581.zip
+# Dir containing edited images
+edits/
