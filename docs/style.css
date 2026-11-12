@@ -1,0 +1,14 @@
+/* Custom class for notes */
+.note {
+    border-left: 8px solid #5252FF;
+    background: #E3E3FF;
+    padding: 1em;
+    margin: 1em -8px;
+}
+
+/* Adapt paragraph spacing */
+.note p {
+  margin: 0;
+}
+
+

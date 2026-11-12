@@ -6,7 +6,7 @@ To run WhiteboxTools functions (**WBT**), we'll be using R as a front-end interf
 
 ## R
 
-If you're working on a **university-managed computer** (in HBS 2.2, HBS 2.88 or Mansfield Cooper 2.01), both R and RStudio (described below) should already be installed or can be accessed through the Software Centre. 
+If you're working on a **university-managed computer**, both R and RStudio (described below) should already be installed or can be accessed through AppsAnywhere. 
 
 To Install R on a **personal computer**:
 
@@ -36,7 +36,12 @@ To Install RStudio on a **personal computer**:
 
 All the data required for this sets of practicals are available on Canvas [here](https://canvas.manchester.ac.uk/courses/87479/pages/instructions-and-data?module_item_id=4155612).
 
-> Download the folder, save it to an appropriate location and extract the contents (unzip). 
+> Download the folder, save it to an appropriate location on your **P Drive** and extract the contents (unzip). 
+
+::: note
+You should work on the **P drive** throughout this unit. Integration with cloud storage services (e.g., OneDrive) can cause [problems](https://support.esri.com/en-us/knowledge-base/problem-arcgis-pro-and-cloud-storage-services-000025605), while you will have limited flexibility if working locally (`C:`). Don't work on or save to `C:` apart from in exceptional circumstances - there is a risk your work will be lost. 
+:::
+
 
 The directory structure is as follows:
 

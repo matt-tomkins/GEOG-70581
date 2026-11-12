@@ -2,6 +2,7 @@
 title: <center> Hydrological analysis in R </center> 
 output:
   bookdown::gitbook:
+    css: style.css
     toc_depth: 3
     config:
       toc:
@@ -68,7 +69,7 @@ After completing these practicals, you will:
 -   utilised statistical analysis to investigate the relationships between water quality indicators and catchment characteristics;
 -   improved your understanding of the hydrological processes influencing water quality.
 
-## Schedule
+## Schedule {#schedule}
 
 These practicals will be completed across Weeks 8 to 12 as follows:
 
@@ -82,4 +83,4 @@ These practicals will be completed across Weeks 8 to 12 as follows:
     -   Lecture on Water Quality Modelling (~1 hr)
     -   Complete Chapters 7 - 10: **Mersey** practical (~6 hr, plus independent work)
 
-The assessment, based upon Practical 2 (**Mersey**), is detailed in full on **Canvas** [here](https://canvas.manchester.ac.uk/courses/87479/pages/assessment-and-feedback?module_item_id=4155595).
+The assessment, based upon Practical 2 (**Mersey**), will be introduced more fully later in the unit, with further information on **Canvas** [here](https://canvas.manchester.ac.uk/courses/87479/pages/assessment-and-feedback?module_item_id=4155595).
