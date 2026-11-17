@@ -39,7 +39,7 @@ All the data required for this sets of practicals are available on Canvas [here]
 > Download the folder, save it to an appropriate location on your **P Drive** and extract the contents (unzip). 
 
 ::: note
-You should work on the **P drive** throughout this unit. Integration with cloud storage services (e.g., OneDrive) can cause [problems](https://support.esri.com/en-us/knowledge-base/problem-arcgis-pro-and-cloud-storage-services-000025605), while you will have limited flexibility if working locally (`C:`). Don't work on or save to `C:` apart from in exceptional circumstances - there is a risk your work will be lost. 
+I would recommend working on the **P drive** throughout this unit. Integration with cloud storage services (e.g., OneDrive) can cause [problems](https://support.esri.com/en-us/knowledge-base/problem-arcgis-pro-and-cloud-storage-services-000025605). *If working on a cluster PC*, don't work on or save to `C:` apart from in exceptional circumstances - there is a risk your work will be lost. 
 :::
 
 
