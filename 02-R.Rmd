@@ -360,10 +360,10 @@ We can also extract rows and columns based on the values within the data frame, 
 # Extract data frame rows where height is more than or equal to (>=) 1.8 m. 
 subset(df, height >= 1.8) 
 
-# Extract data frame rows where nationality is not equal to (!=) American
+# Extract data frame rows where nationality is not equal to American (!= is an operator which means "not equal to")
 subset(df, nationality != "American")
 
-# Extract data frame rows where bereft_of_life is equal to (==) FALSE
+# Extract data frame rows where bereft_of_life is equal to FALSE (== is an operator which means "equal to"))
 subset(df, bereft_of_life == FALSE)
 
 ```
@@ -833,7 +833,7 @@ To extract the month from each record, you may want to use the `months()` functi
 
 A code solution to the formative task will be uploaded here after the class. Don't worry if your solution is slightly different from mine! 
 
-```{r, eval = FALSE, echo = TRUE, warning = FALSE, message = FALSE}
+```{r, eval = FALSE, echo = FALSE, warning = FALSE, message = FALSE}
 
 # Solution to the Chapter 3 formative task
 # Author: matt-tomkins
@@ -843,11 +843,11 @@ A code solution to the formative task will be uploaded here after the class. Don
 
 > **Note** If you're working on a personal computer with Chinese language settings, you may need to run `Sys.setlocale("LC_TIME", "English")` at the start of your code to fix language-related errors the in the `as.Date()` function. 
 
-```{r, eval = FALSE, echo = FALSE, warning = FALSE, message = FALSE}
+```{r, eval = TRUE, echo = TRUE, warning = FALSE, message = FALSE}
 
 # Solution to the Chapter 3 formative task
 # Author: matt-tomkins
-# Date of upload: 21-11-2025
+# Date of upload: 20-11-2026
 
 # Function to check and install packages
 check.packages <- function(pkg){
@@ -876,7 +876,7 @@ df_post2000$month <- months(df_post2000$date)
 # Summarise by month, using the aggregate() function and 'mean'
 summary <- aggregate(flow ~ month, df_post2000, mean)
 
-# Determines plotting order by converting the month column to a 'factor'
+# Determines plotting order by converting the month column to a 'factor' (ordered categorical data)
 # The factor levels are determined by the R month.name function
 summary$month <- factor(summary$month, levels = month.name)
 
@@ -886,7 +886,8 @@ g <- ggplot(data = summary, mapping=aes(x=month, y=flow)) +
   geom_bar(fill = "#3EBBFB", stat="identity") +
   # Sets the theme
   theme_classic() +
-  # Add x and y-axis labels
+  # Add x and y-axis labels using bquote() to create a label combining mathematical notation and text
+  # '^3' is used for a superscript and '~' is used for spaces between mathematical elements
   labs(x = "Month (2000 - 2019)", y = bquote('Average daily flow'~(m^3~'per second'))) +
   # Tight fitting y-axis
   scale_y_continuous(expand = c(0,0)) +
@@ -899,9 +900,5 @@ g
 # Prints highest and lowest average daily flows
 print(paste0("The month with the highest average daily flow is ", summary$month[summary$flow == max(summary$flow)]))
 print(paste0("The month with the lowest average daily flow is ", summary$month[summary$flow == min(summary$flow)]))
-
-
-
-
 
 ```
