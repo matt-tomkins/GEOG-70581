@@ -260,7 +260,7 @@ Most of the above should be familiar to you, with a few exceptions:
 
 **Note**: For this catchment, the difference between DEM breaching and filling is relatively minor. We'll use the latter (`dem_10m_fill.tif`) for all subsequent calculations. 
 
-As outlined above, the areas which are most affected by the depression filling algorithm are partly determined by local relief i.e. relatives differences in elevation. To help visualise this, let’s create and plot a **slope** image for the area, where the values in the raster cells represent the gradient of the slope, rather than their raw elevation. This can be achieved using the `wbt_slope` function. 
+As outlined above, the areas which are most affected by the depression filling algorithm are partly determined by local relief i.e. relative differences in elevation. To help visualise this, let’s create and plot a **slope** image for the area, where the values in the raster cells represent the gradient of the slope, rather than their raw elevation. This can be achieved using the `wbt_slope` function. 
 
 > Using the examples above, run `wbt_slope`, using the original DEM as the input, saving the output file with a logical name (e.g. `dem_10m_slope.tif`) and to the correct sub-directory (output/practical_1). 
 
