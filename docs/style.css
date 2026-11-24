@@ -11,4 +11,13 @@
   margin: 0;
 }
 
+/* Hanging reference indent */
+#refs, .csl-entry {
+  text-indent: -1.5em;
+  padding-left: 1.5em;
+}
 
+/* Custom class to hide sections from rendering */
+.hidden-section {
+  display: none !important;
+}
