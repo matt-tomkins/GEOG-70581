@@ -514,11 +514,29 @@ The above code uses British National Grid coordinates (m), rather than decimal d
 
 ## Practical solution
 
-As with the introduction to R (Chapter 2 - 3), I will provide a code solution to the Eskdale practical (Chapters 4 - 6), outlining the major analytical steps. 
+As with the introduction to R (Chapter 2 - 3), I will provide a code solution to the Eskdale practical (Chapters 4 - 6), outlining the major analytical steps. This will be released prior to the Week 10 class. 
 
-This will be released prior to the Week 10 class. 
+The code and plot below compares the D8 (@ocallaghan_extraction_1984), FD8 (@freeman_calculating_1991) and D-infinity flow algorithms (@tarboton_new_1997). To understand the key differences, I would recommend reading Walker et al. ([2021](https://doi.org/10.1002/esp.5171)) and Wilson et al. ([2008](https://doi.org/10.1007/978-3-540-77800-4_12)). As a brief summary, single direction algorithms (like D8) are conceptually and computationally simple, as all flow is assigned to one downslope cell. Application of D8 also facilitates delineation of discrete, *non-overlapping* catchments because flow divergence is not permitted. The D8 algorithm often produces realistic representations of streams in flatter areas, where water is channelised, as shown below:
 
-```{r, echo = TRUE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
+<p align="center">
+<a></a>![](figures/Practical-1/d8_channelised.png){width=100%}
+</p>
+
+However, modelling of flow on slopes is often less representative, as D8 is unable to capture the divergent flow that happens on hillslopes (i.e., water flowing over *convex* terrain). This can leads to spurious outputs, such as parallel artificial channels: 
+
+<p align="center">
+<a></a>![](figures/Practical-1/d8_hillslope.png){width=100%}
+</p>
+
+By comparison, multi-direction flow algorithms (like FD8 and D-infinity) can capture divergence on convex hillslopes, and convergence on concave hillslopes and valleys, and so are generally preferred, although are more computationally challenging to handle. 
+
+<p align="center">
+<a></a>![](figures/Practical-1/d8_dinf_comparison.png){width=100%}
+</p>
+
+In later weeks we will continue to use the D8 algorithm, as this is well suited to extracting **catchments**, which are focus of our analysis, as we will discuss in the Week 10 lecture. 
+
+```{r, echo = FALSE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
 
 # Solution to Practical 1 (Eskdale)
 # Author: matt-tomkins
@@ -526,11 +544,11 @@ This will be released prior to the Week 10 class.
 
 ```
 
-```{r, echo = FALSE, eval = FALSE, warning= FALSE, message = FALSE, fig.align = 'center'}
+```{r, echo = TRUE, eval = TRUE, warning= FALSE, message = FALSE, fig.align = 'center'}
 
 # Solution to Practical 1 (Eskdale)
 # Author: matt-tomkins
-# Date of upload: 28-11-2025
+# Date of upload: 27-11-2026
 
 # Function to check and install packages
 check.packages <- function(pkg){
